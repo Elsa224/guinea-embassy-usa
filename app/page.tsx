@@ -67,17 +67,24 @@ export default function Home() {
             </div>
 
             {/* Main Header - Centered like original */}
-            <header className="bg-white shadow-lg border-b-4 border-ci-orange">
+            <header className="border-ci-orange border-b-4 bg-white shadow-lg">
                 <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-                    <div className="flex items-center justify-center animate-fade-in">
+                    <div className="animate-fade-in flex items-center justify-center">
                         <div className="flex items-center space-x-6">
                             <div className="gradient-ci animate-subtle-float flex h-24 w-24 items-center justify-center rounded-full shadow-xl">
-                                <span className="text-white text-4xl">🇨🇮</span>
+                                <span className="text-4xl text-white">🇨🇮</span>
                             </div>
                             <div className="text-center">
-                                <h1 className="text-3xl font-bold text-gray-900 mb-2">Consulat Général de Côte d'Ivoire à New York(USA)</h1>
-                                <p className="text-lg ci-orange font-semibold">République de Côte d'Ivoire</p>
-                                <p className="text-sm text-gray-600 italic">« Union - Discipline - Travail »</p>
+                                <h1 className="mb-2 text-3xl font-bold text-gray-900">
+                                    Consulat Général de Côte d'Ivoire à New
+                                    York(USA)
+                                </h1>
+                                <p className="ci-orange text-lg font-semibold">
+                                    République de Côte d'Ivoire
+                                </p>
+                                <p className="text-sm text-gray-600 italic">
+                                    « Union - Discipline - Travail »
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -88,7 +95,7 @@ export default function Home() {
             <Navigation />
 
             {/* Hero Section - Improved Layout */}
-            <section className="gradient-ci-soft relative py-20 overflow-hidden">
+            <section className="gradient-ci-soft relative overflow-hidden py-20">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="grid items-center gap-12 lg:grid-cols-2">
                         <div className="animate-slide-in">
@@ -104,8 +111,11 @@ export default function Home() {
                                 <span className="ci-green"> New York</span>
                             </h2>
                             <p className="mb-8 text-lg leading-relaxed text-gray-700">
-                                Services consulaires d'excellence pour la diaspora ivoirienne et nos visiteurs. 
-                                Nous vous accompagnons dans toutes vos démarches officielles avec professionnalisme et efficacité.
+                                Services consulaires d'excellence pour la
+                                diaspora ivoirienne et nos visiteurs. Nous vous
+                                accompagnons dans toutes vos démarches
+                                officielles avec professionnalisme et
+                                efficacité.
                             </p>
                             <div className="mb-8 flex flex-col gap-4 sm:flex-row">
                                 <Button
