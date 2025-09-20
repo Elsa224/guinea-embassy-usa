@@ -24,6 +24,10 @@
 .DS_Store
 *.pem
 
+# Prettier files
+.prettierrc
+.prettierignore
+
 # debug
 npm-debug.log*
 yarn-debug.log*
@@ -39,3 +43,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Others
+/md
+/screenshots
+CLAUDE.md
+.*de
+/*.sql
+/*.py
