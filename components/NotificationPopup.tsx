@@ -74,6 +74,7 @@ export default function NotificationPopup({
                             initial={{ scale: 0.95, opacity: 0, y: 10 }}
                             animate={{ scale: 1, opacity: 1, y: 0 }}
                             exit={{ scale: 0.95, opacity: 0, y: 10 }}
+                            //@ts-ignore
                             transition={{ duration: 0.3, ease: "easeOut" }}
                             className="w-full max-w-md overflow-hidden rounded-2xl bg-white shadow-2xl"
                         >
