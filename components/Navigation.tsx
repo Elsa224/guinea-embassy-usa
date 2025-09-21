@@ -140,18 +140,18 @@ const navigationItems = [
 
 export default function Navigation() {
     return (
-        <div className="flex w-full items-center justify-between">
+        <div className="flex w-full items-center justify-center">
             <NavigationMenu>
-                <NavigationMenuList>
+                <NavigationMenuList className="flex-wrap gap-1 text-white">
                     {navigationItems.map(item => (
                         <NavigationMenuItem key={item.title}>
                             {item.items ? (
                                 <>
-                                    <NavigationMenuTrigger className="hover:text-ci-orange text-gray-700">
+                                    <NavigationMenuTrigger className="text-white hover:text-white hover:bg-white/20 data-[state=open]:bg-white/20 data-[state=open]:text-white font-medium px-4 py-2 rounded-lg transition-all duration-200 bg-transparent border-none shadow-none">
                                         {item.title}
                                     </NavigationMenuTrigger>
                                     <NavigationMenuContent>
-                                        <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                                        <ul className="grid w-[400px] gap-3 p-6 md:w-[500px] md:grid-cols-2 lg:w-[600px] bg-white rounded-lg shadow-xl border border-gray-200">
                                             {item.items.map(subItem => (
                                                 <ListItem
                                                     key={subItem.title}
@@ -171,7 +171,7 @@ export default function Navigation() {
                                     <NavigationMenuLink
                                         className={cn(
                                             navigationMenuTriggerStyle(),
-                                            "hover:text-ci-orange text-gray-700"
+                                            "text-white hover:text-white hover:bg-white/20 font-medium px-4 py-2 rounded-lg transition-all duration-200 bg-transparent border-none shadow-none"
                                         )}
                                     >
                                         {item.title}

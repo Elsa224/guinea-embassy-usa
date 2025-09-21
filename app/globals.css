@@ -255,6 +255,43 @@ body {
     background: var(--ci-orange-dark);
 }
 
+/* Hide scrollbar for navigation */
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+/* Navigation text visibility - Force white text */
+nav button,
+nav a,
+nav [role="menuitem"],
+nav [data-radix-collection-item],
+nav [data-radix-navigation-menu-trigger] {
+    color: black !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+nav button:hover,
+nav a:hover,
+nav [role="menuitem"]:hover,
+nav [data-radix-collection-item]:hover,
+nav [data-radix-navigation-menu-trigger]:hover {
+    color: black !important;
+    background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+nav button[data-state="open"],
+nav [data-radix-navigation-menu-trigger][data-state="open"] {
+    color: white !important;
+    background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
 .dark {
     --background: oklch(0.147 0.004 49.25);
     --foreground: oklch(0.985 0.001 106.423);
