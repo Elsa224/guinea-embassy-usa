@@ -14,12 +14,14 @@ import { SiFacebook, SiX, SiInstagram } from "@icons-pack/react-simple-icons";
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import { ChevronLeft, ChevronRight, Play, ExternalLink } from "lucide-react";
+import { ChevronLeft, ChevronRight, Play, ExternalLink, ArrowUp } from "lucide-react";
 
 export default function Home() {
     const [currentNewsIndex, setCurrentNewsIndex] = useState(0);
     const [currentSlide, setCurrentSlide] = useState(0);
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
+    const [isScrolled, setIsScrolled] = useState(false);
+    const [showBackToTop, setShowBackToTop] = useState(false);
 
     // Auto-rotate slider
     useEffect(() => {
@@ -28,6 +30,31 @@ export default function Home() {
         }, 5000);
         return () => clearInterval(timer);
     }, []);
+
+    // Handle scroll effects
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrolled = window.scrollY > 100;
+            setIsScrolled(scrolled);
+            
+            // Show back to top button when near bottom of page
+            const scrollHeight = document.documentElement.scrollHeight;
+            const scrollTop = document.documentElement.scrollTop;
+            const clientHeight = document.documentElement.clientHeight;
+            const isNearBottom = scrollTop + clientHeight >= scrollHeight * 0.8;
+            setShowBackToTop(isNearBottom);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    };
 
     const slides = [
         {
@@ -142,68 +169,39 @@ export default function Home() {
     return (
         <div className="min-h-screen bg-white">
             {/* Navbar */}
-            <nav className="bg-white shadow-sm border-b">
+            <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+                isScrolled 
+                    ? 'bg-white/95 backdrop-blur-md shadow-lg border-b' 
+                    : 'bg-white shadow-sm border-b'
+            }`}>
                 <div className="container mx-auto px-6">
-                    <NavigationMenu className="w-full">
-                        <NavigationMenuList className="flex justify-center space-x-8 py-4">
-                            <NavigationMenuItem>
-                                <NavigationMenuLink 
-                                    href="#" 
-                                    className="text-gray-800 font-medium hover:text-orange-600 relative group transition-colors duration-300"
-                                >
-                                    Accueil
-                                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-orange-600 group-hover:w-full transition-all duration-300"></span>
-                                </NavigationMenuLink>
-                            </NavigationMenuItem>
-                            <NavigationMenuItem>
-                                <NavigationMenuLink 
-                                    href="#" 
-                                    className="text-gray-800 font-medium hover:text-orange-600 relative group transition-colors duration-300"
-                                >
-                                    Actualités
-                                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-orange-600 group-hover:w-full transition-all duration-300"></span>
-                                </NavigationMenuLink>
-                            </NavigationMenuItem>
-                            <NavigationMenuItem>
-                                <NavigationMenuLink 
-                                    href="#" 
-                                    className="text-gray-800 font-medium hover:text-orange-600 relative group transition-colors duration-300"
-                                >
-                                    Services Consulaires
-                                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-orange-600 group-hover:w-full transition-all duration-300"></span>
-                                </NavigationMenuLink>
-                            </NavigationMenuItem>
-                            <NavigationMenuItem>
-                                <NavigationMenuLink 
-                                    href="#" 
-                                    className="text-gray-800 font-medium hover:text-orange-600 relative group transition-colors duration-300"
-                                >
-                                    Côte d'Ivoire
-                                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-orange-600 group-hover:w-full transition-all duration-300"></span>
-                                </NavigationMenuLink>
-                            </NavigationMenuItem>
-                            <NavigationMenuItem>
-                                <NavigationMenuLink 
-                                    href="#" 
-                                    className="text-gray-800 font-medium hover:text-orange-600 relative group transition-colors duration-300"
-                                >
-                                    Multimedia
-                                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-orange-600 group-hover:w-full transition-all duration-300"></span>
-                                </NavigationMenuLink>
-                            </NavigationMenuItem>
-                            <NavigationMenuItem>
-                                <NavigationMenuLink 
-                                    href="#" 
-                                    className="text-gray-800 font-medium hover:text-orange-600 relative group transition-colors duration-300"
-                                >
-                                    Contacts
-                                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-orange-600 group-hover:w-full transition-all duration-300"></span>
-                                </NavigationMenuLink>
-                            </NavigationMenuItem>
-                        </NavigationMenuList>
-                    </NavigationMenu>
+                    <div className="flex justify-center py-4">
+                        <div className="flex space-x-8">
+                            {[
+                                { label: 'Accueil', href: '#' },
+                                { label: 'Actualités', href: '#' },
+                                { label: 'Services Consulaires', href: '#' },
+                                { label: "Côte d'Ivoire", href: '#' },
+                                { label: 'Multimedia', href: '#' },
+                                { label: 'Contacts', href: '#' }
+                            ].map((item, index) => (
+                                <div key={index} className="relative group">
+                                    <a
+                                        href={item.href}
+                                        className="text-gray-800 font-medium hover:text-orange-600 transition-colors duration-300 px-2 py-1 block"
+                                    >
+                                        {item.label}
+                                    </a>
+                                    <span className="absolute bottom-0 left-2 w-0 h-0.5 bg-orange-600 group-hover:w-[calc(100%-1rem)] transition-all duration-300"></span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </nav>
+
+            {/* Spacer for fixed navbar */}
+            <div className="h-16"></div>
 
             {/* Hero Section */}
             <section className="relative bg-[#EBEBEB] py-12 overflow-hidden">
@@ -651,6 +649,23 @@ export default function Home() {
                     </div>
                 </div>
             </footer>
+
+            {/* Back to Top Button */}
+            <AnimatePresence>
+                {showBackToTop && (
+                    <motion.button
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.8 }}
+                        onClick={scrollToTop}
+                        className="fixed bottom-8 right-8 z-50 bg-orange-600 hover:bg-orange-700 text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                    >
+                        <ArrowUp className="w-6 h-6" />
+                    </motion.button>
+                )}
+            </AnimatePresence>
         </div>
     );
 }
