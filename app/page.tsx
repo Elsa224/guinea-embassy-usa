@@ -255,17 +255,9 @@ export default function Home() {
             {/* Hero Section */}
             <section
                 id="accueil"
-                className="relative overflow-hidden bg-[#EBEBEB] py-12"
+                className="relative h-full overflow-hidden bg-[#EBEBEB] py-12"
             >
                 {/* Background image with opacity */}
-                <div className="absolute inset-0 z-0" aria-hidden="true">
-                    <img
-                        src="/assets/images-for-the-new-website/civ_usa_flag_no_bg.png"
-                        alt=""
-                        className="mb-5 h-full w-full object-cover object-center"
-                        style={{ opacity: 0.8 }}
-                    />
-                </div>
                 <div className="relative z-10 container mx-auto px-6">
                     {/* Logo centered at top */}
                     <motion.div
@@ -277,15 +269,23 @@ export default function Home() {
                         <img
                             src="/assets/images-for-the-new-website/logo-removebg-preview.png"
                             alt="Logo Consulat"
-                            className="mx-auto h-94"
+                            className="mx-auto h-114 pb-35"
                         />
                         {/* <h1 className="text-2xl lg:text-3xl font-bold text-gray-900">
                             CONSULAT GÉNÉRAL DE CÔTE D'IVOIRE
-                        </h1>
-                        <p className="text-lg text-gray-600 mt-2">
+                            </h1>
+                            <p className="text-lg text-gray-600 mt-2">
                             NEW YORK - ÉTATS-UNIS
-                        </p> */}
+                            </p> */}
                     </motion.div>
+                </div>
+                <div className="absolute inset-0 top-20 z-0" aria-hidden="true">
+                    <img
+                        src="/assets/images-for-the-new-website/civ_usa_flag_no_bg.png"
+                        alt=""
+                        className="mb-5 h-full w-full object-cover object-center"
+                        style={{ opacity: 1 }}
+                    />
                 </div>
             </section>
 
@@ -370,7 +370,7 @@ export default function Home() {
                         </div>
 
                         {/* Slider indicators */}
-                        <div className="mt-8 flex justify-center space-x-2">
+                        <div className="mt-8 mb-4 flex justify-center space-x-2">
                             {slides.map((_, index) => (
                                 <button
                                     key={index}
@@ -979,30 +979,29 @@ export default function Home() {
                                     </p>
                                 </div>
                             </div>
-                            <div className="flex flex-row pt-6 space-x-6">
-                            <a
-                                href="#"
-                                className="text-white/80 transition-colors hover:text-white"
-                            >
-                                <span className="sr-only">Facebook</span>
-                                <SiFacebook className="h-6 w-6" />
-                            </a>
-                            <a
-                                href="#"
-                                className="text-white/80 transition-colors hover:text-white"
-                            >
-                                <span className="sr-only">Instagram</span>
-                                <SiInstagram className="h-6 w-6" />
-                            </a>
-                            <a
-                                href="#"
-                                className="text-white/80 transition-colors hover:text-white"
-                            >
-                                <span className="sr-only">X (Twitter)</span>
-                                <SiX className="h-6 w-6" />
-                            </a>
-                        </div>
-                            
+                            <div className="flex flex-row space-x-6 pt-6">
+                                <a
+                                    href="#"
+                                    className="text-white/80 transition-colors hover:text-white"
+                                >
+                                    <span className="sr-only">Facebook</span>
+                                    <SiFacebook className="h-6 w-6" />
+                                </a>
+                                <a
+                                    href="#"
+                                    className="text-white/80 transition-colors hover:text-white"
+                                >
+                                    <span className="sr-only">Instagram</span>
+                                    <SiInstagram className="h-6 w-6" />
+                                </a>
+                                <a
+                                    href="#"
+                                    className="text-white/80 transition-colors hover:text-white"
+                                >
+                                    <span className="sr-only">X (Twitter)</span>
+                                    <SiX className="h-6 w-6" />
+                                </a>
+                            </div>
                         </div>
                     </div>
 
