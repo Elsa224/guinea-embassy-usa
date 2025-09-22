@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { 
+import {
     NavigationMenu,
     NavigationMenuContent,
     NavigationMenuItem,
@@ -10,868 +10,647 @@ import {
     NavigationMenuList,
     NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import { ChevronLeft, ChevronRight, Play, ExternalLink } from "lucide-react";
 
 export default function Home() {
-    const [isVisible, setIsVisible] = useState(false);
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    const [videoSliderIndex, setVideoSliderIndex] = useState(0);
-    const [photoSliderIndex, setPhotoSliderIndex] = useState(0);
+    const [currentSlide, setCurrentSlide] = useState(0);
+    const [currentNewsIndex, setCurrentNewsIndex] = useState(0);
+    const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+    const [showMorePhotos, setShowMorePhotos] = useState(false);
 
+    // Auto-rotate slider
     useEffect(() => {
-        setIsVisible(true);
-    }, []);
-
-    // Gallery auto-rotation
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentImageIndex(prev => (prev + 1) % 6);
-        }, 4000);
-        return () => clearInterval(interval);
-    }, []);
-
-    // Video slider auto-rotation
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setVideoSliderIndex(prev => (prev + 1) % 4);
+        const timer = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % 3);
         }, 5000);
-        return () => clearInterval(interval);
+        return () => clearInterval(timer);
     }, []);
 
-    // Photo slider auto-rotation
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setPhotoSliderIndex(prev => (prev + 1) % 6);
-        }, 3500);
-        return () => clearInterval(interval);
-    }, []);
+    const slides = [
+        {
+            title: "Bienvenue au Consulat Général",
+            content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
+        },
+        {
+            title: "Services Consulaires d'Excellence", 
+            content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
+        },
+        {
+            title: "Au Service de la Diaspora",
+            content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
+        }
+    ];
 
-    // Add CSS for banner animation
-    //@ts-ignore
-    useEffect(() => {
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes scroll {
-                0% { transform: translateX(100%); }
-                100% { transform: translateX(-100%); }
-            }
-            .animate-scroll {
-                animation: scroll 30s linear infinite;
-            }
-        `;
-        document.head.appendChild(style);
-        return () => document.head.removeChild(style);
-    }, []);
+    const newsItems = [
+        {
+            image: "/assets/images-for-the-new-website/actualite-pic-1.jpeg",
+            title: "Nouvelle procédure de demande de visa",
+            excerpt: "Le consulat annonce une nouvelle procédure simplifiée pour les demandes de visa...",
+            date: "15 Janvier 2025"
+        },
+        {
+            image: "/assets/images-for-the-new-website/actualite-pic-2.jpeg", 
+            title: "Horaires d'ouverture modifiés",
+            excerpt: "Veuillez noter les nouveaux horaires d'ouverture du consulat général...",
+            date: "12 Janvier 2025"
+        },
+        {
+            image: "/assets/images-for-the-new-website/actualite-pic-3.jpeg",
+            title: "Événement culturel ivoirien",
+            excerpt: "Le consulat organise un événement culturel pour célébrer...",
+            date: "10 Janvier 2025"
+        },
+        {
+            image: "/assets/images-for-the-new-website/actualite-pic-1.jpeg",
+            title: "Formation consulaire",
+            excerpt: "Sessions de formation pour les membres de la diaspora...",
+            date: "8 Janvier 2025"
+        }
+    ];
+
+    const services = [
+        {
+            icon: "/assets/images-for-the-new-website/services/PICTO-02.png",
+            title: "VISA",
+            description: "Pour obtenir un visa, le demandeur doit fournir un dossier électronique comprenant les pièces ci-après.",
+            link: "https://www.paf.gov.gn/visa"
+        },
+        {
+            icon: "/assets/images-for-the-new-website/services/PICTO-06.png",
+            title: "CARTE CONSULAIRE", 
+            description: "Plateforme en ligne dédiée à la demande de carte consulaire.",
+            link: "https://express54.org"
+        },
+        {
+            icon: "/assets/images-for-the-new-website/services/PICTO-04.png",
+            title: "AUTRES DOCUMENTS",
+            description: "Plateforme en ligne dédiée à la demande d'autres documents administratifs.",
+            link: "https://express54.org"
+        },
+        {
+            icon: "/assets/images-for-the-new-website/services/PICTO-01.png",
+            title: "DOCUMENTS CIVILS",
+            description: "Plateforme en ligne dédiée à la demande de documents civils.",
+            link: "https://express54.org"
+        },
+        {
+            icon: "/assets/images-for-the-new-website/services/PICTO-02.png",
+            title: "TITRE DE VOYAGE",
+            description: "Plateforme en ligne dédiée à la demande de titre de voyage.",
+            link: "https://express54.org"
+        },
+        {
+            icon: "/assets/images-for-the-new-website/services/PICTO-03.png",
+            title: "DELIVERY EXPRESS",
+            description: "Plateforme en ligne dédiée à la demande de livraison express.",
+            link: "https://express54.org"
+        }
+    ];
+
+    const videos = [
+        {
+            cover: "/assets/images-for-the-new-website/video-cover-1.jpeg",
+            title: "Présentation du Consulat",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            youtubeId: "dQw4w9WgXcQ"
+        },
+        {
+            cover: "/assets/images-for-the-new-website/video-cover-2.jpeg",
+            title: "Procédures Administratives",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            youtubeId: "dQw4w9WgXcQ"
+        },
+        {
+            cover: "/assets/images-for-the-new-website/video-cover-3.jpeg",
+            title: "Événements Culturels",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            youtubeId: "dQw4w9WgXcQ"
+        }
+    ];
 
     return (
         <div className="min-h-screen bg-white">
-            {/* Info Banner */}
-            <div className="bg-orange-600 text-white py-3 relative overflow-hidden">
-                <div className="animate-scroll whitespace-nowrap">
-                    <div className="inline-block px-4 text-sm font-medium">
-                        🚨 <strong>Flash Info:</strong> Nouveau système de prise de rendez-vous en ligne maintenant disponible • 
-                        📞 Urgences: +1 (212) 697-0900 • ⏰ Horaires: Lun-Ven 9h00-17h00 • 
-                        📧 Email: consulat.newyork@diplomatie.gouv.ci • 
-                        🌐 Services consulaires modernisés pour vous servir mieux
-                    </div>
-                </div>
-            </div>
-
-            {/* Sticky Header */}
-            <header className="sticky top-0 z-50 bg-white shadow-lg border-b-2 border-orange-600">
+            {/* Navbar */}
+            <nav className="bg-white shadow-sm border-b">
                 <div className="container mx-auto px-6">
-                    <div className="flex items-center justify-between py-4">
-                        {/* Logo and Title */}
-                        <div className="flex items-center space-x-4">
-                            <img 
-                                src="https://placehold.co/60x60/000000/FFF?text=CI" 
-                                alt="Logo Consulat" 
-                                className="h-12 w-12 rounded-full"
-                            />
-                            <div>
-                                <h1 className="text-lg font-bold text-gray-900">Consulat Général de Côte d'Ivoire</h1>
-                                <p className="text-sm text-gray-600">New York, États-Unis</p>
-                            </div>
-                        </div>
-
-                        {/* Contact Info */}
-                        <div className="hidden lg:flex items-center space-x-8 text-sm">
-                            <div className="flex items-center space-x-2">
-                                <span className="text-orange-600">📍</span>
-                                <span className="font-medium text-gray-700">801 Second Avenue, 5th Floor, NY 10017</span>
-                            </div>
-                            <div className="flex items-center space-x-2">
-                                <span className="text-green-600">📞</span>
-                                <span className="font-medium text-gray-700">+1 (212) 697-0900</span>
-                            </div>
-                            <div className="flex items-center space-x-2">
-                                <span className="text-blue-600">⏰</span>
-                                <span className="font-medium text-gray-700">Lun-Ven: 9h-17h</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Navigation Menu - shadcn/ui */}
-                    <div className="border-t border-gray-200 py-3 bg-gray-50">
-                        <NavigationMenu className="mx-auto">
-                            <NavigationMenuList className="space-x-2">
-                                <NavigationMenuItem>
-                                    <NavigationMenuLink href="#" className="text-gray-900 hover:text-orange-600 font-semibold px-4 py-2 rounded-md transition-colors">
-                                        Accueil
-                                    </NavigationMenuLink>
-                                </NavigationMenuItem>
-
-                                <NavigationMenuItem>
-                                    <NavigationMenuTrigger className="text-gray-900 hover:text-orange-600 font-semibold">
-                                        Actualités
-                                    </NavigationMenuTrigger>
-                                    <NavigationMenuContent>
-                                        <div className="w-64 p-2">
-                                            <NavigationMenuLink href="#" className="w-full text-gray-700 hover:text-orange-600 hover:bg-orange-50">
-                                                Actualités du Consulat
-                                            </NavigationMenuLink>
-                                            <NavigationMenuLink href="#" className="w-full text-gray-700 hover:text-orange-600 hover:bg-orange-50">
-                                                Actualités diplomatiques
-                                            </NavigationMenuLink>
-                                            <NavigationMenuLink href="#" className="w-full text-gray-700 hover:text-orange-600 hover:bg-orange-50">
-                                                Actualités gouvernementales
-                                            </NavigationMenuLink>
-                                        </div>
-                                    </NavigationMenuContent>
-                                </NavigationMenuItem>
-
-                                <NavigationMenuItem>
-                                    <NavigationMenuTrigger className="text-gray-900 hover:text-orange-600 font-semibold">
-                                        Démarche consulaire
-                                    </NavigationMenuTrigger>
-                                    <NavigationMenuContent>
-                                        <div className="w-64 p-2">
-                                            <NavigationMenuLink href="#" className="w-full text-gray-700 hover:text-orange-600 hover:bg-orange-50">
-                                                Informations utiles
-                                            </NavigationMenuLink>
-                                            <NavigationMenuLink href="#" className="w-full text-gray-700 hover:text-orange-600 hover:bg-orange-50">
-                                                Documents
-                                            </NavigationMenuLink>
-                                        </div>
-                                    </NavigationMenuContent>
-                                </NavigationMenuItem>
-
-                                <NavigationMenuItem>
-                                    <NavigationMenuTrigger className="text-gray-900 hover:text-orange-600 font-semibold">
-                                        Services
-                                    </NavigationMenuTrigger>
-                                    <NavigationMenuContent>
-                                        <div className="w-72 p-2">
-                                            <NavigationMenuLink href="#" className="w-full text-gray-700 hover:text-orange-600 hover:bg-orange-50">
-                                                Service État Civil
-                                            </NavigationMenuLink>
-                                            <NavigationMenuLink href="#" className="w-full text-gray-700 hover:text-orange-600 hover:bg-orange-50">
-                                                Service Visa
-                                            </NavigationMenuLink>
-                                            <NavigationMenuLink href="#" className="w-full text-gray-700 hover:text-orange-600 hover:bg-orange-50">
-                                                Service Passeport
-                                            </NavigationMenuLink>
-                                            <NavigationMenuLink href="#" className="w-full text-gray-700 hover:text-orange-600 hover:bg-orange-50">
-                                                Légalisation & Certification
-                                            </NavigationMenuLink>
-                                        </div>
-                                    </NavigationMenuContent>
-                                </NavigationMenuItem>
-
-                                <NavigationMenuItem>
-                                    <NavigationMenuTrigger className="text-gray-900 hover:text-orange-600 font-semibold">
-                                        Diaspora
-                                    </NavigationMenuTrigger>
-                                    <NavigationMenuContent>
-                                        <div className="w-64 p-2">
-                                            <NavigationMenuLink href="#" className="w-full text-gray-700 hover:text-orange-600 hover:bg-orange-50">
-                                                Carte consulaire
-                                            </NavigationMenuLink>
-                                            <NavigationMenuLink href="#" className="w-full text-gray-700 hover:text-orange-600 hover:bg-orange-50">
-                                                Inscription en ligne
-                                            </NavigationMenuLink>
-                                        </div>
-                                    </NavigationMenuContent>
-                                </NavigationMenuItem>
-
-                                <NavigationMenuItem>
-                                    <NavigationMenuLink href="#" className="text-gray-900 hover:text-orange-600 font-semibold px-4 py-2 rounded-md transition-colors">
-                                        FAQ
-                                    </NavigationMenuLink>
-                                </NavigationMenuItem>
-
-                                <NavigationMenuItem>
-                                    <NavigationMenuTrigger className="text-gray-900 hover:text-orange-600 font-semibold">
-                                        Gouvernance
-                                    </NavigationMenuTrigger>
-                                    <NavigationMenuContent>
-                                        <div className="w-80 p-2">
-                                            <NavigationMenuLink href="#" className="w-full text-gray-700 hover:text-orange-600 hover:bg-orange-50">
-                                                Le Président de la république
-                                            </NavigationMenuLink>
-                                            <NavigationMenuLink href="#" className="w-full text-gray-700 hover:text-orange-600 hover:bg-orange-50">
-                                                Le Premier ministre
-                                            </NavigationMenuLink>
-                                            <NavigationMenuLink href="#" className="w-full text-gray-700 hover:text-orange-600 hover:bg-orange-50">
-                                                Le gouvernement
-                                            </NavigationMenuLink>
-                                            <NavigationMenuLink href="#" className="w-full text-gray-700 hover:text-orange-600 hover:bg-orange-50">
-                                                Les institutions de l'État
-                                            </NavigationMenuLink>
-                                            <NavigationMenuLink href="#" className="w-full text-gray-700 hover:text-orange-600 hover:bg-orange-50">
-                                                Conseils des ministres
-                                            </NavigationMenuLink>
-                                            <NavigationMenuLink href="#" className="w-full text-gray-700 hover:text-orange-600 hover:bg-orange-50">
-                                                Communiqués
-                                            </NavigationMenuLink>
-                                            <NavigationMenuLink href="#" className="w-full text-gray-700 hover:text-orange-600 hover:bg-orange-50">
-                                                Textes officiels
-                                            </NavigationMenuLink>
-                                        </div>
-                                    </NavigationMenuContent>
-                                </NavigationMenuItem>
-
-                                <NavigationMenuItem>
-                                    <NavigationMenuTrigger className="text-gray-900 hover:text-orange-600 font-semibold">
-                                        Investissements
-                                    </NavigationMenuTrigger>
-                                    <NavigationMenuContent>
-                                        <div className="w-64 p-2">
-                                            <NavigationMenuLink href="#" className="w-full text-gray-700 hover:text-orange-600 hover:bg-orange-50">
-                                                CEPICI
-                                            </NavigationMenuLink>
-                                            <NavigationMenuLink href="#" className="w-full text-gray-700 hover:text-orange-600 hover:bg-orange-50">
-                                                Chambre du commerce
-                                            </NavigationMenuLink>
-                                            <NavigationMenuLink href="#" className="w-full text-gray-700 hover:text-orange-600 hover:bg-orange-50">
-                                                Chambre de l'agriculture
-                                            </NavigationMenuLink>
-                                            <NavigationMenuLink href="#" className="w-full text-gray-700 hover:text-orange-600 hover:bg-orange-50">
-                                                Bourse du café et cacao
-                                            </NavigationMenuLink>
-                                        </div>
-                                    </NavigationMenuContent>
-                                </NavigationMenuItem>
-                            </NavigationMenuList>
-                        </NavigationMenu>
-                    </div>
+                    <NavigationMenu className="w-full">
+                        <NavigationMenuList className="flex justify-center space-x-8 py-4">
+                            <NavigationMenuItem>
+                                <NavigationMenuLink 
+                                    href="#" 
+                                    className="text-gray-800 font-medium hover:text-orange-600 relative group transition-colors duration-300"
+                                >
+                                    Accueil
+                                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-orange-600 group-hover:w-full transition-all duration-300"></span>
+                                </NavigationMenuLink>
+                            </NavigationMenuItem>
+                            <NavigationMenuItem>
+                                <NavigationMenuLink 
+                                    href="#" 
+                                    className="text-gray-800 font-medium hover:text-orange-600 relative group transition-colors duration-300"
+                                >
+                                    Actualités
+                                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-orange-600 group-hover:w-full transition-all duration-300"></span>
+                                </NavigationMenuLink>
+                            </NavigationMenuItem>
+                            <NavigationMenuItem>
+                                <NavigationMenuLink 
+                                    href="#" 
+                                    className="text-gray-800 font-medium hover:text-orange-600 relative group transition-colors duration-300"
+                                >
+                                    Services Consulaires
+                                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-orange-600 group-hover:w-full transition-all duration-300"></span>
+                                </NavigationMenuLink>
+                            </NavigationMenuItem>
+                            <NavigationMenuItem>
+                                <NavigationMenuLink 
+                                    href="#" 
+                                    className="text-gray-800 font-medium hover:text-orange-600 relative group transition-colors duration-300"
+                                >
+                                    Côte d'Ivoire
+                                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-orange-600 group-hover:w-full transition-all duration-300"></span>
+                                </NavigationMenuLink>
+                            </NavigationMenuItem>
+                            <NavigationMenuItem>
+                                <NavigationMenuLink 
+                                    href="#" 
+                                    className="text-gray-800 font-medium hover:text-orange-600 relative group transition-colors duration-300"
+                                >
+                                    Multimedia
+                                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-orange-600 group-hover:w-full transition-all duration-300"></span>
+                                </NavigationMenuLink>
+                            </NavigationMenuItem>
+                            <NavigationMenuItem>
+                                <NavigationMenuLink 
+                                    href="#" 
+                                    className="text-gray-800 font-medium hover:text-orange-600 relative group transition-colors duration-300"
+                                >
+                                    Contacts
+                                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-orange-600 group-hover:w-full transition-all duration-300"></span>
+                                </NavigationMenuLink>
+                            </NavigationMenuItem>
+                        </NavigationMenuList>
+                    </NavigationMenu>
                 </div>
-            </header>
+            </nav>
+
             {/* Hero Section */}
-            <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-50 to-green-50 overflow-hidden">
-                {/* Background Elements */}
-                <div className="absolute inset-0">
-                    <div className="absolute top-20 right-20 w-72 h-72 bg-orange-200 rounded-full opacity-20 blur-3xl"></div>
-                    <div className="absolute bottom-20 left-20 w-96 h-96 bg-green-200 rounded-full opacity-20 blur-3xl"></div>
+            <section className="bg-[#EBEBEB] py-12">
+                <div className="container mx-auto px-6">
+                    {/* Logo centered at top */}
+                    <motion.div 
+                        className="text-center mb-8"
+                        initial={{ opacity: 0, y: -30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                    >
+                        <img 
+                            src="/assets/images-for-the-new-website/logo_without_text_and_bg.png" 
+                            alt="Logo Consulat" 
+                            className="h-94 mx-auto mb-1"
+                        />
+                        <h1 className="text-2xl lg:text-3xl font-bold text-gray-900">
+                            CONSULAT GÉNÉRAL DE CÔTE D'IVOIRE
+                        </h1>
+                        <p className="text-lg text-gray-600 mt-2">
+                            NEW YORK - ÉTATS-UNIS
+                        </p>
+                    </motion.div>
+
+                    {/* Main content with president photo and text */}
+                    <div className="flex flex-col lg:flex-row items-center justify-between max-w-6xl mx-auto">
+                        {/* <motion.div 
+                            className="lg:w-1/3 mb-8 lg:mb-0"
+                            initial={{ opacity: 0, x: -50 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8, delay: 0.2 }}
+                        >
+                            <img 
+                                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=400&fit=crop&crop=face" 
+                                alt="Président" 
+                                className="w-48 h-64 object-cover rounded-lg shadow-lg mx-auto"
+                            />
+                        </motion.div>
+                        
+                        <motion.div 
+                            className="lg:w-1/3 text-center px-4"
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.4 }}
+                        >
+                            <p className="text-gray-700 leading-relaxed mb-6">
+                                "Au nom de Son Excellence Monsieur Alassane OUATTARA, Président de la République de Côte d'Ivoire, 
+                                nous vous accueillons avec honneur. Notre mission : servir la diaspora ivoirienne et renforcer 
+                                les liens entre nos deux nations."
+                            </p>
+                            <Button className="bg-orange-600 hover:bg-orange-700 text-white px-6 py-2">
+                                Nos Services
+                            </Button>
+                        </motion.div> */}
+                        
+                        <motion.div 
+                            className="lg:w-1/3 mt-8 lg:mt-0"
+                            initial={{ opacity: 0, x: 50 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8, delay: 0.6 }}
+                        >
+                            <img 
+                                src="/assets/images-for-the-new-website/civ_usa_flag_no_bg.png" 
+                                alt="Côte d'Ivoire and USA flags" 
+                                className="w-full max-w-xs mx-auto"
+                            />
+                        </motion.div>
+                    </div>
                 </div>
+            </section>
 
-                <div className="container mx-auto px-6 text-center relative z-10">
-                    {/* Flag Badge */}
-                    <div className={`inline-flex items-center mb-8 px-6 py-3 bg-white rounded-full shadow-lg transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-                        <span className="text-2xl mr-3">🇨🇮</span>
-                        <span className="text-gray-700 font-semibold">Service Consulaire Officiel</span>
-                    </div>
-
-                    {/* Main Heading */}
-                    <h1 className={`text-5xl md:text-7xl font-bold mb-8 transform transition-all duration-1000 delay-200 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-                        <span className="text-gray-900">Votre</span>{' '}
-                        <span className="text-orange-600">Consulat</span>{' '}
-                        <span className="text-gray-900">à</span>{' '}
-                        <span className="text-green-600">New York</span>
-                    </h1>
-
-                    {/* Subtitle */}
-                    <p className={`text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed transform transition-all duration-1000 delay-400 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-                        Services consulaires d'excellence pour la diaspora ivoirienne et nos visiteurs. 
-                        Processus simplifié, délais réduits, sécurité maximale.
-                    </p>
-
-                    {/* CTA Buttons */}
-                    <div className={`flex flex-col sm:flex-row gap-6 justify-center mb-16 transform transition-all duration-1000 delay-600 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-                        <Button className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 text-lg rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
-                            <span className="mr-3">📅</span>
-                            Réserver un rendez-vous
-                        </Button>
-                        <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-600 hover:text-white px-8 py-4 text-lg rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
-                            <span className="mr-3">🔍</span>
-                            Explorer nos services
-                        </Button>
-                    </div>
-
-                    {/* Trust Indicators */}
-                    <div className={`grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto transform transition-all duration-1000 delay-800 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-                        <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
-                            <div className="text-3xl mb-3">⚡</div>
-                            <h3 className="font-bold text-gray-900 mb-2">Traitement Express</h3>
-                            <p className="text-gray-600">Délais réduits de 50%</p>
+            {/* Slider Section */}
+            <section className="py-12 bg-white">
+                <div className="container mx-auto px-6">
+                    <div className="relative max-w-6xl mx-auto">
+                        <div className="overflow-hidden rounded-xl shadow-2xl">
+                            <AnimatePresence mode="wait">
+                                <motion.div
+                                    key={currentSlide}
+                                    initial={{ opacity: 0, x: 300 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    exit={{ opacity: 0, x: -300 }}
+                                    transition={{ duration: 0.5 }}
+                                    className="relative"
+                                >
+                                    <img 
+                                        src="/assets/images-for-the-new-website/slider-pic-after-hero.jpeg"
+                                        alt={slides[currentSlide].title}
+                                        className="w-full h-96 object-cover"
+                                    />
+                                    <div className="absolute inset-0 bg-black/40 flex items-center">
+                                        <div className="container mx-auto px-8">
+                                            <motion.h2 
+                                                className="text-4xl font-bold text-white mb-4"
+                                                initial={{ y: 20, opacity: 0 }}
+                                                animate={{ y: 0, opacity: 1 }}
+                                                transition={{ delay: 0.2 }}
+                                            >
+                                                {slides[currentSlide].title}
+                                            </motion.h2>
+                                            <motion.p 
+                                                className="text-xl text-white/90 max-w-2xl"
+                                                initial={{ y: 20, opacity: 0 }}
+                                                animate={{ y: 0, opacity: 1 }}
+                                                transition={{ delay: 0.4 }}
+                                            >
+                                                {slides[currentSlide].content}
+                                            </motion.p>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            </AnimatePresence>
                         </div>
-                        <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
-                            <div className="text-3xl mb-3">🔒</div>
-                            <h3 className="font-bold text-gray-900 mb-2">100% Sécurisé</h3>
-                            <p className="text-gray-600">Protection totale des données</p>
+                        
+                        {/* Slider indicators */}
+                        <div className="flex justify-center mt-6 space-x-2">
+                            {slides.map((_, index) => (
+                                <button
+                                    key={index}
+                                    onClick={() => setCurrentSlide(index)}
+                                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                                        currentSlide === index ? 'bg-orange-600 scale-125' : 'bg-gray-300'
+                                    }`}
+                                />
+                            ))}
                         </div>
-                        <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
-                            <div className="text-3xl mb-3">🌍</div>
-                            <h3 className="font-bold text-gray-900 mb-2">Reconnu Officiellement</h3>
-                            <p className="text-gray-600">Service consulaire agréé</p>
+                    </div>
+                </div>
+            </section>
+
+            {/* News Section */}
+            <section className="py-12 bg-gray-50">
+                <div className="container mx-auto px-6">
+                    <div className="text-center mb-12">
+                        <h2 className="text-4xl font-bold text-gray-900 mb-4">Actualités</h2>
+                        <p className="text-xl text-gray-600">Restez informés des dernières nouvelles du consulat</p>
+                    </div>
+                    
+                    <div className="relative">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {newsItems.slice(currentNewsIndex, currentNewsIndex + 3).map((item, index) => (
+                                <motion.div
+                                    key={index + currentNewsIndex}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                                    viewport={{ once: true }}
+                                >
+                                    <Card className="overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                                        <CardContent className="p-0">
+                                            <img 
+                                                src={item.image} 
+                                                alt={item.title}
+                                                className="w-full h-48 object-cover"
+                                            />
+                                            <div className="p-6">
+                                                <p className="text-sm text-orange-600 font-medium mb-2">{item.date}</p>
+                                                <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
+                                                <p className="text-gray-600 mb-4">{item.excerpt}</p>
+                                                <Button variant="outline" className="text-orange-600 border-orange-600 hover:bg-orange-600 hover:text-white">
+                                                    Lire plus
+                                                </Button>
+                                            </div>
+                                        </CardContent>
+                                    </Card>
+                                </motion.div>
+                            ))}
+                        </div>
+                        
+                        {/* Navigation buttons */}
+                        <div className="flex justify-between items-center mt-8">
+                            <Button
+                                variant="outline"
+                                onClick={() => setCurrentNewsIndex(Math.max(0, currentNewsIndex - 3))}
+                                disabled={currentNewsIndex === 0}
+                                className="flex items-center"
+                            >
+                                <ChevronLeft className="w-4 h-4 mr-2" />
+                                Précédent
+                            </Button>
+                            
+                            <Button className="bg-orange-600 hover:bg-orange-700 text-white">
+                                Voir Plus
+                            </Button>
+                            
+                            <Button
+                                variant="outline"
+                                onClick={() => setCurrentNewsIndex(Math.min(newsItems.length - 3, currentNewsIndex + 3))}
+                                disabled={currentNewsIndex >= newsItems.length - 3}
+                                className="flex items-center"
+                            >
+                                Suivant
+                                <ChevronRight className="w-4 h-4 ml-2" />
+                            </Button>
                         </div>
                     </div>
                 </div>
             </section>
 
             {/* Services Section */}
-            <section className="py-20 bg-white">
+            <section className="py-12 bg-white">
                 <div className="container mx-auto px-6">
-                    <div className="text-center mb-16">
-                        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                            Nos <span className="text-orange-600">Services</span>
-                        </h2>
-                        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                            Une gamme complète de services pour accompagner toutes vos démarches consulaires
-                        </p>
+                    <div className="text-center mb-8">
+                        <h2 className="text-3xl font-bold text-gray-900 mb-4">SERVICES CONSULAIRES</h2>
                     </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                        {/* Visa Service */}
-                        <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg">
-                            <CardContent className="p-8 text-center">
-                                <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-orange-600 transition-colors duration-300">
-                                    <span className="text-2xl group-hover:text-white">🛂</span>
-                                </div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-4">Visa</h3>
-                                <p className="text-gray-600 mb-6">Demande de visa d'entrée en Côte d'Ivoire</p>
-                                <Button className="w-full bg-orange-600 hover:bg-orange-700 text-white">
-                                    Commencer
-                                </Button>
-                            </CardContent>
-                        </Card>
-
-                        {/* Passport Service */}
-                        <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg">
-                            <CardContent className="p-8 text-center">
-                                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-green-600 transition-colors duration-300">
-                                    <span className="text-2xl group-hover:text-white">📘</span>
-                                </div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-4">Passeport</h3>
-                                <p className="text-gray-600 mb-6">Renouvellement et nouvelles demandes</p>
-                                <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
-                                    Commencer
-                                </Button>
-                            </CardContent>
-                        </Card>
-
-                        {/* Legal Service */}
-                        <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg">
-                            <CardContent className="p-8 text-center">
-                                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-blue-600 transition-colors duration-300">
-                                    <span className="text-2xl group-hover:text-white">⚖️</span>
-                                </div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-4">Légalisation</h3>
-                                <p className="text-gray-600 mb-6">Légalisation de documents officiels</p>
-                                <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
-                                    Commencer
-                                </Button>
-                            </CardContent>
-                        </Card>
-
-                        {/* Emergency Service */}
-                        <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg">
-                            <CardContent className="p-8 text-center">
-                                <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-red-600 transition-colors duration-300">
-                                    <span className="text-2xl group-hover:text-white">🚨</span>
-                                </div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-4">Urgences</h3>
-                                <p className="text-gray-600 mb-6">Assistance d'urgence 24h/24</p>
-                                <Button className="w-full bg-red-600 hover:bg-red-700 text-white">
-                                    Contacter
-                                </Button>
-                            </CardContent>
-                        </Card>
+                    
+                    <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                        {services.map((service, index) => (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                viewport={{ once: true }}
+                            >
+                                <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                                    <CardContent className="p-6 text-center">
+                                        <img 
+                                            src={service.icon} 
+                                            alt={service.title}
+                                            className="w-16 h-16 mx-auto mb-4"
+                                        />
+                                        <h3 className="text-xl font-bold text-gray-900 mb-3">{service.title}</h3>
+                                        <p className="text-gray-600 mb-6">{service.description}</p>
+                                        <Button 
+                                            className="w-full bg-orange-600 hover:bg-orange-700 text-white"
+                                            onClick={() => window.open(service.link, '_blank')}
+                                        >
+                                            <ExternalLink className="w-4 h-4 mr-2" />
+                                            Accéder
+                                        </Button>
+                                    </CardContent>
+                                </Card>
+                            </motion.div>
+                        ))}
                     </div>
                 </div>
             </section>
 
-            {/* Gallery Section - CAPEC Style */}
-            <section className="py-20 bg-white">
+            {/* Photo Gallery */}
+            <section className="py-12 bg-gradient-to-br from-orange-200 to-orange-300">
                 <div className="container mx-auto px-6">
-                    <div className="text-center mb-16">
-                        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                            Le Consulat <span className="text-orange-600">en images</span>
-                        </h2>
-                        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                            Découvrez nos installations modernes et nos événements consulaires à travers cette galerie photos
-                        </p>
+                    <div className="text-center mb-12">
+                        <h2 className="text-4xl font-bold text-gray-800 mb-4">Galerie Photos</h2>
+                        <p className="text-xl text-gray-700">Découvrez nos événements et installations</p>
                     </div>
-
-                    {/* CAPEC-Style Image Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
-                        {/* Large Featured Image */}
-                        <div className="md:col-span-2 md:row-span-2">
-                            <Card className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 group">
-                                <CardContent className="p-0">
-                                    <div className="relative">
-                                        <img 
-                                            src="https://placehold.co/600x400/FF7F00/FFFFFF?text=Facade+Consulat"
-                                            alt="Façade du Consulat"
-                                            className="w-full h-96 object-cover group-hover:scale-105 transition-transform duration-500"
-                                        />
-                                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-end">
-                                            <div className="p-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                                <h3 className="text-xl font-bold mb-2">Façade du Consulat</h3>
-                                                <p className="text-white/90">Bâtiment moderne au cœur de Manhattan</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        </div>
-
-                        {/* Medium Images */}
-                        <div className="md:col-span-2 grid grid-cols-2 gap-6">
-                            <Card className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 group">
-                                <CardContent className="p-0">
-                                    <div className="relative">
-                                        <img 
-                                            src="https://placehold.co/300x200/00AA4F/FFFFFF?text=Hall+Accueil"
-                                            alt="Hall d'Accueil"
-                                            className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
-                                        />
-                                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-end">
-                                            <div className="p-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                                <h4 className="font-bold">Hall d'Accueil</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </CardContent>
-                            </Card>
-
-                            <Card className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 group">
-                                <CardContent className="p-0">
-                                    <div className="relative">
-                                        <img 
-                                            src="https://placehold.co/300x200/0066CC/FFFFFF?text=Service+Visa"
-                                            alt="Service Visa"
-                                            className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
-                                        />
-                                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-end">
-                                            <div className="p-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                                <h4 className="font-bold">Service Visa</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        </div>
-
-                        {/* Additional Medium Images */}
-                        <div className="md:col-span-2 grid grid-cols-2 gap-6">
-                            <Card className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 group">
-                                <CardContent className="p-0">
-                                    <div className="relative">
-                                        <img 
-                                            src="https://placehold.co/300x200/9933FF/FFFFFF?text=Bureau+Services"
-                                            alt="Bureau Services"
-                                            className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
-                                        />
-                                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-end">
-                                            <div className="p-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                                <h4 className="font-bold">Bureau Services</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </CardContent>
-                            </Card>
-
-                            <Card className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 group">
-                                <CardContent className="p-0">
-                                    <div className="relative">
-                                        <img 
-                                            src="https://placehold.co/300x200/FF3366/FFFFFF?text=Salle+Reunion"
-                                            alt="Salle de Réunion"
-                                            className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
-                                        />
-                                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-end">
-                                            <div className="p-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                                <h4 className="font-bold">Salle de Réunion</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        </div>
-
-                        {/* Tall Image */}
-                        <div className="md:row-span-2">
-                            <Card className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 group">
-                                <CardContent className="p-0">
-                                    <div className="relative">
-                                        <img 
-                                            src="https://placehold.co/300x400/FF9900/FFFFFF?text=Ceremonie"
-                                            alt="Cérémonie Officielle"
-                                            className="w-full h-96 object-cover group-hover:scale-105 transition-transform duration-500"
-                                        />
-                                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-end">
-                                            <div className="p-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                                <h4 className="font-bold">Cérémonie Officielle</h4>
-                                                <p className="text-white/90 text-sm">Événements protocolaires</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        </div>
-
-                        {/* Small Images */}
-                        <div className="grid grid-cols-2 gap-6">
-                            <Card className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 group">
-                                <CardContent className="p-0">
-                                    <div className="relative">
-                                        <img 
-                                            src="https://placehold.co/200x150/33CC66/FFFFFF?text=Archive"
-                                            alt="Archives"
-                                            className="w-full h-32 object-cover group-hover:scale-105 transition-transform duration-500"
-                                        />
-                                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
-                                            <div className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                                <h5 className="font-bold text-sm">Archives</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </CardContent>
-                            </Card>
-
-                            <Card className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 group">
-                                <CardContent className="p-0">
-                                    <div className="relative">
-                                        <img 
-                                            src="https://placehold.co/200x150/6633FF/FFFFFF?text=Reception"
-                                            alt="Réception"
-                                            className="w-full h-32 object-cover group-hover:scale-105 transition-transform duration-500"
-                                        />
-                                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
-                                            <div className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                                <h5 className="font-bold text-sm">Réception</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        </div>
-                    </div>
-
-                    {/* View All Photos Button */}
-                    <div className="text-center">
-                        <Button className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-3 rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
-                            <span className="mr-2">📸</span>
-                            Voir toutes les photos
+                    
+                    <motion.div 
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                        layout
+                    >
+                        {/* Initial 6 photos */}
+                        {Array.from({ length: showMorePhotos ? 18 : 6 }, (_, index) => (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                viewport={{ once: true }}
+                                className="relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+                            >
+                                <img 
+                                    src={`https://picsum.photos/400/300?random=${index + 1}`}
+                                    alt={`Photo ${index + 1}`}
+                                    className="w-full h-64 object-cover hover:scale-110 transition-transform duration-300"
+                                />
+                                <div className="absolute inset-0 bg-black/0 hover:bg-black/20 transition-all duration-300"></div>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                    
+                    <div className="text-center mt-8">
+                        <Button 
+                            onClick={() => setShowMorePhotos(!showMorePhotos)}
+                            className="bg-white text-orange-600 hover:bg-gray-100 border border-orange-600"
+                        >
+                            {showMorePhotos ? 'Voir moins' : 'Voir plus'}
                         </Button>
                     </div>
                 </div>
             </section>
 
-            {/* Vidéothèque & Photothèque Sections */}
-            <section className="py-20 bg-gray-50">
+            {/* Video Gallery */}
+            <section className="py-12 bg-white">
                 <div className="container mx-auto px-6">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                    <div className="text-center mb-12">
+                        <h2 className="text-4xl font-bold text-gray-900 mb-4">Galerie Vidéos</h2>
+                        <p className="text-xl text-gray-600">Lorem ipsum dolor sit amet consectetur</p>
+                    </div>
+                    
+                    <div className="relative max-w-4xl mx-auto">
+                        <div className="overflow-hidden rounded-xl">
+                            <motion.div
+                                className="flex transition-transform duration-500 ease-in-out"
+                                style={{ transform: `translateX(-${currentVideoIndex * 100}%)` }}
+                            >
+                                {videos.map((video, index) => (
+                                    <div key={index} className="w-full flex-shrink-0">
+                                        <Card className="overflow-hidden">
+                                            <CardContent className="p-0">
+                                                <div className="relative group cursor-pointer">
+                                                    <img 
+                                                        src={video.cover} 
+                                                        alt={video.title}
+                                                        className="w-full h-80 object-cover"
+                                                    />
+                                                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                                        <div className="bg-white rounded-full p-4">
+                                                            <Play className="w-8 h-8 text-orange-600" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="p-6">
+                                                    <h3 className="text-xl font-bold text-gray-900 mb-2">{video.title}</h3>
+                                                    <p className="text-gray-600">{video.description}</p>
+                                                </div>
+                                            </CardContent>
+                                        </Card>
+                                    </div>
+                                ))}
+                            </motion.div>
+                        </div>
                         
-                        {/* Vidéothèque Card Slider */}
-                        <div>
-                            <div className="text-center mb-8">
-                                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                                    🎥 <span className="text-orange-600">Vidéothèque</span>
-                                </h2>
-                                <p className="text-lg text-gray-600">
-                                    Découvrez nos vidéos consulaires
-                                </p>
-                            </div>
-
-                            <div className="relative overflow-hidden rounded-2xl shadow-lg mb-6">
-                                <div className="flex transition-transform duration-500 ease-in-out"
-                                     style={{ transform: `translateX(-${videoSliderIndex * 100}%)` }}>
-                                    {[
-                                        { emoji: "🏢", title: "Visite Consulat", desc: "Tour des installations" },
-                                        { emoji: "📝", title: "Démarches Visa", desc: "Guide étape par étape" },
-                                        { emoji: "🎉", title: "Événements", desc: "Célébrations culturelles" },
-                                        { emoji: "💼", title: "Services", desc: "Présentation complète" }
-                                    ].map((video, index) => (
-                                        <Card key={index} className="flex-shrink-0 w-full border-0 bg-gradient-to-br from-orange-50 to-orange-100">
-                                            <CardContent className="p-8 text-center h-64 flex flex-col justify-center">
-                                                <div className="text-6xl mb-4">{video.emoji}</div>
-                                                <h3 className="text-xl font-bold text-gray-900 mb-2">{video.title}</h3>
-                                                <p className="text-gray-600 mb-4">{video.desc}</p>
-                                                <div className="flex items-center justify-center space-x-2 text-sm text-gray-500 mb-4">
-                                                    <span>▶️</span>
-                                                    <span>{Math.floor(Math.random() * 3) + 2}:{Math.floor(Math.random() * 60).toString().padStart(2, '0')}</span>
-                                                </div>
-                                                <Button className="bg-orange-600 hover:bg-orange-700 text-white">
-                                                    <span className="mr-2">▶️</span>
-                                                    Regarder
-                                                </Button>
-                                            </CardContent>
-                                        </Card>
-                                    ))}
-                                </div>
-                            </div>
-
-                            {/* Video slider indicators */}
-                            <div className="flex justify-center space-x-2 mb-4">
-                                {[...Array(4)].map((_, index) => (
+                        {/* Video navigation */}
+                        <div className="flex justify-center items-center mt-6 space-x-4">
+                            <Button
+                                variant="outline"
+                                onClick={() => setCurrentVideoIndex(Math.max(0, currentVideoIndex - 1))}
+                                disabled={currentVideoIndex === 0}
+                            >
+                                <ChevronLeft className="w-4 h-4" />
+                            </Button>
+                            
+                            <div className="flex space-x-2">
+                                {videos.map((_, index) => (
                                     <button
                                         key={index}
-                                        onClick={() => setVideoSliderIndex(index)}
-                                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                                            videoSliderIndex === index ? 'bg-orange-600 scale-125' : 'bg-gray-300'
+                                        onClick={() => setCurrentVideoIndex(index)}
+                                        className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                                            currentVideoIndex === index ? 'bg-orange-600 scale-125' : 'bg-gray-300'
                                         }`}
                                     />
                                 ))}
                             </div>
-
-                            <div className="text-center">
-                                <Button variant="outline" className="border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white">
-                                    🎬 Voir Plus de Vidéos
-                                </Button>
-                            </div>
-                        </div>
-
-                        {/* Photothèque Card Slider */}
-                        <div>
-                            <div className="text-center mb-8">
-                                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                                    📸 <span className="text-green-600">Photothèque</span>
-                                </h2>
-                                <p className="text-lg text-gray-600">
-                                    Nos plus belles images
-                                </p>
-                            </div>
-
-                            <div className="relative overflow-hidden rounded-2xl shadow-lg mb-6">
-                                <div className="flex transition-transform duration-500 ease-in-out"
-                                     style={{ transform: `translateX(-${photoSliderIndex * 100}%)` }}>
-                                    {[
-                                        { emoji: "🏛️", title: "Architecture", desc: "Bâtiment consulaire" },
-                                        { emoji: "👥", title: "Équipe", desc: "Personnel consulaire" },
-                                        { emoji: "🎊", title: "Cérémonies", desc: "Événements officiels" },
-                                        { emoji: "🤝", title: "Réceptions", desc: "Rencontres diplomatiques" },
-                                        { emoji: "📚", title: "Archives", desc: "Documents historiques" },
-                                        { emoji: "🇨🇮", title: "Symboles", desc: "Identité nationale" }
-                                    ].map((photo, index) => (
-                                        <Card key={index} className="flex-shrink-0 w-full border-0 bg-gradient-to-br from-green-50 to-green-100">
-                                            <CardContent className="p-8 text-center h-64 flex flex-col justify-center">
-                                                <div className="text-6xl mb-4">{photo.emoji}</div>
-                                                <h3 className="text-xl font-bold text-gray-900 mb-2">{photo.title}</h3>
-                                                <p className="text-gray-600 mb-4">{photo.desc}</p>
-                                                <div className="flex items-center justify-center space-x-2 text-sm text-gray-500 mb-4">
-                                                    <span>📷</span>
-                                                    <span>{Math.floor(Math.random() * 20) + 5} photos</span>
-                                                </div>
-                                                <Button className="bg-green-600 hover:bg-green-700 text-white">
-                                                    <span className="mr-2">🔍</span>
-                                                    Découvrir
-                                                </Button>
-                                            </CardContent>
-                                        </Card>
-                                    ))}
-                                </div>
-                            </div>
-
-                            {/* Photo slider indicators */}
-                            <div className="flex justify-center space-x-2 mb-4">
-                                {[...Array(6)].map((_, index) => (
-                                    <button
-                                        key={index}
-                                        onClick={() => setPhotoSliderIndex(index)}
-                                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                                            photoSliderIndex === index ? 'bg-green-600 scale-125' : 'bg-gray-300'
-                                        }`}
-                                    />
-                                ))}
-                            </div>
-
-                            <div className="text-center">
-                                <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-600 hover:text-white">
-                                    📱 Voir Plus de Photos
-                                </Button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Testimonials Section */}
-            <section className="py-20 bg-white">
-                <div className="container mx-auto px-6">
-                    <div className="text-center mb-16">
-                        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                            Témoignages de nos <span className="text-green-600">clients</span>
-                        </h2>
-                        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                            Découvrez ce que disent ceux qui ont fait confiance à nos services
-                        </p>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-                        {/* Testimonial 1 */}
-                        <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                            <CardContent className="p-8">
-                                <div className="flex items-center mb-6">
-                                    <img 
-                                        src="https://placehold.co/60x60/FF7F00/FFFFFF?text=AM" 
-                                        alt="Aminata Mensah" 
-                                        className="w-12 h-12 rounded-full mr-4"
-                                    />
-                                    <div>
-                                        <h4 className="font-bold text-gray-900">Aminata Mensah</h4>
-                                        <p className="text-gray-600">Entrepreneur</p>
-                                    </div>
-                                </div>
-                                <div className="flex mb-4">
-                                    {[...Array(5)].map((_, i) => (
-                                        <span key={i} className="text-yellow-400">⭐</span>
-                                    ))}
-                                </div>
-                                <p className="text-gray-700 italic">
-                                    "Service exceptionnel ! J'ai obtenu mon visa en 48h. L'équipe était très professionnelle."
-                                </p>
-                            </CardContent>
-                        </Card>
-
-                        {/* Testimonial 2 */}
-                        <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                            <CardContent className="p-8">
-                                <div className="flex items-center mb-6">
-                                    <img 
-                                        src="https://placehold.co/60x60/00AA4F/FFFFFF?text=JB" 
-                                        alt="Jacques Bamba" 
-                                        className="w-12 h-12 rounded-full mr-4"
-                                    />
-                                    <div>
-                                        <h4 className="font-bold text-gray-900">Jacques Bamba</h4>
-                                        <p className="text-gray-600">Étudiant</p>
-                                    </div>
-                                </div>
-                                <div className="flex mb-4">
-                                    {[...Array(5)].map((_, i) => (
-                                        <span key={i} className="text-yellow-400">⭐</span>
-                                    ))}
-                                </div>
-                                <p className="text-gray-700 italic">
-                                    "Renouvellement de passeport ultra-rapide ! Interface en ligne intuitive."
-                                </p>
-                            </CardContent>
-                        </Card>
-
-                        {/* Testimonial 3 */}
-                        <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                            <CardContent className="p-8">
-                                <div className="flex items-center mb-6">
-                                    <img 
-                                        src="https://placehold.co/60x60/6366F1/FFFFFF?text=FK" 
-                                        alt="Fatou Koné" 
-                                        className="w-12 h-12 rounded-full mr-4"
-                                    />
-                                    <div>
-                                        <h4 className="font-bold text-gray-900">Fatou Koné</h4>
-                                        <p className="text-gray-600">Médecin</p>
-                                    </div>
-                                </div>
-                                <div className="flex mb-4">
-                                    {[...Array(5)].map((_, i) => (
-                                        <span key={i} className="text-yellow-400">⭐</span>
-                                    ))}
-                                </div>
-                                <p className="text-gray-700 italic">
-                                    "Excellente prise en charge pour la légalisation de mes diplômes."
-                                </p>
-                            </CardContent>
-                        </Card>
-                    </div>
-
-                    {/* Stats */}
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                        <div>
-                            <div className="text-4xl font-bold text-orange-600 mb-2">98%</div>
-                            <p className="text-gray-600">Satisfaction</p>
-                        </div>
-                        <div>
-                            <div className="text-4xl font-bold text-green-600 mb-2">15k+</div>
-                            <p className="text-gray-600">Services rendus</p>
-                        </div>
-                        <div>
-                            <div className="text-4xl font-bold text-blue-600 mb-2">48h</div>
-                            <p className="text-gray-600">Délai moyen</p>
-                        </div>
-                        <div>
-                            <div className="text-4xl font-bold text-purple-600 mb-2">60+</div>
-                            <p className="text-gray-600">Années d'expérience</p>
+                            
+                            <Button
+                                variant="outline"
+                                onClick={() => setCurrentVideoIndex(Math.min(videos.length - 1, currentVideoIndex + 1))}
+                                disabled={currentVideoIndex === videos.length - 1}
+                            >
+                                <ChevronRight className="w-4 h-4" />
+                            </Button>
                         </div>
                     </div>
                 </div>
             </section>
 
             {/* Footer */}
-            <footer className="bg-green-800 text-white py-16">
+            <footer className="bg-gradient-to-br from-green-700 to-green-900 text-white py-12">
                 <div className="container mx-auto px-6">
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-                        {/* Consulate Info */}
-                        <div className="md:col-span-2">
-                            <div className="flex items-center mb-6">
-                                <span className="text-3xl mr-4">🇨🇮</span>
-                                <div>
-                                    <h3 className="text-2xl font-bold">Consulat Général de Côte d'Ivoire</h3>
-                                    <p className="text-white/80">New York, États-Unis</p>
-                                </div>
-                            </div>
-                            <p className="text-white/80 mb-6 leading-relaxed">
-                                Au service de la diaspora ivoirienne et des visiteurs aux États-Unis depuis plus de 60 ans.
-                            </p>
-                            <div className="bg-white/10 rounded-lg p-4 mb-6">
-                                <p className="font-semibold mb-2">📍 801 Second Avenue, 5th Floor</p>
-                                <p className="text-white/80">New York, NY 10017</p>
-                                <div className="grid grid-cols-2 gap-4 mt-4">
-                                    <div>
-                                        <p className="font-semibold">📞 +1 (212) 697-0900</p>
-                                    </div>
-                                    <div>
-                                        <p className="font-semibold">⏰ Lun-Ven: 9h-17h</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Quick Links */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        {/* Section 1: Navigation */}
                         <div>
-                            <h4 className="text-xl font-bold mb-6">Liens Utiles</h4>
+                            <h3 className="text-xl font-bold mb-6">COTE D'IVOIRE & USA</h3>
                             <ul className="space-y-3">
-                                <li><a href="#" className="text-white/80 hover:text-white transition-colors">Demande de visa</a></li>
-                                <li><a href="#" className="text-white/80 hover:text-white transition-colors">Renouvellement passeport</a></li>
-                                <li><a href="#" className="text-white/80 hover:text-white transition-colors">Légalisation documents</a></li>
-                                <li><a href="#" className="text-white/80 hover:text-white transition-colors">État civil</a></li>
-                                <li><a href="#" className="text-white/80 hover:text-white transition-colors">Assistance urgence</a></li>
+                                <li><a href="#" className="text-white/80 hover:text-white transition-colors">Collaborateurs</a></li>
+                                <li><a href="#" className="text-white/80 hover:text-white transition-colors">Services Consulaires</a></li>
+                                <li><a href="#" className="text-white/80 hover:text-white transition-colors">Activités</a></li>
+                                <li><a href="#" className="text-white/80 hover:text-white transition-colors">Service aux Étudiants</a></li>
+                                <li><a href="#" className="text-white/80 hover:text-white transition-colors">Vidéo</a></li>
+                                <li><a href="#" className="text-white/80 hover:text-white transition-colors">Photo</a></li>
+                                <li><a href="#" className="text-white/80 hover:text-white transition-colors">Contact</a></li>
                             </ul>
                         </div>
 
-                        {/* Contact Info */}
+                        {/* Section 2: Contact */}
                         <div>
-                            <h4 className="text-xl font-bold mb-6">Informations</h4>
+                            <h3 className="text-xl font-bold mb-6">AMBASSADE</h3>
                             <div className="space-y-4">
-                                <div className="bg-white/10 rounded-lg p-4">
-                                    <h5 className="font-semibold mb-2">⏰ Heures d'ouverture</h5>
-                                    <p className="text-white/80">Lundi - Vendredi</p>
-                                    <p className="font-semibold">9h00 - 17h00</p>
+                                <div>
+                                    <h4 className="font-semibold mb-2">Email :</h4>
+                                    <p className="text-white/80">Support : info@ambacidc.org</p>
                                 </div>
-                                <div className="bg-white/10 rounded-lg p-4">
-                                    <h5 className="font-semibold mb-2">🚨 Urgences</h5>
-                                    <p className="text-white/80">Service 24h/24</p>
-                                    <p className="font-semibold">+1 (212) 697-0900</p>
+                                <div>
+                                    <h4 className="font-semibold mb-2">Téléphone :</h4>
+                                    <ul className="space-y-1 text-sm text-white/80">
+                                        <li>Bureau de l'Ambassadeur : (202) 938-0343</li>
+                                        <li>Service Consulaire : 202-938-0310 ext.1720/1724</li>
+                                        <li>Passeport Biométrique : 202-938-0310 ext. 1725/1727</li>
+                                        <li>Secrétariat : 202-204-3980</li>
+                                        <li>Étudiant : 240 355 89 48</li>
+                                        <li>Tourisme : 202-756-8332</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Section 3: Liens Institutionnels */}
+                        <div>
+                            <h3 className="text-xl font-bold mb-6">Liens Institutionnels</h3>
+                            <ul className="space-y-3 text-sm">
+                                <li><a href="#" className="text-white/80 hover:text-white transition-colors">Direction du Tourisme aux USA</a></li>
+                                <li><a href="#" className="text-white/80 hover:text-white transition-colors">Direction Économique USA</a></li>
+                                <li><a href="#" className="text-white/80 hover:text-white transition-colors">U.S. Department of State</a></li>
+                                <li><a href="#" className="text-white/80 hover:text-white transition-colors">La Présidence</a></li>
+                                <li><a href="#" className="text-white/80 hover:text-white transition-colors">La Primature</a></li>
+                                <li><a href="#" className="text-white/80 hover:text-white transition-colors">L'Assemblée Nationale</a></li>
+                                <li><a href="#" className="text-white/80 hover:text-white transition-colors">Conseil Économique et Social</a></li>
+                                <li><a href="#" className="text-white/80 hover:text-white transition-colors">Le Ministère des Affaires Étrangères</a></li>
+                                <li><a href="#" className="text-white/80 hover:text-white transition-colors">Le Médiateur de la République</a></li>
+                            </ul>
+                        </div>
+
+                        {/* Section 4: Localisation */}
+                        <div>
+                            <h3 className="text-xl font-bold mb-6">Localisation</h3>
+                            <div className="space-y-4">
+                                <div>
+                                    <h4 className="font-semibold mb-2">Adresse :</h4>
+                                    <p className="text-white/80">
+                                        2424 Massachusetts Avenue,<br />
+                                        N.W., Washington D.C. 20008 (USA)
+                                    </p>
+                                </div>
+                                <div>
+                                    <h4 className="font-semibold mb-2">Recevoir par Whatsapp :</h4>
+                                    <p className="text-white/80">(+1 202 658 3602)</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    {/* Bottom */}
-                    <div className="border-t border-white/20 mt-12 pt-8 text-center">
-                        <p className="text-white/80">
-                            © 2025 Consulat Général de Côte d'Ivoire - New York. Tous droits réservés.
+                    {/* Social Links */}
+                    <div className="border-t border-green-600 mt-12 pt-8">
+                        <div className="flex justify-center space-x-6">
+                            <a href="#" className="text-white/80 hover:text-white transition-colors">
+                                <span className="sr-only">Facebook</span>
+                                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                </svg>
+                            </a>
+                            <a href="#" className="text-white/80 hover:text-white transition-colors">
+                                <span className="sr-only">Instagram</span>
+                                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C23.988 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.611-3.185-1.559-.737-.948-1.017-2.162-.769-3.342.248-1.18 1.02-2.216 2.123-2.849 1.103-.633 2.448-.775 3.702-.39 1.254.385 2.318 1.275 2.928 2.448.61 1.173.7 2.536.247 3.751-.453 1.215-1.353 2.216-2.477 2.758-.788.381-1.682.591-2.569.183zM17.789 5.337a1.25 1.25 0 01-1.25 1.25c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25z"/>
+                                </svg>
+                            </a>
+                            <a href="#" className="text-white/80 hover:text-white transition-colors">
+                                <span className="sr-only">X (Twitter)</span>
+                                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                                </svg>
+                            </a>
+                        </div>
+                        <p className="text-center text-white/60 mt-4">
+                            © 2025 Consulat Général de Côte d'Ivoire. Tous droits réservés.
                         </p>
                     </div>
                 </div>
