@@ -178,21 +178,29 @@ export default function Home() {
                     <div className="flex justify-center py-4">
                         <div className="flex space-x-8">
                             {[
-                                { label: 'Accueil', href: '#' },
-                                { label: 'Actualités', href: '#' },
-                                { label: 'Services Consulaires', href: '#' },
-                                { label: "Côte d'Ivoire", href: '#' },
-                                { label: 'Multimedia', href: '#' },
-                                { label: 'Contacts', href: '#' }
+                                { label: 'Accueil', href: '#accueil', isActive: true },
+                                { label: 'Actualités', href: '#actualites', isActive: false },
+                                { label: 'Services Consulaires', href: '#services-consulaires', isActive: false },
+                                { label: "Côte d'Ivoire", href: '', isActive: false },
+                                { label: 'Multimedia', href: '#multimedia', isActive: false },
+                                { label: 'Contacts', href: '#contacts', isActive: false }
                             ].map((item, index) => (
                                 <div key={index} className="relative group">
                                     <a
                                         href={item.href}
-                                        className="text-gray-800 font-medium hover:text-orange-600 transition-colors duration-300 px-2 py-1 block"
+                                        className={`font-medium transition-colors duration-300 px-2 py-1 block ${
+                                            item.isActive 
+                                                ? 'text-orange-600' 
+                                                : 'text-gray-800 hover:text-orange-600'
+                                        }`}
                                     >
                                         {item.label}
                                     </a>
-                                    <span className="absolute bottom-0 left-2 w-0 h-0.5 bg-orange-600 group-hover:w-[calc(100%-1rem)] transition-all duration-300"></span>
+                                    <span className={`absolute bottom-0 left-2 h-0.5 bg-orange-600 transition-all duration-300 ${
+                                        item.isActive 
+                                            ? 'w-[calc(100%-1rem)]' 
+                                            : 'w-0 group-hover:w-[calc(100%-1rem)]'
+                                    }`}></span>
                                 </div>
                             ))}
                         </div>
@@ -204,7 +212,7 @@ export default function Home() {
             <div className="h-16"></div>
 
             {/* Hero Section */}
-            <section className="relative bg-[#EBEBEB] py-12 overflow-hidden">
+            <section id="accueil" className="relative bg-[#EBEBEB] py-12 overflow-hidden">
                 {/* Background image with opacity */}
                 <div
                     className="absolute inset-0 z-0"
@@ -327,7 +335,7 @@ export default function Home() {
             </section>
 
             {/* News Section */}
-            <section className="py-12 bg-gray-50">
+            <section id="actualites" className="py-12 bg-gray-50">
                 <div className="container mx-auto px-6">
                     <div className="text-center mb-12">
                         <h2 className="text-4xl font-bold text-gray-900 mb-4">Actualités</h2>
@@ -398,7 +406,7 @@ export default function Home() {
             </section>
 
             {/* Services Section */}
-            <section className="py-12 bg-gray-50">
+            <section id="services-consulaires" className="py-12 bg-gray-50">
                 <div className="container mx-auto px-6">
                     <div className="text-center mb-8">
                         <h2 className="text-4xl font-bold text-gray-900 mb-4">Services consulaires</h2>
@@ -448,7 +456,7 @@ export default function Home() {
             </section>
 
             {/* Photo Gallery */}
-            <section className="py-12 bg-gradient-to-br from-orange-200 to-orange-300">
+            <section id="multimedia" className="py-12 bg-gradient-to-br from-orange-200 to-orange-300">
                 <div className="container mx-auto px-6">
                     <div className="text-center mb-8">
                         <h2 className="text-3xl font-bold text-gray-800 mb-4">PHOTOS</h2>
@@ -552,8 +560,41 @@ export default function Home() {
                 </div>
             </section>
 
+            {/* Côte d'Ivoire Section */}
+            {/* 
+            <section id="cote-divoire" className="py-12 bg-white">
+                <div className="container mx-auto px-6">
+                    <div className="text-center mb-8">
+                        <h2 className="text-3xl font-bold text-gray-900 mb-4">CÔTE D'IVOIRE</h2>
+                        <p className="text-lg text-gray-600">Découvrez la richesse culturelle et économique de la Côte d'Ivoire</p>
+                    </div>
+                    <div className="max-w-4xl mx-auto text-center">
+                        <p className="text-gray-700 leading-relaxed mb-6">
+                            La République de Côte d'Ivoire, située en Afrique de l'Ouest, est un pays dynamique 
+                            reconnu pour sa diversité culturelle, son économie florissante et son hospitalité légendaire. 
+                            Premier producteur mondial de cacao et important acteur dans l'industrie du café, 
+                            la Côte d'Ivoire joue un rôle majeur dans l'économie régionale et internationale.
+                        </p>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+                            <div className="text-center">
+                                <h3 className="text-xl font-bold text-gray-900 mb-2">Culture</h3>
+                                <p className="text-gray-600">Plus de 60 ethnies et une richesse culturelle exceptionnelle</p>
+                            </div>
+                            <div className="text-center">
+                                <h3 className="text-xl font-bold text-gray-900 mb-2">Économie</h3>
+                                <p className="text-gray-600">Leader africain dans l'agriculture et l'industrie</p>
+                            </div>
+                            <div className="text-center">
+                                <h3 className="text-xl font-bold text-gray-900 mb-2">Innovation</h3>
+                                <p className="text-gray-600">Hub technologique et financier de l'Afrique de l'Ouest</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section> */}
+
             {/* Footer */}
-            <footer className="bg-gradient-to-br from-green-700 to-green-900 text-white py-12">
+            <footer id="contacts" className="bg-gradient-to-br from-green-700 to-green-900 text-white py-12">
                 <div className="container mx-auto px-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         {/* Section 1: Navigation */}
