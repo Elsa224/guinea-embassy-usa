@@ -40,7 +40,7 @@ export default function RootLayout({
     return (
         <html lang="fr">
             <body
-                className={`${inter.variable}  antialiased`}
+                className={`${roboto.variable}  antialiased`}
             >
                 {children}
                 <ToastProvider />

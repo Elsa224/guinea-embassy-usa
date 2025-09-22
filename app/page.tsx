@@ -10,15 +10,16 @@ import {
     NavigationMenuList,
     NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+import { SiFacebook, SiX, SiInstagram } from "@icons-pack/react-simple-icons";
+
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight, Play, ExternalLink } from "lucide-react";
 
 export default function Home() {
-    const [currentSlide, setCurrentSlide] = useState(0);
     const [currentNewsIndex, setCurrentNewsIndex] = useState(0);
-    const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
-    const [showMorePhotos, setShowMorePhotos] = useState(false);
+    const [currentSlide, setCurrentSlide] = useState(0);
+    const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
 
     // Auto-rotate slider
     useEffect(() => {
@@ -30,17 +31,25 @@ export default function Home() {
 
     const slides = [
         {
-            title: "Bienvenue au Consulat Général",
-            content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
+            image: "/assets/images-for-the-new-website/slider-pic-after-hero.jpeg",
+            title: "Excellence Diplomatique",
+            content: "Le Consulat Général de Côte d'Ivoire à New York est fier de servir la communauté ivoirienne avec excellence et professionnalisme. Notre équipe diplomatique s'engage à faciliter vos démarches administratives."
         },
         {
-            title: "Services Consulaires d'Excellence", 
-            content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
+            image: "/assets/images-for-the-new-website/actualite-pic-1.jpeg",
+            title: "Services Consulaires",
+            content: "Nous offrons une gamme complète de services consulaires incluant les visas, les documents civils, les cartes consulaires et bien plus encore. Notre mission est de vous accompagner dans toutes vos démarches."
         },
         {
-            title: "Au Service de la Diaspora",
-            content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
-        }
+            image: "/assets/images-for-the-new-website/actualite-pic-2.jpeg",
+            title: "Lien Culturel",
+            content: "Le consulat organise régulièrement des événements culturels pour renforcer les liens entre la diaspora ivoirienne et la Côte d'Ivoire. Découvrez nos activités et participez à la promotion de notre riche culture."
+        },
+        // {
+        //     image: "/assets/images-for-the-new-website/actualite-pic-4.png",
+        //     title: "Lien Culturel",
+        //     content: "Le consulat organise régulièrement des événements culturels pour renforcer les liens entre la diaspora ivoirienne et la Côte d'Ivoire. Découvrez nos activités et participez à la promotion de notre riche culture."
+        // }
     ];
 
     const newsItems = [
@@ -197,8 +206,20 @@ export default function Home() {
             </nav>
 
             {/* Hero Section */}
-            <section className="bg-[#EBEBEB] py-12">
-                <div className="container mx-auto px-6">
+            <section className="relative bg-[#EBEBEB] py-12 overflow-hidden">
+                {/* Background image with opacity */}
+                <div
+                    className="absolute inset-0 z-0"
+                    aria-hidden="true"
+                >
+                    <img
+                        src="/assets/images-for-the-new-website/civ_usa_flag_no_bg.png"
+                        alt=""
+                        className="w-full h-full object-cover object-center"
+                        style={{ opacity: 0.18 }}
+                    />
+                </div>
+                <div className="relative z-10 container mx-auto px-6">
                     {/* Logo centered at top */}
                     <motion.div 
                         className="text-center mb-8"
@@ -209,7 +230,7 @@ export default function Home() {
                         <img 
                             src="/assets/images-for-the-new-website/logo_without_text_and_bg.png" 
                             alt="Logo Consulat" 
-                            className="h-94 mx-auto mb-1"
+                            className="h-54 mx-auto mb-1"
                         />
                         <h1 className="text-2xl lg:text-3xl font-bold text-gray-900">
                             CONSULAT GÉNÉRAL DE CÔTE D'IVOIRE
@@ -218,105 +239,87 @@ export default function Home() {
                             NEW YORK - ÉTATS-UNIS
                         </p>
                     </motion.div>
-
-                    {/* Main content with president photo and text */}
-                    <div className="flex flex-col lg:flex-row items-center justify-between max-w-6xl mx-auto">
-                        {/* <motion.div 
-                            className="lg:w-1/3 mb-8 lg:mb-0"
-                            initial={{ opacity: 0, x: -50 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.8, delay: 0.2 }}
-                        >
-                            <img 
-                                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=400&fit=crop&crop=face" 
-                                alt="Président" 
-                                className="w-48 h-64 object-cover rounded-lg shadow-lg mx-auto"
-                            />
-                        </motion.div>
-                        
-                        <motion.div 
-                            className="lg:w-1/3 text-center px-4"
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: 0.4 }}
-                        >
-                            <p className="text-gray-700 leading-relaxed mb-6">
-                                "Au nom de Son Excellence Monsieur Alassane OUATTARA, Président de la République de Côte d'Ivoire, 
-                                nous vous accueillons avec honneur. Notre mission : servir la diaspora ivoirienne et renforcer 
-                                les liens entre nos deux nations."
-                            </p>
-                            <Button className="bg-orange-600 hover:bg-orange-700 text-white px-6 py-2">
-                                Nos Services
-                            </Button>
-                        </motion.div> */}
-                        
-                        <motion.div 
-                            className="lg:w-1/3 mt-8 lg:mt-0"
-                            initial={{ opacity: 0, x: 50 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.8, delay: 0.6 }}
-                        >
-                            <img 
-                                src="/assets/images-for-the-new-website/civ_usa_flag_no_bg.png" 
-                                alt="Côte d'Ivoire and USA flags" 
-                                className="w-full max-w-xs mx-auto"
-                            />
-                        </motion.div>
-                    </div>
                 </div>
             </section>
 
             {/* Slider Section */}
-            <section className="py-12 bg-white">
+            <section className="py-12 bg-gray-100">
                 <div className="container mx-auto px-6">
                     <div className="relative max-w-6xl mx-auto">
-                        <div className="overflow-hidden rounded-xl shadow-2xl">
+                        <div className="bg-white rounded-xl shadow-lg p-8 relative">
                             <AnimatePresence mode="wait">
                                 <motion.div
                                     key={currentSlide}
-                                    initial={{ opacity: 0, x: 300 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    exit={{ opacity: 0, x: -300 }}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
                                     transition={{ duration: 0.5 }}
-                                    className="relative"
+                                    className="flex flex-col lg:flex-row items-center gap-8"
                                 >
-                                    <img 
-                                        src="/assets/images-for-the-new-website/slider-pic-after-hero.jpeg"
-                                        alt={slides[currentSlide].title}
-                                        className="w-full h-96 object-cover"
-                                    />
-                                    <div className="absolute inset-0 bg-black/40 flex items-center">
-                                        <div className="container mx-auto px-8">
-                                            <motion.h2 
-                                                className="text-4xl font-bold text-white mb-4"
-                                                initial={{ y: 20, opacity: 0 }}
-                                                animate={{ y: 0, opacity: 1 }}
-                                                transition={{ delay: 0.2 }}
-                                            >
-                                                {slides[currentSlide].title}
-                                            </motion.h2>
-                                            <motion.p 
-                                                className="text-xl text-white/90 max-w-2xl"
-                                                initial={{ y: 20, opacity: 0 }}
-                                                animate={{ y: 0, opacity: 1 }}
-                                                transition={{ delay: 0.4 }}
-                                            >
-                                                {slides[currentSlide].content}
-                                            </motion.p>
-                                        </div>
+                                    {/* Image on left */}
+                                    <div className="lg:w-1/2">
+                                        <img 
+                                            src={slides[currentSlide].image}
+                                            alt={slides[currentSlide].title}
+                                            className="w-full h-80 object-cover rounded-lg shadow-md"
+                                        />
+                                    </div>
+                                    
+                                    {/* Text on right */}
+                                    <div className="lg:w-1/2 px-4">
+                                        <motion.h2 
+                                            className="text-3xl font-bold text-gray-900 mb-4"
+                                            initial={{ y: 20, opacity: 0 }}
+                                            animate={{ y: 0, opacity: 1 }}
+                                            transition={{ delay: 0.2 }}
+                                        >
+                                            {slides[currentSlide].title}
+                                        </motion.h2>
+                                        <motion.p 
+                                            className="text-lg text-gray-600 leading-relaxed mb-6"
+                                            initial={{ y: 20, opacity: 0 }}
+                                            animate={{ y: 0, opacity: 1 }}
+                                            transition={{ delay: 0.4 }}
+                                        >
+                                            {slides[currentSlide].content}
+                                        </motion.p>
+                                        <motion.div
+                                            initial={{ y: 20, opacity: 0 }}
+                                            animate={{ y: 0, opacity: 1 }}
+                                            transition={{ delay: 0.6 }}
+                                        >
+                                            <Button className="bg-orange-600 hover:bg-orange-700 text-white px-6 py-2">
+                                                En savoir plus
+                                            </Button>
+                                        </motion.div>
                                     </div>
                                 </motion.div>
                             </AnimatePresence>
+                            
+                            {/* Navigation Arrows */}
+                            <button
+                                onClick={() => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)}
+                                className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white hover:bg-gray-50 rounded-full p-2 shadow-md transition-all duration-200 hover:scale-110"
+                            >
+                                <ChevronLeft className="w-6 h-6 text-gray-600" />
+                            </button>
+                            
+                            <button
+                                onClick={() => setCurrentSlide((prev) => (prev + 1) % slides.length)}
+                                className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white hover:bg-gray-50 rounded-full p-2 shadow-md transition-all duration-200 hover:scale-110"
+                            >
+                                <ChevronRight className="w-6 h-6 text-gray-600" />
+                            </button>
                         </div>
                         
                         {/* Slider indicators */}
-                        <div className="flex justify-center mt-6 space-x-2">
+                        <div className="flex justify-center mt-8 space-x-2">
                             {slides.map((_, index) => (
                                 <button
                                     key={index}
                                     onClick={() => setCurrentSlide(index)}
                                     className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                                        currentSlide === index ? 'bg-orange-600 scale-125' : 'bg-gray-300'
+                                        currentSlide === index ? 'bg-orange-600 scale-125' : 'bg-gray-400'
                                     }`}
                                 />
                             ))}
@@ -343,18 +346,20 @@ export default function Home() {
                                     transition={{ duration: 0.5, delay: index * 0.1 }}
                                     viewport={{ once: true }}
                                 >
-                                    <Card className="overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                                        <CardContent className="p-0">
-                                            <img 
-                                                src={item.image} 
-                                                alt={item.title}
-                                                className="w-full h-48 object-cover"
-                                            />
-                                            <div className="p-6">
+                                    <Card className="h-full py-0 overflow-hidden hover:shadow-xl transition-shadow duration-300 rounded-none rounded-tr-3xl rounded-bl-[35]">
+                                        <CardContent className="p-0 h-full flex flex-col">
+                                            <div className="h-full p-0 overflow-hidden">
+                                                <img 
+                                                    src={item.image} 
+                                                    alt={item.title}
+                                                    className="h-full rounded-none rounded-bl-[75] object-cover"
+                                                />
+                                            </div>
+                                            <div className="p-6 flex-1 flex flex-col">
                                                 <p className="text-sm text-orange-600 font-medium mb-2">{item.date}</p>
                                                 <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
-                                                <p className="text-gray-600 mb-4">{item.excerpt}</p>
-                                                <Button variant="outline" className="text-orange-600 border-orange-600 hover:bg-orange-600 hover:text-white">
+                                                <p className="text-gray-600 mb-4 flex-1">{item.excerpt}</p>
+                                                <Button variant="outline" className="text-orange-600 border-orange-600 hover:bg-orange-600 hover:text-white self-start rounded-none rounded-tr-xl rounded-bl-xl rounded-br-xl">
                                                     Lire plus
                                                 </Button>
                                             </div>
@@ -395,13 +400,16 @@ export default function Home() {
             </section>
 
             {/* Services Section */}
-            <section className="py-12 bg-white">
+            <section className="py-12 bg-gray-50">
                 <div className="container mx-auto px-6">
                     <div className="text-center mb-8">
-                        <h2 className="text-3xl font-bold text-gray-900 mb-4">SERVICES CONSULAIRES</h2>
+                        <h2 className="text-4xl font-bold text-gray-900 mb-4">Services consulaires</h2>
+                        <p className="text-xl text-gray-600">Eiusmod exercitation eiusmod cupidatat ipsum dolore ipsum ex. <br /> Irure commodo Lorem sint cupidatat.</p>
+
                     </div>
                     
-                    <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                    {/* <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-5xl mx-auto"> */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {services.map((service, index) => (
                             <motion.div
                                 key={index}
@@ -410,22 +418,29 @@ export default function Home() {
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
                                 viewport={{ once: true }}
                             >
-                                <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-                                    <CardContent className="p-6 text-center">
-                                        <img 
-                                            src={service.icon} 
-                                            alt={service.title}
-                                            className="w-16 h-16 mx-auto mb-4"
-                                        />
-                                        <h3 className="text-xl font-bold text-gray-900 mb-3">{service.title}</h3>
-                                        <p className="text-gray-600 mb-6">{service.description}</p>
-                                        <Button 
-                                            className="w-full bg-orange-600 hover:bg-orange-700 text-white"
-                                            onClick={() => window.open(service.link, '_blank')}
-                                        >
-                                            <ExternalLink className="w-4 h-4 mr-2" />
-                                            Accéder
-                                        </Button>
+                                <Card className="h-full hover:shadow-lg transition-all duration-300 border-orange-100 bg-gradient-to-b from-white to-orange-100">
+                                    <CardContent className="p-6 flex items-center gap-4">
+                                        {/* Text content on left */}
+                                        <div className="flex-1">
+                                            <h3 className="text-lg font-bold text-gray-900 mb-2">{service.title}</h3>
+                                            <p className="text-gray-600 text-sm mb-4">{service.description}</p>
+                                            <Button 
+                                                className="bg-orange-600 hover:bg-orange-700 text-white text-sm py-2 px-4"
+                                                onClick={() => window.open(service.link, '_blank')}
+                                            >
+                                                <ExternalLink className="w-3 h-3 mr-2" />
+                                                Accéder
+                                            </Button>
+                                        </div>
+                                        
+                                        {/* Icon on right */}
+                                        <div className="flex-shrink-0">
+                                            <img 
+                                                src={service.icon} 
+                                                alt={service.title}
+                                                className="w-16 h-16"
+                                            />
+                                        </div>
                                     </CardContent>
                                 </Card>
                             </motion.div>
@@ -437,42 +452,69 @@ export default function Home() {
             {/* Photo Gallery */}
             <section className="py-12 bg-gradient-to-br from-orange-200 to-orange-300">
                 <div className="container mx-auto px-6">
-                    <div className="text-center mb-12">
-                        <h2 className="text-4xl font-bold text-gray-800 mb-4">Galerie Photos</h2>
-                        <p className="text-xl text-gray-700">Découvrez nos événements et installations</p>
+                    <div className="text-center mb-8">
+                        <h2 className="text-3xl font-bold text-gray-800 mb-4">PHOTOS</h2>
                     </div>
                     
-                    <motion.div 
-                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-                        layout
-                    >
-                        {/* Initial 6 photos */}
-                        {Array.from({ length: showMorePhotos ? 18 : 6 }, (_, index) => (
+                    <div className="relative max-w-6xl mx-auto">
+                        <div className="overflow-hidden">
                             <motion.div
-                                key={index}
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 0.5, delay: index * 0.1 }}
-                                viewport={{ once: true }}
-                                className="relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+                                className="flex transition-transform duration-500 ease-in-out"
+                                style={{ transform: `translateX(-${currentPhotoIndex * 100}%)` }}
                             >
-                                <img 
-                                    src={`https://picsum.photos/400/300?random=${index + 1}`}
-                                    alt={`Photo ${index + 1}`}
-                                    className="w-full h-64 object-cover hover:scale-110 transition-transform duration-300"
-                                />
-                                <div className="absolute inset-0 bg-black/0 hover:bg-black/20 transition-all duration-300"></div>
+                                {/* Create multiple photo sets */}
+                                {Array.from({ length: 3 }, (_, setIndex) => (
+                                    <div key={setIndex} className="w-full flex-shrink-0">
+                                        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+                                            {Array.from({ length: 6 }, (_, photoIndex) => (
+                                                <motion.div
+                                                    key={`${setIndex}-${photoIndex}`}
+                                                    initial={{ opacity: 0, scale: 0.8 }}
+                                                    whileInView={{ opacity: 1, scale: 1 }}
+                                                    transition={{ duration: 0.5, delay: photoIndex * 0.1 }}
+                                                    viewport={{ once: true }}
+                                                    className="relative overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
+                                                >
+                                                    <img 
+                                                        src={`https://picsum.photos/300/200?random=${setIndex * 6 + photoIndex + 1}`}
+                                                        alt={`Photo ${setIndex * 6 + photoIndex + 1}`}
+                                                        className="w-full h-40 object-cover rounded-lg"
+                                                    />
+                                                </motion.div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                ))}
                             </motion.div>
-                        ))}
-                    </motion.div>
-                    
-                    <div className="text-center mt-8">
-                        <Button 
-                            onClick={() => setShowMorePhotos(!showMorePhotos)}
-                            className="bg-white text-orange-600 hover:bg-gray-100 border border-orange-600"
+                        </div>
+                        
+                        {/* Navigation Arrows */}
+                        <button
+                            onClick={() => setCurrentPhotoIndex((prev) => (prev - 1 + 3) % 3)}
+                            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white hover:bg-gray-50 rounded-full p-2 shadow-md transition-all duration-200 hover:scale-110"
                         >
-                            {showMorePhotos ? 'Voir moins' : 'Voir plus'}
-                        </Button>
+                            <ChevronLeft className="w-6 h-6 text-gray-600" />
+                        </button>
+                        
+                        <button
+                            onClick={() => setCurrentPhotoIndex((prev) => (prev + 1) % 3)}
+                            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white hover:bg-gray-50 rounded-full p-2 shadow-md transition-all duration-200 hover:scale-110"
+                        >
+                            <ChevronRight className="w-6 h-6 text-gray-600" />
+                        </button>
+                        
+                        {/* Photo indicators */}
+                        <div className="flex justify-center mt-8 space-x-2">
+                            {Array.from({ length: 3 }, (_, index) => (
+                                <button
+                                    key={index}
+                                    onClick={() => setCurrentPhotoIndex(index)}
+                                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                                        currentPhotoIndex === index ? 'bg-orange-600 scale-125' : 'bg-gray-400'
+                                    }`}
+                                />
+                            ))}
+                        </div>
                     </div>
                 </div>
             </section>
@@ -480,74 +522,34 @@ export default function Home() {
             {/* Video Gallery */}
             <section className="py-12 bg-white">
                 <div className="container mx-auto px-6">
-                    <div className="text-center mb-12">
-                        <h2 className="text-4xl font-bold text-gray-900 mb-4">Galerie Vidéos</h2>
-                        <p className="text-xl text-gray-600">Lorem ipsum dolor sit amet consectetur</p>
+                    <div className="text-center mb-8">
+                        <h2 className="text-3xl font-bold text-gray-900 mb-4">VIDÉO</h2>
+                        <p className="text-lg text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                     </div>
                     
-                    <div className="relative max-w-4xl mx-auto">
-                        <div className="overflow-hidden rounded-xl">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                        {videos.map((video, index) => (
                             <motion.div
-                                className="flex transition-transform duration-500 ease-in-out"
-                                style={{ transform: `translateX(-${currentVideoIndex * 100}%)` }}
+                                key={index}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                viewport={{ once: true }}
                             >
-                                {videos.map((video, index) => (
-                                    <div key={index} className="w-full flex-shrink-0">
-                                        <Card className="overflow-hidden">
-                                            <CardContent className="p-0">
-                                                <div className="relative group cursor-pointer">
-                                                    <img 
-                                                        src={video.cover} 
-                                                        alt={video.title}
-                                                        className="w-full h-80 object-cover"
-                                                    />
-                                                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                                        <div className="bg-white rounded-full p-4">
-                                                            <Play className="w-8 h-8 text-orange-600" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="p-6">
-                                                    <h3 className="text-xl font-bold text-gray-900 mb-2">{video.title}</h3>
-                                                    <p className="text-gray-600">{video.description}</p>
-                                                </div>
-                                            </CardContent>
-                                        </Card>
-                                    </div>
-                                ))}
-                            </motion.div>
-                        </div>
-                        
-                        {/* Video navigation */}
-                        <div className="flex justify-center items-center mt-6 space-x-4">
-                            <Button
-                                variant="outline"
-                                onClick={() => setCurrentVideoIndex(Math.max(0, currentVideoIndex - 1))}
-                                disabled={currentVideoIndex === 0}
-                            >
-                                <ChevronLeft className="w-4 h-4" />
-                            </Button>
-                            
-                            <div className="flex space-x-2">
-                                {videos.map((_, index) => (
-                                    <button
-                                        key={index}
-                                        onClick={() => setCurrentVideoIndex(index)}
-                                        className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                                            currentVideoIndex === index ? 'bg-orange-600 scale-125' : 'bg-gray-300'
-                                        }`}
+                                <div className="relative group cursor-pointer overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                                    <img 
+                                        src={video.cover} 
+                                        alt={`Video ${index + 1}`}
+                                        className="w-full h-56 object-cover"
                                     />
-                                ))}
-                            </div>
-                            
-                            <Button
-                                variant="outline"
-                                onClick={() => setCurrentVideoIndex(Math.min(videos.length - 1, currentVideoIndex + 1))}
-                                disabled={currentVideoIndex === videos.length - 1}
-                            >
-                                <ChevronRight className="w-4 h-4" />
-                            </Button>
-                        </div>
+                                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        <div className="bg-white rounded-full p-3">
+                                            <Play className="w-6 h-6 text-orange-600" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        ))}
                     </div>
                 </div>
             </section>
@@ -632,21 +634,15 @@ export default function Home() {
                         <div className="flex justify-center space-x-6">
                             <a href="#" className="text-white/80 hover:text-white transition-colors">
                                 <span className="sr-only">Facebook</span>
-                                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                                </svg>
+                                <SiFacebook className="w-6 h-6" />
                             </a>
                             <a href="#" className="text-white/80 hover:text-white transition-colors">
                                 <span className="sr-only">Instagram</span>
-                                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C23.988 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.611-3.185-1.559-.737-.948-1.017-2.162-.769-3.342.248-1.18 1.02-2.216 2.123-2.849 1.103-.633 2.448-.775 3.702-.39 1.254.385 2.318 1.275 2.928 2.448.61 1.173.7 2.536.247 3.751-.453 1.215-1.353 2.216-2.477 2.758-.788.381-1.682.591-2.569.183zM17.789 5.337a1.25 1.25 0 01-1.25 1.25c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25z"/>
-                                </svg>
+                                <SiInstagram className="w-6 h-6" />
                             </a>
                             <a href="#" className="text-white/80 hover:text-white transition-colors">
                                 <span className="sr-only">X (Twitter)</span>
-                                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                                </svg>
+                                <SiX className="w-6 h-6" />
                             </a>
                         </div>
                         <p className="text-center text-white/60 mt-4">
