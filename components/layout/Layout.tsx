@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUp } from "lucide-react";
 import { useEffect, useState } from "react";
+import FlashBanner from "../FlashBanner";
 import Breadcrumb from "./Breadcrumb";
 import Footer from "./Footer";
 import Header from "./Header";
@@ -46,11 +47,11 @@ export default function Layout({ children, currentPath = "/" }: LayoutProps) {
             {/* Header with Contact Information & Navigation */}
             <Header currentPath={currentPath} isScrolled={isScrolled} />
 
-            {/* Spacer for fixed header */}
-            <div className="h-24 sm:h-28"></div>
+            {/* Spacer for fixed header - reduced height to remove gap */}
+            <div className="h-16"></div>
 
             {/* Breadcrumb */}
-            <Breadcrumb />
+            {currentPath !== "/" && <Breadcrumb />}
 
             {/* Main Content */}
             <main>
@@ -60,6 +61,9 @@ export default function Layout({ children, currentPath = "/" }: LayoutProps) {
             {/* Footer */}
             <Footer />
 
+            {/* Flash Info Banner */}
+            <FlashBanner />
+
             {/* Back to Top Button */}
             <AnimatePresence>
                 {showBackToTop && (
@@ -68,7 +72,7 @@ export default function Layout({ children, currentPath = "/" }: LayoutProps) {
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.8 }}
                         onClick={scrollToTop}
-                        className="fixed right-8 bottom-8 z-50 rounded-full bg-orange-600 p-3 text-white shadow-lg transition-all duration-300 hover:scale-110 hover:bg-orange-700 hover:shadow-xl"
+                        className="fixed right-8 bottom-20 z-50 rounded-full bg-orange-600 p-3 text-white shadow-lg transition-all duration-300 hover:scale-110 hover:bg-orange-700 hover:shadow-xl"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
                     >

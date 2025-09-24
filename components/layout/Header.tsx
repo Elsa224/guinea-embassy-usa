@@ -5,7 +5,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, Menu, Search, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-const navigationItems = [
+// Keep old navigation for potential rollback per boss requirements
+const oldNavigationItems = [
     {
         label: "Accueil",
         href: "/",
@@ -92,6 +93,63 @@ const navigationItems = [
     },
 ];
 
+// New navigation structure per boss requirements
+const navigationItems = [
+    {
+        label: "Accueil",
+        href: "/",
+        isActive: true,
+    },
+    {
+        label: "Services",
+        href: "/services",
+        hasDropdown: true,
+        dropdownItems: [
+            { label: "Tous les Services", href: "/services" },
+            { label: "Visa", href: "/services/visa" },
+            { label: "Passeport", href: "/services/passeport" },
+            { label: "État Civil", href: "/services/etat-civil" },
+            { label: "Autres Documents", href: "/services/autres-documents" },
+        ],
+    },
+    {
+        label: "Actualités",
+        href: "/actualites",
+        hasDropdown: true,
+        dropdownItems: [
+            { label: "Toutes les Actualités", href: "/actualites" },
+            { label: "Actualités du Consulat", href: "/actualites/consulat" },
+            { label: "Actualités Diplomatiques", href: "/actualites/diplomatiques" },
+            { label: "Actualités Gouvernementales", href: "/actualites/gouvernementales" },
+            { label: "Conseil des Ministres", href: "/actualites/conseil-ministres" },
+            { label: "Liens Utiles", href: "/actualites/liens-utiles" },
+        ],
+    },
+    {
+        label: "Côte d'Ivoire",
+        href: "/cote-divoire",
+        hasDropdown: true,
+        dropdownItems: [
+            { label: "Gouvernance Générale", href: "/gouvernance" },
+            { label: "Le Président", href: "/gouvernance/president" },
+            { label: "Le Premier Ministre", href: "/gouvernance/premier-ministre" },
+            { label: "Le Gouvernement", href: "/gouvernance/gouvernement" },
+            { label: "Les Ministres", href: "/gouvernance/ministres" },
+            { label: "Institutions de l'État", href: "/gouvernance/institutions" },
+            { label: "Communications", href: "/gouvernance/communications" },
+            { label: "Jours Fériés", href: "/gouvernance/jours-feries" },
+        ],
+    },
+    {
+        label: "Médiathèque",
+        href: "/mediatheque",
+    },
+    {
+        label: "Contacts",
+        href: "/contacts",
+    },
+];
+
 interface HeaderProps {
     currentPath?: string;
     isScrolled?: boolean;
@@ -104,7 +162,12 @@ export default function Header({ currentPath = "/", isScrolled = false }: Header
 
     const isActivePage = (href: string) => {
         if (href === "/" && currentPath === "/") return true;
-        return currentPath.startsWith(href) && href !== "/";
+        if (href === "/services" && currentPath.startsWith("/services")) return true;
+        if (href === "/actualites" && currentPath.startsWith("/actualites")) return true;
+        if (href === "/cote-divoire" && currentPath.startsWith("/cote-divoire")) return true;
+        if (href === "/mediatheque" && currentPath.startsWith("/mediatheque")) return true;
+        if (href === "/contacts" && currentPath.startsWith("/contacts")) return true;
+        return false;
     };
 
     // Close dropdown when clicking outside
@@ -143,49 +206,14 @@ export default function Header({ currentPath = "/", isScrolled = false }: Header
                     : "bg-white shadow-sm"
             }`}
         >
-            {/* Contact Information Banner */}
-            <div className={`border-b text-sm bg-white ${isScrolled ? "hidden" : "block"}`}>
-                <div className="container mx-auto px-4 sm:px-6">
-                    <div className="flex flex-col sm:flex-row justify-between items-center py-2 space-y-1 sm:space-y-0">
-                        <div className="flex flex-col sm:flex-row items-center space-y-1 sm:space-y-0 sm:space-x-4 text-gray-600">
-                            <span>📍 800 Second Avenue, NY 10017</span>
-                            <span>☎️ (646) 476-7614</span>
-                        </div>
-                        <div className="flex items-center space-x-4">
-                            <div className="flex items-center space-x-2">
-                                <button className="px-2 py-1 text-xs font-medium text-gray-600 hover:ci-orange transition-colors">
-                                    FR
-                                </button>
-                                <span className="text-gray-400">|</span>
-                                <button className="px-2 py-1 text-xs font-medium text-gray-600 hover:ci-orange transition-colors">
-                                    EN
-                                </button>
-                            </div>
-                            <Button size="sm" variant="ghost" className="h-8 w-8 p-0 hover:bg-ci-orange hover:text-white">
-                                <Search className="h-4 w-4" />
-                            </Button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {/* Contact Information Banner - Removed per boss requirements */}
 
             {/* Main Navigation */}
             <nav className="bg-white border-b">
                 <div className="container mx-auto px-4 sm:px-6">
-                    <div className="flex justify-between items-center py-4">
-                        {/* Logo */}
-                        <div className="flex items-center">
-                            <a href="/" className="flex items-center">
-                                <img
-                                    src="/assets/images-for-the-new-website/logo_updated.png"
-                                    alt="Logo Consulat"
-                                    className="h-8 sm:h-10"
-                                />
-                            </a>
-                        </div>
-
-                        {/* Desktop Navigation */}
-                        <div className="hidden lg:flex xl:space-x-8 lg:space-x-4" ref={dropdownRef}>
+                    <div className="flex justify-center items-center py-4">
+                        {/* Desktop Navigation - Centered */}
+                        <div className="hidden lg:flex xl:space-x-8 lg:space-x-4 items-center" ref={dropdownRef}>
                             {navigationItems.map((item, index) => (
                                 <div 
                                     key={index} 
@@ -282,10 +310,21 @@ export default function Header({ currentPath = "/", isScrolled = false }: Header
                                     ></span>
                                 </div>
                             ))}
+                            
+                            {/* Language Toggle - Moved here per boss requirements */}
+                            <div className="flex items-center space-x-2 ml-6 pl-6 border-l border-gray-300">
+                                <button className="px-3 py-2 text-sm font-medium text-gray-800 hover:ci-orange transition-colors">
+                                    FR
+                                </button>
+                                <span className="text-gray-400">|</span>
+                                <button className="px-3 py-2 text-sm font-medium text-gray-800 hover:ci-orange transition-colors">
+                                    EN
+                                </button>
+                            </div>
                         </div>
 
-                        {/* Mobile Menu Button */}
-                        <div className="lg:hidden">
+                        {/* Mobile Menu Button - Positioned absolutely on small screens */}
+                        <div className="lg:hidden absolute right-4">
                             <Button
                                 variant="ghost"
                                 size="sm"

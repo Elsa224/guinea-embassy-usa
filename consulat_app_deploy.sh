@@ -26,8 +26,8 @@ mkdir -p consulat_app_deploy
 cp -r ${LOCAL_BUILD_DIR} consulat_app_deploy/
 cp -r public consulat_app_deploy/
 cp package.json pnpm-lock.yaml next.config.ts consulat_app_deploy/
-cp -r messages consulat_app_deploy/
-cp middleware.ts consulat_app_deploy/
+# cp -r messages consulat_app_deploy/
+# cp middleware.ts consulat_app_deploy/
 cp ecosystem.config.js consulat_app_deploy/
 
 # Create .env.production file for deployment
@@ -66,7 +66,7 @@ ssh -t ${SERVER_USER}@${SERVER_IP} "
 
 # Upload server deployment script
 echo -e "${BLUE}📋 Uploading server deployment script...${NC}"
-scp deploy_2.sh ${SERVER_USER}@${SERVER_IP}:~/ || { echo -e "${RED}❌ Server script upload failed${NC}"; exit 1; }
+scp consulat_app_deploy_2.sh ${SERVER_USER}@${SERVER_IP}:~/ || { echo -e "${RED}❌ Server script upload failed${NC}"; exit 1; }
 
 # Clean up local deployment files
 echo -e "${GREEN}Cleaning up local deployment files...${NC}"

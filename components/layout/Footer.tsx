@@ -97,8 +97,25 @@ export default function Footer() {
                                     📧 Email & Web
                                 </h4>
                                 <ul className="space-y-1 text-sm text-white/80">
-                                    <li>info.consulny@diplomatie.gouv.ci</li>
-                                    <li>Plateforme: express54.org</li>
+                                    <li>
+                                        <a
+                                            href="mailto:info.consulny@diplomatie.gouv.ci"
+                                            className="flex items-center gap-2 text-white/80 transition-colors hover:text-white"
+                                        >
+                                            <span role="img" aria-label="Email">✉️</span>
+                                            info.consulny@diplomatie.gouv.ci
+                                        </a>
+                                    </li>
+                                    <li>
+                                <a
+                                    href="https://express54.org"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-white/80 transition-colors hover:text-white"
+                                >
+                                    💻 Plateforme Express54
+                                </a>
+                            </li>
                                 </ul>
                             </div>
                         </div>
@@ -115,9 +132,11 @@ export default function Footer() {
                                     ⏰ Horaires d'ouverture
                                 </h4>
                                 <p className="text-white/80 text-sm">
-                                    Lundi - Vendredi
+                                    Du lundi au vendredi
                                     <br />
-                                    9h30 - 13h00
+                                    <span className="font-semibold">MATIN :</span> 9h30 - 13h00
+                                    <br />
+                                    <span className="font-semibold">APRÈS-MIDI :</span> 14h00 à 16h30
                                 </p>
                             </div>
                             <div>
@@ -143,12 +162,22 @@ export default function Footer() {
                         <ul className="space-y-2 text-sm">
                             <li>
                                 <a
-                                    href="https://gouv.ci"
+                                    href="https://presidence.ci"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="text-white/80 transition-colors hover:text-white"
                                 >
-                                    🏛️ Gouvernement de Côte d'Ivoire
+                                    🇨🇮 Présidence
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="https://primature.gouv.ci"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-white/80 transition-colors hover:text-white"
+                                >
+                                    🏢 Primature
                                 </a>
                             </li>
                             <li>
@@ -163,22 +192,12 @@ export default function Footer() {
                             </li>
                             <li>
                                 <a
-                                    href="https://presidence.ci"
+                                    href="https://gouv.ci"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="text-white/80 transition-colors hover:text-white"
                                 >
-                                    🇨🇮 Présidence de la République
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="https://primature.gouv.ci"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-white/80 transition-colors hover:text-white"
-                                >
-                                    🏢 Primature
+                                    🏛️ Gouvernement de Côte d'Ivoire
                                 </a>
                             </li>
                             <li>
