@@ -1,84 +1,16 @@
 "use client";
 
+import { Layout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { SiFacebook, SiInstagram, SiX } from "@icons-pack/react-simple-icons";
 
-import { AnimatePresence, motion } from "framer-motion";
-import {
-    ArrowUp,
-    ChevronLeft,
-    ChevronRight,
-    ExternalLink,
-    Play,
-} from "lucide-react";
-import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { ChevronLeft, ChevronRight, ExternalLink, Play } from "lucide-react";
+import { useState } from "react";
 
 export default function Home() {
     const [currentNewsIndex, setCurrentNewsIndex] = useState(0);
-    const [currentSlide, setCurrentSlide] = useState(0);
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
-    const [isScrolled, setIsScrolled] = useState(false);
-    const [showBackToTop, setShowBackToTop] = useState(false);
-
-    // Auto-rotate slider
-    useEffect(() => {
-        const timer = setInterval(() => {
-            setCurrentSlide(prev => (prev + 1) % 3);
-        }, 5000);
-        return () => clearInterval(timer);
-    }, []);
-
-    // Handle scroll effects
-    useEffect(() => {
-        const handleScroll = () => {
-            const scrolled = window.scrollY > 100;
-            setIsScrolled(scrolled);
-
-            // Show back to top button when near bottom of page
-            const scrollHeight = document.documentElement.scrollHeight;
-            const scrollTop = document.documentElement.scrollTop;
-            const clientHeight = document.documentElement.clientHeight;
-            const isNearBottom = scrollTop + clientHeight >= scrollHeight * 0.8;
-            setShowBackToTop(isNearBottom);
-        };
-
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
-
-    const scrollToTop = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-        });
-    };
-
-    const slides = [
-        {
-            image: "/assets/images-for-the-new-website/slider-pic-after-hero.jpeg",
-            title: "Excellence Diplomatique",
-            content:
-                "Le Consulat Général de Côte d'Ivoire à New York est fier de servir la communauté ivoirienne avec excellence et professionnalisme. Notre équipe diplomatique s'engage à faciliter vos démarches administratives.",
-        },
-        {
-            image: "/assets/images-for-the-new-website/actualite-pic-1.jpeg",
-            title: "Services Consulaires",
-            content:
-                "Nous offrons une gamme complète de services consulaires incluant les visas, les documents civils, les cartes consulaires et bien plus encore. Notre mission est de vous accompagner dans toutes vos démarches.",
-        },
-        {
-            image: "/assets/images-for-the-new-website/actualite-pic-2.jpeg",
-            title: "Lien Culturel",
-            content:
-                "Le consulat organise régulièrement des événements culturels pour renforcer les liens entre la diaspora ivoirienne et la Côte d'Ivoire. Découvrez nos activités et participez à la promotion de notre riche culture.",
-        },
-        // {
-        //     image: "/assets/images-for-the-new-website/actualite-pic-4.png",
-        //     title: "Lien Culturel",
-        //     content: "Le consulat organise régulièrement des événements culturels pour renforcer les liens entre la diaspora ivoirienne et la Côte d'Ivoire. Découvrez nos activités et participez à la promotion de notre riche culture."
-        // }
-    ];
 
     const newsItems = [
         {
@@ -180,77 +112,8 @@ export default function Home() {
     ];
 
     return (
-        <div className="min-h-screen bg-white">
-            {/* Navbar */}
-            <nav
-                className={`fixed top-0 right-0 left-0 z-50 transition-all duration-300 ${
-                    isScrolled
-                        ? "border-b bg-white/95 shadow-lg backdrop-blur-md"
-                        : "border-b bg-white shadow-sm"
-                }`}
-            >
-                <div className="container mx-auto px-6">
-                    <div className="flex justify-center py-4">
-                        <div className="flex space-x-8">
-                            {[
-                                {
-                                    label: "Accueil",
-                                    href: "#accueil",
-                                    isActive: true,
-                                },
-                                {
-                                    label: "Actualités",
-                                    href: "#actualites",
-                                    isActive: false,
-                                },
-                                {
-                                    label: "Services Consulaires",
-                                    href: "#services-consulaires",
-                                    isActive: false,
-                                },
-                                {
-                                    label: "Côte d'Ivoire",
-                                    href: "",
-                                    isActive: false,
-                                },
-                                {
-                                    label: "Multimedia",
-                                    href: "#multimedia",
-                                    isActive: false,
-                                },
-                                {
-                                    label: "Contacts",
-                                    href: "#contacts",
-                                    isActive: false,
-                                },
-                            ].map((item, index) => (
-                                <div key={index} className="group relative">
-                                    <a
-                                        href={item.href}
-                                        className={`block px-2 py-1 font-medium transition-colors duration-300 ${
-                                            item.isActive
-                                                ? "text-orange-600"
-                                                : "text-gray-800 hover:text-orange-600"
-                                        }`}
-                                    >
-                                        {item.label}
-                                    </a>
-                                    <span
-                                        className={`absolute bottom-0 left-2 h-0.5 bg-orange-600 transition-all duration-300 ${
-                                            item.isActive
-                                                ? "w-[calc(100%-1rem)]"
-                                                : "w-0 group-hover:w-[calc(100%-1rem)]"
-                                        }`}
-                                    ></span>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </nav>
-
-            {/* Spacer for fixed navbar */}
-            <div className="h-16"></div>
+        <Layout currentPath="/">
+            {/* Page Content */}
 
             {/* Hero Section */}
             <section
@@ -258,7 +121,7 @@ export default function Home() {
                 className="relative h-full overflow-hidden bg-[#EBEBEB] py-12"
             >
                 {/* Background image with opacity */}
-                <div className="relative z-10 container mx-auto px-6">
+                <div className="relative z-10 container mx-auto px-4 sm:px-6">
                     {/* Logo centered at top */}
                     <motion.div
                         className="mb-8 text-center"
@@ -267,16 +130,10 @@ export default function Home() {
                         transition={{ duration: 0.8 }}
                     >
                         <img
-                            src="/assets/images-for-the-new-website/logo-removebg-preview.png"
+                            src="/assets/images-for-the-new-website/logo_updated.png"
                             alt="Logo Consulat"
-                            className="mx-auto h-114 pb-35"
+                            className="mx-auto h-32 pb-8 sm:h-40 sm:pb-12 md:h-48 md:pb-16 lg:h-114 lg:pb-35"
                         />
-                        {/* <h1 className="text-2xl lg:text-3xl font-bold text-gray-900">
-                            CONSULAT GÉNÉRAL DE CÔTE D'IVOIRE
-                            </h1>
-                            <p className="text-lg text-gray-600 mt-2">
-                            NEW YORK - ÉTATS-UNIS
-                            </p> */}
                     </motion.div>
                 </div>
                 <div className="absolute inset-0 top-20 z-0" aria-hidden="true">
@@ -289,99 +146,216 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* Slider Section */}
-            <section className="bg-gray-100 py-0">
-                <div className="container mx-auto px-6">
-                    <div className="relative mx-auto max-w-6xl">
-                        <div className="relative m-[-15px] rounded-none rounded-tr-[35] rounded-br-[35] rounded-bl-[35] bg-white p-8 shadow-lg">
-                            <AnimatePresence mode="wait">
-                                <motion.div
-                                    key={currentSlide}
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    exit={{ opacity: 0 }}
-                                    transition={{ duration: 0.5 }}
-                                    className="flex flex-col items-center gap-8 lg:flex-row"
-                                >
-                                    {/* Image on left */}
-                                    <div className="lg:w-1/2">
-                                        <img
-                                            src={slides[currentSlide].image}
-                                            alt={slides[currentSlide].title}
-                                            className="h-80 w-full rounded-lg object-cover shadow-md"
-                                        />
-                                    </div>
+            {/* Consul Message Section */}
+            <section className="relative overflow-hidden bg-gradient-to-br from-gray-50 to-orange-50/30 py-8">
+                {/* Decorative background elements */}
+                <div className="absolute inset-0 opacity-5">
+                    <div className="absolute top-10 right-10 h-32 w-32 rounded-full bg-orange-400 blur-3xl"></div>
+                    <div className="absolute bottom-10 left-10 h-24 w-24 rounded-full bg-green-400 blur-2xl"></div>
+                </div>
 
-                                    {/* Text on right */}
-                                    <div className="px-4 lg:w-1/2">
-                                        <motion.h2
-                                            className="mb-4 text-3xl font-bold text-gray-900"
-                                            initial={{ y: 20, opacity: 0 }}
-                                            animate={{ y: 0, opacity: 1 }}
-                                            transition={{ delay: 0.2 }}
-                                        >
-                                            {slides[currentSlide].title}
-                                        </motion.h2>
-                                        <motion.p
-                                            className="mb-6 text-lg leading-relaxed text-gray-600"
-                                            initial={{ y: 20, opacity: 0 }}
-                                            animate={{ y: 0, opacity: 1 }}
-                                            transition={{ delay: 0.4 }}
-                                        >
-                                            {slides[currentSlide].content}
-                                        </motion.p>
+                <div className="relative z-10 container mx-auto px-4 sm:px-6">
+                    <div className="relative mx-auto max-w-6xl">
+                        {/* Section Title */}
+                        <motion.div
+                            initial={{ opacity: 0, y: -20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6 }}
+                            className="mb-8 text-center"
+                        >
+                            <h2 className="mb-2 text-2xl font-bold text-gray-800 sm:text-3xl lg:text-4xl">
+                                Message du Consul Général
+                            </h2>
+                            <div className="mx-auto h-1 w-24 rounded-full bg-gradient-to-r from-orange-500 to-green-600"></div>
+                        </motion.div>
+
+                        <div className="relative overflow-hidden rounded-2xl border border-orange-100/50 bg-white shadow-2xl">
+                            {/* Decorative top border */}
+                            <div className="h-2 bg-gradient-to-r from-orange-500 via-white to-green-600"></div>
+
+                            <div className="p-6 sm:p-8 lg:p-10">
+                                <div className="flex flex-col items-center gap-8 lg:flex-row lg:gap-12">
+                                    {/* Consul Image on left */}
+                                    <motion.div
+                                        initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ duration: 0.8 }}
+                                        className="relative w-full lg:w-2/5"
+                                    >
+                                        <div className="relative">
+                                            <div className="absolute inset-0 scale-105 rounded-2xl bg-gradient-to-r from-orange-400/20 to-green-400/20 blur-lg"></div>
+                                            <img
+                                                src="/assets/images-for-the-new-website/consul-picture.jpeg"
+                                                alt="S.E.M Inza CAMARA - Consul Général de Côte d'Ivoire à New York"
+                                                className="relative h-94 w-full rounded-2xl border-4 border-white object-cover shadow-xl sm:h-80 lg:h-96 xl:h-96"
+                                            />
+                                            {/* Decorative frame corners */}
+                                            <div className="absolute top-2 left-2 h-8 w-8 rounded-tl-lg border-t-4 border-l-4 border-orange-500"></div>
+                                            <div className="absolute top-2 right-2 h-8 w-8 rounded-tr-lg border-t-4 border-r-4 border-green-600"></div>
+                                            <div className="absolute bottom-2 left-2 h-8 w-8 rounded-bl-lg border-b-4 border-l-4 border-green-600"></div>
+                                            <div className="absolute right-2 bottom-2 h-8 w-8 rounded-br-lg border-r-4 border-b-4 border-orange-500"></div>
+                                        </div>
+                                    </motion.div>
+
+                                    {/* Consul Message on right */}
+                                    <div className="w-full lg:w-3/5">
                                         <motion.div
-                                            initial={{ y: 20, opacity: 0 }}
-                                            animate={{ y: 0, opacity: 1 }}
-                                            transition={{ delay: 0.6 }}
+                                            initial={{ opacity: 0, x: 50 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            transition={{
+                                                duration: 0.8,
+                                                delay: 0.2,
+                                            }}
+                                            className="space-y-6"
                                         >
-                                            <Button className="bg-orange-600 px-6 py-2 text-white hover:bg-orange-700">
-                                                En savoir plus
-                                            </Button>
+                                            {/* Quote icon */}
+                                            <div className="mb-4 flex items-center">
+                                                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-orange-500 to-green-600">
+                                                    <svg
+                                                        className="h-6 w-6 text-white"
+                                                        fill="currentColor"
+                                                        viewBox="0 0 24 24"
+                                                    >
+                                                        <path d="M14.17,18L15.58,16.59L13.41,14.41L12,15.82L10.59,14.41L8.41,16.59L9.83,18L12,15.83L14.17,18M12,2C6.48,2 2,6.48 2,12C2,17.52 6.48,22 12,22C17.52,22 22,17.52 22,12C22,6.48 17.52,2 12,2Z" />
+                                                    </svg>
+                                                </div>
+                                                <div className="ml-4">
+                                                    <div className="text-xs font-semibold tracking-wider text-orange-600 uppercase">
+                                                        Message Officiel
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <blockquote className="relative">
+                                                <div className="absolute top-0 -left-4 h-full w-1 rounded-full bg-gradient-to-b from-orange-500 to-green-600"></div>
+                                                <div className="space-y-4 pl-8 text-sm leading-relaxed text-gray-700 sm:text-base lg:text-lg">
+                                                    <p>
+                                                        Au sortir d'une crise
+                                                        socio-politique en 2011,
+                                                        La Côte d'Ivoire a su
+                                                        effacer les stigmates de
+                                                        son instabilité à
+                                                        l'époque grâce au plan
+                                                        ambitieux de son
+                                                        Excellence Monsieur
+                                                        Alassane Ouattara,
+                                                        Président de la
+                                                        République. En plus
+                                                        d'insuffler un nouveau
+                                                        dynamisme économique
+                                                        ivoirien, Il a su
+                                                        élaborer une nouvelle
+                                                        stratégie en termes de
+                                                        diplomatie économique
+                                                        internationale en
+                                                        réalisant ce qu'un bon
+                                                        nombre appelle un{" "}
+                                                        <span className="font-semibold text-orange-600">
+                                                            "Deuxième Miracle
+                                                            Ivoirien"
+                                                        </span>
+                                                        .
+                                                    </p>
+                                                    <p>
+                                                        En instaurant ce cadre,
+                                                        il guide diligemment la
+                                                        Côte d'Ivoire vers
+                                                        l'émergence en
+                                                        brandissant les atouts
+                                                        économiques, naturels et
+                                                        humains tout en
+                                                        impulsant le tourisme
+                                                        d'affaire et la
+                                                        recherche de
+                                                        financement. La mise en
+                                                        place effective de la
+                                                        reforme prévoyant la
+                                                        création des{" "}
+                                                        <span className="font-semibold text-green-600">
+                                                            Services de
+                                                            Promotion Economique
+                                                            Extérieure (SPEE)
+                                                        </span>{" "}
+                                                        notamment le SPECI-USA,
+                                                        incarne la continuité
+                                                        dans la vision
+                                                        progressive de notre
+                                                        chef d'Etat.
+                                                    </p>
+                                                    <p>
+                                                        Par ailleurs, elle sait
+                                                        matérialiser autrement
+                                                        l'action de promotion de
+                                                        l'économie ivoirienne à
+                                                        l'étranger au même titre
+                                                        que les bureaux,
+                                                        sections économiques,
+                                                        représentants du CEPICI
+                                                        etc. Depuis son
+                                                        ouverture, le SPECI a
+                                                        effectué, dans sa zone
+                                                        couverture, une action
+                                                        de prospection, de
+                                                        promotion et de veille
+                                                        économique afin de
+                                                        promouvoir les
+                                                        différents secteurs de
+                                                        l'économie ivoirienne
+                                                        auprès des acteurs
+                                                        économiques américains
+                                                        canadiens et mexicains.
+                                                    </p>
+                                                    <p className="font-medium text-gray-800">
+                                                        Nous invitons les
+                                                        investisseurs
+                                                        nord-américains à venir
+                                                        en Côte d'Ivoire. Ce
+                                                        pays regorge
+                                                        d'opportunités avec de
+                                                        nombreux secteurs
+                                                        porteurs. Notre service
+                                                        est à la disposition de
+                                                        tous les acteurs
+                                                        économiques désireux de
+                                                        tenter l'aventure
+                                                        ivoirienne.
+                                                    </p>
+                                                </div>
+                                            </blockquote>
+
+                                            {/* Signature */}
+                                            <motion.div
+                                                initial={{ opacity: 0, y: 20 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                transition={{
+                                                    duration: 0.6,
+                                                    delay: 0.6,
+                                                }}
+                                                className="mt-8 border-t border-gray-200 pt-6"
+                                            >
+                                                <div className="text-right">
+                                                    <p className="mb-1 text-xl font-bold text-gray-900">
+                                                        S.E.M Inza CAMARA
+                                                    </p>
+                                                    <p className="mb-1 text-sm font-semibold text-orange-600">
+                                                        Consul Général de Côte
+                                                        d'Ivoire à New York
+                                                    </p>
+                                                    <p className="text-xs leading-tight text-gray-600">
+                                                        Délégué Général du
+                                                        Service de Promotion
+                                                        Économique
+                                                        <br />
+                                                        de la Côte d'Ivoire aux
+                                                        États-Unis, Canada et au
+                                                        Mexique
+                                                    </p>
+                                                </div>
+                                            </motion.div>
                                         </motion.div>
                                     </div>
-                                </motion.div>
-                            </AnimatePresence>
-
-                            {/* Navigation Arrows */}
-                            <button
-                                onClick={() =>
-                                    setCurrentSlide(
-                                        prev =>
-                                            (prev - 1 + slides.length) %
-                                            slides.length
-                                    )
-                                }
-                                className="absolute top-1/2 left-4 -translate-y-1/2 transform rounded-full bg-white p-2 shadow-md transition-all duration-200 hover:scale-110 hover:bg-gray-50"
-                            >
-                                <ChevronLeft className="h-6 w-6 text-gray-600" />
-                            </button>
-
-                            <button
-                                onClick={() =>
-                                    setCurrentSlide(
-                                        prev => (prev + 1) % slides.length
-                                    )
-                                }
-                                className="absolute top-1/2 right-4 -translate-y-1/2 transform rounded-full bg-white p-2 shadow-md transition-all duration-200 hover:scale-110 hover:bg-gray-50"
-                            >
-                                <ChevronRight className="h-6 w-6 text-gray-600" />
-                            </button>
-                        </div>
-
-                        {/* Slider indicators */}
-                        <div className="mt-8 mb-4 flex justify-center space-x-2">
-                            {slides.map((_, index) => (
-                                <button
-                                    key={index}
-                                    onClick={() => setCurrentSlide(index)}
-                                    className={`h-3 w-3 rounded-full transition-all duration-300 ${
-                                        currentSlide === index
-                                            ? "scale-125 bg-orange-600"
-                                            : "bg-gray-400"
-                                    }`}
-                                />
-                            ))}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -400,18 +374,18 @@ export default function Home() {
                         objectPosition: "left top",
                     }}
                 />
-                <div className="container mx-auto px-6">
-                    <div className="mb-12 text-center">
-                        <h2 className="mb-4 text-4xl font-bold text-gray-900">
+                <div className="container mx-auto px-4 sm:px-6">
+                    <div className="mb-8 text-center sm:mb-12">
+                        <h2 className="mb-3 text-2xl font-bold text-gray-900 sm:mb-4 sm:text-3xl lg:text-4xl">
                             Actualités
                         </h2>
-                        <p className="text-xl text-gray-600">
+                        <p className="text-base text-gray-600 sm:text-lg lg:text-xl">
                             Restez informés des dernières nouvelles du consulat
                         </p>
                     </div>
 
                     <div className="relative">
-                        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                        <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
                             {newsItems
                                 .slice(currentNewsIndex, currentNewsIndex + 3)
                                 .map((item, index) => (
@@ -519,42 +493,76 @@ export default function Home() {
                         objectPosition: "left top",
                     }} */}
                 {/*/> */}
-                <div className="relative z-10 container mx-auto px-6 py-12">
-                    <div className="mb-8 text-center">
-                        <h2 className="mb-4 text-4xl font-bold text-gray-900">
-                            Services consulaires
+                <div className="relative z-10 container mx-auto px-4 py-8 sm:px-6 sm:py-16">
+                    {/* Section Header */}
+                    <motion.div
+                        initial={{ opacity: 0, y: -20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6 }}
+                        viewport={{ once: true }}
+                        className="mb-12 text-center"
+                    >
+                        <h2 className="mb-4 text-3xl font-bold text-gray-900 sm:text-4xl lg:text-5xl">
+                            Services Consulaires
                         </h2>
-                        <p className="text-xl text-gray-600">
-                            Eiusmod exercitation eiusmod cupidatat ipsum dolore
-                            ipsum ex. <br /> Irure commodo Lorem sint cupidatat.
+                        <div className="mx-auto mb-6 h-1 w-32 rounded-full bg-gradient-to-r from-orange-500 to-green-600"></div>
+                        <p className="mx-auto max-w-3xl text-lg leading-relaxed text-gray-600 sm:text-xl">
+                            Découvrez nos services consulaires complets, conçus
+                            pour faciliter vos démarches administratives avec
+                            efficacité et professionnalisme.
                         </p>
-                    </div>
+                    </motion.div>
 
-                    {/* <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-5xl mx-auto"> */}
-                    <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
                         {services.map((service, index) => (
                             <motion.div
                                 key={index}
-                                initial={{ opacity: 0, y: 20 }}
+                                initial={{ opacity: 0, y: 30 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{
-                                    duration: 0.5,
+                                    duration: 0.6,
                                     delay: index * 0.1,
                                 }}
                                 viewport={{ once: true }}
+                                whileHover={{ y: -8 }}
+                                className="group"
                             >
-                                <Card className="h-full border-orange-100 bg-gradient-to-b from-white to-orange-100 transition-all duration-300 hover:shadow-lg">
-                                    <CardContent className="flex items-center gap-4 px-6 py-[10px]">
-                                        {/* Text content on left */}
-                                        <div className="flex-1">
-                                            <h3 className="mb-2 text-lg font-bold text-gray-900">
-                                                {service.title}
-                                            </h3>
-                                            <p className="mb-4 text-sm text-gray-600">
-                                                {service.description}
-                                            </p>
+                                <Card className="relative h-full overflow-hidden rounded-2xl border-0 bg-white shadow-lg transition-all duration-300 group-hover:shadow-orange-100/50 hover:shadow-2xl">
+                                    {/* Gradient top border */}
+                                    <div className="h-1 bg-gradient-to-r from-orange-500 to-green-600"></div>
+
+                                    <CardContent className="p-6">
+                                        {/* Icon section */}
+                                        <div className="mb-4 flex items-start justify-between">
+                                            <div className="flex-1 pr-4">
+                                                <div className="mb-3 flex items-center">
+                                                    <div className="mr-2 h-3 w-3 rounded-full bg-orange-500"></div>
+                                                    <h3 className="text-xl font-bold text-gray-900 transition-colors duration-300 group-hover:text-orange-600">
+                                                        {service.title}
+                                                    </h3>
+                                                </div>
+                                                <p className="mb-6 line-clamp-3 text-sm leading-relaxed text-gray-600">
+                                                    {service.description}
+                                                </p>
+                                            </div>
+
+                                            {/* Icon with enhanced styling */}
+                                            <div className="relative flex-shrink-0">
+                                                <div className="absolute inset-0 scale-110 rounded-full bg-gradient-to-r from-orange-400/20 to-green-400/20 blur-lg transition-transform duration-300 group-hover:scale-125"></div>
+                                                <div className="relative flex h-16 w-16 items-center justify-center rounded-full border border-orange-100 bg-gradient-to-br from-orange-50 to-green-50 transition-colors duration-300 group-hover:border-orange-200">
+                                                    <img
+                                                        src={service.icon}
+                                                        alt={service.title}
+                                                        className="h-10 w-10 object-contain transition-transform duration-300 group-hover:scale-110"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {/* Action button */}
+                                        <div className="mt-auto">
                                             <Button
-                                                className="bg-orange-600 px-4 py-2 text-sm text-white hover:bg-orange-700"
+                                                className="w-full rounded-xl border-0 bg-gradient-to-r from-orange-600 to-orange-700 py-2.5 font-medium text-white shadow-lg transition-all duration-300 group-hover:scale-105 hover:from-orange-700 hover:to-orange-800 hover:shadow-xl"
                                                 onClick={() =>
                                                     window.open(
                                                         service.link,
@@ -562,24 +570,42 @@ export default function Home() {
                                                     )
                                                 }
                                             >
-                                                <ExternalLink className="mr-2 h-3 w-3" />
-                                                Accéder
+                                                <ExternalLink className="mr-2 h-4 w-4" />
+                                                Accéder au service
                                             </Button>
                                         </div>
-
-                                        {/* Icon on right */}
-                                        <div className="flex-shrink-0">
-                                            <img
-                                                src={service.icon}
-                                                alt={service.title}
-                                                className="h-16 w-16"
-                                            />
-                                        </div>
                                     </CardContent>
+
+                                    {/* Decorative corner accents */}
+                                    <div className="absolute top-2 right-2 h-6 w-6 rounded-tr-lg border-t-2 border-r-2 border-orange-200 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+                                    <div className="absolute bottom-2 left-2 h-6 w-6 rounded-bl-lg border-b-2 border-l-2 border-green-200 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
                                 </Card>
                             </motion.div>
                         ))}
                     </div>
+
+                    {/* Call to action section */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.3 }}
+                        viewport={{ once: true }}
+                        className="mt-12 text-center"
+                    >
+                        <div className="rounded-2xl border border-orange-100 bg-gradient-to-r from-orange-50 to-green-50 p-8">
+                            <h3 className="mb-4 text-2xl font-bold text-gray-900">
+                                Besoin d'aide avec vos démarches ?
+                            </h3>
+                            <p className="mx-auto mb-6 max-w-2xl text-gray-600">
+                                Notre équipe consulaire est à votre disposition
+                                pour vous accompagner dans toutes vos démarches
+                                administratives.
+                            </p>
+                            <Button className="rounded-xl bg-gradient-to-r from-green-600 to-green-700 px-8 py-3 font-medium text-white shadow-lg transition-all duration-300 hover:from-green-700 hover:to-green-800 hover:shadow-xl">
+                                Nous contacter
+                            </Button>
+                        </div>
+                    </motion.div>
                 </div>
             </section>
 
@@ -588,9 +614,9 @@ export default function Home() {
                 id="multimedia"
                 className="bg-gradient-to-br from-orange-200 to-orange-300 py-12"
             >
-                <div className="container mx-auto px-6">
-                    <div className="mb-8 text-center">
-                        <h2 className="mb-4 text-3xl font-bold text-gray-800">
+                <div className="container mx-auto px-4 sm:px-6">
+                    <div className="mb-6 text-center sm:mb-8">
+                        <h2 className="mb-3 text-2xl font-bold text-gray-800 sm:mb-4 sm:text-3xl">
                             PHOTOS
                         </h2>
                     </div>
@@ -609,7 +635,7 @@ export default function Home() {
                                         key={setIndex}
                                         className="w-full flex-shrink-0"
                                     >
-                                        <div className="grid grid-cols-2 gap-4 lg:grid-cols-3">
+                                        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
                                             {Array.from(
                                                 { length: 6 },
                                                 (_, photoIndex) => (
@@ -687,19 +713,19 @@ export default function Home() {
 
             {/* Video Gallery */}
             <section className="bg-white py-12">
-                <div className="container mx-auto px-6">
-                    <div className="mb-8 text-center">
-                        <h2 className="mb-4 text-3xl font-bold text-gray-900">
+                <div className="container mx-auto px-4 sm:px-6">
+                    <div className="mb-6 text-center sm:mb-8">
+                        <h2 className="mb-3 text-2xl font-bold text-gray-900 sm:mb-4 sm:text-3xl">
                             VIDÉO
                         </h2>
-                        <p className="text-lg text-gray-600">
+                        <p className="text-sm text-gray-600 sm:text-base lg:text-lg">
                             Lorem ipsum dolor sit amet, consectetur adipiscing
                             elit, sed do eiusmod tempor incididunt ut labore et
                             dolore magna aliqua.
                         </p>
                     </div>
 
-                    <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-3">
+                    <div className="mx-auto grid max-w-5xl grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
                         {videos.map((video, index) => (
                             <motion.div
                                 key={index}
@@ -761,276 +787,6 @@ export default function Home() {
                     </div>
                 </div>
             </section> */}
-
-            {/* Footer */}
-            <footer
-                id="contacts"
-                className="bg-gradient-to-br from-green-700 to-green-900 py-12 text-white"
-            >
-                <div className="container mx-auto px-6">
-                    <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-                        {/* Section 1: Navigation */}
-                        <div>
-                            <h3 className="mb-6 text-xl font-bold">
-                                COTE D'IVOIRE & USA
-                            </h3>
-                            <ul className="space-y-3">
-                                <li>
-                                    <a
-                                        href="#"
-                                        className="text-white/80 transition-colors hover:text-white"
-                                    >
-                                        Collaborateurs
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#"
-                                        className="text-white/80 transition-colors hover:text-white"
-                                    >
-                                        Services Consulaires
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#"
-                                        className="text-white/80 transition-colors hover:text-white"
-                                    >
-                                        Activités
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#"
-                                        className="text-white/80 transition-colors hover:text-white"
-                                    >
-                                        Service aux Étudiants
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#"
-                                        className="text-white/80 transition-colors hover:text-white"
-                                    >
-                                        Vidéo
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#"
-                                        className="text-white/80 transition-colors hover:text-white"
-                                    >
-                                        Photo
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#"
-                                        className="text-white/80 transition-colors hover:text-white"
-                                    >
-                                        Contact
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-
-                        {/* Section 2: Contact */}
-                        <div>
-                            <h3 className="mb-6 text-xl font-bold">
-                                AMBASSADE
-                            </h3>
-                            <div className="space-y-4">
-                                <div>
-                                    <h4 className="mb-2 font-semibold">
-                                        Email :
-                                    </h4>
-                                    <p className="text-white/80">
-                                        Support : info@ambacidc.org
-                                    </p>
-                                </div>
-                                <div>
-                                    <h4 className="mb-2 font-semibold">
-                                        Téléphone :
-                                    </h4>
-                                    <ul className="space-y-1 text-sm text-white/80">
-                                        <li>
-                                            Bureau de l'Ambassadeur : (202)
-                                            938-0343
-                                        </li>
-                                        <li>
-                                            Service Consulaire : 202-938-0310
-                                            ext.1720/1724
-                                        </li>
-                                        <li>
-                                            Passeport Biométrique : 202-938-0310
-                                            ext. 1725/1727
-                                        </li>
-                                        <li>Secrétariat : 202-204-3980</li>
-                                        <li>Étudiant : 240 355 89 48</li>
-                                        <li>Tourisme : 202-756-8332</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Section 3: Liens Institutionnels */}
-                        <div>
-                            <h3 className="mb-6 text-xl font-bold">
-                                Liens Institutionnels
-                            </h3>
-                            <ul className="space-y-3 text-sm">
-                                <li>
-                                    <a
-                                        href="#"
-                                        className="text-white/80 transition-colors hover:text-white"
-                                    >
-                                        Direction du Tourisme aux USA
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#"
-                                        className="text-white/80 transition-colors hover:text-white"
-                                    >
-                                        Direction Économique USA
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#"
-                                        className="text-white/80 transition-colors hover:text-white"
-                                    >
-                                        U.S. Department of State
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#"
-                                        className="text-white/80 transition-colors hover:text-white"
-                                    >
-                                        La Présidence
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#"
-                                        className="text-white/80 transition-colors hover:text-white"
-                                    >
-                                        La Primature
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#"
-                                        className="text-white/80 transition-colors hover:text-white"
-                                    >
-                                        L'Assemblée Nationale
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#"
-                                        className="text-white/80 transition-colors hover:text-white"
-                                    >
-                                        Conseil Économique et Social
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#"
-                                        className="text-white/80 transition-colors hover:text-white"
-                                    >
-                                        Le Ministère des Affaires Étrangères
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#"
-                                        className="text-white/80 transition-colors hover:text-white"
-                                    >
-                                        Le Médiateur de la République
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-
-                        {/* Section 4: Localisation */}
-                        <div>
-                            <h3 className="mb-6 text-xl font-bold">
-                                Localisation
-                            </h3>
-                            <div className="space-y-4">
-                                <div>
-                                    <h4 className="mb-2 font-semibold">
-                                        Adresse :
-                                    </h4>
-                                    <p className="text-white/80">
-                                        2424 Massachusetts Avenue,
-                                        <br />
-                                        N.W., Washington D.C. 20008 (USA)
-                                    </p>
-                                </div>
-                                <div>
-                                    <h4 className="mb-2 font-semibold">
-                                        Recevoir par Whatsapp :
-                                    </h4>
-                                    <p className="text-white/80">
-                                        (+1 202 658 3602)
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="flex flex-row space-x-6 pt-6">
-                                <a
-                                    href="#"
-                                    className="text-white/80 transition-colors hover:text-white"
-                                >
-                                    <span className="sr-only">Facebook</span>
-                                    <SiFacebook className="h-6 w-6" />
-                                </a>
-                                <a
-                                    href="#"
-                                    className="text-white/80 transition-colors hover:text-white"
-                                >
-                                    <span className="sr-only">Instagram</span>
-                                    <SiInstagram className="h-6 w-6" />
-                                </a>
-                                <a
-                                    href="#"
-                                    className="text-white/80 transition-colors hover:text-white"
-                                >
-                                    <span className="sr-only">X (Twitter)</span>
-                                    <SiX className="h-6 w-6" />
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Social Links */}
-                    <div className="mt-12 border-t border-green-600 pt-8">
-                        <p className="mt-4 text-center text-white/60">
-                            © 2025 Consulat Général de Côte d'Ivoire. Tous
-                            droits réservés.
-                        </p>
-                    </div>
-                </div>
-            </footer>
-
-            {/* Back to Top Button */}
-            <AnimatePresence>
-                {showBackToTop && (
-                    <motion.button
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.8 }}
-                        onClick={scrollToTop}
-                        className="fixed right-8 bottom-8 z-50 rounded-full bg-orange-600 p-3 text-white shadow-lg transition-all duration-300 hover:scale-110 hover:bg-orange-700 hover:shadow-xl"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                    >
-                        <ArrowUp className="h-6 w-6" />
-                    </motion.button>
-                )}
-            </AnimatePresence>
-        </div>
+        </Layout>
     );
 }
