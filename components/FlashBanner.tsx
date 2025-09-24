@@ -45,7 +45,7 @@ export default function FlashBanner() {
                                 x: [0, -100 * newsItems.length + "%"],
                             }}
                             transition={{
-                                duration: 85, // Slower speed for readability
+                                duration: 145, // Slower speed for readability
                                 repeat: Infinity,
                                 ease: "linear",
                             }}

@@ -101,7 +101,7 @@ const navigationItems = [
         isActive: true,
     },
     {
-        label: "Services",
+        label: "Services Consulaires",
         href: "/services",
         hasDropdown: true,
         dropdownItems: [
@@ -131,11 +131,11 @@ const navigationItems = [
         href: "/cote-divoire",
         hasDropdown: true,
         dropdownItems: [
-            { label: "Gouvernance Générale", href: "/gouvernance" },
-            { label: "Le Président", href: "/gouvernance/president" },
-            { label: "Le Premier Ministre", href: "/gouvernance/premier-ministre" },
-            { label: "Le Gouvernement", href: "/gouvernance/gouvernement" },
-            { label: "Les Ministres", href: "/gouvernance/ministres" },
+            // { label: "Gouvernance Générale", href: "/gouvernance" },
+            { label: "La Présidence", href: "/gouvernance/president" },
+            { label: "La Primature", href: "/gouvernance/premier-ministre" },
+            // { label: "Le Gouvernement", href: "/gouvernance/gouvernement" },
+            { label: "Le Ministère des Affaires Etrangères", href: "/gouvernance/ministres" },
             { label: "Institutions de l'État", href: "/gouvernance/institutions" },
             { label: "Communications", href: "/gouvernance/communications" },
             { label: "Jours Fériés", href: "/gouvernance/jours-feries" },

@@ -549,109 +549,74 @@ export default function Home() {
                         viewport={{ once: true }}
                         className="mt-16"
                     >
-                        <div className="mb-12 text-center">
+                        {/* <div className="mb-12 text-center">
                             <h3 className="mb-4 text-3xl font-bold text-gray-900">
                                 Aide & Démarches
                             </h3>
-                            <p className="mx-auto max-w-2xl text-lg text-gray-600">
-                                Besoin d'aide avec vos démarches consulaires ? Découvrez nos guides pratiques 
-                                pour les situations les plus fréquentes.
-                            </p>
-                        </div>
+                        </div> */}
 
-                        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-                            {/* Card 1 - Emergency Services */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6, delay: 0.1 }}
-                                viewport={{ once: true }}
-                                className="group rounded-2xl border border-gray-200 bg-white p-8 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105"
-                            >
-                                <div className="mb-6">
-                                    <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-red-100">
-                                        <span className="text-2xl">🚨</span>
-                                    </div>
-                                    <h4 className="mb-4 text-xl font-bold text-gray-900">
-                                        Situations d'Urgence et d'Évacuation
-                                    </h4>
-                                    <p className="mb-6 text-gray-600 leading-relaxed">
-                                        Découvrez comment le consulat aide les ressortissants 
-                                        ivoiriens en cas de crise ou de situation d'urgence.
-                                    </p>
-                                </div>
-                                <Button className="w-full rounded-xl bg-red-600 font-medium text-white shadow-lg transition-all duration-300 hover:bg-red-700 hover:shadow-xl group-hover:scale-105">
-                                    Guide d'urgence
-                                </Button>
-                            </motion.div>
-
-                            {/* Card 2 - Lost/Stolen Documents */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6, delay: 0.2 }}
-                                viewport={{ once: true }}
-                                className="group rounded-2xl border border-gray-200 bg-white p-8 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105"
-                            >
-                                <div className="mb-6">
-                                    <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-orange-100">
-                                        <span className="text-2xl">📄</span>
-                                    </div>
-                                    <h4 className="mb-4 text-xl font-bold text-gray-900">
-                                        Passeport Perdu ou Volé à l'Étranger
-                                    </h4>
-                                    <p className="mb-6 text-gray-600 leading-relaxed">
-                                        Apprenez comment remplacer votre passeport 
-                                        lorsque vous êtes à l'étranger.
-                                    </p>
-                                </div>
-                                <Button className="w-full rounded-xl bg-orange-600 font-medium text-white shadow-lg transition-all duration-300 hover:bg-orange-700 hover:shadow-xl group-hover:scale-105">
-                                    Remplacer passeport
-                                </Button>
-                            </motion.div>
-
-                            {/* Card 3 - Victim Support */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6, delay: 0.3 }}
-                                viewport={{ once: true }}
-                                className="group rounded-2xl border border-gray-200 bg-white p-8 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105"
-                            >
-                                <div className="mb-6">
-                                    <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
-                                        <span className="text-2xl">🤝</span>
-                                    </div>
-                                    <h4 className="mb-4 text-xl font-bold text-gray-900">
-                                        Victimes de Crimes
-                                    </h4>
-                                    <p className="mb-6 text-gray-600 leading-relaxed">
-                                        Découvrez comment accéder au soutien et aux ressources 
-                                        si vous êtes victime d'un crime en voyage.
-                                    </p>
-                                </div>
-                                <Button className="w-full rounded-xl bg-green-600 font-medium text-white shadow-lg transition-all duration-300 hover:bg-green-700 hover:shadow-xl group-hover:scale-105">
-                                    Obtenir du soutien
-                                </Button>
-                            </motion.div>
-                        </div>
-
-                        {/* Additional help section */}
+                        {/* Help section with pipe-separated content */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.4 }}
                             viewport={{ once: true }}
-                            className="mt-12 rounded-2xl border border-orange-100 bg-gradient-to-r from-orange-50 to-green-50 p-8 text-center"
+                            className="rounded-2xl border border-orange-100 bg-gradient-to-r from-orange-50 to-green-50 p-8 text-center"
                         >
-                            <h4 className="mb-4 text-xl font-bold text-gray-900">
+                            <h4 className="mb-4 text-2xl font-bold text-gray-900">
                                 Vous ne trouvez pas ce que vous cherchez ?
                             </h4>
-                            <p className="mx-auto mb-6 max-w-2xl text-gray-600">
+                             <p className="mx-auto mb-6 max-w-2xl text-gray-600">
                                 Notre équipe consulaire est à votre disposition pour vous accompagner 
                                 dans toutes vos démarches administratives spécifiques.
                             </p>
-                            <Button className="rounded-xl bg-gradient-to-r from-green-600 to-green-700 px-8 py-3 font-medium text-white shadow-lg transition-all duration-300 hover:from-green-700 hover:to-green-800 hover:shadow-xl">
+                            
+                            {/* Help topics displayed horizontally like cards without background */}
+                            <div className="mx-auto mt-4 mb-6 max-w-5xl">
+                                <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12">
+                                    {/* Help Topic 1 */}
+                                    <div className="text-center bg-red-50/95 rounded-xl p-6 border border-red-100">
+                                        <h5 className="mb-2 font-semibold text-red-600">
+                                            🚨 Situations d'Urgence et d'Évacuation
+                                        </h5>
+                                        <p className="text-sm text-gray-600">
+                                            Découvrez comment le consulat aide les ressortissants ivoiriens en cas de crise
+                                        </p>
+                                    </div>
+                                    
+                                    {/* Separator */}
+                                    <div className="hidden md:block text-2xl text-gray-400">|</div>
+                                    
+                                    {/* Help Topic 2 */}
+                                    <div className="text-center bg-orange-50/95 rounded-xl p-6 border border-orange-100">
+                                        <h5 className="mb-2 font-semibold text-orange-600">
+                                            📄 Passeport Perdu ou Volé à l'Étranger
+                                        </h5>
+                                        <p className="text-sm text-gray-600">
+                                            Apprenez comment remplacer votre passeport lorsque vous êtes à l'étranger
+                                        </p>
+                                    </div>
+                                    
+                                    {/* Separator */}
+                                    <div className="hidden md:block text-2xl text-gray-400">|</div>
+                                    
+                                    {/* Help Topic 3 */}
+                                    <div className="text-center bg-green-50/95 rounded-xl p-6 border border-green-100">
+                                        <h5 className="mb-2 font-semibold text-green-600">
+                                            🤝 Victimes de Crimes
+                                        </h5>
+                                        <p className="text-sm text-gray-600">
+                                            Accédez au soutien et aux ressources si vous êtes victime d'un crime en voyage
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            {/* <p className="mx-auto mb-6 max-w-2xl text-gray-600">
+                                Notre équipe consulaire est à votre disposition pour vous accompagner 
+                                dans toutes vos démarches administratives spécifiques.
+                            </p> */}
+                            <Button className="mt-6 rounded-xl bg-gradient-to-r from-green-600 to-green-700 px-8 py-3 font-medium text-white shadow-lg transition-all duration-300 hover:from-green-700 hover:to-green-800 hover:shadow-xl">
                                 Nous contacter
                             </Button>
                         </motion.div>
