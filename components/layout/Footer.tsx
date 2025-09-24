@@ -45,7 +45,7 @@ export default function Footer() {
                                     href="/gouvernance"
                                     className="text-white/80 transition-colors hover:text-white"
                                 >
-                                    Gouvernance
+                                    Côte d&apos;Ivoire
                                 </a>
                             </li>
                             <li>

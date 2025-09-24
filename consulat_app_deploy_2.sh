@@ -25,7 +25,7 @@ pnpm install --prod --frozen-lockfile
 echo -e "${GREEN}Setting up PM2...${NC}"
 
 # Check if app exists in PM2
-APP_EXISTS=$(pm2 list | grep -c "${APP_NAME}" || echo "0")
+APP_EXISTS=$(pm2 list | grep -c "${APP_NAME}" || echo 0)
 
 if [ "$APP_EXISTS" -gt 0 ]; then
     echo -e "${YELLOW}Application ${APP_NAME} found in PM2. Reloading it (keeps same ID)...${NC}"

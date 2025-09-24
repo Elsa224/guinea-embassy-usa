@@ -18,7 +18,7 @@ export default function FlashBanner() {
     if (!isVisible) return null;
 
     return (
-        <div className="fixed bottom-0 left-0 right-0 z-40 bg-gradient-to-r from-gray-600 to-gray-600 text-white shadow-lg border-t-2 border-orange-400">
+        <div className="fixed bottom-0 left-0 right-0 z-40 bg-gradient-to-r from-orange-800 to-orange-800 text-white shadow-lg border-t-2 border-orange-400">
             {/* Close button */}
             <button hidden
                 onClick={() => setIsVisible(false)}

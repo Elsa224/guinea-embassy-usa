@@ -15,7 +15,7 @@ export default function Home() {
     const images = [
         { imgSrc: "/assets/images-for-the-new-website/video-cover-1.jpeg" },
         { imgSrc: "/assets/images-for-the-new-website/video-cover-2.jpeg" },
-        { imgSrc: "/assets/images-for-the-new-website/video-cover-4.jpeg" },
+        { imgSrc: "/assets/images-for-the-new-website/gallery-1.jpeg" },
         { imgSrc: "/assets/images-for-the-new-website/video-cover-3.jpeg" },
     ];
 
@@ -28,7 +28,7 @@ export default function Home() {
             date: "15 Janvier 2025",
         },
         {
-            image: "/assets/images-for-the-new-website/actualite-pic-2.jpeg",
+            image: "/assets/images-for-the-new-website/gallery-2.jpeg",
             title: "Horaires d'ouverture modifiés",
             excerpt:
                 "Veuillez noter les nouveaux horaires d'ouverture du consulat général...",
@@ -59,9 +59,23 @@ export default function Home() {
         },
         {
             icon: "/assets/images-for-the-new-website/services/PICTO-06.png",
+            title: "PASSEPORT",
+            description:
+                "Plateforme en ligne dédiée à la demande de passport.",
+            link: "https://express54.org",
+        },
+        {
+            icon: "/assets/images-for-the-new-website/services/PICTO-06.png",
             title: "CARTE CONSULAIRE",
             description:
                 "Plateforme en ligne dédiée à la demande de carte consulaire.",
+            link: "https://express54.org",
+        },
+        {
+            icon: "/assets/images-for-the-new-website/services/PICTO-03.png",
+            title: "DELIVERY EXPRESS",
+            description:
+                "Plateforme en ligne dédiée à la demande de livraison express.",
             link: "https://express54.org",
         },
         {
@@ -76,20 +90,6 @@ export default function Home() {
             title: "DOCUMENTS CIVILS",
             description:
                 "Plateforme en ligne dédiée à la demande de documents civils.",
-            link: "https://express54.org",
-        },
-        {
-            icon: "/assets/images-for-the-new-website/services/PICTO-02.png",
-            title: "TITRE DE VOYAGE",
-            description:
-                "Plateforme en ligne dédiée à la demande de titre de voyage.",
-            link: "https://express54.org",
-        },
-        {
-            icon: "/assets/images-for-the-new-website/services/PICTO-03.png",
-            title: "DELIVERY EXPRESS",
-            description:
-                "Plateforme en ligne dédiée à la demande de livraison express.",
             link: "https://express54.org",
         },
     ];
@@ -202,7 +202,7 @@ export default function Home() {
                                             <img
                                                 src="/assets/images-for-the-new-website/consul-picture.jpeg"
                                                 alt="S.E.M Inza CAMARA - Consul Général de Côte d'Ivoire à New York"
-                                                className="relative h-94 w-full rounded-2xl border-4 border-white object-cover shadow-xl sm:h-80 lg:h-96 xl:h-96"
+                                                className="relative h-auto w-full rounded-2xl border-4 border-white object-none shadow-xl sm:max-h-80 lg:max-h-96 xl:max-h-[28rem]"
                                             />
                                             {/* Decorative frame corners */}
                                             <div className="absolute top-2 left-2 h-8 w-8 rounded-tl-lg border-t-4 border-l-4 border-orange-500"></div>
@@ -275,9 +275,11 @@ export default function Home() {
                                                         en tant que membres de la
                                                         grande famille ivoirienne
                                                         aux Etats Unis d'Amerique.
+                                                    </p>
+                                                    <p>
                                                         Bienvenue au Consulat
                                                         Général de la Côte
-                                                        d'Ivoire à New York, ce{" "}
+                                                        d'Ivoire à New York, <br /> ce{" "}
                                                         <span className="font-semibold text-green-600">
                                                             havre de paix
                                                         </span>{" "}
@@ -720,7 +722,7 @@ export default function Home() {
                                     {/* Featured image */}
                                     <div className="relative aspect-video w-full h-full">
                                         <img
-                                            src="https://picsum.photos/800/450?random=featured"
+                                            src="/assets/images-for-the-new-website/gallery-4.jpeg"
                                             alt="Image mise en avant"
                                             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                                         />

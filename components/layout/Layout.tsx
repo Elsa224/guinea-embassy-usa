@@ -48,7 +48,7 @@ export default function Layout({ children, currentPath = "/" }: LayoutProps) {
             <Header currentPath={currentPath} isScrolled={isScrolled} />
 
             {/* Spacer for fixed header - reduced height to remove gap */}
-            <div className="h-16"></div>
+            <div className="h-18"></div>
 
             {/* Breadcrumb */}
             {currentPath !== "/" && <Breadcrumb />}

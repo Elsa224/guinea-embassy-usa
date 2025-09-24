@@ -38,7 +38,7 @@ const oldNavigationItems = [
         ],
     },
     {
-        label: "Services",
+        label: "Services Consulaires",
         href: "/services",
         hasDropdown: true,
         dropdownItems: [
@@ -108,7 +108,8 @@ const navigationItems = [
             { label: "Tous les Services", href: "/services" },
             { label: "Visa", href: "/services/visa" },
             { label: "Passeport", href: "/services/passeport" },
-            { label: "État Civil", href: "/services/etat-civil" },
+            { label: "Carte Consulaire", href: "/services/carte-consulaire" },
+            { label: "Documents Civils", href: "/services/etat-civil" },
             { label: "Autres Documents", href: "/services/autres-documents" },
         ],
     },
