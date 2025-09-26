@@ -16,6 +16,7 @@ export const createUserSchema = z.object({
 
 export const updateUserSchema = createUserSchema.partial().extend({
   id: z.string(),
+  isActive: z.boolean().optional(),
 })
 
 // Post schemas
@@ -115,12 +116,12 @@ export const createMediaSchema = z.object({
 export const paginationSchema = z.object({
   page: z.coerce.number().min(1).default(1),
   limit: z.coerce.number().min(1).max(100).default(10),
-  search: z.string().optional(),
-  status: z.string().optional(),
-  type: z.string().optional(),
-  categoryId: z.string().optional(),
-  sortBy: z.string().optional(),
-  sortOrder: z.enum(['asc', 'desc']).default('desc'),
+  search: z.string().nullish(),
+  status: z.string().nullish(),
+  type: z.string().nullish(),
+  categoryId: z.string().nullish(),
+  sortBy: z.string().nullish(),
+  sortOrder: z.enum(['asc', 'desc']).nullish().default('desc'),
 })
 
 export type LoginSchema = z.infer<typeof loginSchema>

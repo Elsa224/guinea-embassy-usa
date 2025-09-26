@@ -50,5 +50,7 @@ next-env.d.ts
 CLAUDE.md
 .*de
 /*.sql
+/logs
+/other-env 
 
 /lib/generated/prisma

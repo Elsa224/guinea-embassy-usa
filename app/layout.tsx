@@ -1,4 +1,5 @@
 import ToastProvider from "@/components/ToastProvider";
+import { Providers } from "@/components/providers/Providers";
 import type { Metadata } from "next";
 import { Poppins, Inter, Roboto } from "next/font/google";
 import "./globals.css";
@@ -42,8 +43,10 @@ export default function RootLayout({
             <body
                 className={`${roboto.variable}  antialiased`}
             >
-                {children}
-                <ToastProvider />
+                <Providers>
+                    {children}
+                    <ToastProvider />
+                </Providers>
             </body>
         </html>
     );
