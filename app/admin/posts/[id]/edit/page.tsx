@@ -70,12 +70,21 @@ function EditPostForm() {
   const [selectedTags, setSelectedTags] = useState<string[]>([])
   const [newTag, setNewTag] = useState('')
   
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<{
+    title: { fr: string; en: string };
+    content: { fr: string; en: string };
+    excerpt: { fr: string; en: string };
+    status: 'DRAFT' | 'REVIEW' | 'PUBLISHED' | 'ARCHIVED';
+    type: 'NEWS' | 'EVENT' | 'SERVICE' | 'ANNOUNCEMENT' | 'DOCUMENTATION';
+    featured: boolean;
+    categoryId: string;
+    publishedAt: string;
+  }>({
     title: { fr: '', en: '' },
     content: { fr: '', en: '' },
     excerpt: { fr: '', en: '' },
-    status: 'DRAFT' as const,
-    type: 'NEWS' as const,
+    status: 'DRAFT',
+    type: 'NEWS',
     featured: false,
     categoryId: '',
     publishedAt: '',
@@ -95,9 +104,18 @@ function EditPostForm() {
       
       const post: Post = await response.json()
       setFormData({
-        title: post.title,
-        content: post.content,
-        excerpt: post.excerpt || { fr: '', en: '' },
+        title: {
+          fr: post.title.fr,
+          en: post.title.en || ''
+        },
+        content: {
+          fr: post.content.fr,
+          en: post.content.en || ''
+        },
+        excerpt: post.excerpt ? {
+          fr: post.excerpt.fr || '',
+          en: post.excerpt.en || ''
+        } : { fr: '', en: '' },
         status: post.status,
         type: post.type,
         featured: post.featured,

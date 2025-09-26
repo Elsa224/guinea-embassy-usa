@@ -299,7 +299,7 @@ function UsersContent() {
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-2">
-                        <div className="w-10 h-10 bg-gradient-to-br from-ci-orange to-ci-green rounded-full flex items-center justify-center">
+                        <div className="w-10 h-10 bg-ci-orange rounded-full flex items-center justify-center">
                           <span className="text-white font-semibold text-sm">
                             {user.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase()}
                           </span>

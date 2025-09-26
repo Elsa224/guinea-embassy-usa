@@ -33,7 +33,7 @@ function AuthErrorContent() {
   const errorInfo = errorMessages[error] || errorMessages.Default
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-orange-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-red-50 flex items-center justify-center p-4">
       <div className="relative w-full max-w-md">
         <Card className="border-0 shadow-2xl bg-white/80 backdrop-blur-sm">
           <CardHeader className="text-center pb-8">
@@ -90,7 +90,7 @@ function AuthErrorContent() {
 export default function AuthError() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-orange-50 flex items-center justify-center">
+      <div className="min-h-screen bg-red-50 flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
           <div className="w-8 h-8 border-4 border-t-transparent border-red-500 rounded-full animate-spin"></div>
           <p className="text-gray-600">Chargement...</p>

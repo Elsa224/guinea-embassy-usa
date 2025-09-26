@@ -162,7 +162,7 @@ export default function Home() {
             </section>
 
             {/* Consul Message Section */}
-            <section className="relative overflow-hidden bg-gradient-to-br from-gray-50 to-orange-50/30 py-8">
+            <section className="relative overflow-hidden bg-gray-50 py-8">
                 {/* Decorative background elements */}
                 <div className="absolute inset-0 opacity-5">
                     <div className="absolute top-10 right-10 h-32 w-32 rounded-full bg-orange-400 blur-3xl"></div>
@@ -181,12 +181,12 @@ export default function Home() {
                             <h2 className="mb-2 text-2xl font-bold text-gray-800 sm:text-3xl lg:text-4xl">
                                 Message du Consul Général
                             </h2>
-                            {/* <div className="mx-auto h-1 w-24 rounded-full bg-gradient-to-r from-orange-500 to-green-600"></div> */}
+                            {/* <div className="mx-auto h-1 w-24 rounded-full bg-orange-500"></div> */}
                         </motion.div>
 
                         <div className="relative overflow-hidden rounded-2xl border border-orange-100/50 bg-white shadow-2xl">
                             {/* Decorative top border */}
-                            <div className="h-2 bg-gradient-to-r from-orange-500 via-white to-green-600"></div>
+                            <div className="h-2 bg-orange-500"></div>
 
                             <div className="p-6 sm:p-8 lg:p-10">
                                 <div className="flex flex-col items-center gap-8 lg:flex-row lg:gap-12">
@@ -198,17 +198,17 @@ export default function Home() {
                                         className="relative w-full lg:w-2/5"
                                     >
                                         <div className="relative">
-                                            <div className="absolute inset-0 scale-105 rounded-2xl bg-gradient-to-r from-orange-400/20 to-green-400/20 blur-lg"></div>
+                                            <div className="absolute inset-0 scale-105 rounded-2xl bg-white/20 blur-lg"></div>
                                             <img
                                                 src="/assets/images-for-the-new-website/consul-picture.jpeg"
                                                 alt="S.E.M Inza CAMARA - Consul Général de Côte d'Ivoire à New York"
                                                 className="relative h-auto w-full rounded-2xl border-4 border-white object-none shadow-xl sm:max-h-80 lg:max-h-96 xl:max-h-[28rem]"
                                             />
                                             {/* Decorative frame corners */}
-                                            <div className="absolute top-2 left-2 h-8 w-8 rounded-tl-lg border-t-4 border-l-4 border-orange-500"></div>
+                                            {/* <div className="absolute top-2 left-2 h-8 w-8 rounded-tl-lg border-t-4 border-l-4 border-orange-500"></div>
                                             <div className="absolute top-2 right-2 h-8 w-8 rounded-tr-lg border-t-4 border-r-4 border-green-600"></div>
                                             <div className="absolute bottom-2 left-2 h-8 w-8 rounded-bl-lg border-b-4 border-l-4 border-green-600"></div>
-                                            <div className="absolute right-2 bottom-2 h-8 w-8 rounded-br-lg border-r-4 border-b-4 border-orange-500"></div>
+                                            <div className="absolute right-2 bottom-2 h-8 w-8 rounded-br-lg border-r-4 border-b-4 border-orange-500"></div> */}
                                         </div>
                                     </motion.div>
 
@@ -236,7 +236,7 @@ export default function Home() {
                                             </div>
 
                                             <blockquote className="relative">
-                                                <div className="absolute top-0 -left-4 h-full w-1 rounded-full bg-gradient-to-b from-orange-500 to-green-600"></div>
+                                                <div className="absolute top-0 -left-4 h-full w-1 rounded-full bg-orange-500"></div>
                                                 <div className="space-y-4 pl-8 text-sm leading-relaxed text-gray-700 sm:text-base lg:text-lg">
                                                     <p>
                                                         <span className="font-semibold text-gray-800">
@@ -462,7 +462,7 @@ export default function Home() {
                         <h2 className="mb-4 text-3xl font-bold text-gray-900 sm:text-4xl lg:text-5xl">
                             Services Consulaires
                         </h2>
-                        {/* <div className="mx-auto mb-6 h-1 w-32 rounded-full bg-gradient-to-r from-orange-500 to-green-600"></div> */}
+                        {/* <div className="mx-auto mb-6 h-1 w-32 rounded-full bg-orange-500"></div> */}
                         <p className="mx-auto max-w-3xl text-lg leading-relaxed text-gray-600 sm:text-xl">
                             Découvrez nos services consulaires complets, conçus
                             pour faciliter vos démarches administratives avec
@@ -486,7 +486,7 @@ export default function Home() {
                             >
                                 <Card className="relative h-full overflow-hidden rounded-2xl border-0 bg-white shadow-lg transition-all duration-300 group-hover:shadow-orange-100/50 hover:shadow-2xl">
                                     {/* Gradient top border */}
-                                    <div className="h-1 bg-gradient-to-r from-orange-500 to-green-600"></div>
+                                    <div className="h-1 bg-orange-500"></div>
 
                                     <CardContent className="p-6">
                                         {/* Icon section */}
@@ -505,8 +505,8 @@ export default function Home() {
 
                                             {/* Icon with enhanced styling */}
                                             <div className="relative flex-shrink-0">
-                                                <div className="absolute inset-0 scale-110 rounded-full bg-gradient-to-r from-orange-400/20 to-green-400/20 blur-lg transition-transform duration-300 group-hover:scale-125"></div>
-                                                <div className="relative flex h-16 w-16 items-center justify-center rounded-full border border-orange-100 bg-gradient-to-br from-orange-50 to-green-50 transition-colors duration-300 group-hover:border-orange-200">
+                                                <div className="absolute inset-0 scale-110 rounded-full bg-orange-400/20 blur-lg transition-transform duration-300 group-hover:scale-125"></div>
+                                                <div className="relative flex h-16 w-16 items-center justify-center rounded-full border border-orange-100 bg-orange-50 transition-colors duration-300 group-hover:border-orange-200">
                                                     <img
                                                         src={service.icon}
                                                         alt={service.title}
@@ -519,7 +519,7 @@ export default function Home() {
                                         {/* Action button */}
                                         <div className="mt-auto">
                                             <Button
-                                                className="w-full rounded-xl border-0 bg-gradient-to-r from-orange-600 to-orange-700 py-2.5 font-medium text-white shadow-lg transition-all duration-300 group-hover:scale-105 hover:from-orange-700 hover:to-orange-800 hover:shadow-xl"
+                                                className="w-full rounded-xl border-0 bg-orange-600 py-2.5 font-medium text-white shadow-lg transition-all duration-300 group-hover:scale-105 hover:from-orange-700 hover:to-orange-800 hover:shadow-xl"
                                                 onClick={() =>
                                                     window.open(
                                                         service.link,
@@ -561,7 +561,7 @@ export default function Home() {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.4 }}
                             viewport={{ once: true }}
-                            className="rounded-2xl border border-orange-100 bg-gradient-to-r from-orange-50 to-green-50 p-8 text-center"
+                            className="rounded-2xl border border-orange-100 bg-orange-50 p-8 text-center"
                         >
                             <h4 className="mb-4 text-2xl font-bold text-gray-900">
                                 Vous ne trouvez pas ce que vous cherchez ?
@@ -616,7 +616,7 @@ export default function Home() {
                                 Notre équipe consulaire est à votre disposition pour vous accompagner 
                                 dans toutes vos démarches administratives spécifiques.
                             </p> */}
-                            <Button className="mt-6 rounded-xl bg-gradient-to-r from-green-600 to-green-700 px-8 py-3 font-medium text-white shadow-lg transition-all duration-300 hover:from-green-700 hover:to-green-800 hover:shadow-xl">
+                            <Button className="mt-6 rounded-xl bg-green-600 px-8 py-3 font-medium text-white shadow-lg transition-all duration-300 hover:from-green-700 hover:to-green-800 hover:shadow-xl">
                                 Nous contacter
                             </Button>
                         </motion.div>
@@ -627,7 +627,7 @@ export default function Home() {
             {/* Médiathèque Section - Merged Photo/Video Gallery */}
             <section
                 id="mediatheque"
-                className="bg-gradient-to-br from-gray-50 to-orange-50 py-12"
+                className="bg-gray-50 py-12"
             >
                 <div className="container mx-auto px-4 sm:px-6">
                     <div className="mb-8 text-center sm:mb-12">
@@ -663,7 +663,7 @@ export default function Home() {
                                                 alt={`Galerie ${index + 1}`}
                                                 className="aspect-square w-full object-cover transition-transform duration-300 group-hover:scale-110"
                                             />
-                                            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                                            <div className="absolute inset-0 bg-black/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                                                 <div className="absolute bottom-4 left-4">
                                                     <span className="text-xs font-medium text-white">
                                                         Image {index + 1}
@@ -693,7 +693,7 @@ export default function Home() {
                                         />
                                         
                                         {/* Gradient overlay */}
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent">
+                                        <div className="absolute inset-0 bg-black/70">
                                             <div className="absolute bottom-8 left-8 right-8">
                                                 <h3 className="mb-3 text-2xl font-bold text-white">
                                                     Événement Diplomatique Majeur
@@ -741,7 +741,7 @@ export default function Home() {
                                         />
                                         
                                         {/* Video overlay */}
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent">
+                                        <div className="absolute inset-0 bg-black/60">
                                             <div className="absolute bottom-4 left-4 right-4">
                                                 <h4 className="text-sm font-semibold text-white">
                                                     {video.title}
@@ -771,7 +771,7 @@ export default function Home() {
                             viewport={{ once: true }}
                             className="mt-12 text-center"
                         >
-                            <Button className="rounded-full bg-gradient-to-r from-orange-600 to-orange-700 px-8 py-3 font-medium text-white shadow-lg transition-all duration-300 hover:from-orange-700 hover:to-orange-800 hover:shadow-xl">
+                            <Button className="rounded-full bg-orange-600 px-8 py-3 font-medium text-white shadow-lg transition-all duration-300 hover:from-orange-700 hover:to-orange-800 hover:shadow-xl">
                                 Voir plus
                             </Button>
                         </motion.div>

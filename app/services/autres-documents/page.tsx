@@ -13,7 +13,7 @@ export default function AutresDocumentsPage() {
             description: "Documents requis pour la transcription d'acte de naissance",
             icon: <Users className="h-8 w-8" />,
             url: "https://ambaciusa.org/images/repository/docs/Transcription2024.pdf",
-            color: "from-blue-500 to-blue-600",
+            color: "blue-500",
             bgColor: "bg-blue-50"
         },
         {
@@ -21,7 +21,7 @@ export default function AutresDocumentsPage() {
             description: "Pièces à fournir pour la transcription d'acte de mariage",
             icon: <Heart className="h-8 w-8" />,
             url: "https://ambaciusa.org/images/repository/docs/MARIAGE%202024.pdf",
-            color: "from-pink-500 to-pink-600",
+            color: "pink-500",
             bgColor: "bg-pink-50"
         },
         {
@@ -29,7 +29,7 @@ export default function AutresDocumentsPage() {
             description: "Procédure pour l'obtention d'un laissez-passer",
             icon: <Plane className="h-8 w-8" />,
             url: "https://ambaciusa.org/images/repository/docs/LAISSEZ-PASSER.pdf",
-            color: "from-green-500 to-green-600",
+            color: "green-500",
             bgColor: "bg-green-50"
         },
         {
@@ -37,7 +37,7 @@ export default function AutresDocumentsPage() {
             description: "Informations pour les certificats CNPS-CGRAE",
             icon: <FileText className="h-8 w-8" />,
             url: "https://ambaciusa.org/images/repository/docs/cnps-cgrae-infos.pdf",
-            color: "from-orange-500 to-orange-600",
+            color: "orange-500",
             bgColor: "bg-orange-50"
         },
         {
@@ -45,14 +45,14 @@ export default function AutresDocumentsPage() {
             description: "Procédures pour le rapatriement de dépouilles mortelles",
             icon: <Home className="h-8 w-8" />,
             url: "https://ambaciusa.org/images/repository/docs/D%C3%A9c%C3%A8s%20-%20remains%20shipping.pdf",
-            color: "from-purple-500 to-purple-600",
+            color: "purple-500",
             bgColor: "bg-purple-50"
         }
     ];
 
     return (
         <Layout currentPath="/services/autres-documents">
-            <div className="bg-gradient-to-br from-purple-50 to-orange-50 py-12">
+            <div className="bg-purple-50 py-12">
                 <div className="container mx-auto px-4 sm:px-6">
                     {/* Header */}
                     <motion.div
@@ -61,13 +61,13 @@ export default function AutresDocumentsPage() {
                         transition={{ duration: 0.8 }}
                         className="mb-12 text-center"
                     >
-                        <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-orange-600 shadow-2xl">
+                        <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-purple-500 shadow-2xl">
                             <FileText className="h-10 w-10 text-white" />
                         </div>
                         <h1 className="mb-4 text-4xl font-bold text-gray-900 sm:text-5xl">
                             Autres Documents
                         </h1>
-                        <div className="mx-auto mb-6 h-1 w-32 rounded-full bg-gradient-to-r from-purple-500 to-orange-600"></div>
+                        <div className="mx-auto mb-6 h-1 w-32 rounded-full bg-purple-500"></div>
                         <p className="mx-auto max-w-3xl text-lg text-gray-600">
                             Liste des documents administratifs à télécharger pour vos démarches consulaires
                         </p>
@@ -80,7 +80,7 @@ export default function AutresDocumentsPage() {
                         transition={{ duration: 0.8, delay: 0.2 }}
                         className="mb-12"
                     >
-                        <Card className="border-0 bg-gradient-to-r from-gray-50 to-white shadow-xl">
+                        <Card className="border-0 bg-gray-50 shadow-xl">
                             <CardContent className="p-8 text-center">
                                 <h2 className="mb-4 text-2xl font-bold text-gray-900">
                                     Documents à télécharger
@@ -104,7 +104,7 @@ export default function AutresDocumentsPage() {
                                     transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
                                 >
                                     <Card className="group h-full overflow-hidden border-0 shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-105">
-                                        <div className={`h-2 bg-gradient-to-r ${doc.color}`}></div>
+                                        <div className={`h-2 bg-${doc.color}`}></div>
                                         
                                         <CardHeader className={`${doc.bgColor} pb-6`}>
                                             <div className="flex justify-center mb-4">
@@ -124,7 +124,7 @@ export default function AutresDocumentsPage() {
                                             
                                             <Button
                                                 onClick={() => window.open(doc.url, '_blank')}
-                                                className={`w-full rounded-xl bg-gradient-to-r ${doc.color} font-semibold text-white shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105`}
+                                                className={`w-full rounded-xl bg-${doc.color} font-semibold text-white shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105`}
                                             >
                                                 <Download className="mr-2 h-5 w-5" />
                                                 Télécharger PDF
@@ -143,7 +143,7 @@ export default function AutresDocumentsPage() {
                         transition={{ duration: 0.8, delay: 0.8 }}
                         className="mt-16"
                     >
-                        <Card className="border-0 bg-gradient-to-r from-orange-50 to-green-50 shadow-xl">
+                        <Card className="border-0 bg-orange-50 shadow-xl">
                             <CardContent className="p-8">
                                 <h3 className="mb-6 text-center text-2xl font-bold text-gray-900">
                                     Informations Importantes
@@ -183,7 +183,7 @@ export default function AutresDocumentsPage() {
                         transition={{ duration: 0.8, delay: 1 }}
                         className="mt-12 text-center"
                     >
-                        <Card className="border-0 bg-gradient-to-r from-blue-100 to-purple-100 shadow-xl">
+                        <Card className="border-0 bg-blue-100 shadow-xl">
                             <CardContent className="p-8">
                                 <h3 className="mb-4 text-2xl font-bold text-gray-900">
                                     Services Consulaires Complets
@@ -193,7 +193,7 @@ export default function AutresDocumentsPage() {
                                 </p>
                                 <Button
                                     onClick={() => window.open('https://ambaciusa.org/services', '_blank')}
-                                    className="rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:from-blue-700 hover:to-purple-700 hover:shadow-xl hover:scale-105"
+                                    className="rounded-xl bg-blue-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-blue-700 hover:shadow-xl hover:scale-105"
                                 >
                                     <ExternalLink className="mr-3 h-5 w-5" />
                                     Consulter ambaciusa.org/services

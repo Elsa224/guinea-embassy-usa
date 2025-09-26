@@ -33,7 +33,7 @@ export default function VisaPage() {
 
     return (
         <Layout currentPath="/services/visa">
-            <div className="bg-gradient-to-br from-blue-50 to-green-50 py-12">
+            <div className="bg-blue-50 py-12">
                 <div className="container mx-auto px-4 sm:px-6">
                     {/* Header */}
                     <motion.div
@@ -42,13 +42,13 @@ export default function VisaPage() {
                         transition={{ duration: 0.8 }}
                         className="mb-12 text-center"
                     >
-                        <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-blue-600 shadow-2xl">
+                        <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-blue-500 shadow-2xl">
                             <FileText className="h-10 w-10 text-white" />
                         </div>
                         <h1 className="mb-4 text-4xl font-bold text-gray-900 sm:text-5xl">
                             Service Visa
                         </h1>
-                        <div className="mx-auto mb-6 h-1 w-32 rounded-full bg-gradient-to-r from-blue-500 to-green-600"></div>
+                        <div className="mx-auto mb-6 h-1 w-32 rounded-full bg-blue-500"></div>
                         <p className="mx-auto max-w-3xl text-lg text-gray-600">
                             Toutes les informations nécessaires pour votre demande de visa pour la Côte d'Ivoire
                         </p>
@@ -62,9 +62,9 @@ export default function VisaPage() {
                             transition={{ duration: 0.8, delay: 0.2 }}
                         >
                             <Card className="overflow-hidden border-0 shadow-2xl">
-                                <div className="h-2 bg-gradient-to-r from-orange-500 to-green-600"></div>
+                                <div className="h-2 bg-orange-500"></div>
                                 
-                                <CardHeader className="bg-gradient-to-r from-orange-50 to-green-50">
+                                <CardHeader className="bg-orange-50">
                                     <div className="flex items-center">
                                         <div className="mr-4 h-12 w-12 rounded-full bg-white shadow-lg flex items-center justify-center">
                                             <span className="text-lg font-bold text-orange-600">FR</span>
@@ -148,9 +148,9 @@ export default function VisaPage() {
                             transition={{ duration: 0.8, delay: 0.4 }}
                         >
                             <Card className="overflow-hidden border-0 shadow-2xl">
-                                <div className="h-2 bg-gradient-to-r from-blue-500 to-green-600"></div>
+                                <div className="h-2 bg-blue-500"></div>
                                 
-                                <CardHeader className="bg-gradient-to-r from-blue-50 to-green-50">
+                                <CardHeader className="bg-blue-50">
                                     <div className="flex items-center">
                                         <div className="mr-4 h-12 w-12 rounded-full bg-white shadow-lg flex items-center justify-center">
                                             <span className="text-lg font-bold text-blue-600">EN</span>
@@ -234,7 +234,7 @@ export default function VisaPage() {
                             transition={{ duration: 0.6, delay: 0.6 }}
                             className="text-center"
                         >
-                            <Card className="border-0 bg-gradient-to-r from-orange-100 to-green-100 shadow-xl">
+                            <Card className="border-0 bg-orange-100 shadow-xl">
                                 <CardContent className="p-8">
                                     <h3 className="mb-4 text-2xl font-bold text-gray-900">
                                         Démarches en ligne
@@ -244,7 +244,7 @@ export default function VisaPage() {
                                     </p>
                                     <Button
                                         onClick={() => window.open('https://express54.org', '_blank')}
-                                        className="rounded-xl bg-gradient-to-r from-orange-600 to-green-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:from-orange-700 hover:to-green-700 hover:shadow-xl hover:scale-105"
+                                        className="rounded-xl bg-orange-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-orange-700 hover:shadow-xl hover:scale-105"
                                     >
                                         <ExternalLink className="mr-3 h-5 w-5" />
                                         Accéder à Express54

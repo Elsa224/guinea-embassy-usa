@@ -9,7 +9,7 @@ import { ExternalLink, Globe, Phone } from "lucide-react";
 export default function ServicesPage() {
     return (
         <Layout currentPath="/services">
-            <div className="bg-gradient-to-br from-orange-50 to-green-50 py-12">
+            <div className="bg-orange-50 py-12">
                 <div className="container mx-auto px-4 sm:px-6">
                     {/* Header */}
                     <motion.div
@@ -21,13 +21,13 @@ export default function ServicesPage() {
                         <h1 className="mb-4 text-4xl font-bold text-gray-900 sm:text-5xl">
                             Services Consulaires
                         </h1>
-                        <div className="mx-auto mb-6 h-1 w-32 rounded-full bg-gradient-to-r from-orange-500 to-green-600"></div>
+                        {/* <div className="mx-auto mb-6 h-1 w-32 rounded-full bg-orange-500"></div> */}
                         <p className="mx-auto max-w-3xl text-lg text-gray-600">
                             Découvrez tous nos services consulaires digitalisés et nos démarches simplifiées
                         </p>
                     </motion.div>
 
-                    {/* EXPRESS 54 Main Section */}
+                    {/* Express54 Main Section */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -36,16 +36,20 @@ export default function ServicesPage() {
                     >
                         <Card className="overflow-hidden border-0 bg-white shadow-2xl">
                             {/* Header with flag colors */}
-                            <div className="h-2 bg-gradient-to-r from-orange-500 to-green-600"></div>
+                            <div className="h-2 bg-orange-500"></div>
                             
-                            <CardHeader className="bg-gradient-to-r from-orange-50 to-green-50 pb-8">
+                            <CardHeader className="bg-orange-50 pb-8">
                                 <div className="flex items-center justify-center mb-4">
                                     <div className="rounded-full bg-white p-4 shadow-lg">
-                                        <Globe className="h-12 w-12 text-orange-600" />
+                                        <img
+                                            src="/assets/images-for-the-new-website/express54-blue-icon.png"
+                                            alt="Express54"
+                                            className="h-24 w-24"
+                                        />
                                     </div>
                                 </div>
                                 <CardTitle className="text-center text-3xl font-bold text-gray-900">
-                                    EXPRESS 54
+                                    Express54
                                 </CardTitle>
                                 <p className="text-center text-xl font-semibold text-orange-600">
                                     La digitalisation des Services Consulaires
@@ -73,7 +77,7 @@ export default function ServicesPage() {
                                     <div className="mb-6 text-center">
                                         <Button 
                                             onClick={() => window.open('https://www.express54.org', '_blank')}
-                                            className="rounded-xl bg-gradient-to-r from-orange-600 to-orange-700 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:from-orange-700 hover:to-orange-800 hover:shadow-xl hover:scale-105"
+                                            className="rounded-xl bg-orange-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-orange-700 hover:shadow-xl hover:scale-105"
                                         >
                                             <ExternalLink className="mr-3 h-5 w-5" />
                                             www.express54.org
@@ -93,7 +97,7 @@ export default function ServicesPage() {
                                 {/* Separator */}
                                 <div className="my-12 flex items-center">
                                     <div className="flex-1 border-t border-gray-200"></div>
-                                    <div className="mx-4 rounded-full bg-gradient-to-r from-orange-500 to-green-600 p-2">
+                                    <div className="mx-4 rounded-full bg-orange-500 p-2">
                                         <div className="h-2 w-2 rounded-full bg-white"></div>
                                     </div>
                                     <div className="flex-1 border-t border-gray-200"></div>
@@ -119,7 +123,7 @@ export default function ServicesPage() {
                                     <div className="mb-6 text-center">
                                         <Button 
                                             onClick={() => window.open('https://www.express54.org', '_blank')}
-                                            className="rounded-xl bg-gradient-to-r from-green-600 to-green-700 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:from-green-700 hover:to-green-800 hover:shadow-xl hover:scale-105"
+                                            className="rounded-xl bg-green-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-green-700 hover:shadow-xl hover:scale-105"
                                         >
                                             <ExternalLink className="mr-3 h-5 w-5" />
                                             www.express54.org
@@ -154,25 +158,25 @@ export default function ServicesPage() {
                                     title: "Visa", 
                                     href: "/services/visa",
                                     icon: "🛂",
-                                    color: "from-blue-500 to-blue-600"
+                                    color: "bg-blue-500"
                                 },
                                 { 
                                     title: "Passeport", 
                                     href: "/services/passeport",
                                     icon: "📘",
-                                    color: "from-green-500 to-green-600"
+                                    color: "bg-green-500"
                                 },
                                 { 
                                     title: "État Civil", 
                                     href: "/services/etat-civil",
                                     icon: "📄",
-                                    color: "from-orange-500 to-orange-600"
+                                    color: "bg-orange-500"
                                 },
                                 { 
                                     title: "Autres Documents", 
                                     href: "/services/autres-documents",
                                     icon: "📋",
-                                    color: "from-purple-500 to-purple-600"
+                                    color: "bg-purple-500"
                                 }
                             ].map((service, index) => (
                                 <motion.div
@@ -183,7 +187,7 @@ export default function ServicesPage() {
                                 >
                                     <Card className="group h-full cursor-pointer overflow-hidden border-0 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105">
                                         <CardContent className="p-6 text-center">
-                                            <div className={`mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r ${service.color} shadow-lg`}>
+                                            <div className={`mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full ${service.color} shadow-lg`}>
                                                 <span className="text-2xl">{service.icon}</span>
                                             </div>
                                             <h3 className="mb-3 text-xl font-bold text-gray-900 group-hover:text-orange-600 transition-colors">

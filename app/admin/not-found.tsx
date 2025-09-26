@@ -28,7 +28,7 @@ export default function AdminNotFound() {
           </CardHeader>
 
           <CardContent className="space-y-4">
-            <div className="bg-gradient-to-r from-orange-50 to-green-50 border border-orange-200 rounded-lg p-4">
+            <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
               <p className="text-sm text-gray-700 text-center">
                 Cette section de l'administration n'est pas disponible ou l'URL est incorrecte.
               </p>

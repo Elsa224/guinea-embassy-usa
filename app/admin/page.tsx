@@ -23,7 +23,7 @@ const statsData = [
     change: '+12%',
     trend: 'up',
     icon: FileText,
-    color: 'from-blue-500 to-blue-600'
+    color: 'bg-blue-500'
   },
   {
     title: 'Utilisateurs Actifs',
@@ -31,7 +31,7 @@ const statsData = [
     change: '+5%',
     trend: 'up', 
     icon: Users,
-    color: 'from-green-500 to-green-600'
+    color: 'bg-green-500'
   },
   {
     title: 'Vues ce mois',
@@ -39,7 +39,7 @@ const statsData = [
     change: '+18%',
     trend: 'up',
     icon: Eye,
-    color: 'from-orange-500 to-orange-600'
+    color: 'bg-orange-500'
   },
   {
     title: 'Taux d\'engagement',
@@ -47,7 +47,7 @@ const statsData = [
     change: '+3%',
     trend: 'up',
     icon: TrendingUp,
-    color: 'from-purple-500 to-purple-600'
+    color: 'bg-purple-500'
   }
 ]
 
@@ -82,7 +82,7 @@ function DashboardContent() {
   return (
     <div className="space-y-8">
       {/* Welcome Section */}
-      <div className="bg-gradient-to-r from-orange-50 via-green-50 to-orange-50 rounded-xl p-6 border border-orange-100">
+      <div className="bg-orange-50 rounded-xl p-6 border border-orange-100">
         <div className="flex items-center gap-4">
           <div className="w-16 h-16 gradient-ci rounded-full flex items-center justify-center">
             <BarChart3 className="w-8 h-8 text-white" />
@@ -117,7 +117,7 @@ function DashboardContent() {
                 <CardTitle className="text-sm font-medium text-gray-600">
                   {stat.title}
                 </CardTitle>
-                <div className={`w-8 h-8 rounded-lg bg-gradient-to-r ${stat.color} flex items-center justify-center`}>
+                <div className={`w-8 h-8 rounded-lg ${stat.color} flex items-center justify-center`}>
                   <Icon className="w-4 h-4 text-white" />
                 </div>
               </CardHeader>
@@ -176,7 +176,7 @@ function DashboardContent() {
           <CardContent>
             <div className="space-y-3">
               <Link href="/admin/posts/new" className="block">
-                <div className="w-full p-3 text-left bg-gradient-to-r from-orange-50 to-green-50 hover:from-orange-100 hover:to-green-100 border border-orange-200 rounded-lg transition-all hover-lift cursor-pointer">
+                <div className="w-full p-3 text-left bg-orange-50 hover:bg-orange-100 border border-orange-200 rounded-lg transition-all hover-lift cursor-pointer">
                   <div className="flex items-center gap-3">
                     <FileText className="w-4 h-4 text-ci-orange" />
                     <div>
@@ -188,7 +188,7 @@ function DashboardContent() {
               </Link>
               
               <Link href="/admin/users" className="block">
-                <div className="w-full p-3 text-left bg-gradient-to-r from-green-50 to-orange-50 hover:from-green-100 hover:to-orange-100 border border-green-200 rounded-lg transition-all hover-lift cursor-pointer">
+                <div className="w-full p-3 text-left bg-green-50 hover:bg-green-100 border border-green-200 rounded-lg transition-all hover-lift cursor-pointer">
                   <div className="flex items-center gap-3">
                     <Users className="w-4 h-4 text-ci-green" />
                     <div>

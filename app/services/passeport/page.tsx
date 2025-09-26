@@ -34,7 +34,7 @@ export default function PasseportPage() {
 
     return (
         <Layout currentPath="/services/passeport">
-            <div className="bg-gradient-to-br from-green-50 to-blue-50 py-12">
+            <div className="bg-green-50 py-12">
                 <div className="container mx-auto px-4 sm:px-6">
                     {/* Header */}
                     <motion.div
@@ -43,13 +43,13 @@ export default function PasseportPage() {
                         transition={{ duration: 0.8 }}
                         className="mb-12 text-center"
                     >
-                        <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-r from-green-500 to-blue-600 shadow-2xl">
+                        <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-green-500 shadow-2xl">
                             <BookOpen className="h-10 w-10 text-white" />
                         </div>
                         <h1 className="mb-4 text-4xl font-bold text-gray-900 sm:text-5xl">
                             Passeport Biométrique
                         </h1>
-                        <div className="mx-auto mb-6 h-1 w-32 rounded-full bg-gradient-to-r from-green-500 to-blue-600"></div>
+                        <div className="mx-auto mb-6 h-1 w-32 rounded-full bg-green-500"></div>
                         <p className="mx-auto max-w-3xl text-lg text-gray-600">
                             Demande de premier passeport et renouvellement - Toutes les pièces justificatives requises
                         </p>
@@ -63,9 +63,9 @@ export default function PasseportPage() {
                             transition={{ duration: 0.8, delay: 0.2 }}
                         >
                             <Card className="overflow-hidden border-0 shadow-2xl">
-                                <div className="h-2 bg-gradient-to-r from-green-500 to-green-600"></div>
+                                <div className="h-2 bg-green-500"></div>
                                 
-                                <CardHeader className="bg-gradient-to-r from-green-50 to-green-100">
+                                <CardHeader className="bg-green-50">
                                     <div className="flex items-center">
                                         <div className="mr-4 h-12 w-12 rounded-full bg-white shadow-lg flex items-center justify-center">
                                             <BookOpen className="h-6 w-6 text-green-600" />
@@ -103,9 +103,9 @@ export default function PasseportPage() {
                             transition={{ duration: 0.8, delay: 0.4 }}
                         >
                             <Card className="overflow-hidden border-0 shadow-2xl">
-                                <div className="h-2 bg-gradient-to-r from-blue-500 to-blue-600"></div>
+                                <div className="h-2 bg-blue-500"></div>
                                 
-                                <CardHeader className="bg-gradient-to-r from-blue-50 to-blue-100">
+                                <CardHeader className="bg-blue-50">
                                     <div className="flex items-center">
                                         <div className="mr-4 h-12 w-12 rounded-full bg-white shadow-lg flex items-center justify-center">
                                             <RefreshCw className="h-6 w-6 text-blue-600" />
@@ -143,9 +143,9 @@ export default function PasseportPage() {
                             transition={{ duration: 0.8, delay: 0.6 }}
                         >
                             <Card className="overflow-hidden border-0 shadow-2xl">
-                                <div className="h-2 bg-gradient-to-r from-orange-500 to-green-600"></div>
+                                <div className="h-2 bg-orange-500"></div>
                                 
-                                <CardHeader className="bg-gradient-to-r from-orange-50 to-green-50">
+                                <CardHeader className="bg-orange-50">
                                     <div className="flex items-center">
                                         <div className="mr-4 h-12 w-12 rounded-full bg-white shadow-lg flex items-center justify-center">
                                             <CreditCard className="h-6 w-6 text-orange-600" />
@@ -195,7 +195,7 @@ export default function PasseportPage() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: 0.8 }}
                         >
-                            <Card className="border-0 bg-gradient-to-r from-green-100 to-blue-100 shadow-xl">
+                            <Card className="border-0 bg-green-100 shadow-xl">
                                 <CardContent className="p-8 text-center">
                                     <h3 className="mb-4 text-2xl font-bold text-gray-900">
                                         Démarches Officielles
@@ -206,14 +206,14 @@ export default function PasseportPage() {
                                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                                         <Button
                                             onClick={() => window.open('https://monpasseport.ci', '_blank')}
-                                            className="rounded-xl bg-gradient-to-r from-green-600 to-green-700 px-6 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:from-green-700 hover:to-green-800 hover:shadow-xl"
+                                            className="rounded-xl bg-green-600 px-6 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:bg-green-700 hover:shadow-xl"
                                         >
                                             <ExternalLink className="mr-2 h-5 w-5" />
                                             monpasseport.ci
                                         </Button>
                                         <Button
                                             onClick={() => window.open('https://www.ci-embassyepay.org/', '_blank')}
-                                            className="rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:from-blue-700 hover:to-blue-800 hover:shadow-xl"
+                                            className="rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:bg-blue-700 hover:shadow-xl"
                                         >
                                             <CreditCard className="mr-2 h-5 w-5" />
                                             ci-embassyepay.org

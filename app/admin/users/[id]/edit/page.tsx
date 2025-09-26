@@ -68,10 +68,16 @@ function EditUserForm() {
   const [saving, setSaving] = useState(false)
   const [user, setUser] = useState<User | null>(null)
   
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<{
+    name: string;
+    email: string;
+    role: 'SUPER_ADMIN' | 'ADMIN' | 'EDITOR' | 'AUTHOR';
+    isActive: boolean;
+    password: string;
+  }>({
     name: '',
     email: '',
-    role: 'AUTHOR' as const,
+    role: 'AUTHOR',
     isActive: true,
     password: '', // Only for updates
   })

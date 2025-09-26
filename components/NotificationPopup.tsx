@@ -47,7 +47,7 @@ export default function NotificationPopup({
         info: "bg-ci-orange/10",
         warning: "bg-yellow-500/10",
         success: "bg-ci-green/10",
-        announcement: "bg-gradient-to-br from-ci-orange/10 to-ci-green/10",
+        announcement: "bg-ci-orange/10",
     };
 
     const Icon = icons[type];

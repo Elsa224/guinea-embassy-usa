@@ -3,7 +3,7 @@
 import { Layout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { ArrowLeft, Clock, Mail } from "lucide-react";
+import { ArrowLeft, Clock, Home, Mail } from "lucide-react";
 
 interface ComingSoonProps {
     title?: string;
@@ -20,7 +20,7 @@ export default function ComingSoon({
 }: ComingSoonProps) {
     return (
         <Layout currentPath={currentPath}>
-            <div className="min-h-screen bg-gradient-to-br from-orange-50 to-green-50 flex items-center justify-center">
+            <div className="min-h-screen bg-orange-50 flex items-center justify-center">
                 <div className="container mx-auto px-4 sm:px-6">
                     <div className="mx-auto max-w-4xl text-center">
                         {/* Animated logo/icon */}
@@ -30,7 +30,7 @@ export default function ComingSoon({
                             transition={{ duration: 0.8 }}
                             className="mb-8"
                         >
-                            <div className="mx-auto mb-6 mt-0 flex h-32 w-32 items-center justify-center rounded-full bg-gradient-to-r from-orange-500 to-green-600 shadow-2xl">
+                            <div className="mx-auto mb-6 mt-0 flex h-32 w-32 items-center justify-center rounded-full bg-orange-500 shadow-2xl">
                                 <Clock className="h-16 w-16 text-white" />
                             </div>
                             <motion.div hidden
@@ -132,8 +132,9 @@ export default function ComingSoon({
                             
                             <Button
                                 onClick={() => window.location.href = '/'}
-                                className="rounded-xl bg-gradient-to-r from-orange-600 to-green-600 px-8 py-3 font-medium text-white shadow-lg transition-all duration-300 hover:from-orange-700 hover:to-green-700 hover:shadow-xl"
+                                className="rounded-xl bg-orange-600 px-8 py-3 font-medium text-white shadow-lg transition-all duration-300 hover:bg-orange-700 hover:shadow-xl"
                             >
+                                <Home className="mr-2 h-5 w-5" />
                                 Retour à l'accueil
                             </Button>
                         </motion.div>

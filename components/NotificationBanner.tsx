@@ -67,7 +67,7 @@ export default function NotificationBanner({
                     transition={{ duration: 0.5, ease: "easeOut" }}
                     className={`${colors[type]} relative overflow-hidden px-4 py-3 text-white`}
                 >
-                    <div className="absolute inset-0 bg-gradient-to-r from-black/10 to-transparent"></div>
+                    <div className="absolute inset-0 bg-black/10"></div>
                     <div className="relative mx-auto flex max-w-7xl items-center justify-between">
                         <div className="flex items-center space-x-3">
                             <Icon className="h-5 w-5 animate-pulse" />

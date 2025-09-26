@@ -16,7 +16,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
 
     if (status === "loading") {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-50 to-green-50">
+            <div className="min-h-screen flex items-center justify-center bg-orange-50">
                 <div className="flex flex-col items-center gap-4">
                     <div className="w-8 h-8 border-4 border-t-transparent border-ci-orange rounded-full animate-spin"></div>
                     <p className="text-gray-600">Chargement...</p>

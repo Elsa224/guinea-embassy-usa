@@ -203,7 +203,7 @@ export function AdminSidebar({ user }: AdminSidebarProps) {
               className={cn(
                 'group flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg transition-colors',
                 isActive
-                  ? 'bg-gradient-to-r from-orange-50 to-green-50 text-gray-900 shadow-sm border-l-4 border-ci-orange'
+                  ? 'bg-orange-50 text-gray-900 shadow-sm border-l-4 border-ci-orange'
                   : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
               )}
             >

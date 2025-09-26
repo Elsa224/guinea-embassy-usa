@@ -45,11 +45,16 @@ function CreateUserForm() {
   const router = useRouter()
   const [saving, setSaving] = useState(false)
   
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<{
+    name: string;
+    email: string;
+    password: string;
+    role: 'SUPER_ADMIN' | 'ADMIN' | 'EDITOR' | 'AUTHOR';
+  }>({
     name: '',
     email: '',
     password: '',
-    role: 'AUTHOR' as const,
+    role: 'AUTHOR',
   })
 
   const [errors, setErrors] = useState<Record<string, string>>({})

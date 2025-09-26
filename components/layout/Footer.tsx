@@ -6,7 +6,7 @@ export default function Footer() {
     return (
         <footer
             id="contacts"
-            className="bg-gradient-to-br from-green-700 to-green-900 py-12 text-white"
+            className="bg-green-700 py-12 text-white"
         >
             <div className="container mx-auto px-4 sm:px-6">
                 <div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-4">

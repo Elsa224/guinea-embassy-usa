@@ -442,7 +442,7 @@ function PostViewContent() {
             <CardContent>
               <div className="space-y-2">
                 <Link href={`/admin/posts/${post.id}/edit`} className="block">
-                  <div className="w-full p-3 text-left bg-gradient-to-r from-blue-50 to-indigo-50 hover:from-blue-100 hover:to-indigo-100 border border-blue-200 rounded-lg transition-all hover-lift cursor-pointer">
+                  <div className="w-full p-3 text-left bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-lg transition-all hover-lift cursor-pointer">
                     <div className="flex items-center gap-3">
                       <Edit3 className="w-4 h-4 text-blue-600" />
                       <div>
@@ -460,7 +460,7 @@ function PostViewContent() {
                     rel="noopener noreferrer"
                     className="block"
                   >
-                    <div className="w-full p-3 text-left bg-gradient-to-r from-green-50 to-emerald-50 hover:from-green-100 hover:to-emerald-100 border border-green-200 rounded-lg transition-all hover-lift cursor-pointer">
+                    <div className="w-full p-3 text-left bg-green-50 hover:bg-green-100 border border-green-200 rounded-lg transition-all hover-lift cursor-pointer">
                       <div className="flex items-center gap-3">
                         <Globe className="w-4 h-4 text-green-600" />
                         <div>
