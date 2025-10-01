@@ -148,7 +148,7 @@ export default function ServicesPage() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.4 }}
                     >
-                        <h2 className="mb-8 text-center text-3xl font-bold text-gray-900">
+                        <h2 className="mb-12 text-center text-3xl font-bold text-gray-900">
                             Accès Rapide aux Services
                         </h2>
                         
@@ -157,26 +157,22 @@ export default function ServicesPage() {
                                 { 
                                     title: "Visa", 
                                     href: "/services/visa",
-                                    icon: "🛂",
-                                    color: "bg-blue-500"
+                                    image: "/assets/images-for-the-new-website/visa.jpg"
                                 },
                                 { 
                                     title: "Passeport", 
                                     href: "/services/passeport",
-                                    icon: "📘",
-                                    color: "bg-green-500"
+                                    image: "/assets/images-for-the-new-website/passeport.jpg"
                                 },
                                 { 
                                     title: "État Civil", 
                                     href: "/services/etat-civil",
-                                    icon: "📄",
-                                    color: "bg-orange-500"
+                                    image: "/assets/images-for-the-new-website/etat-civil.jpg"
                                 },
                                 { 
                                     title: "Autres Documents", 
                                     href: "/services/autres-documents",
-                                    icon: "📋",
-                                    color: "bg-purple-500"
+                                    image: "/assets/images-for-the-new-website/autres-documents.jpg"
                                 }
                             ].map((service, index) => (
                                 <motion.div
@@ -184,24 +180,27 @@ export default function ServicesPage() {
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
+                                    onClick={() => window.location.href = service.href}
+                                    className="group cursor-pointer"
                                 >
-                                    <Card className="group h-full cursor-pointer overflow-hidden border-0 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105">
-                                        <CardContent className="p-6 text-center">
-                                            <div className={`mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full ${service.color} shadow-lg`}>
-                                                <span className="text-2xl">{service.icon}</span>
-                                            </div>
-                                            <h3 className="mb-3 text-xl font-bold text-gray-900 group-hover:text-orange-600 transition-colors">
+                                    <div className="relative h-64 overflow-hidden rounded-2xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:scale-105">
+                                        {/* Background Image */}
+                                        <img
+                                            src={service.image}
+                                            alt={service.title}
+                                            className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
+                                        />
+                                        
+                                        {/* Gradient Overlay */}
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                                        
+                                        {/* Title */}
+                                        <div className="absolute inset-0 flex items-end justify-center p-6">
+                                            <h3 className="text-2xl font-bold text-white">
                                                 {service.title}
                                             </h3>
-                                            <Button
-                                                onClick={() => window.location.href = service.href}
-                                                variant="outline"
-                                                className="rounded-xl border-2 border-gray-200 transition-all duration-300 group-hover:border-orange-300 group-hover:bg-orange-50"
-                                            >
-                                                En savoir plus
-                                            </Button>
-                                        </CardContent>
-                                    </Card>
+                                        </div>
+                                    </div>
                                 </motion.div>
                             ))}
                         </div>

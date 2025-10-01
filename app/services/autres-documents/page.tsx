@@ -2,205 +2,245 @@
 
 import { Layout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { Download, ExternalLink, FileText, Heart, Home, Plane, Users } from "lucide-react";
+import { FileText, ExternalLink } from "lucide-react";
+import { useState } from "react";
 
 export default function AutresDocumentsPage() {
+    const [language, setLanguage] = useState<'fr' | 'en'>('fr');
+
     const documents = [
         {
-            title: "TRANSCRIPTION NAISSANCE",
-            description: "Documents requis pour la transcription d'acte de naissance",
-            icon: <Users className="h-8 w-8" />,
-            url: "https://ambaciusa.org/images/repository/docs/Transcription2024.pdf",
-            color: "blue-500",
-            bgColor: "bg-blue-50"
+            titleFr: "Transcription Naissance",
+            titleEn: "Birth Transcription",
+            url: "https://ambaciusa.org/images/repository/docs/Transcription2024.pdf"
         },
         {
-            title: "TRANSCRIPTION MARIAGE",
-            description: "Pièces à fournir pour la transcription d'acte de mariage",
-            icon: <Heart className="h-8 w-8" />,
-            url: "https://ambaciusa.org/images/repository/docs/MARIAGE%202024.pdf",
-            color: "pink-500",
-            bgColor: "bg-pink-50"
+            titleFr: "Transcription Mariage",
+            titleEn: "Marriage Transcription",
+            url: "https://ambaciusa.org/images/repository/docs/MARIAGE%202024.pdf"
         },
         {
-            title: "LAISSEZ-PASSER",
-            description: "Procédure pour l'obtention d'un laissez-passer",
-            icon: <Plane className="h-8 w-8" />,
-            url: "https://ambaciusa.org/images/repository/docs/LAISSEZ-PASSER.pdf",
-            color: "green-500",
-            bgColor: "bg-green-50"
+            titleFr: "Laissez-passer",
+            titleEn: "Laissez-passer",
+            url: "https://ambaciusa.org/images/repository/docs/LAISSEZ-PASSER.pdf"
         },
         {
-            title: "CERTIFICAT DE VIE et NON REMARIAGE",
-            description: "Informations pour les certificats CNPS-CGRAE",
-            icon: <FileText className="h-8 w-8" />,
-            url: "https://ambaciusa.org/images/repository/docs/cnps-cgrae-infos.pdf",
-            color: "orange-500",
-            bgColor: "bg-orange-50"
+            titleFr: "Certificat de vie",
+            titleEn: "Life Certificate",
+            url: "https://ambaciusa.org/images/repository/docs/cnps-cgrae-infos.pdf"
         },
         {
-            title: "TRANSFERT DE CORPS (Remains shipping)",
-            description: "Procédures pour le rapatriement de dépouilles mortelles",
-            icon: <Home className="h-8 w-8" />,
-            url: "https://ambaciusa.org/images/repository/docs/D%C3%A9c%C3%A8s%20-%20remains%20shipping.pdf",
-            color: "purple-500",
-            bgColor: "bg-purple-50"
+            titleFr: "Transfert de corps",
+            titleEn: "Remains Shipping",
+            url: "https://ambaciusa.org/images/repository/docs/D%C3%A9c%C3%A8s%20-%20remains%20shipping.pdf"
+        },
+        {
+            titleFr: "Autres documents",
+            titleEn: "Other documents",
+            url: "#"
         }
     ];
 
+    const instructions = {
+        fr: [
+            "Téléchargez et imprimez les formulaires requis",
+            "Remplissez tous les champs demandés",
+            "Rassemblez toutes les pièces justificatives", 
+            "Vérifiez la liste des documents avant soumission"
+        ],
+        en: [
+            "Download and print the required forms",
+            "Fill in all required fields",
+            "Gather all supporting documents",
+            "Check the list of documents before submission"
+        ]
+    };
+
     return (
         <Layout currentPath="/services/autres-documents">
-            <div className="bg-purple-50 py-12">
+            <div className="bg-white py-12">
                 <div className="container mx-auto px-4 sm:px-6">
-                    {/* Header */}
-                    <motion.div
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        className="mb-12 text-center"
-                    >
-                        <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-purple-500 shadow-2xl">
-                            <FileText className="h-10 w-10 text-white" />
-                        </div>
-                        <h1 className="mb-4 text-4xl font-bold text-gray-900 sm:text-5xl">
-                            Autres Documents
-                        </h1>
-                        <div className="mx-auto mb-6 h-1 w-32 rounded-full bg-purple-500"></div>
-                        <p className="mx-auto max-w-3xl text-lg text-gray-600">
-                            Liste des documents administratifs à télécharger pour vos démarches consulaires
-                        </p>
-                    </motion.div>
-
-                    {/* Introduction */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                        className="mb-12"
-                    >
-                        <Card className="border-0 bg-gray-50 shadow-xl">
-                            <CardContent className="p-8 text-center">
-                                <h2 className="mb-4 text-2xl font-bold text-gray-900">
-                                    Documents à télécharger
-                                </h2>
-                                <p className="text-lg text-gray-600">
-                                    Veuillez cliquer sur les documents ci-dessous pour télécharger les formulaires 
-                                    et consulter les informations nécessaires pour vos démarches.
-                                </p>
-                            </CardContent>
-                        </Card>
-                    </motion.div>
-
-                    {/* Documents Grid */}
                     <div className="mx-auto max-w-6xl">
-                        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-                            {documents.map((doc, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 30 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
-                                >
-                                    <Card className="group h-full overflow-hidden border-0 shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-105">
-                                        <div className={`h-2 bg-${doc.color}`}></div>
-                                        
-                                        <CardHeader className={`${doc.bgColor} pb-6`}>
-                                            <div className="flex justify-center mb-4">
-                                                <div className={`flex h-16 w-16 items-center justify-center rounded-full bg-white shadow-lg text-gray-700 group-hover:scale-110 transition-transform duration-300`}>
-                                                    {doc.icon}
-                                                </div>
-                                            </div>
-                                            <CardTitle className="text-center text-xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors">
-                                                {doc.title}
-                                            </CardTitle>
-                                        </CardHeader>
+                        {/* Header */}
+                        <motion.div
+                            initial={{ opacity: 0, y: -20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8 }}
+                            className="mb-8 text-center"
+                        >
+                            <h1 className="mb-4 text-4xl font-bold text-gray-900">
+                                {language === 'fr' ? 'Autres Documents' : 'Other Documents'}
+                            </h1>
+                            <p className="mx-auto max-w-2xl text-lg text-gray-600">
+                                {language === 'fr' 
+                                    ? 'Liste des documents administratifs à télécharger pour vos démarches consulaires'
+                                    : 'List of administrative documents to download for your consular procedures'}
+                            </p>
+                        </motion.div>
 
-                                        <CardContent className="p-6">
-                                            <p className="mb-6 text-center text-gray-600 leading-relaxed">
-                                                {doc.description}
+                        {/* Language Toggle */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.5, delay: 0.2 }}
+                            className="mb-8 flex justify-end gap-2"
+                        >
+                            <Button
+                                variant={language === 'fr' ? 'default' : 'outline'}
+                                onClick={() => setLanguage('fr')}
+                                className={`rounded-lg px-4 py-2 text-sm ${language === 'fr' ? 'bg-gray-800 hover:bg-gray-900' : ''}`}
+                            >
+                                FR
+                            </Button>
+                            <Button
+                                variant={language === 'en' ? 'default' : 'outline'}
+                                onClick={() => setLanguage('en')}
+                                className={`rounded-lg px-4 py-2 text-sm ${language === 'en' ? 'bg-gray-800 hover:bg-gray-900' : ''}`}
+                            >
+                                EN
+                            </Button>
+                        </motion.div>
+
+                        {/* Information Card */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.3 }}
+                            className="mb-12"
+                        >
+                            <Card className="overflow-hidden border-0 bg-green-50 shadow-lg">
+                                <CardContent className="p-8">
+                                    <div className="flex items-start">
+                                        <div className="mr-4 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100">
+                                            <span className="text-2xl">ℹ️</span>
+                                        </div>
+                                        <div className="flex-1">
+                                            <p className="text-gray-700">
+                                                {language === 'fr'
+                                                    ? 'Veuillez cliquer sur les documents ci-dessous pour télécharger les formulaires et consulter les informations nécessaires pour vos démarches.'
+                                                    : 'Please click on the documents below to download the forms and consult the information needed for your procedures.'}
                                             </p>
-                                            
-                                            <Button
-                                                onClick={() => window.open(doc.url, '_blank')}
-                                                className={`w-full rounded-xl bg-${doc.color} font-semibold text-white shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105`}
-                                            >
-                                                <Download className="mr-2 h-5 w-5" />
-                                                Télécharger PDF
-                                            </Button>
-                                        </CardContent>
-                                    </Card>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Additional Information */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.8 }}
-                        className="mt-16"
-                    >
-                        <Card className="border-0 bg-orange-50 shadow-xl">
-                            <CardContent className="p-8">
-                                <h3 className="mb-6 text-center text-2xl font-bold text-gray-900">
-                                    Informations Importantes
-                                </h3>
-                                
-                                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                                    <div className="rounded-2xl bg-white/70 p-6 shadow-lg">
-                                        <h4 className="mb-4 font-bold text-gray-900 text-lg">📋 Instructions</h4>
-                                        <ul className="space-y-2 text-gray-700">
-                                            <li>• Téléchargez et imprimez les formulaires requis</li>
-                                            <li>• Remplissez tous les champs demandés</li>
-                                            <li>• Rassemblez toutes les pièces justificatives</li>
-                                            <li>• Vérifiez la liste des documents avant soumission</li>
-                                        </ul>
-                                    </div>
-
-                                    <div className="rounded-2xl bg-white/70 p-6 shadow-lg">
-                                        <h4 className="mb-4 font-bold text-gray-900 text-lg">📞 Contact</h4>
-                                        <div className="space-y-3 text-gray-700">
-                                            <p>Pour toute question concernant ces documents :</p>
-                                            <div className="flex items-center">
-                                                <span className="font-semibold">Téléphone:</span>
-                                                <span className="ml-2 font-bold text-green-600">(646) 476-7614</span>
-                                            </div>
-                                            <p className="text-sm">Service Consulaire - New York</p>
                                         </div>
                                     </div>
-                                </div>
-                            </CardContent>
-                        </Card>
-                    </motion.div>
+                                </CardContent>
+                            </Card>
+                        </motion.div>
 
-                    {/* External Link to Services */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 1 }}
-                        className="mt-12 text-center"
-                    >
-                        <Card className="border-0 bg-blue-100 shadow-xl">
-                            <CardContent className="p-8">
-                                <h3 className="mb-4 text-2xl font-bold text-gray-900">
-                                    Services Consulaires Complets
-                                </h3>
-                                <p className="mb-6 text-gray-600">
-                                    Pour accéder à l'ensemble de nos services consulaires et obtenir plus d'informations
-                                </p>
-                                <Button
-                                    onClick={() => window.open('https://ambaciusa.org/services', '_blank')}
-                                    className="rounded-xl bg-blue-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-blue-700 hover:shadow-xl hover:scale-105"
-                                >
-                                    <ExternalLink className="mr-3 h-5 w-5" />
-                                    Consulter ambaciusa.org/services
-                                </Button>
-                            </CardContent>
-                        </Card>
-                    </motion.div>
+                        {/* Documents Grid */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.4 }}
+                        >
+                            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                                {documents.map((doc, index) => (
+                                    <motion.div
+                                        key={index}
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
+                                    >
+                                        <Card 
+                                            className="group h-full cursor-pointer overflow-hidden border border-gray-200 bg-white shadow-md transition-all duration-300 hover:shadow-xl hover:scale-105"
+                                            onClick={() => doc.url !== '#' && window.open(doc.url, '_blank')}
+                                        >
+                                            <CardContent className="flex h-full flex-col items-center justify-center p-8 text-center">
+                                                <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gray-100 group-hover:bg-gray-200 transition-colors">
+                                                    <FileText className="h-8 w-8 text-gray-600" />
+                                                </div>
+                                                <h3 className="text-lg font-semibold text-gray-800 group-hover:text-blue-600 transition-colors">
+                                                    {language === 'fr' ? doc.titleFr : doc.titleEn}
+                                                </h3>
+                                            </CardContent>
+                                        </Card>
+                                    </motion.div>
+                                ))}
+                            </div>
+                        </motion.div>
+
+                        {/* Instructions and Contact */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.8 }}
+                            className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2"
+                        >
+                            {/* Instructions */}
+                            <Card className="border-0 bg-gray-50 shadow-lg">
+                                <CardContent className="p-6">
+                                    <h3 className="mb-4 flex items-center text-lg font-bold text-gray-900">
+                                        <span className="mr-2">📋</span>
+                                        {language === 'fr' ? 'Instructions' : 'Instructions'}
+                                    </h3>
+                                    <ul className="space-y-2">
+                                        {instructions[language].map((instruction, index) => (
+                                            <li key={index} className="flex items-start text-gray-700">
+                                                <span className="mr-2">•</span>
+                                                <span>{instruction}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </CardContent>
+                            </Card>
+
+                            {/* Contact */}
+                            <Card className="border-0 bg-gray-50 shadow-lg">
+                                <CardContent className="p-6">
+                                    <h3 className="mb-4 flex items-center text-lg font-bold text-gray-900">
+                                        <span className="mr-2">📞</span>
+                                        Contact
+                                    </h3>
+                                    <p className="mb-3 text-gray-700">
+                                        {language === 'fr' 
+                                            ? 'Pour toute question concernant ces documents :'
+                                            : 'For any questions regarding these documents:'}
+                                    </p>
+                                    <p className="text-gray-700">
+                                        {language === 'fr' ? 'Téléphone:' : 'Phone:'}{' '}
+                                        <span className="font-semibold text-green-600">(646) 476-7614</span>
+                                    </p>
+                                    <p className="mt-1 text-sm text-gray-600">
+                                        {language === 'fr' 
+                                            ? 'Service Consulaire - New York'
+                                            : 'Consular Service - New York'}
+                                    </p>
+                                </CardContent>
+                            </Card>
+                        </motion.div>
+
+                        {/* External Services Link */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 1 }}
+                            className="mt-12"
+                        >
+                            <Card className="overflow-hidden border-2 border-orange-200 bg-orange-50">
+                                <CardContent className="p-6 text-center">
+                                    <h3 className="mb-4 text-lg font-bold text-gray-900">
+                                        {language === 'fr' 
+                                            ? 'Services Consulaires Complets'
+                                            : 'Complete Consular Services'}
+                                    </h3>
+                                    <p className="mb-6 text-gray-700">
+                                        {language === 'fr' 
+                                            ? 'Pour accéder à l\'ensemble de nos services consulaires et obtenir plus d\'informations'
+                                            : 'To access all of our consular services and get more information'}
+                                    </p>
+                                    <Button
+                                        onClick={() => window.open('https://ambaciusa.org/services', '_blank')}
+                                        variant="outline"
+                                        className="rounded-xl border-2 border-orange-300 bg-white px-8 py-4 text-lg font-semibold text-orange-600 shadow-lg transition-all duration-300 hover:bg-orange-50 hover:border-orange-400 hover:shadow-xl"
+                                    >
+                                        <ExternalLink className="mr-2 h-5 w-5" />
+                                        ambaciusa.org/services
+                                    </Button>
+                                </CardContent>
+                            </Card>
+                        </motion.div>
+                    </div>
                 </div>
             </div>
         </Layout>

@@ -2,11 +2,14 @@
 
 import { Layout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { AlertTriangle, CheckCircle, CreditCard, ExternalLink, FileText, Phone } from "lucide-react";
+import { AlertTriangle, ExternalLink, FileText, Phone } from "lucide-react";
+import { useState } from "react";
 
 export default function VisaPage() {
+    const [language, setLanguage] = useState<'fr' | 'en'>('fr');
+
     const documentsRequired = [
         "Le passeport d'une validité de six (06) mois ou plus",
         "Une photo d'identité en couleur / fond blanc",
@@ -33,222 +36,184 @@ export default function VisaPage() {
 
     return (
         <Layout currentPath="/services/visa">
-            <div className="bg-blue-50 py-12">
+            <div className="bg-white py-12">
                 <div className="container mx-auto px-4 sm:px-6">
-                    {/* Header */}
-                    <motion.div
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        className="mb-12 text-center"
-                    >
-                        <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-blue-500 shadow-2xl">
-                            <FileText className="h-10 w-10 text-white" />
-                        </div>
-                        <h1 className="mb-4 text-4xl font-bold text-gray-900 sm:text-5xl">
-                            Service Visa
-                        </h1>
-                        <div className="mx-auto mb-6 h-1 w-32 rounded-full bg-blue-500"></div>
-                        <p className="mx-auto max-w-3xl text-lg text-gray-600">
-                            Toutes les informations nécessaires pour votre demande de visa pour la Côte d'Ivoire
-                        </p>
-                    </motion.div>
+                    <div className="mx-auto max-w-4xl">
+                        {/* Header */}
+                        <motion.div
+                            initial={{ opacity: 0, y: -20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8 }}
+                            className="mb-8 text-center"
+                        >
+                            <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-orange-500 shadow-lg">
+                                <FileText className="h-10 w-10 text-white" />
+                            </div>
+                            <h1 className="mb-4 text-4xl font-bold text-gray-900">
+                                Service VISA
+                            </h1>
+                            <p className="mx-auto max-w-2xl text-lg text-gray-600">
+                                Veuillez préparer tous les documents listés ci-dessous pour compléter votre demande de visa.
+                            </p>
+                        </motion.div>
 
-                    <div className="mx-auto max-w-6xl space-y-12">
-                        {/* French Section */}
+                        {/* Language Toggle */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.5, delay: 0.2 }}
+                            className="mb-8 flex justify-end gap-2"
+                        >
+                            <Button
+                                variant={language === 'fr' ? 'default' : 'outline'}
+                                onClick={() => setLanguage('fr')}
+                                className={`rounded-lg px-4 py-2 text-sm ${language === 'fr' ? 'bg-gray-800 hover:bg-gray-900' : ''}`}
+                            >
+                                FR
+                            </Button>
+                            <Button
+                                variant={language === 'en' ? 'default' : 'outline'}
+                                onClick={() => setLanguage('en')}
+                                className={`rounded-lg px-4 py-2 text-sm ${language === 'en' ? 'bg-gray-800 hover:bg-gray-900' : ''}`}
+                            >
+                                EN
+                            </Button>
+                        </motion.div>
+
+                        {/* Documents List */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: 0.2 }}
+                            transition={{ duration: 0.8, delay: 0.3 }}
                         >
-                            <Card className="overflow-hidden border-0 shadow-2xl">
-                                <div className="h-2 bg-orange-500"></div>
-                                
-                                <CardHeader className="bg-orange-50">
-                                    <div className="flex items-center">
-                                        <div className="mr-4 h-12 w-12 rounded-full bg-white shadow-lg flex items-center justify-center">
-                                            <span className="text-lg font-bold text-orange-600">FR</span>
-                                        </div>
-                                        <CardTitle className="text-3xl font-bold text-gray-900">
-                                            Documents à fournir pour le visa
-                                        </CardTitle>
-                                    </div>
-                                </CardHeader>
-
+                            <Card className="overflow-hidden border-0 bg-gray-50 shadow-lg">
                                 <CardContent className="p-8">
-                                    <div className="space-y-4">
-                                        {documentsRequired.map((doc, index) => (
-                                            <motion.div
+                                    <ol className="space-y-4">
+                                        {(language === 'fr' ? documentsRequired : documentsRequiredEn).map((doc, index) => (
+                                            <motion.li
                                                 key={index}
                                                 initial={{ opacity: 0, x: -20 }}
                                                 animate={{ opacity: 1, x: 0 }}
-                                                transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                                                className="flex items-start rounded-lg bg-green-50/50 p-4"
+                                                transition={{ duration: 0.5, delay: 0.4 + index * 0.05 }}
+                                                className="flex items-start"
                                             >
-                                                <CheckCircle className="mr-3 mt-1 h-5 w-5 flex-shrink-0 text-green-500" />
-                                                <span className="text-gray-700">{doc}</span>
-                                            </motion.div>
-                                        ))}
-                                    </div>
-
-                                    {/* Payment Section */}
-                                    <motion.div
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ duration: 0.6, delay: 0.8 }}
-                                        className="mt-8 rounded-2xl border-2 border-orange-200 bg-orange-50 p-6"
-                                    >
-                                        <div className="flex items-center mb-4">
-                                            <CreditCard className="mr-3 h-6 w-6 text-orange-600" />
-                                            <h3 className="text-xl font-bold text-gray-900">Paiement des frais de visa</h3>
-                                        </div>
-                                        <p className="mb-4 text-gray-700">
-                                            Pour effectuer le paiement des frais de visa, veuillez cliquer sur le bouton ci-dessous :
-                                        </p>
-                                        <Button className="rounded-xl bg-orange-600 font-semibold text-white hover:bg-orange-700">
-                                            <CreditCard className="mr-2 h-5 w-5" />
-                                            Paiement
-                                        </Button>
-                                    </motion.div>
-
-                                    {/* Important Notice */}
-                                    <motion.div
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ duration: 0.6, delay: 1 }}
-                                        className="mt-8 rounded-2xl border-2 border-red-200 bg-red-50 p-6"
-                                    >
-                                        <div className="flex items-center mb-4">
-                                            <AlertTriangle className="mr-3 h-6 w-6 text-red-600" />
-                                            <h3 className="text-xl font-bold text-gray-900">IMPORTANT</h3>
-                                        </div>
-                                        <div className="space-y-3 text-gray-700">
-                                            <p>
-                                                Les documents susmentionnés devront être ensuite téléchargés sur la 
-                                                plate-forme <strong>express54.org</strong>. Après analyse des documents, 
-                                                les requérants seront contactés par email afin de faire parvenir leurs passeports.
-                                            </p>
-                                            <div className="flex items-center rounded-lg bg-white p-4">
-                                                <Phone className="mr-3 h-5 w-5 text-green-600" />
-                                                <span>
-                                                    Pour plus d'informations, veuillez appeler le Service Consulaire au{' '}
-                                                    <strong className="text-green-600">(646) 476-7614</strong>
+                                                <span className="mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white">
+                                                    {index + 1}
                                                 </span>
-                                            </div>
-                                        </div>
-                                    </motion.div>
+                                                <span className="text-gray-700 pt-1">{doc}</span>
+                                            </motion.li>
+                                        ))}
+                                    </ol>
                                 </CardContent>
                             </Card>
                         </motion.div>
 
-                        {/* English Section */}
+                        {/* Important Notice */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: 0.4 }}
+                            transition={{ duration: 0.6, delay: 0.8 }}
+                            className="mt-8"
                         >
-                            <Card className="overflow-hidden border-0 shadow-2xl">
-                                <div className="h-2 bg-blue-500"></div>
-                                
-                                <CardHeader className="bg-blue-50">
-                                    <div className="flex items-center">
-                                        <div className="mr-4 h-12 w-12 rounded-full bg-white shadow-lg flex items-center justify-center">
-                                            <span className="text-lg font-bold text-blue-600">EN</span>
-                                        </div>
-                                        <CardTitle className="text-3xl font-bold text-gray-900">
-                                            Documents to provide for the visa
-                                        </CardTitle>
-                                    </div>
-                                </CardHeader>
-
-                                <CardContent className="p-8">
-                                    <div className="space-y-4">
-                                        {documentsRequiredEn.map((doc, index) => (
-                                            <motion.div
-                                                key={index}
-                                                initial={{ opacity: 0, x: -20 }}
-                                                animate={{ opacity: 1, x: 0 }}
-                                                transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-                                                className="flex items-start rounded-lg bg-blue-50/50 p-4"
-                                            >
-                                                <CheckCircle className="mr-3 mt-1 h-5 w-5 flex-shrink-0 text-blue-500" />
-                                                <span className="text-gray-700">{doc}</span>
-                                            </motion.div>
-                                        ))}
-                                    </div>
-
-                                    {/* Payment Section English */}
-                                    <motion.div
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ duration: 0.6, delay: 1.2 }}
-                                        className="mt-8 rounded-2xl border-2 border-blue-200 bg-blue-50 p-6"
-                                    >
-                                        <div className="flex items-center mb-4">
-                                            <CreditCard className="mr-3 h-6 w-6 text-blue-600" />
-                                            <h3 className="text-xl font-bold text-gray-900">Pay for visa fees</h3>
-                                        </div>
-                                        <p className="mb-4 text-gray-700">
-                                            To pay for the visa fees, please click the button below:
-                                        </p>
-                                        <Button className="rounded-xl bg-blue-600 font-semibold text-white hover:bg-blue-700">
-                                            <CreditCard className="mr-2 h-5 w-5" />
-                                            Payment
-                                        </Button>
-                                    </motion.div>
-
-                                    {/* Important Notice English */}
-                                    <motion.div
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ duration: 0.6, delay: 1.4 }}
-                                        className="mt-8 rounded-2xl border-2 border-red-200 bg-red-50 p-6"
-                                    >
-                                        <div className="flex items-center mb-4">
-                                            <AlertTriangle className="mr-3 h-6 w-6 text-red-600" />
-                                            <h3 className="text-xl font-bold text-gray-900">NOTE</h3>
-                                        </div>
-                                        <div className="space-y-3 text-gray-700">
-                                            <p>
-                                                The documents for the visa should be uploaded on the platform called: <strong>express54.org</strong>{' '}
-                                                Upon approval, applicants will be contacted by email in order to send their 
-                                                passports to the Embassy for the visa.
-                                            </p>
-                                            <div className="flex items-center rounded-lg bg-white p-4">
-                                                <Phone className="mr-3 h-5 w-5 text-green-600" />
-                                                <span>
-                                                    For more information, please contact the Consular Service at{' '}
-                                                    <strong className="text-green-600">(646) 476-7614</strong>
-                                                </span>
+                            <Card className="overflow-hidden border-2 border-red-200 bg-red-50">
+                                <CardContent className="p-6">
+                                    <div className="flex items-start">
+                                        <AlertTriangle className="mr-3 mt-1 h-6 w-6 flex-shrink-0 text-red-600" />
+                                        <div className="space-y-3">
+                                            <h3 className="text-lg font-bold text-gray-900">IMPORTANT</h3>
+                                            <div className="text-gray-700">
+                                                {language === 'fr' ? (
+                                                    <>
+                                                        <p className="mb-3">
+                                                            Les documents susmentionnés devront être ensuite téléchargés sur la plate-forme express54.org.
+                                                            Après analyse des documents, les requérants seront contactés par email afin de faire parvenir leurs passeports.
+                                                        </p>
+                                                        <p>
+                                                            Pour plus d'informations, veuillez appeler le Service Consulaire au{' '}
+                                                            <a href="tel:+16464767614" className="font-bold text-green-600 hover:underline">
+                                                                <Phone className="inline-block h-4 w-4 mr-1" />
+                                                                (646) 476-7614
+                                                            </a>
+                                                        </p>
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <p className="mb-3">
+                                                            The documents for the visa should be uploaded on the platform called: express54.org
+                                                            Upon approval, applicants will be contacted by email in order to send their passports to the Embassy for the visa.
+                                                        </p>
+                                                        <p>
+                                                            For more information, please contact the Consular Service at{' '}
+                                                            <a href="tel:+16464767614" className="font-bold text-green-600 hover:underline">
+                                                                <Phone className="inline-block h-4 w-4 mr-1" />
+                                                                (646) 476-7614
+                                                            </a>
+                                                        </p>
+                                                    </>
+                                                )}
                                             </div>
                                         </div>
-                                    </motion.div>
+                                    </div>
                                 </CardContent>
                             </Card>
                         </motion.div>
 
-                        {/* Express54 Link */}
+                        {/* Payment Section */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.6 }}
-                            className="text-center"
+                            transition={{ duration: 0.6, delay: 1 }}
+                            className="mt-8"
                         >
-                            <Card className="border-0 bg-orange-100 shadow-xl">
-                                <CardContent className="p-8">
-                                    <h3 className="mb-4 text-2xl font-bold text-gray-900">
-                                        Démarches en ligne
+                            <Card className="overflow-hidden border-2 border-green-200 bg-green-50">
+                                <CardContent className="p-6">
+                                    <h3 className="mb-4 text-lg font-bold text-gray-900">
+                                        {language === 'fr' ? 'Paiement' : 'Payment'}
                                     </h3>
-                                    <p className="mb-6 text-gray-600">
-                                        Effectuez votre demande de visa directement sur notre plateforme digitalisée
+                                    <p className="mb-6 text-gray-700">
+                                        {language === 'fr' 
+                                            ? 'Le traitement de votre demande commencera après réception du paiement et de tous les documents requis.'
+                                            : 'Processing of your application will begin after receipt of payment and all required documents.'}
                                     </p>
-                                    <Button
-                                        onClick={() => window.open('https://express54.org', '_blank')}
-                                        className="rounded-xl bg-orange-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-orange-700 hover:shadow-xl hover:scale-105"
-                                    >
-                                        <ExternalLink className="mr-3 h-5 w-5" />
-                                        Accéder à Express54
-                                    </Button>
+                                    <div className="text-center">
+                                        <Button
+                                            onClick={() => window.open('https://express54.org', '_blank')}
+                                            className="rounded-xl bg-green-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-green-700 hover:shadow-xl hover:scale-105"
+                                        >
+                                            <ExternalLink className="mr-3 h-5 w-5" />
+                                            {language === 'fr' ? 'Procéder au paiement' : 'Proceed to payment'}
+                                        </Button>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </motion.div>
+
+                        {/* Online Services Section */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 1.2 }}
+                            className="mt-8"
+                        >
+                            <Card className="overflow-hidden border-2 border-orange-200 bg-orange-50">
+                                <CardContent className="p-6">
+                                    <h3 className="mb-4 text-lg font-bold text-gray-900">
+                                        {language === 'fr' ? 'Démarches en ligne' : 'Online procedures'}
+                                    </h3>
+                                    <p className="mb-6 text-gray-700">
+                                        {language === 'fr' 
+                                            ? 'Effectuez votre demande de visa directement sur notre plateforme digitalisée'
+                                            : 'Submit your visa application directly on our digitalized platform'}
+                                    </p>
+                                    <div className="text-center">
+                                        <Button 
+                                            onClick={() => window.open('https://www.express54.org', '_blank')}
+                                            className="rounded-xl bg-orange-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-orange-700 hover:shadow-xl hover:scale-105"
+                                        >
+                                            <ExternalLink className="mr-3 h-5 w-5" />
+                                            www.express54.org
+                                        </Button>
+                                    </div>
                                 </CardContent>
                             </Card>
                         </motion.div>
