@@ -3,6 +3,7 @@
 import React, { useState, Suspense } from 'react'
 import { signIn, getSession } from 'next-auth/react'
 import { useRouter, useSearchParams } from 'next/navigation'
+import Link from 'next/link'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -187,6 +188,15 @@ function SignInForm() {
                   'Se connecter'
                 )}
               </Button>
+              
+              <div className="text-center">
+                <Link 
+                  href="/auth/forgot-password" 
+                  className="text-sm text-orange-600 hover:text-orange-700 font-medium"
+                >
+                  Mot de passe oublié ?
+                </Link>
+              </div>
             </form>
 
             <div className="text-center text-sm text-gray-500 pt-4 border-t border-gray-100">

@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
+import TipTapEditor from '@/components/admin/TipTapEditor'
 import { 
   Select,
   SelectContent,
@@ -28,6 +29,7 @@ import {
   Loader2
 } from 'lucide-react'
 import { toast } from 'sonner'
+import { useAutoSave } from '@/hooks/useAutoSave'
 
 interface Category {
   id: string
@@ -69,6 +71,7 @@ function EditPostForm() {
   const [availableTags, setAvailableTags] = useState<Tag[]>([])
   const [selectedTags, setSelectedTags] = useState<string[]>([])
   const [newTag, setNewTag] = useState('')
+  const [lastSaved, setLastSaved] = useState<Date | undefined>()
   
   const [formData, setFormData] = useState<{
     title: { fr: string; en: string };
@@ -88,6 +91,39 @@ function EditPostForm() {
     featured: false,
     categoryId: '',
     publishedAt: '',
+  })
+
+  // Auto-save functionality
+  const autoSaveData = {
+    ...formData,
+    tags: selectedTags,
+  }
+
+  const { isSaving: isAutoSaving } = useAutoSave({
+    data: autoSaveData,
+    onSave: async (data) => {
+      const response = await fetch(`/api/admin/posts/${params.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...data,
+          status: 'DRAFT', // Always save as draft during auto-save
+        }),
+      })
+      
+      if (!response.ok) {
+        throw new Error('Auto-save failed')
+      }
+    },
+    onSuccess: () => {
+      setLastSaved(new Date())
+    },
+    onError: (error) => {
+      console.error('Auto-save error:', error)
+      // Don't show toast for auto-save errors as they might be frequent
+    },
+    enabled: true,
+    delay: 5000, // Auto-save every 5 seconds
   })
 
   const fetchPost = async () => {
@@ -359,23 +395,29 @@ function EditPostForm() {
             <CardContent className="space-y-4">
               <div>
                 <Label htmlFor="content-fr">Contenu (Français) *</Label>
-                <Textarea
-                  id="content-fr"
-                  placeholder="Rédigez votre article en français..."
-                  value={formData.content.fr}
-                  onChange={(e) => handleInputChange('content', e.target.value, 'fr')}
-                  className="mt-1 min-h-[300px]"
-                />
+                <div className="mt-2">
+                  <TipTapEditor
+                    content={formData.content.fr}
+                    onChange={(content) => handleInputChange('content', content, 'fr')}
+                    placeholder="Rédigez votre article en français..."
+                    showStatus={true}
+                    isSaving={isAutoSaving}
+                    lastSaved={lastSaved}
+                  />
+                </div>
               </div>
               <div>
                 <Label htmlFor="content-en">Contenu (Anglais)</Label>
-                <Textarea
-                  id="content-en"
-                  placeholder="Write your article in English..."
-                  value={formData.content.en}
-                  onChange={(e) => handleInputChange('content', e.target.value, 'en')}
-                  className="mt-1 min-h-[300px]"
-                />
+                <div className="mt-2">
+                  <TipTapEditor
+                    content={formData.content.en}
+                    onChange={(content) => handleInputChange('content', content, 'en')}
+                    placeholder="Write your article in English..."
+                    showStatus={true}
+                    isSaving={isAutoSaving}
+                    lastSaved={lastSaved}
+                  />
+                </div>
               </div>
             </CardContent>
           </Card>

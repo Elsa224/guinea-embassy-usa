@@ -20,17 +20,7 @@ const navigationItems = [
     },
     {
         title: "Actualités",
-        items: [
-            { title: "Actualités du Consulat", href: "/actualites/consulat" },
-            {
-                title: "Actualités diplomatique",
-                href: "/actualites/diplomatique",
-            },
-            {
-                title: "Actualités gouvernementale",
-                href: "/actualites/gouvernementale",
-            },
-        ],
+        href: "/actualites",
     },
     {
         title: "Démarche consulaire",

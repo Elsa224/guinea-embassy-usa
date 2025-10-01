@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
+import TipTapEditor from '@/components/admin/TipTapEditor'
 import { 
   Select,
   SelectContent,
@@ -26,6 +27,7 @@ import {
   X
 } from 'lucide-react'
 import { toast } from 'sonner'
+import { useAutoSave } from '@/hooks/useAutoSave'
 import Link from 'next/link'
 
 interface Category {
@@ -47,6 +49,8 @@ function NewPostForm() {
   const [availableTags, setAvailableTags] = useState<Tag[]>([])
   const [selectedTags, setSelectedTags] = useState<string[]>([])
   const [newTag, setNewTag] = useState('')
+  const [lastSaved, setLastSaved] = useState<Date | undefined>()
+  const [createdPostId, setCreatedPostId] = useState<string | null>(null)
   
   const [formData, setFormData] = useState({
     title: { fr: '', en: '' },
@@ -57,6 +61,61 @@ function NewPostForm() {
     featured: false,
     categoryId: '',
     publishedAt: '',
+  })
+
+  // Auto-save functionality for new posts
+  const autoSaveData = {
+    ...formData,
+    tags: selectedTags,
+  }
+
+  const { isSaving: isAutoSaving } = useAutoSave({
+    data: autoSaveData,
+    onSave: async (data) => {
+      // Only auto-save if there's actual content
+      if (!data.title.fr && !data.content.fr) return
+
+      if (createdPostId) {
+        // Update existing draft
+        const response = await fetch(`/api/admin/posts/${createdPostId}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            ...data,
+            status: 'DRAFT',
+          }),
+        })
+        
+        if (!response.ok) {
+          throw new Error('Auto-save failed')
+        }
+      } else {
+        // Create new draft
+        const response = await fetch('/api/admin/posts', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            ...data,
+            status: 'DRAFT',
+          }),
+        })
+        
+        if (!response.ok) {
+          throw new Error('Auto-save failed')
+        }
+        
+        const result = await response.json()
+        setCreatedPostId(result.id)
+      }
+    },
+    onSuccess: () => {
+      setLastSaved(new Date())
+    },
+    onError: (error) => {
+      console.error('Auto-save error:', error)
+    },
+    enabled: true,
+    delay: 5000, // Auto-save every 5 seconds
   })
 
   useEffect(() => {
@@ -268,23 +327,29 @@ function NewPostForm() {
             <CardContent className="space-y-4">
               <div>
                 <Label htmlFor="content-fr">Contenu (Français) *</Label>
-                <Textarea
-                  id="content-fr"
-                  placeholder="Rédigez votre article en français..."
-                  value={formData.content.fr}
-                  onChange={(e) => handleInputChange('content', e.target.value, 'fr')}
-                  className="mt-1 min-h-[300px]"
-                />
+                <div className="mt-2">
+                  <TipTapEditor
+                    content={formData.content.fr}
+                    onChange={(content) => handleInputChange('content', content, 'fr')}
+                    placeholder="Rédigez votre article en français..."
+                    showStatus={true}
+                    isSaving={isAutoSaving}
+                    lastSaved={lastSaved}
+                  />
+                </div>
               </div>
               <div>
                 <Label htmlFor="content-en">Contenu (Anglais)</Label>
-                <Textarea
-                  id="content-en"
-                  placeholder="Write your article in English..."
-                  value={formData.content.en}
-                  onChange={(e) => handleInputChange('content', e.target.value, 'en')}
-                  className="mt-1 min-h-[300px]"
-                />
+                <div className="mt-2">
+                  <TipTapEditor
+                    content={formData.content.en}
+                    onChange={(content) => handleInputChange('content', content, 'en')}
+                    placeholder="Write your article in English..."
+                    showStatus={true}
+                    isSaving={isAutoSaving}
+                    lastSaved={lastSaved}
+                  />
+                </div>
               </div>
             </CardContent>
           </Card>

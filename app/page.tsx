@@ -5,12 +5,49 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
 import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, ExternalLink, MessageSquareQuote, Play, Quote } from "lucide-react";
-import { useState } from "react";
+import {
+    ChevronLeft,
+    ChevronRight,
+    ExternalLink,
+    MessageSquareQuote,
+    Play,
+    Quote,
+    Calendar,
+    ArrowRight,
+} from "lucide-react";
+import { useEffect, useState } from "react";
+import { fetchPosts, type Post } from "@/lib/api/posts";
+import Link from "next/link";
+import { format } from "date-fns";
+import { fr } from "date-fns/locale";
 
 export default function Home() {
     const [currentNewsIndex, setCurrentNewsIndex] = useState(0);
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
+    const [posts, setPosts] = useState<Post[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [totalPosts, setTotalPosts] = useState(0);
+
+    useEffect(() => {
+        const loadPosts = async () => {
+            try {
+                setLoading(true);
+                const data = await fetchPosts({
+                    type: 'NEWS',
+                    limit: 9,
+                    lang: 'fr'
+                });
+                setPosts(data.posts);
+                setTotalPosts(data.pagination.total);
+            } catch (error) {
+                console.error('Error loading posts:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        loadPosts();
+    }, []);
 
     const images = [
         { imgSrc: "/assets/images-for-the-new-website/video-cover-1.jpeg" },
@@ -19,7 +56,8 @@ export default function Home() {
         { imgSrc: "/assets/images-for-the-new-website/video-cover-3.jpeg" },
     ];
 
-    const newsItems = [
+    // Fallback news items when no posts from admin
+    const fallbackNewsItems = [
         {
             image: "/assets/images-for-the-new-website/actualite-pic-1.jpeg",
             title: "Nouvelle procédure de demande de visa",
@@ -49,6 +87,8 @@ export default function Home() {
         },
     ];
 
+    const newsItems = posts.length > 0 ? posts : fallbackNewsItems;
+
     const services = [
         {
             icon: "/assets/images-for-the-new-website/services/PICTO-02.png",
@@ -60,8 +100,7 @@ export default function Home() {
         {
             icon: "/assets/images-for-the-new-website/services/PICTO-06.png",
             title: "PASSEPORT",
-            description:
-                "Plateforme en ligne dédiée à la demande de passport.",
+            description: "Plateforme en ligne dédiée à la demande de passport.",
             link: "https://express54.org",
         },
         {
@@ -143,7 +182,10 @@ export default function Home() {
                         />
                     </motion.div>
                 </div>
-                <div className="absolute inset-0 bottom-20 z-0" aria-hidden="true">
+                <div
+                    className="absolute inset-0 bottom-20 z-0"
+                    aria-hidden="true"
+                >
                     <img
                         src="/assets/images-for-the-new-website/first-hero-background.png"
                         alt=""
@@ -224,14 +266,12 @@ export default function Home() {
                                             className="space-y-6"
                                         >
                                             {/* Quote icon */}
-                                            <div  className="mb-4 flex items-center">
+                                            <div className="mb-4 flex items-center">
                                                 <div className="flex h-12 w-12 items-center justify-center">
                                                     <MessageSquareQuote className="h-44 w-44 text-orange-600" />
                                                 </div>
                                                 <div className="ml-4">
-                                                    <div className="text-xs font-semibold tracking-wider text-orange-600 uppercase">
-                                                        
-                                                    </div>
+                                                    <div className="text-xs font-semibold tracking-wider text-orange-600 uppercase"></div>
                                                 </div>
                                             </div>
 
@@ -240,27 +280,17 @@ export default function Home() {
                                                 <div className="space-y-4 pl-8 text-sm leading-relaxed text-gray-700 sm:text-base lg:text-lg">
                                                     <p>
                                                         <span className="font-semibold text-gray-800">
-                                                            Chères et Chers Compatriotes,
+                                                            Chères et Chers
+                                                            Compatriotes,
                                                         </span>{" "}
-                                                        Au sortir d'une crise
-                                                        socio-politique en 2011,
-                                                        La Côte d'Ivoire a su
-                                                        effacer les stigmates de
-                                                        son instabilité à
-                                                        l'époque grâce au plan
-                                                        ambitieux de son
+                                                        un plan ambitieux de Son
                                                         Excellence Monsieur
                                                         Alassane Ouattara,
                                                         Président de la
-                                                        République. En plus
-                                                        d'insuffler un nouveau
-                                                        dynamisme économique
-                                                        ivoirien, Il a su
-                                                        élaborer une nouvelle
-                                                        stratégie en termes de
-                                                        diplomatie en
-                                                        réalisant ce qu'un bon
-                                                        nombre appelle un{" "}
+                                                        République insuffle un
+                                                        nouveau dynamisme
+                                                        économique ivoirien,
+                                                        nous vivons un{" "}
                                                         <span className="font-semibold text-orange-600">
                                                             "Deuxième Miracle
                                                             Ivoirien"
@@ -272,14 +302,16 @@ export default function Home() {
                                                         plaisir que je m'adresse
                                                         à vous, forts de la
                                                         solidarité qui nous unit
-                                                        en tant que membres de la
-                                                        grande famille ivoirienne
-                                                        aux Etats Unis d'Amerique.
+                                                        en tant que membres de
+                                                        la grande famille
+                                                        ivoirienne aux Etats
+                                                        Unis d'Amerique.
                                                     </p>
                                                     <p>
                                                         Bienvenue au Consulat
                                                         Général de la Côte
-                                                        d'Ivoire à New York, <br /> ce{" "}
+                                                        d'Ivoire à New York,{" "}
+                                                        <br /> ce{" "}
                                                         <span className="font-semibold text-green-600">
                                                             havre de paix
                                                         </span>{" "}
@@ -342,51 +374,95 @@ export default function Home() {
                     </div>
 
                     <div className="relative">
-                        <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-                            {newsItems
-                                .slice(currentNewsIndex, currentNewsIndex + 3)
-                                .map((item, index) => (
-                                    <motion.div
-                                        key={index + currentNewsIndex}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        transition={{
-                                            duration: 0.5,
-                                            delay: index * 0.1,
-                                        }}
-                                        viewport={{ once: true }}
-                                    >
-                                        <Card className="h-full overflow-hidden rounded-none rounded-tr-3xl rounded-bl-[35] py-0 transition-shadow duration-300 hover:shadow-xl">
-                                            <CardContent className="flex h-full flex-col p-0">
-                                                <div className="h-full overflow-hidden p-0">
-                                                    <img
-                                                        src={item.image}
-                                                        alt={item.title}
-                                                        className="h-full rounded-none rounded-bl-[75] object-cover"
-                                                    />
-                                                </div>
-                                                <div className="flex flex-1 flex-col p-6">
-                                                    <p className="mb-2 text-sm font-medium text-orange-600">
-                                                        {item.date}
-                                                    </p>
-                                                    <h3 className="mb-3 text-xl font-bold text-gray-900">
-                                                        {item.title}
-                                                    </h3>
-                                                    <p className="mb-4 flex-1 text-gray-600">
-                                                        {item.excerpt}
-                                                    </p>
-                                                    <Button
-                                                        variant="outline"
-                                                        className="self-start rounded-none rounded-tr-xl rounded-br-xl rounded-bl-xl border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white"
-                                                    >
-                                                        Lire plus
-                                                    </Button>
-                                                </div>
-                                            </CardContent>
-                                        </Card>
-                                    </motion.div>
+                        {loading ? (
+                            <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+                                {[1, 2, 3].map((i) => (
+                                    <div key={i} className="h-96 animate-pulse">
+                                        <div className="h-full rounded-none rounded-tr-3xl rounded-bl-[35] bg-gray-200"></div>
+                                    </div>
                                 ))}
-                        </div>
+                            </div>
+                        ) : (
+                            <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+                                {newsItems
+                                    .slice(currentNewsIndex, currentNewsIndex + 3)
+                                    .map((item, index) => {
+                                        const isPost = 'id' in item;
+                                        const date = isPost 
+                                            ? format(new Date(item.publishedAt), 'd MMMM yyyy', { locale: fr })
+                                            : item.date;
+                                        const image = isPost && item.featuredImage 
+                                            ? item.featuredImage 
+                                            : (item as any).image || '/assets/images-for-the-new-website/actualite-pic-1.jpeg';
+
+                                        return (
+                                            <motion.div
+                                                key={isPost ? item.id : index + currentNewsIndex}
+                                                initial={{ opacity: 0, y: 20 }}
+                                                whileInView={{ opacity: 1, y: 0 }}
+                                                transition={{
+                                                    duration: 0.5,
+                                                    delay: index * 0.1,
+                                                }}
+                                                viewport={{ once: true }}
+                                            >
+                                                <Card className="h-full overflow-hidden rounded-none rounded-tr-3xl rounded-bl-[35] py-0 transition-shadow duration-300 hover:shadow-xl">
+                                                    <CardContent className="flex h-full flex-col p-0">
+                                                        <div className="h-48 overflow-hidden p-0">
+                                                            <img
+                                                                src={image}
+                                                                alt={item.title}
+                                                                className="h-full w-full rounded-none rounded-bl-[75] object-cover"
+                                                            />
+                                                        </div>
+                                                        <div className="flex flex-1 flex-col p-6">
+                                                            <div className="mb-2 flex items-center gap-2">
+                                                                <Calendar className="h-4 w-4 text-orange-600" />
+                                                                <p className="text-sm font-medium text-orange-600">
+                                                                    {date}
+                                                                </p>
+                                                            </div>
+                                                            {isPost && item.category && (
+                                                                <span 
+                                                                    className="mb-2 inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium"
+                                                                    style={{
+                                                                        backgroundColor: item.category.color ? `${item.category.color}20` : '#ff7f0020',
+                                                                        color: item.category.color || '#ff7f00'
+                                                                    }}
+                                                                >
+                                                                    {item.category.name}
+                                                                </span>
+                                                            )}
+                                                            <h3 className="mb-3 line-clamp-2 text-xl font-bold text-gray-900">
+                                                                {item.title}
+                                                            </h3>
+                                                            <p className="mb-4 line-clamp-3 flex-1 text-gray-600">
+                                                                {item.excerpt || (isPost ? item.content.substring(0, 150) + '...' : '')}
+                                                            </p>
+                                                            {isPost ? (
+                                                                <Link
+                                                                    href={`/actualites/${item.slug}`}
+                                                                    className="group inline-flex items-center gap-2 self-start rounded-none rounded-tr-xl rounded-br-xl rounded-bl-xl border border-orange-600 px-4 py-2 text-orange-600 transition-all hover:bg-orange-600 hover:text-white"
+                                                                >
+                                                                    Lire plus
+                                                                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                                                                </Link>
+                                                            ) : (
+                                                                <Button
+                                                                    variant="outline"
+                                                                    className="self-start rounded-none rounded-tr-xl rounded-br-xl rounded-bl-xl border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white"
+                                                                >
+                                                                    Lire plus
+                                                                </Button>
+                                                            )}
+                                                        </div>
+                                                    </CardContent>
+                                                </Card>
+                                            </motion.div>
+                                        );
+                                    })}
+                            </div>
+                        )}
 
                         {/* Navigation buttons */}
                         <div className="mt-8 flex items-center justify-between">
@@ -404,9 +480,11 @@ export default function Home() {
                                 Précédent
                             </Button>
 
-                            <Button className="bg-orange-600 text-white hover:bg-orange-700">
-                                Voir Plus
-                            </Button>
+                            <Link href="/actualites">
+                                <Button className="bg-orange-600 text-white hover:bg-orange-700">
+                                    Voir toutes les actualités
+                                </Button>
+                            </Link>
 
                             <Button
                                 variant="outline"
@@ -566,52 +644,65 @@ export default function Home() {
                             <h4 className="mb-4 text-2xl font-bold text-gray-900">
                                 Vous ne trouvez pas ce que vous cherchez ?
                             </h4>
-                             <p className="mx-auto mb-6 max-w-2xl text-gray-600">
-                                Notre équipe consulaire est à votre disposition pour vous accompagner 
-                                dans toutes vos démarches administratives spécifiques.
+                            <p className="mx-auto mb-6 max-w-2xl text-gray-600">
+                                Notre équipe consulaire est à votre disposition
+                                pour vous accompagner dans toutes vos démarches
+                                administratives spécifiques.
                             </p>
-                            
+
                             {/* Help topics displayed horizontally like cards without background */}
                             <div className="mx-auto mt-4 mb-6 max-w-5xl">
                                 <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12">
                                     {/* Help Topic 1 */}
                                     <div className="text-center bg-red-50/95 rounded-xl p-6 border border-red-100">
                                         <h5 className="mb-2 font-semibold text-red-600">
-                                            🚨 Situations d'Urgence et d'Évacuation
+                                            🚨 Situations d'Urgence et
+                                            d'Évacuation
                                         </h5>
                                         <p className="text-sm text-gray-600">
-                                            Découvrez comment le consulat aide les ressortissants ivoiriens en cas de crise
+                                            Découvrez comment le consulat aide
+                                            les ressortissants ivoiriens en cas
+                                            de crise
                                         </p>
                                     </div>
-                                    
+
                                     {/* Separator */}
-                                    <div className="hidden md:block text-2xl text-gray-400">|</div>
-                                    
+                                    <div className="hidden md:block text-2xl text-gray-400">
+                                        |
+                                    </div>
+
                                     {/* Help Topic 2 */}
                                     <div className="text-center bg-orange-50/95 rounded-xl p-6 border border-orange-100">
                                         <h5 className="mb-2 font-semibold text-orange-600">
-                                            📄 Passeport Perdu ou Volé à l'Étranger
+                                            📄 Passeport Perdu ou Volé à
+                                            l'Étranger
                                         </h5>
                                         <p className="text-sm text-gray-600">
-                                            Apprenez comment remplacer votre passeport lorsque vous êtes à l'étranger
+                                            Apprenez comment remplacer votre
+                                            passeport lorsque vous êtes à
+                                            l'étranger
                                         </p>
                                     </div>
-                                    
+
                                     {/* Separator */}
-                                    <div className="hidden md:block text-2xl text-gray-400">|</div>
-                                    
+                                    <div className="hidden md:block text-2xl text-gray-400">
+                                        |
+                                    </div>
+
                                     {/* Help Topic 3 */}
                                     <div className="text-center bg-green-50/95 rounded-xl p-6 border border-green-100">
                                         <h5 className="mb-2 font-semibold text-green-600">
                                             🤝 Victimes de Crimes
                                         </h5>
                                         <p className="text-sm text-gray-600">
-                                            Accédez au soutien et aux ressources si vous êtes victime d'un crime en voyage
+                                            Accédez au soutien et aux ressources
+                                            si vous êtes victime d'un crime en
+                                            voyage
                                         </p>
                                     </div>
                                 </div>
                             </div>
-                            
+
                             {/* <p className="mx-auto mb-6 max-w-2xl text-gray-600">
                                 Notre équipe consulaire est à votre disposition pour vous accompagner 
                                 dans toutes vos démarches administratives spécifiques.
@@ -625,18 +716,16 @@ export default function Home() {
             </section>
 
             {/* Médiathèque Section - Merged Photo/Video Gallery */}
-            <section
-                id="mediatheque"
-                className="bg-gray-50 py-12"
-            >
+            <section id="mediatheque" className="bg-gray-50 py-12">
                 <div className="container mx-auto px-4 sm:px-6">
                     <div className="mb-8 text-center sm:mb-12">
                         <h2 className="mb-3 text-3xl font-bold text-gray-900 sm:mb-4 sm:text-4xl">
                             Médiathèque
                         </h2>
                         <p className="mx-auto max-w-2xl text-base text-gray-600 sm:text-lg">
-                            Découvrez nos événements, cérémonies et moments marquants 
-                            du Consulat Général de Côte d'Ivoire à New York.
+                            Découvrez nos événements, cérémonies et moments
+                            marquants du Consulat Général de Côte d'Ivoire à New
+                            York.
                         </p>
                     </div>
 
@@ -650,7 +739,10 @@ export default function Home() {
                                         <motion.div
                                             key={index}
                                             initial={{ opacity: 0, scale: 0.8 }}
-                                            whileInView={{ opacity: 1, scale: 1 }}
+                                            whileInView={{
+                                                opacity: 1,
+                                                scale: 1,
+                                            }}
                                             transition={{
                                                 duration: 0.5,
                                                 delay: index * 0.1,
@@ -691,16 +783,20 @@ export default function Home() {
                                             alt="Image mise en avant"
                                             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                                         />
-                                        
+
                                         {/* Gradient overlay */}
                                         <div className="absolute inset-0 bg-black/70">
                                             <div className="absolute bottom-8 left-8 right-8">
                                                 <h3 className="mb-3 text-2xl font-bold text-white">
-                                                    Événement Diplomatique Majeur
+                                                    Événement Diplomatique
+                                                    Majeur
                                                 </h3>
                                                 <p className="text-sm leading-relaxed text-white/90">
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                                                    Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                                    Lorem ipsum dolor sit amet,
+                                                    consectetur adipiscing elit.
+                                                    Sed do eiusmod tempor
+                                                    incididunt ut labore et
+                                                    dolore magna aliqua.
                                                 </p>
                                             </div>
                                         </div>
@@ -739,7 +835,7 @@ export default function Home() {
                                             alt={video.title}
                                             className="aspect-video w-full object-cover"
                                         />
-                                        
+
                                         {/* Video overlay */}
                                         <div className="absolute inset-0 bg-black/60">
                                             <div className="absolute bottom-4 left-4 right-4">

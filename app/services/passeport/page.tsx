@@ -16,9 +16,9 @@ export default function PasseportPage() {
         "Copie de la CNI ou la Carte Consulaire",
         "Une attestation de paiement : Cliquez https://monpasseport.ci",
         "Formulaire à imprimer au même moment que l'attestation de paiement",
-        "Une autorisation parentale légalisée, pour les mineurs",
+        // "Une autorisation parentale légalisée, pour les mineurs",
         "La copie de l'Acte de mariage pour les femmes mariées voulant porter le nom de l'époux",
-        "Se munir d'une enveloppe prépayée de la poste USPS Priority Mail"
+        // "Se munir d'une enveloppe prépayée de la poste USPS Priority Mail"
     ];
 
     const renewalDocs = [
@@ -26,10 +26,10 @@ export default function PasseportPage() {
         "Formulaire à imprimer au même moment que l'attestation de paiement",
         "Copie de la CNI ou la Carte Consulaire",
         "Deux photos d'identité",
-        "Une autorisation parentale légalisée, pour les mineurs",
+        // "Une autorisation parentale légalisée, pour les mineurs",
         "La copie de l'Acte de mariage pour les femmes mariées voulant porter le nom de l'époux",
         "Se munir de son ancien Passeport, en cas de perte, une copie de la déclaration de perte \"Police report\"",
-        "Se munir d'une enveloppe prépayée de la poste USPS Priority Mail"
+        // "Se munir d'une enveloppe prépayée de la poste USPS Priority Mail"
     ];
 
     return (
@@ -190,7 +190,7 @@ export default function PasseportPage() {
                         </motion.div>
 
                         {/* Payment Links */}
-                        <motion.div
+                        {/* <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: 0.8 }}
@@ -221,10 +221,10 @@ export default function PasseportPage() {
                                     </div>
                                 </CardContent>
                             </Card>
-                        </motion.div>
+                        </motion.div> */}
 
                         {/* Shipping Notice */}
-                        <motion.div
+                        {/* <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: 1 }}
@@ -238,7 +238,7 @@ export default function PasseportPage() {
                                 <strong>N'oubliez pas :</strong> Vous devez vous munir d'une enveloppe prépayée de la poste{' '}
                                 <span className="font-bold text-orange-600">USPS Priority Mail</span> pour le retour de votre passeport.
                             </p>
-                        </motion.div>
+                        </motion.div> */}
                     </div>
                 </div>
             </div>

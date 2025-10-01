@@ -2,8 +2,8 @@
 set -e
 
 # Configuration
-APP_NAME="CONSULCINY"
-SERVER_IP="72.44.41.68"
+APP_NAME="cgci-newyork.com"
+SERVER_IP="54.204.239.244"
 SERVER_USER="root"
 SERVER_PATH="/var/www/html/${APP_NAME}"
 LOCAL_BUILD_DIR=".next"
@@ -66,7 +66,7 @@ ssh -t ${SERVER_USER}@${SERVER_IP} "
 
 # Upload server deployment script
 echo -e "${BLUE}📋 Uploading server deployment script...${NC}"
-scp consulat_app_deploy_2.sh ${SERVER_USER}@${SERVER_IP}:~/ || { echo -e "${RED}❌ Server script upload failed${NC}"; exit 1; }
+scp consulat_app_deploy_2_prod.sh ${SERVER_USER}@${SERVER_IP}:~/ || { echo -e "${RED}❌ Server script upload failed${NC}"; exit 1; }
 
 # Clean up local deployment files
 echo -e "${GREEN}Cleaning up local deployment files...${NC}"
