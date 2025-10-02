@@ -9,6 +9,8 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import TipTapEditor from '@/components/admin/TipTapEditor'
+import { PostPreviewModal } from '@/components/admin/PostPreviewModal'
+import { SchedulePublishDialog } from '@/components/admin/SchedulePublishDialog'
 import { 
   Select,
   SelectContent,
@@ -24,7 +26,8 @@ import {
   FileText, 
   Calendar,
   Tag,
-  X
+  X,
+  Clock
 } from 'lucide-react'
 import { toast } from 'sonner'
 import { useAutoSave } from '@/hooks/useAutoSave'
@@ -50,6 +53,9 @@ function NewPostForm() {
   const [selectedTags, setSelectedTags] = useState<string[]>([])
   const [newTag, setNewTag] = useState('')
   const [lastSaved, setLastSaved] = useState<Date | undefined>()
+  const [showPreview, setShowPreview] = useState(false)
+  const [previewLanguage, setPreviewLanguage] = useState<'fr' | 'en'>('fr')
+  const [showScheduleDialog, setShowScheduleDialog] = useState(false)
   const [createdPostId, setCreatedPostId] = useState<string | null>(null)
   
   const [formData, setFormData] = useState({
@@ -263,6 +269,22 @@ function NewPostForm() {
         </div>
         
         <div className="flex items-center gap-2">
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() => setShowPreview(true)}
+          >
+            <Eye className="w-4 h-4 mr-2" />
+            Aperçu
+          </Button>
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() => setShowScheduleDialog(true)}
+          >
+            <Clock className="w-4 h-4 mr-2" />
+            Programmer
+          </Button>
           <button
             type="button"
             onClick={(e) => handleSubmit(e, 'save')}
@@ -278,7 +300,7 @@ function NewPostForm() {
             disabled={saving}
             className="gradient-ci text-white hover:opacity-90 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2"
           >
-            <Eye className="w-4 h-4 mr-2" />
+            <FileText className="w-4 h-4 mr-2" />
             Publier
           </button>
         </div>
@@ -535,6 +557,38 @@ function NewPostForm() {
           </Card>
         </div>
       </form>
+
+      {/* Preview Modal */}
+      <PostPreviewModal
+        open={showPreview}
+        onClose={() => setShowPreview(false)}
+        post={{
+          title: formData.title,
+          content: formData.content,
+          excerpt: formData.excerpt,
+          status: formData.status,
+          type: formData.type,
+          featured: formData.featured,
+          publishedAt: formData.publishedAt,
+          category: categories.find(c => c.id === formData.categoryId),
+          tags: selectedTags.map(tagId => {
+            const tag = availableTags.find(t => t.id === tagId);
+            return tag ? { name: tag.name } : null;
+          }).filter(Boolean) as Array<{ name: string }>
+        }}
+        language={previewLanguage}
+      />
+
+      {/* Schedule Publish Dialog */}
+      <SchedulePublishDialog
+        open={showScheduleDialog}
+        onClose={() => setShowScheduleDialog(false)}
+        currentDate={formData.publishedAt}
+        onSchedule={(publishDate) => {
+          setFormData(prev => ({ ...prev, publishedAt: publishDate, status: 'DRAFT' }));
+          toast.success('Publication programmée avec succès');
+        }}
+      />
     </div>
   )
 }

@@ -95,41 +95,41 @@ export default function Home() {
             title: "VISA",
             description:
                 "Pour obtenir un visa, le demandeur doit fournir un dossier électronique comprenant les pièces ci-après.",
-            link: "https://express54.org",
+            link: "/visa",
         },
         {
             icon: "/assets/images-for-the-new-website/services/PICTO-06.png",
             title: "PASSEPORT",
             description: "Plateforme en ligne dédiée à la demande de passport.",
-            link: "https://express54.org",
+            link: "/passeport",
         },
         {
             icon: "/assets/images-for-the-new-website/services/PICTO-06.png",
             title: "CARTE CONSULAIRE",
             description:
                 "Plateforme en ligne dédiée à la demande de carte consulaire.",
-            link: "https://express54.org",
+            link: "/carte-consulaire",
         },
         {
             icon: "/assets/images-for-the-new-website/services/PICTO-03.png",
             title: "DELIVERY EXPRESS",
             description:
                 "Plateforme en ligne dédiée à la demande de livraison express.",
-            link: "https://express54.org",
+            link: "/delivery-express",
         },
         {
             icon: "/assets/images-for-the-new-website/services/PICTO-04.png",
             title: "AUTRES DOCUMENTS",
             description:
                 "Plateforme en ligne dédiée à la demande d'autres documents administratifs.",
-            link: "https://express54.org",
+            link: "/autres-documents",
         },
         {
             icon: "/assets/images-for-the-new-website/services/PICTO-01.png",
             title: "DOCUMENTS CIVILS",
             description:
                 "Plateforme en ligne dédiée à la demande de documents civils.",
-            link: "https://express54.org",
+            link: "/etat-civil",
         },
     ];
 
@@ -599,10 +599,7 @@ export default function Home() {
                                             <Button
                                                 className="w-full rounded-xl border-0 bg-orange-600 py-2.5 font-medium text-white shadow-lg transition-all duration-300 group-hover:scale-105 hover:from-orange-700 hover:to-orange-800 hover:shadow-xl"
                                                 onClick={() =>
-                                                    window.open(
-                                                        service.link,
-                                                        "_blank"
-                                                    )
+                                                        window.location.href = service.link
                                                 }
                                             >
                                                 <ExternalLink className="mr-2 h-4 w-4" />

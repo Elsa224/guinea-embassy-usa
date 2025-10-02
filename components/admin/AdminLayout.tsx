@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { AdminSidebar } from "./AdminSidebar";
 import { AdminHeader } from "./AdminHeader";
+import { Breadcrumb } from "./Breadcrumb";
 import { Toaster } from "sonner";
 
 interface AdminLayoutProps {
@@ -54,7 +55,13 @@ export function AdminLayout({ children }: AdminLayoutProps) {
                     <AdminHeader user={session.user} />
 
                     {/* Page Content */}
-                    <main className="p-6">{children}</main>
+                    <main className="p-6">
+                        {/* Breadcrumb */}
+                        <Breadcrumb />
+                        
+                        {/* Main Content */}
+                        {children}
+                    </main>
                 </div>
             </div>
 
