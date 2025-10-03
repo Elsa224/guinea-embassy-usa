@@ -7,12 +7,14 @@ import { AdminSidebar } from "./AdminSidebar";
 import { AdminHeader } from "./AdminHeader";
 import { Breadcrumb } from "./Breadcrumb";
 import { Toaster } from "sonner";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
 
 interface AdminLayoutProps {
     children: React.ReactNode;
+    breadcrumbTitle?: string;
 }
 
-export function AdminLayout({ children }: AdminLayoutProps) {
+export function AdminLayout({ children, breadcrumbTitle }: AdminLayoutProps) {
     const { data: session, status } = useSession();
 
     if (status === "loading") {
@@ -44,37 +46,39 @@ export function AdminLayout({ children }: AdminLayoutProps) {
     }
 
     return (
-        <div className="min-h-screen bg-gray-50">
-            <div className="flex">
-                {/* Sidebar */}
-                <AdminSidebar user={session.user} />
+        <ThemeProvider>
+            <div className="min-h-screen bg-gray-50 dark:bg-gray-950 transition-colors">
+                <div className="flex">
+                    {/* Sidebar */}
+                    <AdminSidebar user={session.user} />
 
-                {/* Main Content Area */}
-                <div className="flex-1 ml-64">
-                    {/* Header */}
-                    <AdminHeader user={session.user} />
+                    {/* Main Content Area */}
+                    <div className="flex-1 ml-64">
+                        {/* Header */}
+                        <AdminHeader user={session.user} />
 
-                    {/* Page Content */}
-                    <main className="p-6">
-                        {/* Breadcrumb */}
-                        <Breadcrumb />
-                        
-                        {/* Main Content */}
-                        {children}
-                    </main>
+                        {/* Page Content */}
+                        <main className="p-6">
+                            {/* Breadcrumb */}
+                            <Breadcrumb customTitle={breadcrumbTitle} />
+                            
+                            {/* Main Content */}
+                            {children}
+                        </main>
+                    </div>
                 </div>
-            </div>
 
-            {/* Toast Notifications */}
-            <Toaster
-                position="top-right"
-                expand
-                richColors
-                closeButton
-                toastOptions={{
-                    duration: 4000,
-                }}
-            />
-        </div>
+                {/* Toast Notifications */}
+                <Toaster
+                    position="top-right"
+                    expand
+                    richColors
+                    closeButton
+                    toastOptions={{
+                        duration: 4000,
+                    }}
+                />
+            </div>
+        </ThemeProvider>
     );
 }

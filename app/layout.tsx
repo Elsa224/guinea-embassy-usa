@@ -1,7 +1,7 @@
 import ToastProvider from "@/components/ToastProvider";
 import { Providers } from "@/components/providers/Providers";
 import type { Metadata } from "next";
-import { Poppins, Inter, Roboto, Montserrat } from "next/font/google";
+import { Poppins, Inter, Roboto, Montserrat, Open_Sans } from "next/font/google";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -32,6 +32,13 @@ const montserrat = Montserrat({
     display: "swap",
 });
 
+const openSans = Open_Sans({
+    variable: "--font-open-sans",
+    subsets: ["latin"],
+    weight: ["400", "500", "600", "700"],
+    display: "swap",
+});
+
 
 export const metadata: Metadata = {
     title: "Consulat Général de Côte d'Ivoire - New York",
@@ -49,7 +56,7 @@ export default function RootLayout({
     return (
         <html lang="fr">
             <body
-                className={`${montserrat.variable}  antialiased`}
+                className={`${montserrat.variable} antialiased`}
             >
                 <Providers>
                     {children}

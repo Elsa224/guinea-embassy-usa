@@ -3,6 +3,7 @@
 import { Layout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { NewsSection } from "@/components/public/NewsSection";
 
 import { motion } from "framer-motion";
 import {
@@ -16,7 +17,6 @@ import {
     ArrowRight,
 } from "lucide-react";
 import { useEffect, useState } from "react";
-import { fetchPosts, type Post } from "@/lib/api/posts";
 import Link from "next/link";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
@@ -24,30 +24,6 @@ import { fr } from "date-fns/locale";
 export default function Home() {
     const [currentNewsIndex, setCurrentNewsIndex] = useState(0);
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
-    const [posts, setPosts] = useState<Post[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [totalPosts, setTotalPosts] = useState(0);
-
-    useEffect(() => {
-        const loadPosts = async () => {
-            try {
-                setLoading(true);
-                const data = await fetchPosts({
-                    type: 'NEWS',
-                    limit: 9,
-                    lang: 'fr'
-                });
-                setPosts(data.posts);
-                setTotalPosts(data.pagination.total);
-            } catch (error) {
-                console.error('Error loading posts:', error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        loadPosts();
-    }, []);
 
     const images = [
         { imgSrc: "/assets/images-for-the-new-website/video-cover-1.jpeg" },
@@ -56,38 +32,6 @@ export default function Home() {
         { imgSrc: "/assets/images-for-the-new-website/video-cover-3.jpeg" },
     ];
 
-    // Fallback news items when no posts from admin
-    const fallbackNewsItems = [
-        {
-            image: "/assets/images-for-the-new-website/actualite-pic-1.jpeg",
-            title: "Nouvelle procédure de demande de visa",
-            excerpt:
-                "Le consulat annonce une nouvelle procédure simplifiée pour les demandes de visa...",
-            date: "15 Janvier 2025",
-        },
-        {
-            image: "/assets/images-for-the-new-website/gallery-2.jpeg",
-            title: "Horaires d'ouverture modifiés",
-            excerpt:
-                "Veuillez noter les nouveaux horaires d'ouverture du consulat général...",
-            date: "12 Janvier 2025",
-        },
-        {
-            image: "/assets/images-for-the-new-website/actualite-pic-3.jpeg",
-            title: "Événement culturel ivoirien",
-            excerpt:
-                "Le consulat organise un événement culturel pour célébrer...",
-            date: "10 Janvier 2025",
-        },
-        {
-            image: "/assets/images-for-the-new-website/actualite-pic-1.jpeg",
-            title: "Formation consulaire",
-            excerpt: "Sessions de formation pour les membres de la diaspora...",
-            date: "8 Janvier 2025",
-        },
-    ];
-
-    const newsItems = posts.length > 0 ? posts : fallbackNewsItems;
 
     const services = [
         {
@@ -353,160 +297,13 @@ export default function Home() {
             {/* News Section */}
             <section id="actualites" className="bg-gray-50/20 py-12">
                 {/* Africa CIV background image, aligned to left */}
-                <img
-                    src="/assets/images-for-the-new-website/africa-civ-green.png"
-                    alt=""
-                    aria-hidden="true"
-                    className="pointer-events-none absolute top-390 right-0 z-0 h-full w-auto max-w-[40vw] min-w-[200px] opacity-100 select-none"
-                    style={{
-                        objectFit: "contain",
-                        objectPosition: "left top",
-                    }}
+                <NewsSection 
+                    title="Actualités"
+                    subtitle="Restez informés des dernières nouvelles du consulat"
+                    limit={6}
+                    showFeatured={true}
+                    showViewAll={true}
                 />
-                <div className="container mx-auto px-4 sm:px-6">
-                    <div className="mb-8 text-center sm:mb-12">
-                        <h2 className="mb-3 text-2xl font-bold text-gray-900 sm:mb-4 sm:text-3xl lg:text-4xl">
-                            Actualités
-                        </h2>
-                        <p className="text-base text-gray-600 sm:text-lg lg:text-xl">
-                            Restez informés des dernières nouvelles du consulat
-                        </p>
-                    </div>
-
-                    <div className="relative">
-                        {loading ? (
-                            <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-                                {[1, 2, 3].map((i) => (
-                                    <div key={i} className="h-96 animate-pulse">
-                                        <div className="h-full rounded-none rounded-tr-3xl rounded-bl-[35] bg-gray-200"></div>
-                                    </div>
-                                ))}
-                            </div>
-                        ) : (
-                            <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-                                {newsItems
-                                    .slice(currentNewsIndex, currentNewsIndex + 3)
-                                    .map((item, index) => {
-                                        const isPost = 'id' in item;
-                                        const date = isPost 
-                                            ? format(new Date(item.publishedAt), 'd MMMM yyyy', { locale: fr })
-                                            : item.date;
-                                        const image = isPost && item.featuredImage 
-                                            ? item.featuredImage 
-                                            : (item as any).image || '/assets/images-for-the-new-website/actualite-pic-1.jpeg';
-
-                                        return (
-                                            <motion.div
-                                                key={isPost ? item.id : index + currentNewsIndex}
-                                                initial={{ opacity: 0, y: 20 }}
-                                                whileInView={{ opacity: 1, y: 0 }}
-                                                transition={{
-                                                    duration: 0.5,
-                                                    delay: index * 0.1,
-                                                }}
-                                                viewport={{ once: true }}
-                                            >
-                                                <Card className="h-full overflow-hidden rounded-none rounded-tr-3xl rounded-bl-[35] py-0 transition-shadow duration-300 hover:shadow-xl">
-                                                    <CardContent className="flex h-full flex-col p-0">
-                                                        <div className="h-48 overflow-hidden p-0">
-                                                            <img
-                                                                src={image}
-                                                                alt={item.title}
-                                                                className="h-full w-full rounded-none rounded-bl-[75] object-cover"
-                                                            />
-                                                        </div>
-                                                        <div className="flex flex-1 flex-col p-6">
-                                                            <div className="mb-2 flex items-center gap-2">
-                                                                <Calendar className="h-4 w-4 text-orange-600" />
-                                                                <p className="text-sm font-medium text-orange-600">
-                                                                    {date}
-                                                                </p>
-                                                            </div>
-                                                            {isPost && item.category && (
-                                                                <span 
-                                                                    className="mb-2 inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium"
-                                                                    style={{
-                                                                        backgroundColor: item.category.color ? `${item.category.color}20` : '#ff7f0020',
-                                                                        color: item.category.color || '#ff7f00'
-                                                                    }}
-                                                                >
-                                                                    {item.category.name}
-                                                                </span>
-                                                            )}
-                                                            <h3 className="mb-3 line-clamp-2 text-xl font-bold text-gray-900">
-                                                                {item.title}
-                                                            </h3>
-                                                            <p className="mb-4 line-clamp-3 flex-1 text-gray-600">
-                                                                {item.excerpt || (isPost ? item.content.substring(0, 150) + '...' : '')}
-                                                            </p>
-                                                            {isPost ? (
-                                                                <Link
-                                                                    href={`/actualites/${item.slug}`}
-                                                                    className="group inline-flex items-center gap-2 self-start rounded-none rounded-tr-xl rounded-br-xl rounded-bl-xl border border-orange-600 px-4 py-2 text-orange-600 transition-all hover:bg-orange-600 hover:text-white"
-                                                                >
-                                                                    Lire plus
-                                                                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                                                                </Link>
-                                                            ) : (
-                                                                <Button
-                                                                    variant="outline"
-                                                                    className="self-start rounded-none rounded-tr-xl rounded-br-xl rounded-bl-xl border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white"
-                                                                >
-                                                                    Lire plus
-                                                                </Button>
-                                                            )}
-                                                        </div>
-                                                    </CardContent>
-                                                </Card>
-                                            </motion.div>
-                                        );
-                                    })}
-                            </div>
-                        )}
-
-                        {/* Navigation buttons */}
-                        <div className="mt-8 flex items-center justify-between">
-                            <Button
-                                variant="outline"
-                                onClick={() =>
-                                    setCurrentNewsIndex(
-                                        Math.max(0, currentNewsIndex - 3)
-                                    )
-                                }
-                                disabled={currentNewsIndex === 0}
-                                className="flex items-center"
-                            >
-                                <ChevronLeft className="mr-2 h-4 w-4" />
-                                Précédent
-                            </Button>
-
-                            <Link href="/actualites">
-                                <Button className="bg-orange-600 text-white hover:bg-orange-700">
-                                    Voir toutes les actualités
-                                </Button>
-                            </Link>
-
-                            <Button
-                                variant="outline"
-                                onClick={() =>
-                                    setCurrentNewsIndex(
-                                        Math.min(
-                                            newsItems.length - 3,
-                                            currentNewsIndex + 3
-                                        )
-                                    )
-                                }
-                                disabled={
-                                    currentNewsIndex >= newsItems.length - 3
-                                }
-                                className="flex items-center"
-                            >
-                                Suivant
-                                <ChevronRight className="ml-2 h-4 w-4" />
-                            </Button>
-                        </div>
-                    </div>
-                </div>
                 {/* </section> */}
 
                 {/* Services Section */}

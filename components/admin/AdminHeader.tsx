@@ -14,6 +14,7 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { ThemeSwitcher } from './ThemeSwitcher'
 
 interface AdminHeaderProps {
   user: {
@@ -51,28 +52,31 @@ export function AdminHeader({ user }: AdminHeaderProps) {
   }
 
   return (
-    <header className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-6 sticky top-0 z-30">
+    <header className="h-16 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between px-6 sticky top-0 z-30 transition-colors">
       {/* Search Bar */}
       <div className="flex-1 max-w-md">
         <div className="relative">
-          <Search className="w-4 h-4 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" />
+          <Search className="w-4 h-4 text-gray-400 dark:text-gray-500 absolute left-3 top-1/2 transform -translate-y-1/2" />
           <Input
             type="search"
             placeholder="Rechercher..."
-            className="pl-10 bg-gray-50 border-gray-200 focus:bg-white focus:border-ci-orange"
+            className="pl-10 bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 focus:bg-white dark:focus:bg-gray-800 focus:border-ci-orange dark:focus:border-ci-orange"
           />
         </div>
       </div>
 
       {/* Right Section */}
       <div className="flex items-center gap-4">
+        {/* Theme Switcher */}
+        <ThemeSwitcher />
+        
         {/* Notifications */}
         <Button
           variant="ghost"
           size="icon"
-          className="relative hover:bg-gray-100"
+          className="relative hover:bg-gray-100 dark:hover:bg-gray-800"
         >
-          <Bell className="w-5 h-5 text-gray-600" />
+          <Bell className="w-5 h-5 text-gray-600 dark:text-gray-400" />
           <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
             3
           </span>
@@ -81,8 +85,8 @@ export function AdminHeader({ user }: AdminHeaderProps) {
         {/* User Menu */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="flex items-center gap-3 hover:bg-gray-100 p-2">
-              <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
+            <Button variant="ghost" className="flex items-center gap-3 hover:bg-gray-100 dark:hover:bg-gray-800 p-2">
+              <div className="w-8 h-8 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center">
                 {user.image ? (
                   <img
                     src={user.image}
@@ -90,16 +94,16 @@ export function AdminHeader({ user }: AdminHeaderProps) {
                     className="w-8 h-8 rounded-full object-cover"
                   />
                 ) : (
-                  <span className="text-gray-600 font-medium text-sm">
+                  <span className="text-gray-600 dark:text-gray-400 font-medium text-sm">
                     {user.name?.charAt(0)?.toUpperCase() || user.email?.charAt(0)?.toUpperCase() || 'U'}
                   </span>
                 )}
               </div>
               <div className="text-left hidden sm:block">
-                <p className="text-sm font-medium text-gray-900">
+                <p className="text-sm font-medium text-gray-900 dark:text-gray-100">
                   {user.name || user.email}
                 </p>
-                <p className="text-xs text-gray-500">
+                <p className="text-xs text-gray-500 dark:text-gray-400">
                   {getRoleLabel(user.role)}
                 </p>
               </div>

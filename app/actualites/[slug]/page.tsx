@@ -4,9 +4,8 @@ import { Layout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { Calendar, User, Eye, ArrowRight, Share2, ChevronLeft, Loader2 } from "lucide-react";
-import { useEffect, useState } from "react";
-import { fetchPostBySlug, type Post } from "@/lib/api/posts";
+import { Calendar, User, Clock, ArrowRight, Share2, ChevronLeft, Loader2 } from "lucide-react";
+import { usePost } from "@/hooks/usePublicContent";
 import Link from "next/link";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
@@ -17,35 +16,13 @@ export default function PostDetailPage() {
     const router = useRouter();
     const slug = params.slug as string;
     
-    const [post, setPost] = useState<Post | null>(null);
-    const [relatedPosts, setRelatedPosts] = useState<Post[]>([]);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        const loadPost = async () => {
-            try {
-                setLoading(true);
-                const data = await fetchPostBySlug(slug, 'fr');
-                setPost(data.post);
-                setRelatedPosts(data.relatedPosts || []);
-            } catch (error) {
-                console.error('Error loading post:', error);
-                router.push('/actualites');
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        if (slug) {
-            loadPost();
-        }
-    }, [slug, router]);
+    const { data, loading, error } = usePost({ slug, lang: 'fr' });
 
     const handleShare = () => {
-        if (navigator.share && post) {
+        if (navigator.share && data?.post) {
             navigator.share({
-                title: post.title,
-                text: post.excerpt || '',
+                title: data.post.title,
+                text: data.post.excerpt || '',
                 url: window.location.href,
             });
         }
@@ -61,9 +38,27 @@ export default function PostDetailPage() {
         );
     }
 
-    if (!post) {
+    if (error) {
+        return (
+            <Layout currentPath="/actualites">
+                <div className="flex min-h-screen items-center justify-center">
+                    <div className="text-center">
+                        <h1 className="text-2xl font-bold text-gray-900 mb-4">Article not found</h1>
+                        <p className="text-gray-600 mb-6">{error}</p>
+                        <Button asChild>
+                            <Link href="/actualites">Return to Articles</Link>
+                        </Button>
+                    </div>
+                </div>
+            </Layout>
+        );
+    }
+
+    if (!data?.post) {
         return null;
     }
+
+    const { post, relatedPosts } = data;
 
     return (
         <Layout currentPath="/actualites">
@@ -119,8 +114,8 @@ export default function PostDetailPage() {
                                     <span>{post.author.name}</span>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <Eye className="h-4 w-4" />
-                                    <span>{post.views} vues</span>
+                                    <Clock className="h-4 w-4" />
+                                    <span>{post.readingTime} min read</span>
                                 </div>
                                 <button
                                     onClick={handleShare}
@@ -133,7 +128,7 @@ export default function PostDetailPage() {
                         </motion.header>
 
                         {/* Featured Image */}
-                        {post.featuredImage && (
+                        {post.media && post.media.length > 0 && (
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.95 }}
                                 animate={{ opacity: 1, scale: 1 }}
@@ -141,10 +136,15 @@ export default function PostDetailPage() {
                                 className="mb-8 overflow-hidden rounded-lg shadow-lg"
                             >
                                 <img
-                                    src={post.featuredImage}
-                                    alt={post.title}
+                                    src={post.media[0].url}
+                                    alt={post.media[0].alt || post.title}
                                     className="h-auto w-full object-cover"
                                 />
+                                {post.media[0].caption && (
+                                    <p className="bg-gray-50 px-4 py-2 text-sm text-gray-600">
+                                        {post.media[0].caption}
+                                    </p>
+                                )}
                             </motion.div>
                         )}
 
@@ -162,7 +162,7 @@ export default function PostDetailPage() {
                         </motion.div>
 
                         {/* Media Gallery */}
-                        {post.media && post.media.length > 0 && (
+                        {post.media && post.media.length > 1 && (
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
@@ -171,7 +171,7 @@ export default function PostDetailPage() {
                             >
                                 <h2 className="mb-6 text-2xl font-bold text-gray-900">Galerie</h2>
                                 <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
-                                    {post.media.map((media) => (
+                                    {post.media.slice(1).map((media) => (
                                         <div key={media.id} className="overflow-hidden rounded-lg shadow-md">
                                             <img
                                                 src={media.url}
@@ -226,8 +226,9 @@ export default function PostDetailPage() {
                                                 <div className="h-32 overflow-hidden">
                                                     <img
                                                         src={
-                                                            relatedPost.featuredImage ||
-                                                            "/assets/images-for-the-new-website/actualite-pic-1.jpeg"
+                                                            (relatedPost.media && relatedPost.media.length > 0) 
+                                                                ? relatedPost.media[0].url
+                                                                : "/assets/images-for-the-new-website/actualite-pic-1.jpeg"
                                                         }
                                                         alt={relatedPost.title}
                                                         className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"

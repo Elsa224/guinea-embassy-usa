@@ -1,5 +1,7 @@
-import { useEffect, useRef, useCallback } from 'react'
+import { useEffect, useRef, useCallback, useState } from 'react'
 import { toast } from 'sonner'
+
+type AutoSaveStatus = 'idle' | 'pending' | 'saving' | 'saved' | 'error';
 
 interface UseAutoSaveOptions {
   data: any
@@ -20,31 +22,55 @@ export function useAutoSave({
 }: UseAutoSaveOptions) {
   const timeoutRef = useRef<NodeJS.Timeout | undefined>(undefined)
   const lastSavedDataRef = useRef<string | undefined>(undefined)
-  const isSavingRef = useRef(false)
+  const [isSaving, setIsSaving] = useState(false)
+  const [status, setStatus] = useState<AutoSaveStatus>('idle')
+  const [lastSaved, setLastSaved] = useState<Date | undefined>()
 
   const save = useCallback(async () => {
-    if (isSavingRef.current) return
+    if (isSaving) return
 
     const currentDataString = JSON.stringify(data)
     
     // Don't save if data hasn't changed
-    if (lastSavedDataRef.current === currentDataString) return
+    if (lastSavedDataRef.current === currentDataString) {
+      setStatus('saved')
+      return
+    }
 
     try {
-      isSavingRef.current = true
+      setIsSaving(true)
+      setStatus('saving')
       await onSave(data)
       lastSavedDataRef.current = currentDataString
+      const now = new Date()
+      setLastSaved(now)
+      setStatus('saved')
       onSuccess?.()
+      
+      // Auto-hide the saved status after 3 seconds
+      setTimeout(() => {
+        setStatus('idle')
+      }, 3000)
     } catch (error) {
       console.error('Auto-save failed:', error)
+      setStatus('error')
       onError?.(error as Error)
+      toast.error('Erreur lors de la sauvegarde automatique')
+      
+      // Auto-hide the error status after 5 seconds
+      setTimeout(() => {
+        setStatus('idle')
+      }, 5000)
     } finally {
-      isSavingRef.current = false
+      setIsSaving(false)
     }
-  }, [data, onSave, onSuccess, onError])
+  }, [data, onSave, onSuccess, onError, isSaving])
 
   const debouncedSave = useCallback(() => {
     if (!enabled) return
+
+    // Set status to pending when changes are detected
+    setStatus('pending')
 
     // Clear existing timeout
     if (timeoutRef.current) {
@@ -91,6 +117,8 @@ export function useAutoSave({
 
   return {
     saveNow,
-    isSaving: isSavingRef.current
+    isSaving,
+    status,
+    lastSaved
   }
 }
