@@ -14,7 +14,8 @@ import {
   BarChart3,
   Globe,
   LogOut,
-  Shield
+  Shield,
+  File
 } from 'lucide-react'
 import { signOut } from 'next-auth/react'
 import { cn } from '@/lib/utils'
@@ -41,6 +42,12 @@ const navigationItems = [
     href: '/admin/posts',
     icon: FileText,
     roles: ['SUPER_ADMIN', 'ADMIN', 'EDITOR', 'AUTHOR']
+  },
+  {
+    title: 'Pages',
+    href: '/admin/pages',
+    icon: File,
+    roles: ['SUPER_ADMIN', 'ADMIN', 'EDITOR']
   },
   {
     title: 'Utilisateurs',

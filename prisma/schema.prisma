@@ -150,6 +150,14 @@ model Page {
   metaDescription Json?
   order           Int        @default(0)
   
+  // Service-specific fields
+  serviceType     String?    // visa, passeport, carte-consulaire, etc.
+  requiredDocs    Json?      // {fr: [...], en: [...]} - List of required documents
+  fees            Json?      // {standard: 50, express: 75, ...}
+  processingTime  Json?      // {fr: "...", en: "..."}
+  paymentLink     String?    // External payment URL
+  formLink        String?    // External form URL
+  
   parent          Page?      @relation("PageHierarchy", fields: [parentId], references: [id])
   parentId        String?
   children        Page[]     @relation("PageHierarchy")
@@ -162,6 +170,7 @@ model Page {
   @@index([slug])
   @@index([status])
   @@index([order])
+  @@index([serviceType])
 }
 
 model Settings {

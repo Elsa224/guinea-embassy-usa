@@ -13,8 +13,8 @@ import {
     MapPin,
     Mail,
     User,
-    Baby,
-    Copy,
+    Plane,
+    AlertCircle,
     DollarSign
 } from "lucide-react";
 import { useState, useEffect } from "react";
@@ -29,74 +29,80 @@ interface Page {
     processingTime?: { fr: string; en: string } | null;
 }
 
-const civilStateServices = {
+const eligibilityConditions = {
     fr: [
         {
-            id: 'transcription-naissance',
-            title: 'Transcription d\'Acte de Naissance',
-            icon: Baby,
-            color: 'bg-blue-500',
-            fee: '$20',
-            documents: [
-                'Photocopie de la Carte Consulaire valide (obligatoire) pour les requérants résidents',
-                'Formulaire dûment renseigné et signé',
-                'Copie intégrale de l\'acte de naissance américain de l\'enfant',
-                'Copie de la traduction en français de l\'acte de naissance américain par un cabinet assermenté',
-                'Copie de la preuve de la nationalité ivoirienne de l\'un des deux parents (carte d\'identité nationale, certificat de nationalité)',
-                'Copie des pièces d\'identité des deux parents (Carte Nationale d\'Identité, Passeport ou Attestation Administrative d\'Identité)',
-                'Reçu de paiement des frais (20 dollars)'
-            ]
+            id: 'de-passage',
+            title: 'De passage et dépourvus de titre de voyage',
+            description: 'En cas de perte ou de vol de passeport',
+            icon: AlertTriangle,
+            color: 'bg-red-500'
         },
         {
-            id: 'copie-naissance',
-            title: 'Copie d\'Acte de Naissance',
-            icon: Copy,
-            color: 'bg-green-500',
-            fee: '$20',
-            documents: [
-                'Copie de la Carte Consulaire valide (obligatoire) pour les requérants résidents',
-                'Copie d\'un extrait d\'acte de naissance délivré par le Consulat Général de Côte d\'Ivoire à New York',
-                'Reçu de paiement des frais (20 dollars)'
-            ]
+            id: 'situation-irreguliere',
+            title: 'En situation irrégulière',
+            description: 'Sur réquisition des autorités locales',
+            icon: AlertCircle,
+            color: 'bg-orange-500'
+        },
+        {
+            id: 'passeport-expire',
+            title: 'Passeport expiré depuis six mois au plus',
+            description: 'Pour des raisons impérieuses et particulières (décès d\'un ascendant ou descendant)',
+            icon: Plane,
+            color: 'bg-blue-500'
         }
     ],
     en: [
         {
-            id: 'transcription-naissance',
-            title: 'Birth Certificate Transcription',
-            icon: Baby,
-            color: 'bg-blue-500',
-            fee: '$20',
-            documents: [
-                'Photocopy of valid Consular Card (mandatory) for resident applicants',
-                'Duly completed and signed form',
-                'Complete copy of the child\'s American birth certificate',
-                'Copy of French translation of the American birth certificate by a sworn firm',
-                'Copy of proof of Ivorian nationality of one of the two parents (national identity card, nationality certificate)',
-                'Copy of identity documents of both parents (National Identity Card, Passport or Administrative Identity Certificate)',
-                'Payment receipt for fees (20 dollars)'
-            ]
+            id: 'de-passage',
+            title: 'In transit and without travel document',
+            description: 'In case of loss or theft of passport',
+            icon: AlertTriangle,
+            color: 'bg-red-500'
         },
         {
-            id: 'copie-naissance',
-            title: 'Birth Certificate Copy',
-            icon: Copy,
-            color: 'bg-green-500',
-            fee: '$20',
-            documents: [
-                'Copy of valid Consular Card (mandatory) for resident applicants',
-                'Copy of birth certificate extract issued by the Consulate General of Côte d\'Ivoire in New York',
-                'Payment receipt for fees (20 dollars)'
-            ]
+            id: 'situation-irreguliere',
+            title: 'In irregular situation',
+            description: 'Upon requisition of local authorities',
+            icon: AlertCircle,
+            color: 'bg-orange-500'
+        },
+        {
+            id: 'passeport-expire',
+            title: 'Passport expired for six months or less',
+            description: 'For compelling and particular reasons (death of an ascendant or descendant)',
+            icon: Plane,
+            color: 'bg-blue-500'
         }
     ]
 };
 
-export default function EtatCivilPage() {
+const requiredDocuments = {
+    fr: [
+        'Déclaration ou certificat de perte ou de vol délivré par les autorités américaines (pour les Ivoiriens de passage)',
+        'Formulaire de demande de laissez-passer dûment renseigné et signé',
+        'Copie de tout document prouvant votre identité et votre nationalité (carte d\'identité nationale, carte consulaire, acte de naissance)',
+        'Copie ou réservation de billet d\'avion',
+        'Deux (02) photos d\'identité récentes',
+        'Acte de décès du parent en ligne directe accompagné de l\'acte de naissance du demandeur (en cas de décès)',
+        'Paiement des droits de chancellerie (80 dollars)'
+    ],
+    en: [
+        'Declaration or certificate of loss or theft issued by American authorities (for Ivorians in transit)',
+        'Laissez-passer application form duly completed and signed',
+        'Copy of any document proving your identity and nationality (national identity card, consular card, birth certificate)',
+        'Copy or reservation of airline ticket',
+        'Two (02) recent identity photos',
+        'Death certificate of direct line parent accompanied by applicant\'s birth certificate (in case of death)',
+        'Payment of chancellery fees (80 dollars)'
+    ]
+};
+
+export default function LaissezPasserPage() {
     const [language, setLanguage] = useState<'fr' | 'en'>('fr');
     const [page, setPage] = useState<Page | null>(null);
     const [loading, setLoading] = useState(true);
-    const [selectedServiceType, setSelectedServiceType] = useState('transcription-naissance');
 
     useEffect(() => {
         fetchPage();
@@ -104,7 +110,7 @@ export default function EtatCivilPage() {
 
     const fetchPage = async () => {
         try {
-            const response = await fetch('/api/pages/services/etat-civil', {
+            const response = await fetch('/api/pages/services/laissez-passer', {
                 cache: 'no-store',
                 headers: {
                     'Cache-Control': 'no-cache'
@@ -121,16 +127,16 @@ export default function EtatCivilPage() {
         }
     };
 
-    const title = page?.title?.[language] || (language === 'fr' ? 'TRANSCRIPTION ET COPIES DES ACTES D\'ÉTAT CIVIL' : 'TRANSCRIPTION AND COPIES OF CIVIL STATUS DOCUMENTS');
+    const title = page?.title?.[language] || (language === 'fr' ? 'LAISSEZ-PASSER' : 'TRAVEL PERMIT');
     const paymentLink = page?.paymentLink || "https://www.ci-embassyepay.org/";
     const formLink = page?.formLink || "https://newyork.diplomatie.gouv.ci/";
 
-    const currentServices = civilStateServices[language];
-    const selectedService = currentServices.find(service => service.id === selectedServiceType);
+    const currentConditions = eligibilityConditions[language];
+    const currentDocuments = requiredDocuments[language];
 
     if (loading) {
         return (
-            <Layout currentPath="/services/etat-civil">
+            <Layout currentPath="/services/laissez-passer">
                 <div className="bg-white py-12">
                     <div className="container mx-auto px-4 sm:px-6">
                         <div className="mx-auto max-w-4xl">
@@ -150,7 +156,7 @@ export default function EtatCivilPage() {
     }
 
     return (
-        <Layout currentPath="/services/etat-civil">
+        <Layout currentPath="/services/laissez-passer">
             <div className="bg-white py-12">
                 <div className="container mx-auto px-4 sm:px-6">
                     <div className="mx-auto max-w-6xl">
@@ -162,15 +168,15 @@ export default function EtatCivilPage() {
                             className="mb-8 text-center"
                         >
                             <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-orange-500 shadow-lg">
-                                <FileText className="h-10 w-10 text-white" />
+                                <Plane className="h-10 w-10 text-white" />
                             </div>
                             <h1 className="mb-4 text-3xl font-bold text-gray-900">
                                 {title}
                             </h1>
                             <p className="mx-auto max-w-2xl text-lg text-gray-600">
                                 {language === 'fr'
-                                    ? "Services de transcription et délivrance de copies d'actes d'état civil."
-                                    : "Transcription services and issuance of copies of civil status documents."}
+                                    ? "Titre exceptionnel de voyage pour permettre aux Ivoiriens de regagner la Côte d'Ivoire."
+                                    : "Exceptional travel document to allow Ivorians to return to Côte d'Ivoire."}
                             </p>
                         </motion.div>
 
@@ -197,55 +203,68 @@ export default function EtatCivilPage() {
                             </Button>
                         </motion.div>
 
-                        {/* Service Type Selector */}
+                        {/* Important Notice */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: 0.3 }}
                             className="mb-8"
                         >
+                            <Card className="overflow-hidden border-2 border-red-200 bg-red-50">
+                                <CardContent className="p-6">
+                                    <div className="flex items-start">
+                                        <AlertTriangle className="mr-3 mt-1 h-6 w-6 flex-shrink-0 text-red-600" />
+                                        <div>
+                                            <h3 className="text-lg font-bold text-red-900 mb-2">
+                                                {language === 'fr' ? 'IMPORTANT' : 'IMPORTANT'}
+                                            </h3>
+                                            <p className="text-red-800">
+                                                {language === 'fr'
+                                                    ? "Le laissez-passer est un titre exceptionnel de voyage délivré par les autorités consulaires d'un poste diplomatique ou consulaire pour permettre aux Ivoiriens de regagner la Côte d'Ivoire."
+                                                    : "The travel permit is an exceptional travel document issued by consular authorities of a diplomatic or consular post to allow Ivorians to return to Côte d'Ivoire."}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </motion.div>
+
+                        {/* Eligibility Conditions */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.4 }}
+                            className="mb-8"
+                        >
                             <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                                {language === 'fr' ? 'Types de Services' : 'Service Types'}
+                                {language === 'fr' ? 'Conditions d\'éligibilité' : 'Eligibility Conditions'}
                             </h2>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                {currentServices.map((service, index) => {
-                                    const IconComponent = service.icon;
+                            <p className="text-gray-700 mb-6">
+                                {language === 'fr' 
+                                    ? 'Ce document ne concerne que les Ivoiriens qui sont :'
+                                    : 'This document only concerns Ivorians who are:'}
+                            </p>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                {currentConditions.map((condition, index) => {
+                                    const IconComponent = condition.icon;
                                     return (
                                         <motion.div
-                                            key={service.id}
+                                            key={condition.id}
                                             initial={{ opacity: 0, y: 20 }}
                                             animate={{ opacity: 1, y: 0 }}
-                                            transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+                                            transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
                                         >
-                                            <Card 
-                                                className={`cursor-pointer transition-all duration-300 hover:shadow-lg ${
-                                                    selectedServiceType === service.id 
-                                                        ? 'ring-2 ring-orange-500 shadow-lg' 
-                                                        : 'hover:shadow-md'
-                                                }`}
-                                                onClick={() => setSelectedServiceType(service.id)}
-                                            >
+                                            <Card className="h-full">
                                                 <CardContent className="p-6 text-center">
-                                                    <div className={`mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl ${service.color} shadow-lg`}>
+                                                    <div className={`mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl ${condition.color} shadow-lg`}>
                                                         <IconComponent className="h-6 w-6 text-white" />
                                                     </div>
                                                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                                                        {service.title}
+                                                        {condition.title}
                                                     </h3>
-                                                    <div className="flex items-center justify-center gap-2 mb-2">
-                                                        <Badge variant="outline" className="text-xs">
-                                                            {service.fee}
-                                                        </Badge>
-                                                        <Badge 
-                                                            variant={selectedServiceType === service.id ? "default" : "outline"}
-                                                            className="text-xs"
-                                                        >
-                                                            {selectedServiceType === service.id 
-                                                                ? (language === 'fr' ? 'Sélectionné' : 'Selected')
-                                                                : (language === 'fr' ? 'Cliquer pour sélectionner' : 'Click to select')
-                                                            }
-                                                        </Badge>
-                                                    </div>
+                                                    <p className="text-sm text-gray-600">
+                                                        {condition.description}
+                                                    </p>
                                                 </CardContent>
                                             </Card>
                                         </motion.div>
@@ -254,55 +273,49 @@ export default function EtatCivilPage() {
                             </div>
                         </motion.div>
 
-                        {/* Selected Service Documents */}
-                        {selectedService && (
-                            <motion.div
-                                key={selectedServiceType}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.8 }}
-                                className="mb-8"
-                            >
-                                <Card className="overflow-hidden border-0 bg-gray-50 shadow-lg">
-                                    <CardHeader className="bg-gradient-to-r from-orange-500 to-green-500 text-white">
-                                        <CardTitle className="flex items-center gap-3">
-                                            <selectedService.icon className="h-6 w-6" />
-                                            {selectedService.title}
-                                            <Badge variant="secondary" className="bg-white text-gray-800">
-                                                {selectedService.fee}
-                                            </Badge>
-                                        </CardTitle>
-                                    </CardHeader>
-                                    <CardContent className="p-8">
-                                        <h3 className="text-xl font-bold text-gray-900 mb-6">
-                                            {language === 'fr' ? 'Pièces à fournir :' : 'Required Documents:'}
-                                        </h3>
-                                        <ol className="space-y-4">
-                                            {selectedService.documents.map((doc, index) => (
-                                                <motion.li
-                                                    key={index}
-                                                    initial={{ opacity: 0, x: -20 }}
-                                                    animate={{ opacity: 1, x: 0 }}
-                                                    transition={{ duration: 0.5, delay: index * 0.05 }}
-                                                    className="flex items-start"
-                                                >
-                                                    <span className="mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white">
-                                                        {index + 1}
-                                                    </span>
-                                                    <span className="text-gray-700 pt-1">{doc}</span>
-                                                </motion.li>
-                                            ))}
-                                        </ol>
-                                    </CardContent>
-                                </Card>
-                            </motion.div>
-                        )}
+                        {/* Required Documents */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.7 }}
+                            className="mb-8"
+                        >
+                            <Card className="overflow-hidden border-0 bg-gray-50 shadow-lg">
+                                <CardHeader className="bg-gradient-to-r from-orange-500 to-green-500 text-white">
+                                    <CardTitle className="flex items-center gap-3">
+                                        <FileText className="h-6 w-6" />
+                                        {language === 'fr' ? 'Pièces à fournir' : 'Required Documents'}
+                                        <Badge variant="secondary" className="bg-white text-gray-800">
+                                            $80
+                                        </Badge>
+                                    </CardTitle>
+                                </CardHeader>
+                                <CardContent className="p-8">
+                                    <ol className="space-y-4">
+                                        {currentDocuments.map((doc, index) => (
+                                            <motion.li
+                                                key={index}
+                                                initial={{ opacity: 0, x: -20 }}
+                                                animate={{ opacity: 1, x: 0 }}
+                                                transition={{ duration: 0.5, delay: 0.8 + index * 0.05 }}
+                                                className="flex items-start"
+                                            >
+                                                <span className="mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white">
+                                                    {index + 1}
+                                                </span>
+                                                <span className="text-gray-700 pt-1">{doc}</span>
+                                            </motion.li>
+                                        ))}
+                                    </ol>
+                                </CardContent>
+                            </Card>
+                        </motion.div>
 
                         {/* Submission Methods */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.8 }}
+                            transition={{ duration: 0.6, delay: 0.9 }}
                             className="mb-8"
                         >
                             <Card className="overflow-hidden border-2 border-blue-200 bg-blue-50">
@@ -343,7 +356,7 @@ export default function EtatCivilPage() {
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 1 }}
+                            transition={{ duration: 0.6, delay: 1.1 }}
                             className="mb-8"
                         >
                             <Card className="overflow-hidden border-2 border-amber-200 bg-amber-50">
@@ -357,8 +370,8 @@ export default function EtatCivilPage() {
                                             <div className="text-gray-700 space-y-2">
                                                 <p>
                                                     {language === 'fr' 
-                                                        ? '• Le délai de traitement de la demande est de trois (03) jours ouvrables après réception du dossier.'
-                                                        : '• Processing time for the application is three (03) business days after receiving the file.'}
+                                                        ? '• Le délai de traitement de la demande est de trois (03) jours après réception du dossier.'
+                                                        : '• Processing time for the application is three (03) days after receiving the file.'}
                                                 </p>
                                                 <p className="font-semibold text-amber-700">
                                                     {language === 'fr' 
@@ -376,18 +389,18 @@ export default function EtatCivilPage() {
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 1.2 }}
+                            transition={{ duration: 0.6, delay: 1.3 }}
                             className="mb-8"
                         >
                             <Card className="overflow-hidden border-2 border-green-200 bg-green-50">
                                 <CardContent className="p-6">
                                     <h3 className="mb-4 text-lg font-bold text-gray-900">
-                                        {language === 'fr' ? 'Paiement des frais ($20)' : 'Fee Payment ($20)'}
+                                        {language === 'fr' ? 'Paiement des droits de chancellerie ($80)' : 'Chancellery Fee Payment ($80)'}
                                     </h3>
                                     <p className="mb-6 text-gray-700">
                                         {language === 'fr' 
-                                            ? 'Effectuez le paiement des frais de service via notre plateforme sécurisée.'
-                                            : 'Make service fee payment through our secure platform.'}
+                                            ? 'Effectuez le paiement des droits de chancellerie via notre plateforme sécurisée.'
+                                            : 'Make chancellery fee payment through our secure platform.'}
                                     </p>
                                     <div className="text-center">
                                         <Button
@@ -395,7 +408,7 @@ export default function EtatCivilPage() {
                                             className="rounded-xl bg-green-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-green-700 hover:shadow-xl hover:scale-105"
                                         >
                                             <ExternalLink className="mr-3 h-5 w-5" />
-                                            {language === 'fr' ? 'Payer les frais' : 'Pay Fees'}
+                                            {language === 'fr' ? 'Payer les frais ($80)' : 'Pay Fees ($80)'}
                                         </Button>
                                     </div>
                                 </CardContent>
@@ -406,7 +419,7 @@ export default function EtatCivilPage() {
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 1.4 }}
+                            transition={{ duration: 0.6, delay: 1.5 }}
                             className="mt-8"
                         >
                             <Card className="overflow-hidden border-2 border-orange-200 bg-orange-50">
@@ -416,12 +429,12 @@ export default function EtatCivilPage() {
                                     </h3>
                                     <p className="mb-6 text-gray-700">
                                         {language === 'fr' 
-                                            ? 'Téléchargez les formulaires nécessaires et consultez les informations détaillées.'
-                                            : 'Download necessary forms and consult detailed information.'}
+                                            ? 'Téléchargez le formulaire de demande de laissez-passer et consultez les informations détaillées.'
+                                            : 'Download the travel permit application form and consult detailed information.'}
                                     </p>
                                     <div className="text-center">
                                         <Button 
-                                            onClick={() => window.open('/assets/services-consulaires-forms/transcription-acte-de-naissance-form.pdf', '_blank')}
+                                            onClick={() => window.open('/assets/services-consulaires-forms/laissez-passer-form.pdf', '_blank')}
                                             className="rounded-xl bg-orange-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-orange-700 hover:shadow-xl hover:scale-105"
                                         >
                                             <ExternalLink className="mr-3 h-5 w-5" />

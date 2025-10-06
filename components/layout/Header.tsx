@@ -106,6 +106,7 @@ const navigationItems = [
         hasDropdown: true,
         dropdownItems: [
             { label: "Tous les Services", href: "/services" },
+            { label: "Démarches Consulaires", href: "/services/demarches-consulaires" },
             { label: "Visa", href: "/services/visa" },
             { label: "Passeport", href: "/services/passeport" },
             { label: "Carte Consulaire", href: "/services/carte-consulaire" },

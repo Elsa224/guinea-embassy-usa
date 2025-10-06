@@ -72,6 +72,7 @@ export default function TipTapEditor({
   lastSaved,
 }: TipTapEditorProps) {
   const editor = useEditor({
+    immediatelyRender: false,
     extensions: [
       StarterKit.configure({
         heading: {

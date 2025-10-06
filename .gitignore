@@ -47,10 +47,10 @@ next-env.d.ts
 # Others
 /md
 /screenshots
+# /assets
 CLAUDE.md
 .*de
 /*.sql
 /logs
 /other-env 
-
 /lib/generated/prisma
