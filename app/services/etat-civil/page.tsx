@@ -15,7 +15,10 @@ import {
     User,
     Baby,
     Copy,
-    DollarSign
+    DollarSign,
+    Heart,
+    FileX,
+    Plane
 } from "lucide-react";
 import { useState, useEffect } from "react";
 
@@ -37,6 +40,7 @@ const civilStateServices = {
             icon: Baby,
             color: 'bg-blue-500',
             fee: '$20',
+            formLink: '/assets/services-consulaires-forms/transcription-acte-de-naissance-form.pdf',
             documents: [
                 'Photocopie de la Carte Consulaire valide (obligatoire) pour les requérants résidents',
                 'Formulaire dûment renseigné et signé',
@@ -58,6 +62,77 @@ const civilStateServices = {
                 'Copie d\'un extrait d\'acte de naissance délivré par le Consulat Général de Côte d\'Ivoire à New York',
                 'Reçu de paiement des frais (20 dollars)'
             ]
+        },
+        {
+            id: 'transcription-mariage',
+            title: 'Transcription d\'Acte de Mariage',
+            icon: Heart,
+            color: 'bg-pink-500',
+            fee: '$20',
+            formLink: '/assets/services-consulaires-forms/transcription-acte-de-mariage-form.pdf',
+            documents: [
+                'Copie de la Carte Consulaire valide (obligatoire) pour les requérants résidents',
+                'Formulaire dûment renseigné et signé',
+                'Copie de l\'extrait d\'acte de mariage américain',
+                'Copie de la traduction en français de l\'acte de mariage américain par un cabinet assermenté',
+                'Copie de la preuve de la nationalité ivoirienne de l\'un des deux époux (carte d\'identité nationale, certificat de nationalité)',
+                'Copie de l\'extrait d\'acte de naissance des deux (02) époux',
+                'Copie des pièces d\'identité des deux époux (Carte Nationale d\'Identité, Passeport ou Attestation Administrative d\'Identité)',
+                'Reçu de paiement des frais (20 dollars)'
+            ]
+        },
+        {
+            id: 'copie-mariage',
+            title: 'Copie d\'Acte de Mariage',
+            icon: Copy,
+            color: 'bg-pink-300',
+            fee: '$20',
+            documents: [
+                'Copie de la Carte Consulaire valide (obligatoire) pour les requérants résidents',
+                'Copie d\'un extrait de l\'acte de mariage délivré par le Consulat Général à New York',
+                'Reçu de paiement des frais (20 dollars)'
+            ]
+        },
+        {
+            id: 'transcription-deces',
+            title: 'Transcription d\'Acte de Décès',
+            icon: FileX,
+            color: 'bg-gray-600',
+            fee: '$20',
+            formLink: '/assets/services-consulaires-forms/transcription-acte-de-deces.pdf',
+            documents: [
+                'Formulaire dûment renseigné et signé',
+                'Original de l\'acte de décès américain',
+                'Traduction en français de l\'acte de décès américain par un cabinet assermenté',
+                'Copie de l\'extrait d\'acte de naissance du défunt ou de la défunte',
+                'Copie de la pièce d\'identité du défunt ou de la défunte (Carte Nationale d\'Identité, Passeport ou Attestation Administrative d\'Identité)',
+                'Reçu de paiement des frais (20 dollars)'
+            ]
+        },
+        {
+            id: 'autorisation-transfert-corps',
+            title: 'Autorisation de Transfert de Corps',
+            icon: Plane,
+            color: 'bg-indigo-600',
+            fee: '$20',
+            documents: [
+                'Autorisation de sortie du corps délivrée par les autorités américaines compétentes',
+                'Copie de la pièce d\'identité du défunt ou de la défunte (Carte Nationale d\'Identité, Passeport ou Attestation Administrative d\'Identité)',
+                'Copie de l\'acte de décès américain',
+                'Billet d\'avion (plan de vol)',
+                'Reçu de paiement des frais (20 dollars)'
+            ]
+        },
+        {
+            id: 'copie-deces',
+            title: 'Copie d\'Acte de Décès',
+            icon: Copy,
+            color: 'bg-gray-400',
+            fee: '$20',
+            documents: [
+                'Copie d\'un extrait de l\'acte de décès délivré par le Consulat Général de Côte d\'Ivoire aux États-Unis',
+                'Reçu de paiement des frais (20 dollars)'
+            ]
         }
     ],
     en: [
@@ -67,6 +142,7 @@ const civilStateServices = {
             icon: Baby,
             color: 'bg-blue-500',
             fee: '$20',
+            formLink: '/assets/services-consulaires-forms/transcription-acte-de-naissance-form.pdf',
             documents: [
                 'Photocopy of valid Consular Card (mandatory) for resident applicants',
                 'Duly completed and signed form',
@@ -86,6 +162,77 @@ const civilStateServices = {
             documents: [
                 'Copy of valid Consular Card (mandatory) for resident applicants',
                 'Copy of birth certificate extract issued by the Consulate General of Côte d\'Ivoire in New York',
+                'Payment receipt for fees (20 dollars)'
+            ]
+        },
+        {
+            id: 'transcription-mariage',
+            title: 'Marriage Certificate Transcription',
+            icon: Heart,
+            color: 'bg-pink-500',
+            fee: '$20',
+            formLink: '/assets/services-consulaires-forms/transcription-acte-de-mariage-form.pdf',
+            documents: [
+                'Copy of valid Consular Card (mandatory) for resident applicants',
+                'Duly completed and signed form',
+                'Copy of American marriage certificate extract',
+                'Copy of French translation of the American marriage certificate by a sworn firm',
+                'Copy of proof of Ivorian nationality of one of the two spouses (national identity card, nationality certificate)',
+                'Copy of birth certificate extract of both (02) spouses',
+                'Copy of identity documents of both spouses (National Identity Card, Passport or Administrative Identity Certificate)',
+                'Payment receipt for fees (20 dollars)'
+            ]
+        },
+        {
+            id: 'copie-mariage',
+            title: 'Marriage Certificate Copy',
+            icon: Copy,
+            color: 'bg-pink-300',
+            fee: '$20',
+            documents: [
+                'Copy of valid Consular Card (mandatory) for resident applicants',
+                'Copy of marriage certificate extract issued by the Consulate General in New York',
+                'Payment receipt for fees (20 dollars)'
+            ]
+        },
+        {
+            id: 'transcription-deces',
+            title: 'Death Certificate Transcription',
+            icon: FileX,
+            color: 'bg-gray-600',
+            fee: '$20',
+            formLink: '/assets/services-consulaires-forms/transcription-acte-de-deces.pdf',
+            documents: [
+                'Duly completed and signed form',
+                'Original American death certificate',
+                'French translation of the American death certificate by a sworn firm',
+                'Copy of birth certificate extract of the deceased',
+                'Copy of identity document of the deceased (National Identity Card, Passport or Administrative Identity Certificate)',
+                'Payment receipt for fees (20 dollars)'
+            ]
+        },
+        {
+            id: 'autorisation-transfert-corps',
+            title: 'Body Transfer Authorization',
+            icon: Plane,
+            color: 'bg-indigo-600',
+            fee: '$20',
+            documents: [
+                'Body release authorization issued by competent American authorities',
+                'Copy of identity document of the deceased (National Identity Card, Passport or Administrative Identity Certificate)',
+                'Copy of American death certificate',
+                'Flight ticket (flight plan)',
+                'Payment receipt for fees (20 dollars)'
+            ]
+        },
+        {
+            id: 'copie-deces',
+            title: 'Death Certificate Copy',
+            icon: Copy,
+            color: 'bg-gray-400',
+            fee: '$20',
+            documents: [
+                'Copy of death certificate extract issued by the Consulate General of Côte d\'Ivoire in the United States',
                 'Payment receipt for fees (20 dollars)'
             ]
         }
@@ -207,7 +354,7 @@ export default function EtatCivilPage() {
                             <h2 className="text-2xl font-bold text-gray-900 mb-6">
                                 {language === 'fr' ? 'Types de Services' : 'Service Types'}
                             </h2>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                                 {currentServices.map((service, index) => {
                                     const IconComponent = service.icon;
                                     return (
@@ -225,27 +372,27 @@ export default function EtatCivilPage() {
                                                 }`}
                                                 onClick={() => setSelectedServiceType(service.id)}
                                             >
-                                                <CardContent className="p-6 text-center">
-                                                    <div className={`mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl ${service.color} shadow-lg`}>
-                                                        <IconComponent className="h-6 w-6 text-white" />
+                                                <CardContent className="p-4 text-center">
+                                                    <div className={`mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-xl ${service.color} shadow-lg`}>
+                                                        <IconComponent className="h-5 w-5 text-white" />
                                                     </div>
-                                                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                                                    <h3 className="text-sm font-semibold text-gray-900 mb-2">
                                                         {service.title}
                                                     </h3>
-                                                    <div className="flex items-center justify-center gap-2 mb-2">
+                                                    <div className="flex items-center justify-center gap-1 mb-2">
                                                         <Badge variant="outline" className="text-xs">
                                                             {service.fee}
                                                         </Badge>
-                                                        <Badge 
-                                                            variant={selectedServiceType === service.id ? "default" : "outline"}
-                                                            className="text-xs"
-                                                        >
-                                                            {selectedServiceType === service.id 
-                                                                ? (language === 'fr' ? 'Sélectionné' : 'Selected')
-                                                                : (language === 'fr' ? 'Cliquer pour sélectionner' : 'Click to select')
-                                                            }
-                                                        </Badge>
                                                     </div>
+                                                    <Badge 
+                                                        variant={selectedServiceType === service.id ? "default" : "outline"}
+                                                        className="text-xs"
+                                                    >
+                                                        {selectedServiceType === service.id 
+                                                            ? (language === 'fr' ? 'Sélectionné' : 'Selected')
+                                                            : (language === 'fr' ? 'Sélectionner' : 'Select')
+                                                        }
+                                                    </Badge>
                                                 </CardContent>
                                             </Card>
                                         </motion.div>
@@ -420,13 +567,23 @@ export default function EtatCivilPage() {
                                             : 'Download necessary forms and consult detailed information.'}
                                     </p>
                                     <div className="text-center">
-                                        <Button 
-                                            onClick={() => window.open('/assets/services-consulaires-forms/transcription-acte-de-naissance-form.pdf', '_blank')}
-                                            className="rounded-xl bg-orange-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-orange-700 hover:shadow-xl hover:scale-105"
-                                        >
-                                            <ExternalLink className="mr-3 h-5 w-5" />
-                                            {language === 'fr' ? 'Télécharger le formulaire' : 'Download Form'}
-                                        </Button>
+                                        {selectedService && selectedService.formLink ? (
+                                            <Button 
+                                                onClick={() => window.open(selectedService.formLink, '_blank')}
+                                                className="rounded-xl bg-orange-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-orange-700 hover:shadow-xl hover:scale-105"
+                                            >
+                                                <ExternalLink className="mr-3 h-5 w-5" />
+                                                {language === 'fr' ? 'Télécharger le formulaire' : 'Download Form'}
+                                            </Button>
+                                        ) : (
+                                            <Button 
+                                                onClick={() => window.open(formLink, '_blank')}
+                                                className="rounded-xl bg-orange-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-orange-700 hover:shadow-xl hover:scale-105"
+                                            >
+                                                <ExternalLink className="mr-3 h-5 w-5" />
+                                                {language === 'fr' ? 'Site officiel' : 'Official Website'}
+                                            </Button>
+                                        )}
                                     </div>
                                 </CardContent>
                             </Card>

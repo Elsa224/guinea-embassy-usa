@@ -557,14 +557,27 @@ export default function AutresDocumentsPage() {
                                             ? 'Consultez notre site officiel pour télécharger les formulaires et obtenir plus d\'informations.'
                                             : 'Visit our official website to download forms and get more information.'}
                                     </p>
-                                    <div className="text-center">
-                                        <Button 
-                                            onClick={() => window.open(formLink, '_blank')}
-                                            className="rounded-xl bg-orange-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-orange-700 hover:shadow-xl hover:scale-105"
-                                        >
-                                            <ExternalLink className="mr-3 h-5 w-5" />
-                                            {language === 'fr' ? 'Site officiel' : 'Official Website'}
-                                        </Button>
+                                    <div className="flex flex-col gap-4">
+                                        {selectedServiceType === 'legalisations' && (
+                                            <div className="text-center">
+                                                <Button 
+                                                    onClick={() => window.open('/assets/services-consulaires-forms/procuration-form.pdf', '_blank')}
+                                                    className="rounded-xl bg-blue-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-blue-700 hover:shadow-xl hover:scale-105"
+                                                >
+                                                    <ExternalLink className="mr-3 h-5 w-5" />
+                                                    {language === 'fr' ? 'Télécharger le formulaire de procuration' : 'Download Proxy Form'}
+                                                </Button>
+                                            </div>
+                                        )}
+                                        <div className="text-center">
+                                            <Button 
+                                                onClick={() => window.open(formLink, '_blank')}
+                                                className="rounded-xl bg-orange-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-orange-700 hover:shadow-xl hover:scale-105"
+                                            >
+                                                <ExternalLink className="mr-3 h-5 w-5" />
+                                                {language === 'fr' ? 'Site officiel' : 'Official Website'}
+                                            </Button>
+                                        </div>
                                     </div>
                                 </CardContent>
                             </Card>

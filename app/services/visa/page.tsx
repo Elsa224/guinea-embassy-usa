@@ -482,14 +482,27 @@ export default function VisaPage() {
                                             ? 'Téléchargez le formulaire de demande de visa au format PDF.'
                                             : 'Download the visa application form in PDF format.'}
                                     </p>
-                                    <div className="text-center">
-                                        <Button 
-                                            onClick={() => window.open('/assets/services-consulaires-forms/demande-de-visa-form.pdf', '_blank')}
-                                            className="rounded-xl bg-blue-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-blue-700 hover:shadow-xl hover:scale-105"
-                                        >
-                                            <ExternalLink className="mr-3 h-5 w-5" />
-                                            {language === 'fr' ? 'Télécharger le formulaire PDF' : 'Download PDF Form'}
-                                        </Button>
+                                    <div className="flex flex-col gap-4">
+                                        <div className="text-center">
+                                            <Button 
+                                                onClick={() => window.open('/assets/services-consulaires-forms/demande-de-visa-form.pdf', '_blank')}
+                                                className="rounded-xl bg-blue-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-blue-700 hover:shadow-xl hover:scale-105"
+                                            >
+                                                <ExternalLink className="mr-3 h-5 w-5" />
+                                                {language === 'fr' ? 'Télécharger le formulaire de demande' : 'Download Application Form'}
+                                            </Button>
+                                        </div>
+                                        {selectedVisaType === 'mineur' && (
+                                            <div className="text-center">
+                                                <Button 
+                                                    onClick={() => window.open('/assets/services-consulaires-forms/autorisation-parentale-fom.pdf', '_blank')}
+                                                    className="rounded-xl bg-green-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-green-700 hover:shadow-xl hover:scale-105"
+                                                >
+                                                    <ExternalLink className="mr-3 h-5 w-5" />
+                                                    {language === 'fr' ? 'Télécharger l\'autorisation parentale' : 'Download Parental Authorization'}
+                                                </Button>
+                                            </div>
+                                        )}
                                     </div>
                                 </CardContent>
                             </Card>
