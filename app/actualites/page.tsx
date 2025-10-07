@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Search, Filter, Calendar, Tag } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { mockActualites } from '@/lib/mockData/actualites';
 
 export default function ActualitesPage() {
   const [page, setPage] = useState(1);
@@ -164,10 +165,10 @@ export default function ActualitesPage() {
               </div>
 
               {/* Results Count */}
-              {data && (
+              {(data || mockActualites) && (
                 <div className="flex items-center justify-between">
                   <p className="text-sm text-gray-600">
-                    {data.pagination.totalCount} article{data.pagination.totalCount > 1 ? 's' : ''} trouvé{data.pagination.totalCount > 1 ? 's' : ''}
+                    {((error || !data) ? mockActualites.pagination.totalCount : data.pagination.totalCount)} article{((error || !data) ? mockActualites.pagination.totalCount : data.pagination.totalCount) > 1 ? 's' : ''} trouvé{((error || !data) ? mockActualites.pagination.totalCount : data.pagination.totalCount) > 1 ? 's' : ''}
                   </p>
                   {(selectedCategory || selectedType || search) && (
                     <div className="flex flex-wrap gap-2">
@@ -203,10 +204,10 @@ export default function ActualitesPage() {
               transition={{ duration: 0.6, delay: 0.4 }}
             >
               <ArticleList
-                articles={data?.posts || []}
-                pagination={data?.pagination}
+                articles={(error || !data) ? mockActualites.posts : (data?.posts || [])}
+                pagination={(error || !data) ? mockActualites.pagination : data?.pagination}
                 loading={loading}
-                error={error}
+                error={null} // Don't show error, use mockup data instead
                 onPageChange={handlePageChange}
                 showPagination={true}
                 gridCols={3}

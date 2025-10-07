@@ -19,7 +19,8 @@ import {
     Home,
     Truck,
     GraduationCap,
-    DollarSign
+    DollarSign,
+    Plane
 } from "lucide-react";
 import { useState, useEffect } from "react";
 
@@ -114,6 +115,20 @@ const documentServices = {
             color: 'bg-indigo-500',
             fee: '$20',
             description: 'Légalisation de procuration, autorisation parentale, signature, diplôme et autres documents administratifs'
+        },
+        {
+            id: 'autorisation-transfert-corps',
+            title: 'Autorisation de Transfert de Corps',
+            icon: Plane,
+            color: 'bg-indigo-600',
+            fee: '$20',
+            documents: [
+                'Autorisation de sortie du corps délivrée par les autorités américaines compétentes',
+                'Copie de la pièce d\'identité du défunt ou de la défunte (Carte Nationale d\'Identité, Passeport ou Attestation Administrative d\'Identité)',
+                'Copie de l\'acte de décès américain',
+                'Billet d\'avion (plan de vol)',
+                'Reçu de paiement des frais (20 dollars)'
+            ]
         }
     ],
     en: [
@@ -196,6 +211,20 @@ const documentServices = {
             color: 'bg-indigo-500',
             fee: '$20',
             description: 'Legalization of proxy, parental authorization, signature, diploma and other administrative documents'
+        },
+        {
+            id: 'autorisation-transfert-corps',
+            title: 'Body Transfer Authorization',
+            icon: Plane,
+            color: 'bg-indigo-600',
+            fee: '$20',
+            documents: [
+                'Body release authorization issued by competent American authorities',
+                'Copy of identity document of the deceased (National Identity Card, Passport or Administrative Identity Certificate)',
+                'Copy of American death certificate',
+                'Flight ticket (flight plan)',
+                'Payment receipt for fees (20 dollars)'
+            ]
         }
     ]
 };

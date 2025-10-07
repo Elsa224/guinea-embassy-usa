@@ -40,8 +40,7 @@ const passportTypes = {
             color: 'bg-blue-500',
             documents: [
                 'Copie de la Carte Consulaire valide (obligatoire) du demandeur',
-                'Formulaire de demande de passeport biométrique dûment renseigné et signé',
-                'Une (1) photo d\'identité récente 4cm x 4cm (modèle Europe)',
+                'Photo Format Passeport',
                 'Copie de la Carte Nationale d\'Identité valide OU, à défaut, fournir les trois (03) documents suivants: Original de l\'extrait de naissance, Original du certificat de nationalité, Copie de la Carte Nationale d\'Identité d\'un parent',
                 'Reçu de paiement des frais (115 euros)'
             ]
@@ -53,10 +52,9 @@ const passportTypes = {
             color: 'bg-green-500',
             documents: [
                 'Copie de la Carte Consulaire valide (obligatoire) du parent ou tuteur légal',
-                'Formulaire de demande de passeport biométrique dûment renseigné et signé (Utilisation des initiales pour le nom de l\'enfant mineur)',
                 'Autorisation parentale légalisée auprès de l\'Ambassade ou par l\'autorité américaine compétente',
+                'Photo Format Passeport',
                 'Copie de l\'extrait d\'acte de naissance ivoirien de l\'enfant',
-                'Une (1) photo d\'identité récente dimensions 4cm x 4cm (modèle Europe)',
                 'Copie de la pièce d\'identité du parent ou du tuteur légal qui accompagne le mineur',
                 'Reçu de paiement des frais (115 euros)'
             ]
@@ -68,9 +66,8 @@ const passportTypes = {
             color: 'bg-purple-500',
             documents: [
                 'Copie de la Carte Consulaire valide (obligatoire) du demandeur',
-                'Formulaire de demande de passeport biométrique dûment rempli et signé',
                 'Copie (sur présentation de l\'original) du passeport biométrique expiré ou en voie d\'expiration (Six (6) mois au moins avant expiration)',
-                'Une (1) photo d\'identité récente dimensions 4cm x 4cm (modèle Europe)',
+                'Photo Format Passeport',
                 'Reçu de paiement des frais (115 euros)'
             ]
         }
@@ -83,8 +80,7 @@ const passportTypes = {
             color: 'bg-blue-500',
             documents: [
                 'Copy of valid Consular Card (mandatory) of the applicant',
-                'Biometric passport application form duly completed and signed',
-                'One (1) recent identity photo 4cm x 4cm (European model)',
+                'Photo Format Passeport',
                 'Copy of valid National Identity Card OR, failing that, provide the following three (03) documents: Original birth certificate, Original nationality certificate, Copy of parent\'s National Identity Card',
                 'Payment receipt for fees (115 euros)'
             ]
@@ -96,10 +92,9 @@ const passportTypes = {
             color: 'bg-green-500',
             documents: [
                 'Copy of valid Consular Card (mandatory) of parent or legal guardian',
-                'Biometric passport application form duly completed and signed (Use of initials for minor child\'s name)',
                 'Parental authorization legalized at the Embassy or by competent American authority',
+                'Photo Format Passeport',
                 'Copy of Ivorian birth certificate of the child',
-                'One (1) recent identity photo 4cm x 4cm (European model)',
                 'Copy of identity document of parent or legal guardian accompanying the minor',
                 'Payment receipt for fees (115 euros)'
             ]
@@ -111,9 +106,8 @@ const passportTypes = {
             color: 'bg-purple-500',
             documents: [
                 'Copy of valid Consular Card (mandatory) of the applicant',
-                'Biometric passport application form duly completed and signed',
                 'Copy (upon presentation of original) of expired or expiring biometric passport (At least six (6) months before expiration)',
-                'One (1) recent identity photo 4cm x 4cm (European model)',
+                'Photo Format Passeport',
                 'Payment receipt for fees (115 euros)'
             ]
         }
@@ -325,7 +319,7 @@ export default function PasseportPage() {
                                 className="mb-8"
                             >
                                 <Card className="overflow-hidden border-0 bg-gray-50 shadow-lg">
-                                    <CardHeader className="bg-gradient-to-r from-orange-500 to-green-500 text-white">
+                                    <CardHeader className="bg-orange-500 text-white">
                                         <CardTitle className="flex items-center gap-3">
                                             <selectedType.icon className="h-6 w-6" />
                                             {selectedType.title}
@@ -374,13 +368,18 @@ export default function PasseportPage() {
                                             <div className="text-gray-700 space-y-2">
                                                 <p>
                                                     {language === 'fr' 
-                                                        ? '• Le délai de traitement de la demande est de trente à quarante-cinq (30 à 45) jours après transmission du dossier à la SNEDAI.'
-                                                        : '• Processing time for the application is thirty to forty-five (30 to 45) days after transmission of the file to SNEDAI.'}
+                                                        ? '• Délais de traitement : 7 jours pour une demande normale et 24h pour une demande urgente.'
+                                                        : '• Processing time: 7 days for a normal application and 24h for an urgent application.'}
+                                                </p>
+                                                <p>
+                                                    {language === 'fr' 
+                                                        ? '• Durée de production : 30 à 45 jours après transmission du dossier à la SNEDAI.'
+                                                        : '• Production time: 30 to 45 days after transmission of the file to SNEDAI.'}
                                                 </p>
                                                 <p className="font-semibold text-amber-700">
                                                     {language === 'fr' 
-                                                        ? '• Tout dossier incomplet entraînera le non-traitement de la demande.'
-                                                        : '• Any incomplete file will result in non-processing of the application.'}
+                                                        ? '• Tout dossier incomplet entraînera un rejet de la demande.'
+                                                        : '• Any incomplete file will result in rejection of the application.'}
                                                 </p>
                                             </div>
                                         </div>
@@ -402,41 +401,12 @@ export default function PasseportPage() {
                                         <MapPin className="h-5 w-5 text-blue-600" />
                                         {language === 'fr' ? 'Retrait du Passeport' : 'Passport Pickup'}
                                     </h3>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                        <div className="space-y-3">
-                                            <h4 className="font-semibold text-gray-900 flex items-center gap-2">
-                                                <User className="h-4 w-4 text-blue-600" />
-                                                {language === 'fr' ? 'Directement au Consulat Général' : 'Directly at the Consulate General'}
-                                            </h4>
-                                            <p className="text-gray-700">
-                                                {language === 'fr' 
-                                                    ? 'Du lundi au vendredi : de 14h00 à 16h00.'
-                                                    : 'Monday to Friday: from 2:00 PM to 4:00 PM.'}
-                                            </p>
-                                        </div>
-                                        <div className="space-y-3">
-                                            <h4 className="font-semibold text-gray-900 flex items-center gap-2">
-                                                <Mail className="h-4 w-4 text-blue-600" />
-                                                {language === 'fr' ? 'Par voie postale' : 'By Mail'}
-                                            </h4>
-                                            <div className="text-gray-700 space-y-2 text-sm">
-                                                <p>
-                                                    {language === 'fr' 
-                                                        ? 'Fournir une enveloppe prépayée ou un bordereau d\'envoi d\'une compagnie (UPS, DHL…), portant l\'adresse précise et exacte.'
-                                                        : 'Provide a prepaid envelope or shipping slip from a company (UPS, DHL...), with precise and exact address.'}
-                                                </p>
-                                                <p>
-                                                    {language === 'fr' 
-                                                        ? 'Dans ce cas, le requérant devra obligatoirement fournir une lettre de désengagement signée.'
-                                                        : 'In this case, the applicant must provide a signed disclaimer letter.'}
-                                                </p>
-                                                <p className="font-semibold">
-                                                    {language === 'fr' 
-                                                        ? 'Toute enveloppe doit porter un « tracking number »'
-                                                        : 'Every envelope must have a "tracking number"'}
-                                                </p>
-                                            </div>
-                                        </div>
+                                    <div className="text-gray-700 mb-4">
+                                        <p className="font-semibold mb-2">
+                                            {language === 'fr' 
+                                                ? 'Tous les retraits se feront automatiquement à travers Express54. Tous les passeports seront livrés au requérant via la plateforme Express54.'
+                                                : 'All pickups will be done automatically through Express54. All passports will be delivered to the applicant via the Express54 platform.'}
+                                        </p>
                                     </div>
                                 </CardContent>
                             </Card>
@@ -456,8 +426,8 @@ export default function PasseportPage() {
                                     </h3>
                                     <p className="mb-6 text-gray-700">
                                         {language === 'fr' 
-                                            ? 'Effectuez le paiement des frais de passeport via notre plateforme officielle.'
-                                            : 'Make passport fee payment through our official platform.'}
+                                            ? 'Utiliser la plateforme sécurisée ci-dessous et téléverser le reçu de paiement en format PDF sur Express54.'
+                                            : 'Use the secure platform below and upload the payment receipt in PDF format on Express54.'}
                                     </p>
                                     <div className="text-center">
                                         <Button
@@ -472,7 +442,7 @@ export default function PasseportPage() {
                             </Card>
                         </motion.div>
 
-                        {/* Online Platform Section */}
+                        {/* Express54 Platform Section */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -482,20 +452,20 @@ export default function PasseportPage() {
                             <Card className="overflow-hidden border-2 border-orange-200 bg-orange-50">
                                 <CardContent className="p-6">
                                     <h3 className="mb-4 text-lg font-bold text-gray-900">
-                                        {language === 'fr' ? 'Plateforme officielle MonPasseport.ci' : 'Official MonPasseport.ci Platform'}
+                                        {language === 'fr' ? 'Plateforme digitale Express54' : 'Express54 Digital Platform'}
                                     </h3>
                                     <p className="mb-6 text-gray-700">
                                         {language === 'fr' 
-                                            ? 'Téléchargez vos formulaires et effectuez vos paiements sur la plateforme officielle.'
-                                            : 'Download your forms and make your payments on the official platform.'}
+                                            ? 'Mettre le même bloc sur tous les services après le bloc de paiement de frais.'
+                                            : 'Use the same block on all services after the fee payment block.'}
                                     </p>
                                     <div className="text-center">
                                         <Button 
-                                            onClick={() => window.open(formLink, '_blank')}
+                                            onClick={() => window.open('https://www.express54.org', '_blank')}
                                             className="rounded-xl bg-orange-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-orange-700 hover:shadow-xl hover:scale-105"
                                         >
                                             <ExternalLink className="mr-3 h-5 w-5" />
-                                            www.monpasseport.ci
+                                            www.express54.org
                                         </Button>
                                     </div>
                                 </CardContent>

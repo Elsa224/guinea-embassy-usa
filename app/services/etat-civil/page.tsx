@@ -110,20 +110,6 @@ const civilStateServices = {
             ]
         },
         {
-            id: 'autorisation-transfert-corps',
-            title: 'Autorisation de Transfert de Corps',
-            icon: Plane,
-            color: 'bg-indigo-600',
-            fee: '$20',
-            documents: [
-                'Autorisation de sortie du corps délivrée par les autorités américaines compétentes',
-                'Copie de la pièce d\'identité du défunt ou de la défunte (Carte Nationale d\'Identité, Passeport ou Attestation Administrative d\'Identité)',
-                'Copie de l\'acte de décès américain',
-                'Billet d\'avion (plan de vol)',
-                'Reçu de paiement des frais (20 dollars)'
-            ]
-        },
-        {
             id: 'copie-deces',
             title: 'Copie d\'Acte de Décès',
             icon: Copy,
@@ -208,20 +194,6 @@ const civilStateServices = {
                 'French translation of the American death certificate by a sworn firm',
                 'Copy of birth certificate extract of the deceased',
                 'Copy of identity document of the deceased (National Identity Card, Passport or Administrative Identity Certificate)',
-                'Payment receipt for fees (20 dollars)'
-            ]
-        },
-        {
-            id: 'autorisation-transfert-corps',
-            title: 'Body Transfer Authorization',
-            icon: Plane,
-            color: 'bg-indigo-600',
-            fee: '$20',
-            documents: [
-                'Body release authorization issued by competent American authorities',
-                'Copy of identity document of the deceased (National Identity Card, Passport or Administrative Identity Certificate)',
-                'Copy of American death certificate',
-                'Flight ticket (flight plan)',
                 'Payment receipt for fees (20 dollars)'
             ]
         },
@@ -456,19 +428,19 @@ export default function EtatCivilPage() {
                                 <CardContent className="p-6">
                                     <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
                                         <MapPin className="h-5 w-5 text-blue-600" />
-                                        {language === 'fr' ? 'Modalités de dépôt' : 'Submission Methods'}
+                                        {language === 'fr' ? 'Modalités de retrait' : 'Pickup Methods'}
                                     </h3>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <div className="space-y-3">
                                             <h4 className="font-semibold text-gray-900 flex items-center gap-2">
                                                 <Mail className="h-4 w-4 text-blue-600" />
-                                                {language === 'fr' ? 'Par voie postale' : 'By Mail'}
+                                                {language === 'fr' ? 'Par FedEx' : 'By FedEx'}
                                             </h4>
-                                            <div className="text-gray-700 space-y-1">
-                                                <p>Consulat Général de Côte d'Ivoire</p>
-                                                <p>800 Second Avenue, Fifth Floor</p>
-                                                <p>New York, NY 10017</p>
-                                            </div>
+                                            <p className="text-gray-700">
+                                                {language === 'fr' 
+                                                    ? 'Votre document sera livré par le moyen sécurisé FedEx disponible sur Express54.'
+                                                    : 'Your document will be delivered by the secure FedEx method available on Express54.'}
+                                            </p>
                                         </div>
                                         <div className="space-y-3">
                                             <h4 className="font-semibold text-gray-900 flex items-center gap-2">
@@ -477,8 +449,8 @@ export default function EtatCivilPage() {
                                             </h4>
                                             <p className="text-gray-700">
                                                 {language === 'fr' 
-                                                    ? 'Se présenter directement au Consulat Général pour le dépôt du dossier de documents ou actes consulaires.'
-                                                    : 'Present yourself directly at the Consulate General for the submission of documents or consular acts.'}
+                                                    ? 'Sélectionnez votre date de retrait sur la plateforme Express54.'
+                                                    : 'Select your pickup date on the Express54 platform.'}
                                             </p>
                                         </div>
                                     </div>
@@ -549,7 +521,7 @@ export default function EtatCivilPage() {
                             </Card>
                         </motion.div>
 
-                        {/* Forms Section */}
+                        {/* Express54 Platform Section */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -559,31 +531,21 @@ export default function EtatCivilPage() {
                             <Card className="overflow-hidden border-2 border-orange-200 bg-orange-50">
                                 <CardContent className="p-6">
                                     <h3 className="mb-4 text-lg font-bold text-gray-900">
-                                        {language === 'fr' ? 'Formulaires et informations' : 'Forms and Information'}
+                                        {language === 'fr' ? 'Plateforme digitale Express54' : 'Express54 Digital Platform'}
                                     </h3>
                                     <p className="mb-6 text-gray-700">
                                         {language === 'fr' 
-                                            ? 'Téléchargez les formulaires nécessaires et consultez les informations détaillées.'
-                                            : 'Download necessary forms and consult detailed information.'}
+                                            ? 'Accédez à la plateforme Express54 pour vos démarches consulaires.'
+                                            : 'Access the Express54 platform for your consular procedures.'}
                                     </p>
                                     <div className="text-center">
-                                        {selectedService && selectedService.formLink ? (
-                                            <Button 
-                                                onClick={() => window.open(selectedService.formLink, '_blank')}
-                                                className="rounded-xl bg-orange-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-orange-700 hover:shadow-xl hover:scale-105"
-                                            >
-                                                <ExternalLink className="mr-3 h-5 w-5" />
-                                                {language === 'fr' ? 'Télécharger le formulaire' : 'Download Form'}
-                                            </Button>
-                                        ) : (
-                                            <Button 
-                                                onClick={() => window.open(formLink, '_blank')}
-                                                className="rounded-xl bg-orange-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-orange-700 hover:shadow-xl hover:scale-105"
-                                            >
-                                                <ExternalLink className="mr-3 h-5 w-5" />
-                                                {language === 'fr' ? 'Site officiel' : 'Official Website'}
-                                            </Button>
-                                        )}
+                                        <Button 
+                                            onClick={() => window.open('https://www.express54.org', '_blank')}
+                                            className="rounded-xl bg-orange-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-orange-700 hover:shadow-xl hover:scale-105"
+                                        >
+                                            <ExternalLink className="mr-3 h-5 w-5" />
+                                            www.express54.org
+                                        </Button>
                                     </div>
                                 </CardContent>
                             </Card>

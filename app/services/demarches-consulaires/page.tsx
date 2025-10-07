@@ -181,7 +181,7 @@ export default function DemarchesConsulairesPage() {
                             className="mb-8"
                         >
                             <Card className="overflow-hidden border-0 bg-gray-50 shadow-lg">
-                                <div className="bg-gradient-to-r from-orange-500 to-green-500 text-white p-6">
+                                <div className="bg-orange-500 text-white p-6">
                                     <h2 className="text-2xl font-bold flex items-center gap-3">
                                         <Info className="h-6 w-6" />
                                         {language === 'fr' ? 'Informations utiles' : 'Useful Information'}

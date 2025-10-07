@@ -29,20 +29,16 @@ interface Page {
 
 const carteConsulaireDocs = {
     fr: [
-        'Formulaire de demande de Carte d\'Identité Consulaire dûment renseigné et signé',
         'Justificatif de domicile aux États-Unis d\'Amérique (carte de résidence, carte d\'étudiant, permis de conduire américain, facture ou tout document faisant foi)',
         'Deux (02) photos d\'identité 4cm x 4cm (modèle Europe)',
         'Copie d\'un extrait d\'acte de naissance et d\'un certificat de nationalité ou d\'une pièce d\'identité ivoirienne valide (Carte Nationale d\'Identité, Passeport ou Attestation Administrative d\'Identité valide)',
         'Copie de l\'extrait d\'acte de naissance pour les enfants mineurs',
-        'Reçu de paiement des frais (20 dollars américains pour les adultes et 10 dollars pour les enfants et étudiants)'
     ],
     en: [
-        'Consular Identity Card application form duly completed and signed',
         'Proof of residence in the United States of America (residence card, student card, American driver\'s license, bill or any document serving as proof)',
         'Two (02) identity photos 4cm x 4cm (European model)',
         'Copy of birth certificate extract and nationality certificate or valid Ivorian identity document (National Identity Card, Passport or valid Administrative Identity Certificate)',
         'Copy of birth certificate extract for minor children',
-        'Payment receipt for fees (20 US dollars for adults and 10 dollars for children and students)'
     ]
 };
 
@@ -184,42 +180,6 @@ export default function CarteConsulairePage() {
                             </Card>
                         </motion.div>
 
-                        {/* Fees */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.5 }}
-                            className="mb-8"
-                        >
-                            <Card className="overflow-hidden border-2 border-blue-200 bg-blue-50">
-                                <CardContent className="p-6">
-                                    <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                                        <DollarSign className="h-5 w-5 text-blue-600" />
-                                        {language === 'fr' ? 'Frais de service' : 'Service Fees'}
-                                    </h3>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        <div className="bg-white p-4 rounded-lg border border-blue-200">
-                                            <h4 className="font-semibold text-gray-900 mb-2">
-                                                {language === 'fr' ? 'Adultes' : 'Adults'}
-                                            </h4>
-                                            <p className="text-2xl font-bold text-blue-600">$20</p>
-                                            <p className="text-sm text-gray-600">
-                                                {language === 'fr' ? 'Dollars américains' : 'US Dollars'}
-                                            </p>
-                                        </div>
-                                        <div className="bg-white p-4 rounded-lg border border-blue-200">
-                                            <h4 className="font-semibold text-gray-900 mb-2">
-                                                {language === 'fr' ? 'Enfants et étudiants' : 'Children and Students'}
-                                            </h4>
-                                            <p className="text-2xl font-bold text-blue-600">$10</p>
-                                            <p className="text-sm text-gray-600">
-                                                {language === 'fr' ? 'Dollars américains' : 'US Dollars'}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        </motion.div>
 
                         {/* Submission Methods */}
                         <motion.div
@@ -232,19 +192,19 @@ export default function CarteConsulairePage() {
                                 <CardContent className="p-6">
                                     <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
                                         <MapPin className="h-5 w-5 text-purple-600" />
-                                        {language === 'fr' ? 'Modalités de dépôt' : 'Submission Methods'}
+                                        {language === 'fr' ? 'Modalités de retrait' : 'Pickup Methods'}
                                     </h3>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <div className="space-y-3">
                                             <h4 className="font-semibold text-gray-900 flex items-center gap-2">
                                                 <Mail className="h-4 w-4 text-purple-600" />
-                                                {language === 'fr' ? 'Par voie postale' : 'By Mail'}
+                                                {language === 'fr' ? 'Par FedEx' : 'By FedEx'}
                                             </h4>
-                                            <div className="text-gray-700 space-y-1">
-                                                <p>Consulat Général de Côte d'Ivoire</p>
-                                                <p>800 Second Avenue, Fifth Floor</p>
-                                                <p>New York, NY 10017</p>
-                                            </div>
+                                            <p className="text-gray-700">
+                                                {language === 'fr' 
+                                                    ? 'Votre document sera livré par le moyen sécurisé FedEx disponible sur Express54.'
+                                                    : 'Your document will be delivered by the secure FedEx method available on Express54.'}
+                                            </p>
                                         </div>
                                         <div className="space-y-3">
                                             <h4 className="font-semibold text-gray-900 flex items-center gap-2">
@@ -253,8 +213,8 @@ export default function CarteConsulairePage() {
                                             </h4>
                                             <p className="text-gray-700">
                                                 {language === 'fr' 
-                                                    ? 'Se présenter directement au Consulat Général pour le dépôt du dossier de documents ou actes consulaires.'
-                                                    : 'Present yourself directly at the Consulate General for the submission of documents or consular acts.'}
+                                                    ? 'Sélectionnez votre date de retrait sur la plateforme Express54.'
+                                                    : 'Select your pickup date on the Express54 platform.'}
                                             </p>
                                         </div>
                                     </div>
@@ -325,7 +285,7 @@ export default function CarteConsulairePage() {
                             </Card>
                         </motion.div>
 
-                        {/* Forms and Information Section */}
+                        {/* Express54 Platform Section */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -335,30 +295,21 @@ export default function CarteConsulairePage() {
                             <Card className="overflow-hidden border-2 border-orange-200 bg-orange-50">
                                 <CardContent className="p-6">
                                     <h3 className="mb-4 text-lg font-bold text-gray-900">
-                                        {language === 'fr' ? 'Formulaires et informations' : 'Forms and Information'}
+                                        {language === 'fr' ? 'Plateforme digitale Express54' : 'Express54 Digital Platform'}
                                     </h3>
                                     <p className="mb-6 text-gray-700">
                                         {language === 'fr' 
-                                            ? 'Téléchargez le formulaire et consultez les informations détaillées sur notre site officiel.'
-                                            : 'Download the form and consult detailed information on our official website.'}
+                                            ? 'Accédez à la plateforme Express54 pour vos démarches consulaires.'
+                                            : 'Access the Express54 platform for your consular procedures.'}
                                     </p>
                                     <div className="text-center">
-                                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                            <Button 
-                                                onClick={() => window.open('/assets/services-consulaires-forms/immatriculation-form.pdf', '_blank')}
-                                                className="rounded-xl bg-blue-600 px-6 py-3 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-blue-700 hover:shadow-xl hover:scale-105"
-                                            >
-                                                <ExternalLink className="mr-3 h-5 w-5" />
-                                                {language === 'fr' ? 'Télécharger le formulaire' : 'Download Form'}
-                                            </Button>
-                                            <Button 
-                                                onClick={() => window.open(formLink, '_blank')}
-                                                className="rounded-xl bg-orange-600 px-6 py-3 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-orange-700 hover:shadow-xl hover:scale-105"
-                                            >
-                                                <ExternalLink className="mr-3 h-5 w-5" />
-                                                {language === 'fr' ? 'Site officiel' : 'Official Website'}
-                                            </Button>
-                                        </div>
+                                        <Button 
+                                            onClick={() => window.open('https://www.express54.org', '_blank')}
+                                            className="rounded-xl bg-orange-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-orange-700 hover:shadow-xl hover:scale-105"
+                                        >
+                                            <ExternalLink className="mr-3 h-5 w-5" />
+                                            www.express54.org
+                                        </Button>
                                     </div>
                                 </CardContent>
                             </Card>

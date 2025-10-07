@@ -314,7 +314,7 @@ export default function Header({ currentPath = "/", isScrolled = false }: Header
                             ))}
                             
                             {/* Language Toggle - Moved here per boss requirements */}
-                            <div className="flex items-center space-x-2 ml-6 pl-6 border-l border-gray-300">
+                            <div hidden className="flex items-center space-x-2 ml-6 pl-6 border-l border-gray-300">
                                 <button className="px-3 py-2 text-sm font-medium text-gray-800 hover:ci-orange transition-colors">
                                     FR
                                 </button>

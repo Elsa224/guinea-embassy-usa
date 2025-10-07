@@ -39,41 +39,41 @@ export default function Home() {
             title: "VISA",
             description:
                 "Pour obtenir un visa, le demandeur doit fournir un dossier électronique comprenant les pièces ci-après.",
-            link: "/visa",
+            link: "/services/visa",
         },
         {
             icon: "/assets/images-for-the-new-website/services/PICTO-06.png",
             title: "PASSEPORT",
             description: "Plateforme en ligne dédiée à la demande de passport.",
-            link: "/passeport",
+            link: "/services/passeport",
         },
         {
             icon: "/assets/images-for-the-new-website/services/PICTO-06.png",
             title: "CARTE CONSULAIRE",
             description:
                 "Plateforme en ligne dédiée à la demande de carte consulaire.",
-            link: "/carte-consulaire",
+            link: "/services/carte-consulaire",
         },
         {
             icon: "/assets/images-for-the-new-website/services/PICTO-03.png",
             title: "DELIVERY EXPRESS",
             description:
                 "Plateforme en ligne dédiée à la demande de livraison express.",
-            link: "/delivery-express",
+            link: "/services/delivery-express",
         },
         {
             icon: "/assets/images-for-the-new-website/services/PICTO-04.png",
             title: "AUTRES DOCUMENTS",
             description:
                 "Plateforme en ligne dédiée à la demande d'autres documents administratifs.",
-            link: "/autres-documents",
+            link: "/services/autres-documents",
         },
         {
             icon: "/assets/images-for-the-new-website/services/PICTO-01.png",
-            title: "DOCUMENTS CIVILS",
+            title: "ETAT CIVIL",
             description:
-                "Plateforme en ligne dédiée à la demande de documents civils.",
-            link: "/etat-civil",
+                "Plateforme en ligne dédiée à la demande de documents d'état civil.",
+            link: "/services/etat-civil",
         },
     ];
 
@@ -132,14 +132,6 @@ export default function Home() {
                 >
                     <img
                         src="/assets/images-for-the-new-website/first-hero-background.png"
-                        alt=""
-                        className="mb-5 h-full w-full object-cover object-center"
-                        style={{ opacity: 1 }}
-                    />
-                </div>
-                <div className="absolute inset-0 top-20 z-0" aria-hidden="true">
-                    <img
-                        src="/assets/images-for-the-new-website/civ_usa_flag_no_bg.png"
                         alt=""
                         className="mb-5 h-full w-full object-cover object-center"
                         style={{ opacity: 1 }}
@@ -427,13 +419,13 @@ export default function Home() {
                             </h3>
                         </div> */}
 
-                        {/* Help section with pipe-separated content */}
+                        {/* Help section with pipe-separated content - Hidden per boss requirements */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.4 }}
                             viewport={{ once: true }}
-                            className="rounded-2xl border border-orange-100 bg-orange-50 p-8 text-center"
+                            className="rounded-2xl border border-orange-100 bg-orange-50 p-8 text-center hidden"
                         >
                             <h4 className="mb-4 text-2xl font-bold text-gray-900">
                                 Vous ne trouvez pas ce que vous cherchez ?

@@ -10,6 +10,7 @@ import Link from "next/link";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 import { useParams, useRouter } from "next/navigation";
+import { mockActualites } from "@/lib/mockData/actualites";
 
 export default function PostDetailPage() {
     const params = useParams();
@@ -38,27 +39,37 @@ export default function PostDetailPage() {
         );
     }
 
-    if (error) {
-        return (
-            <Layout currentPath="/actualites">
-                <div className="flex min-h-screen items-center justify-center">
-                    <div className="text-center">
-                        <h1 className="text-2xl font-bold text-gray-900 mb-4">Article not found</h1>
-                        <p className="text-gray-600 mb-6">{error}</p>
-                        <Button asChild>
-                            <Link href="/actualites">Return to Articles</Link>
-                        </Button>
+    // Use mockup data if there's an error or no data from database
+    let post = data?.post;
+    let relatedPosts = data?.relatedPosts || [];
+
+    if (error || !data?.post) {
+        // Try to find the post in our mockup data
+        const mockPost = mockActualites.posts.find(p => p.slug === slug);
+        if (mockPost) {
+            post = mockPost;
+            // Get related posts from mockup (exclude current post)
+            relatedPosts = mockActualites.posts.filter(p => p.slug !== slug).slice(0, 4);
+        } else {
+            return (
+                <Layout currentPath="/actualites">
+                    <div className="flex min-h-screen items-center justify-center">
+                        <div className="text-center">
+                            <h1 className="text-2xl font-bold text-gray-900 mb-4">Article non trouvé</h1>
+                            <p className="text-gray-600 mb-6">L'article demandé n'existe pas.</p>
+                            <Button asChild>
+                                <Link href="/actualites">Retour aux actualités</Link>
+                            </Button>
+                        </div>
                     </div>
-                </div>
-            </Layout>
-        );
+                </Layout>
+            );
+        }
     }
 
-    if (!data?.post) {
+    if (!post) {
         return null;
     }
-
-    const { post, relatedPosts } = data;
 
     return (
         <Layout currentPath="/actualites">
@@ -155,10 +166,53 @@ export default function PostDetailPage() {
                             transition={{ duration: 0.6, delay: 0.3 }}
                             className="prose prose-lg mx-auto mb-12"
                         >
-                            <div 
-                                className="post-content"
-                                dangerouslySetInnerHTML={{ __html: post.content }}
-                            />
+                            {/* Check if content is HTML or plain text */}
+                            {post.content.includes('<') ? (
+                                <div 
+                                    className="post-content"
+                                    dangerouslySetInnerHTML={{ __html: post.content }}
+                                />
+                            ) : (
+                                <div className="post-content">
+                                    {post.content.split('\n').map((paragraph, index) => {
+                                        if (paragraph.trim() === '') return null;
+                                        
+                                        // Check if paragraph contains a URL
+                                        const urlRegex = /(https?:\/\/[^\s]+)/g;
+                                        const hasUrl = urlRegex.test(paragraph);
+                                        
+                                        if (hasUrl) {
+                                            const parts = paragraph.split(urlRegex);
+                                            return (
+                                                <p key={index} className="mb-4">
+                                                    {parts.map((part, partIndex) => {
+                                                        if (urlRegex.test(part)) {
+                                                            return (
+                                                                <a
+                                                                    key={partIndex}
+                                                                    href={part}
+                                                                    target="_blank"
+                                                                    rel="noopener noreferrer"
+                                                                    className="text-orange-600 hover:text-orange-700 underline"
+                                                                >
+                                                                    {part}
+                                                                </a>
+                                                            );
+                                                        }
+                                                        return part;
+                                                    })}
+                                                </p>
+                                            );
+                                        }
+                                        
+                                        return (
+                                            <p key={index} className="mb-4">
+                                                {paragraph}
+                                            </p>
+                                        );
+                                    })}
+                                </div>
+                            )}
                         </motion.div>
 
                         {/* Media Gallery */}

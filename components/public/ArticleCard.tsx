@@ -144,10 +144,6 @@ export function ArticleCard({
         <div className="flex items-center justify-between text-sm text-gray-500 pt-4 border-t border-gray-100">
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-1">
-              <User className="w-4 h-4" />
-              <span>{author.name}</span>
-            </div>
-            <div className="flex items-center gap-1">
               <Calendar className="w-4 h-4" />
               <span>{formatDate(publishedAt)}</span>
             </div>
@@ -161,7 +157,7 @@ export function ArticleCard({
             href={`/actualites/${slug}`}
             className="flex items-center gap-1 text-ci-orange hover:text-ci-orange-dark transition-colors font-medium"
           >
-            Lire la suite
+            Voir Plus
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
