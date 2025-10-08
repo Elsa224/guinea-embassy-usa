@@ -153,7 +153,7 @@ export default function CarteConsulairePage() {
                             className="mb-8"
                         >
                             <Card className="overflow-hidden border-0 bg-gray-50 shadow-lg">
-                                <div className="bg-gradient-to-r from-orange-500 to-green-500 text-white p-6">
+                                <div className="bg-orange-500 text-white p-6">
                                     <h2 className="text-2xl font-bold flex items-center gap-3">
                                         <FileText className="h-6 w-6" />
                                         {language === 'fr' ? 'Pièces à fournir' : 'Required Documents'}
@@ -231,25 +231,29 @@ export default function CarteConsulairePage() {
                         >
                             <Card className="overflow-hidden border-2 border-amber-200 bg-amber-50">
                                 <CardContent className="p-6">
-                                    <div className="flex items-start">
-                                        <Clock className="mr-3 mt-1 h-6 w-6 flex-shrink-0 text-amber-600" />
-                                        <div className="space-y-3">
+                                <div className="space-y-3">
                                             <h3 className="text-lg font-bold text-gray-900">
                                                 {language === 'fr' ? 'Délais de traitement' : 'Processing Time'}
                                             </h3>
                                             <div className="text-gray-700 space-y-2">
                                                 <p>
                                                     {language === 'fr' 
-                                                        ? '• Le délai de traitement de la demande est de trois (03) jours après réception du dossier.'
-                                                        : '• Processing time for the application is three (03) days after receiving the file.'}
+                                                        ? <>• <span className="font-bold text-amber-700">7 jours</span> pour une demande normale et <span className="font-bold text-amber-700">24h</span> pour une demande urgente.</>
+                                                        : <>• <span className="font-bold text-amber-700">7 days</span> for a normal application and <span className="font-bold text-amber-700">24h</span> for an urgent application.</>
+                                                    }
+                                                </p>
+                                                <p>
+                                                    {language === 'fr' 
+                                                        ? <>• Durée de production : <span className="font-bold text-amber-700">30 à 45 jours</span> après transmission du dossier.</>
+                                                        : <>• Production time: <span className="font-bold text-amber-700">30 to 45 days</span> after transmission of the file.</>
+                                                    }
                                                 </p>
                                                 <p className="font-semibold text-amber-700">
                                                     {language === 'fr' 
-                                                        ? '• Tout dossier incomplet entraînera le non-traitement de la demande.'
-                                                        : '• Any incomplete file will result in non-processing of the application.'}
+                                                        ? '• Tout dossier incomplet entraînera un rejet de la demande.'
+                                                        : '• Any incomplete file will result in rejection of the application.'}
                                                 </p>
                                             </div>
-                                        </div>
                                     </div>
                                 </CardContent>
                             </Card>
@@ -294,13 +298,13 @@ export default function CarteConsulairePage() {
                         >
                             <Card className="overflow-hidden border-2 border-orange-200 bg-orange-50">
                                 <CardContent className="p-6">
-                                    <h3 className="mb-4 text-lg font-bold text-gray-900">
+                                <h3 className="mb-4 text-lg font-bold text-gray-900">
                                         {language === 'fr' ? 'Plateforme digitale Express54' : 'Express54 Digital Platform'}
                                     </h3>
                                     <p className="mb-6 text-gray-700">
                                         {language === 'fr' 
-                                            ? 'Accédez à la plateforme Express54 pour vos démarches consulaires.'
-                                            : 'Access the Express54 platform for your consular procedures.'}
+                                            ? 'Effectuez votre demande de visa directement sur notre plateforme digitalisée pour un traitement plus rapide.'
+                                            : 'Submit your visa application directly on our digitalized platform for faster processing.'}
                                     </p>
                                     <div className="text-center">
                                         <Button 

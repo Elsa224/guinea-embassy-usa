@@ -37,11 +37,18 @@ const passportTypes = {
             id: 'premiere-demande',
             title: '1ère Demande de Passeport Ordinaire Biométrique',
             icon: User,
-            color: 'bg-blue-500',
+            color: 'bg-green-700',
             documents: [
                 'Copie de la Carte Consulaire valide (obligatoire) du demandeur',
                 'Photo Format Passeport',
-                'Copie de la Carte Nationale d\'Identité valide OU, à défaut, fournir les trois (03) documents suivants: Original de l\'extrait de naissance, Original du certificat de nationalité, Copie de la Carte Nationale d\'Identité d\'un parent',
+                {
+                    main: 'Copie de la Carte Nationale d\'Identité valide OU, à défaut, fournir les trois (03) documents suivants :',
+                    subDocuments: [
+                        'Original de l\'extrait de naissance',
+                        'Original du certificat de nationalité',
+                        'Copie de la Carte Nationale d\'Identité d\'un parent'
+                    ]
+                },
                 'Reçu de paiement des frais (115 euros)'
             ]
         },
@@ -49,7 +56,7 @@ const passportTypes = {
             id: 'premiere-demande-mineur',
             title: '1ère Demande de Passeport Ordinaire Biométrique pour Mineurs',
             icon: Users,
-            color: 'bg-green-500',
+            color: 'bg-green-700',
             documents: [
                 'Copie de la Carte Consulaire valide (obligatoire) du parent ou tuteur légal',
                 'Autorisation parentale légalisée auprès de l\'Ambassade ou par l\'autorité américaine compétente',
@@ -63,7 +70,7 @@ const passportTypes = {
             id: 'renouvellement',
             title: 'Renouvellement de Passeport Biométrique',
             icon: RotateCcw,
-            color: 'bg-purple-500',
+            color: 'bg-green-700',
             documents: [
                 'Copie de la Carte Consulaire valide (obligatoire) du demandeur',
                 'Copie (sur présentation de l\'original) du passeport biométrique expiré ou en voie d\'expiration (Six (6) mois au moins avant expiration)',
@@ -77,11 +84,18 @@ const passportTypes = {
             id: 'premiere-demande',
             title: 'First Application for Ordinary Biometric Passport',
             icon: User,
-            color: 'bg-blue-500',
+            color: 'bg-green-700',
             documents: [
                 'Copy of valid Consular Card (mandatory) of the applicant',
                 'Photo Format Passeport',
-                'Copy of valid National Identity Card OR, failing that, provide the following three (03) documents: Original birth certificate, Original nationality certificate, Copy of parent\'s National Identity Card',
+                {
+                    main: 'Copy of valid National Identity Card OR, failing that, provide the following three (03) documents:',
+                    subDocuments: [
+                        'Original birth certificate',
+                        'Original nationality certificate',
+                        'Copy of parent\'s National Identity Card'
+                    ]
+                },
                 'Payment receipt for fees (115 euros)'
             ]
         },
@@ -89,7 +103,7 @@ const passportTypes = {
             id: 'premiere-demande-mineur',
             title: 'First Application for Ordinary Biometric Passport for Minors',
             icon: Users,
-            color: 'bg-green-500',
+            color: 'bg-green-700',
             documents: [
                 'Copy of valid Consular Card (mandatory) of parent or legal guardian',
                 'Parental authorization legalized at the Embassy or by competent American authority',
@@ -103,7 +117,7 @@ const passportTypes = {
             id: 'renouvellement',
             title: 'Biometric Passport Renewal',
             icon: RotateCcw,
-            color: 'bg-purple-500',
+            color: 'bg-green-700',
             documents: [
                 'Copy of valid Consular Card (mandatory) of the applicant',
                 'Copy (upon presentation of original) of expired or expiring biometric passport (At least six (6) months before expiration)',
@@ -319,8 +333,8 @@ export default function PasseportPage() {
                                 className="mb-8"
                             >
                                 <Card className="overflow-hidden border-0 bg-gray-50 shadow-lg">
-                                    <CardHeader className="bg-orange-500 text-white">
-                                        <CardTitle className="flex items-center gap-3">
+                                    <CardHeader className="bg-orange-500 text-white p-6">
+                                        <CardTitle className="text-2xl font-bold flex items-center gap-3">
                                             <selectedType.icon className="h-6 w-6" />
                                             {selectedType.title}
                                         </CardTitle>
@@ -341,7 +355,25 @@ export default function PasseportPage() {
                                                     <span className="mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white">
                                                         {index + 1}
                                                     </span>
-                                                    <span className="text-gray-700 pt-1">{doc}</span>
+                                                    <div className="text-gray-700 pt-1 flex-1">
+                                                        {typeof doc === 'string' ? (
+                                                            doc
+                                                        ) : (
+                                                            <div>
+                                                                <div className="mb-3">{doc.main}</div>
+                                                                <ul className="ml-4 space-y-2">
+                                                                    {doc.subDocuments.map((subDoc, subIndex) => (
+                                                                        <li key={subIndex} className="flex items-start">
+                                                                            <span className="mr-3 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-orange-500 text-xs font-bold text-white">
+                                                                                {subIndex + 1}
+                                                                            </span>
+                                                                            <span>{subDoc}</span>
+                                                                        </li>
+                                                                    ))}
+                                                                </ul>
+                                                            </div>
+                                                        )}
+                                                    </div>
                                                 </motion.li>
                                             ))}
                                         </ol>
@@ -368,13 +400,15 @@ export default function PasseportPage() {
                                             <div className="text-gray-700 space-y-2">
                                                 <p>
                                                     {language === 'fr' 
-                                                        ? '• Délais de traitement : 7 jours pour une demande normale et 24h pour une demande urgente.'
-                                                        : '• Processing time: 7 days for a normal application and 24h for an urgent application.'}
+                                                        ? <>• <span className="font-bold text-amber-700">7 jours</span> pour une demande normale et <span className="font-bold text-amber-700">24h</span> pour une demande urgente.</>
+                                                        : <>• <span className="font-bold text-amber-700">7 days</span> for a normal application and <span className="font-bold text-amber-700">24h</span> for an urgent application.</>
+                                                    }
                                                 </p>
                                                 <p>
                                                     {language === 'fr' 
-                                                        ? '• Durée de production : 30 à 45 jours après transmission du dossier à la SNEDAI.'
-                                                        : '• Production time: 30 to 45 days after transmission of the file to SNEDAI.'}
+                                                        ? <>• Durée de production : <span className="font-bold text-amber-700">30 à 45 jours</span> après transmission du dossier à la SNEDAI.</>
+                                                        : <>• Production time: <span className="font-bold text-amber-700">30 to 45 days</span> after transmission of the file to SNEDAI.</>
+                                                    }
                                                 </p>
                                                 <p className="font-semibold text-amber-700">
                                                     {language === 'fr' 
@@ -404,8 +438,13 @@ export default function PasseportPage() {
                                     <div className="text-gray-700 mb-4">
                                         <p className="font-semibold mb-2">
                                             {language === 'fr' 
-                                                ? 'Tous les retraits se feront automatiquement à travers Express54. Tous les passeports seront livrés au requérant via la plateforme Express54.'
-                                                : 'All pickups will be done automatically through Express54. All passports will be delivered to the applicant via the Express54 platform.'}
+                                                ? 'Tous les retraits se feront automatiquement à travers Express54.'
+                                                : 'All pickups will be done automatically through Express54.'}
+                                        </p>
+                                        <p className="font-semibold mb-2">
+                                            {language === 'fr' 
+                                                ? 'Tous les passeports seront livrés au requérant via la plateforme Express54.'
+                                                : 'All passports will be delivered to the applicant via the Express54 platform.'}
                                         </p>
                                     </div>
                                 </CardContent>
@@ -446,18 +485,18 @@ export default function PasseportPage() {
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 1.4 }}
+                            transition={{ duration: 0.6, delay: 0.9 }}
                             className="mt-8"
                         >
                             <Card className="overflow-hidden border-2 border-orange-200 bg-orange-50">
                                 <CardContent className="p-6">
-                                    <h3 className="mb-4 text-lg font-bold text-gray-900">
+                                <h3 className="mb-4 text-lg font-bold text-gray-900">
                                         {language === 'fr' ? 'Plateforme digitale Express54' : 'Express54 Digital Platform'}
                                     </h3>
                                     <p className="mb-6 text-gray-700">
                                         {language === 'fr' 
-                                            ? 'Mettre le même bloc sur tous les services après le bloc de paiement de frais.'
-                                            : 'Use the same block on all services after the fee payment block.'}
+                                            ? 'Effectuez votre demande de visa directement sur notre plateforme digitalisée pour un traitement plus rapide.'
+                                            : 'Submit your visa application directly on our digitalized platform for faster processing.'}
                                     </p>
                                     <div className="text-center">
                                         <Button 

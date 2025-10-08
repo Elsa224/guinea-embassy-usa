@@ -35,24 +35,23 @@ const visaTypes = {
             id: 'ordinaire',
             title: 'Visa pour un Passeport Ordinaire',
             icon: User,
-            color: 'bg-blue-500',
+            color: 'bg-green-700',
             documents: [
-                'Formulaire de demande de visa dûment rempli et signé',
                 'Passeport d\'une validité d\'au moins six (06) mois',
                 'Photo Format Passeport',
                 'Lettre d\'invitation légalisée en Côte d\'Ivoire (ou photocopie couleur) ou une réservation d\'hôtel',
                 'Copie du billet d\'avion',
                 'Copie du carnet de vaccination contre la Fièvre Jaune',
-                'Copie du reçu de paiement des frais de visa'
+                'Copie du reçu de paiement des frais de visa',
+                'Soumettre votre demande sur www.express54.org ou télécharger l\'application mobile Express54.'
             ]
         },
         {
             id: 'mineur',
             title: 'Visa Ordinaire pour les Mineurs',
             icon: Users,
-            color: 'bg-green-500',
+            color: 'bg-green-700',
             documents: [
-                'Formulaire de demande de visa dûment rempli et signé',
                 'Passeport d\'une validité d\'au moins six (06) mois',
                 'Photo Format Passeport',
                 'Lettre d\'invitation légalisée en Côte d\'Ivoire (ou photocopie couleur) ou une réservation d\'hôtel',
@@ -61,20 +60,21 @@ const visaTypes = {
                 'Copie du reçu de paiement des frais de visa',
                 'Copie de l\'extrait de naissance de l\'enfant mineur',
                 'Copie de l\'autorisation parentale assermentée ou légalisée du parent absent, par une autorité américaine compétente (cas où l\'enfant est accompagné par un des parents)',
-                'Copie de l\'autorisation parentale assermentée ou légalisée des deux parents, par une autorité américaine compétente (cas où l\'enfant est accompagné par une tierce personne)'
+                'Copie de l\'autorisation parentale assermentée ou légalisée des deux parents, par une autorité américaine compétente (cas où l\'enfant est accompagné par une tierce personne)',
+                'Soumettre votre demande sur www.express54.org ou télécharger l\'application mobile Express54.'
             ]
         },
         {
             id: 'officiel',
             title: 'Visa pour un Passeport Officiel (Diplomatique ou de Service)',
             icon: Shield,
-            color: 'bg-purple-500',
+            color: 'bg-green-700',
             documents: [
                 'Note verbale (originale) et copie de l\'ordre de mission',
-                'Formulaire de demande de visa dûment rempli et signé',
                 'Photo Format Passeport',
                 'Passeport officiel d\'une validité d\'au moins six (06) mois',
-                'Copie du carnet de vaccination contre la Fièvre Jaune'
+                'Copie du carnet de vaccination contre la Fièvre Jaune',
+                'Soumettre votre demande sur www.express54.org ou télécharger l\'application mobile Express54.'
             ]
         }
     ],
@@ -83,24 +83,23 @@ const visaTypes = {
             id: 'ordinaire',
             title: 'Visa for Ordinary Passport',
             icon: User,
-            color: 'bg-blue-500',
+            color: 'bg-green-700',
             documents: [
-                'Duly completed and signed visa application form',
                 'Passport with at least six (06) months validity',
                 'Photo Format Passeport',
                 'Legalized invitation letter from Côte d\'Ivoire (or color photocopy) or hotel reservation',
                 'Copy of flight ticket',
                 'Copy of Yellow Fever vaccination certificate',
-                'Copy of visa fee payment receipt'
+                'Copy of visa fee payment receipt',
+                'Submit your application on www.express54.org or download the Express54 mobile application.'
             ]
         },
         {
             id: 'mineur',
             title: 'Ordinary Visa for Minors',
             icon: Users,
-            color: 'bg-green-500',
+            color: 'bg-green-700',
             documents: [
-                'Duly completed and signed visa application form',
                 'Passport with at least six (06) months validity',
                 'Photo Format Passeport',
                 'Legalized invitation letter from Côte d\'Ivoire (or color photocopy) or hotel reservation',
@@ -109,20 +108,21 @@ const visaTypes = {
                 'Copy of visa fee payment receipt',
                 'Copy of minor child\'s birth certificate',
                 'Copy of sworn or legalized parental authorization from absent parent, by competent American authority (when child is accompanied by one parent)',
-                'Copy of sworn or legalized parental authorization from both parents, by competent American authority (when child is accompanied by third party)'
+                'Copy of sworn or legalized parental authorization from both parents, by competent American authority (when child is accompanied by third party)',
+                'Submit your application on www.express54.org or download the Express54 mobile application.'
             ]
         },
         {
             id: 'officiel',
             title: 'Visa for Official Passport (Diplomatic or Service)',
             icon: Shield,
-            color: 'bg-purple-500',
+            color: 'bg-green-700',
             documents: [
                 'Verbal note (original) and copy of mission order',
-                'Duly completed and signed visa application form',
                 'Photo Format Passeport',
                 'Official passport with at least six (06) months validity',
-                'Copy of Yellow Fever vaccination certificate'
+                'Copy of Yellow Fever vaccination certificate',
+                'Submit your application on www.express54.org or download the Express54 mobile application.'
             ]
         }
     ]
@@ -295,8 +295,8 @@ export default function VisaPage() {
                                 className="mb-8"
                             >
                                 <Card className="overflow-hidden border-0 bg-gray-50 shadow-lg">
-                                    <CardHeader className="bg-orange-500 text-white">
-                                        <CardTitle className="flex items-center gap-3">
+                                    <CardHeader className="bg-orange-500 text-white p-6">
+                                        <CardTitle className="text-2xl font-bold flex items-center gap-3">
                                             <selectedType.icon className="h-6 w-6" />
                                             {selectedType.title}
                                         </CardTitle>
@@ -326,46 +326,45 @@ export default function VisaPage() {
                             </motion.div>
                         )}
 
-                        {/* Submission Methods */}
+                        {/* Modalités de retrait */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.8 }}
+                            transition={{ duration: 0.6, delay: 1.5 }}
                             className="mb-8"
                         >
-                            <Card className="overflow-hidden border-2 border-blue-200 bg-blue-50">
+                            <Card className="overflow-hidden border-2 border-purple-200 bg-purple-50">
                                 <CardContent className="p-6">
-                                    <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                                        <MapPin className="h-5 w-5 text-blue-600" />
-                                        {language === 'fr' ? 'Modalités de dépôt' : 'Submission Methods'}
+                                    <h3 className="mb-4 text-lg font-bold text-gray-900">
+                                        {language === 'fr' ? 'Modalités de retrait' : 'Pickup Procedures'}
                                     </h3>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                        <div className="space-y-3">
-                                            <h4 className="font-semibold text-gray-900 flex items-center gap-2">
-                                                <Mail className="h-4 w-4 text-blue-600" />
-                                                {language === 'fr' ? 'Par voie postale' : 'By Mail'}
-                                            </h4>
-                                            <div className="text-gray-700 space-y-1">
-                                                <p>Consulat Général de Côte d'Ivoire</p>
-                                                <p>800 Second Avenue, Fifth Floor</p>
-                                                <p>New York, NY 10017</p>
+                                    <div className="space-y-4 text-gray-700">
+                                        {language === 'fr' ? (
+                                            <div>
+                                                <p>
+                                                    Les documents susmentionnés devront être ensuite téléchargés sur la plate-forme{' '}
+                                                    <a href="https://www.express54.org" target="_blank" rel="noopener noreferrer" className="text-orange-600 underline">
+                                                        www.express54.org
+                                                    </a>
+                                                    . Après analyse des documents, les requérants seront contactés par email afin de faire parvenir leurs passeports. Pour plus d'informations, veuillez appeler le Service Consulaire au <strong className="text-orange-600 font-bold text-lg">(646) 476-7614</strong>.
+                                                </p>
                                             </div>
-                                        </div>
-                                        <div className="space-y-3">
-                                            <h4 className="font-semibold text-gray-900 flex items-center gap-2">
-                                                <User className="h-4 w-4 text-blue-600" />
-                                                {language === 'fr' ? 'En personne' : 'In Person'}
-                                            </h4>
-                                            <p className="text-gray-700">
-                                                {language === 'fr' 
-                                                    ? 'Se présenter directement au Consulat Général pour le dépôt du dossier de documents ou actes consulaires.'
-                                                    : 'Present yourself directly at the Consulate General for the submission of documents or consular acts.'}
-                                            </p>
-                                        </div>
+                                        ) : (
+                                            <div>
+                                                <p>
+                                                    The documents for the visa should be uploaded on the platform called:{' '}
+                                                    <a href="https://www.express54.org" target="_blank" rel="noopener noreferrer" className="text-orange-600 underline">
+                                                        www.express54.org
+                                                    </a>
+                                                    . Upon approval, applicants will be contacted by email in order to send their passports to the Embassy for the visa. For more information, please contact the Consular Service at <strong className="text-orange-600 font-bold text-lg">(646) 476-7614</strong>.
+                                                </p>
+                                            </div>
+                                        )}
                                     </div>
                                 </CardContent>
                             </Card>
                         </motion.div>
+
 
                         {/* Processing Information */}
                         <motion.div
@@ -376,26 +375,30 @@ export default function VisaPage() {
                         >
                             <Card className="overflow-hidden border-2 border-amber-200 bg-amber-50">
                                 <CardContent className="p-6">
-                                    <div className="flex items-start">
-                                        <Clock className="mr-3 mt-1 h-6 w-6 flex-shrink-0 text-amber-600" />
-                                        <div className="space-y-3">
+                                <div className="space-y-3">
                                             <h3 className="text-lg font-bold text-gray-900">
                                                 {language === 'fr' ? 'Délais de traitement' : 'Processing Time'}
                                             </h3>
                                             <div className="text-gray-700 space-y-2">
                                                 <p>
                                                     {language === 'fr' 
-                                                        ? '• 7 jours pour une demande normale et 24h pour une demande urgente.'
-                                                        : '• 7 days for a normal application and 24h for an urgent application.'}
+                                                        ? <>• <span className="font-bold text-amber-700">7 jours</span> pour une demande normale et <span className="font-bold text-amber-700">24h</span> pour une demande urgente.</>
+                                                        : <>• <span className="font-bold text-amber-700">7 days</span> for a normal application and <span className="font-bold text-amber-700">24h</span> for an urgent application.</>
+                                                    }
+                                                </p>
+                                                <p>
+                                                    {language === 'fr' 
+                                                        ? <>• Durée de production : <span className="font-bold text-amber-700">30 à 45 jours</span> après transmission du dossier.</>
+                                                        : <>• Production time: <span className="font-bold text-amber-700">30 to 45 days</span> after transmission </>
+                                                    }
                                                 </p>
                                                 <p className="font-semibold text-amber-700">
                                                     {language === 'fr' 
-                                                        ? '• Tout dossier incomplet entraînera un refus de la demande.'
-                                                        : '• Any incomplete file will result in refusal of the application.'}
+                                                        ? '• Tout dossier incomplet entraînera un rejet de la demande.'
+                                                        : '• Any incomplete file will result in rejection of the application.'}
                                                 </p>
                                             </div>
-                                        </div>
-                                    </div>
+                                            </div>
                                 </CardContent>
                             </Card>
                         </motion.div>
@@ -430,26 +433,26 @@ export default function VisaPage() {
                             </Card>
                         </motion.div>
 
-                        {/* Online Services Section - Step 8 */}
+                        {/* Express54 Platform Section */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 1.4 }}
+                            transition={{ duration: 0.6, delay: 0.9 }}
                             className="mt-8"
                         >
                             <Card className="overflow-hidden border-2 border-orange-200 bg-orange-50">
                                 <CardContent className="p-6">
-                                    <h3 className="mb-4 text-lg font-bold text-gray-900">
-                                        {language === 'fr' ? 'Plateforme digitale Express54' : 'Step 8 - Express54 Digital Platform'}
+                                <h3 className="mb-4 text-lg font-bold text-gray-900">
+                                        {language === 'fr' ? 'Plateforme digitale Express54' : 'Express54 Digital Platform'}
                                     </h3>
                                     <p className="mb-6 text-gray-700">
                                         {language === 'fr' 
-                                            ? 'Soumettre votre demande sur www.express54.org ou télécharger l\'application mobile Express54.'
-                                            : 'Submit your application on www.express54.org or download the Express54 mobile application.'}
+                                            ? 'Effectuez votre demande de visa directement sur notre plateforme digitalisée pour un traitement plus rapide.'
+                                            : 'Submit your visa application directly on our digitalized platform for faster processing.'}
                                     </p>
                                     <div className="text-center">
                                         <Button 
-                                            onClick={() => window.open(formLink, '_blank')}
+                                            onClick={() => window.open('https://www.express54.org', '_blank')}
                                             className="rounded-xl bg-orange-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-orange-700 hover:shadow-xl hover:scale-105"
                                         >
                                             <ExternalLink className="mr-3 h-5 w-5" />
@@ -460,46 +463,7 @@ export default function VisaPage() {
                             </Card>
                         </motion.div>
 
-                        {/* Modalités de retrait */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 1.5 }}
-                            className="mt-8"
-                        >
-                            <Card className="overflow-hidden border-2 border-purple-200 bg-purple-50">
-                                <CardContent className="p-6">
-                                    <h3 className="mb-4 text-lg font-bold text-gray-900">
-                                        {language === 'fr' ? 'Modalités de retrait' : 'Pickup Procedures'}
-                                    </h3>
-                                    <div className="space-y-4 text-gray-700">
-                                        {language === 'fr' ? (
-                                            <div>
-                                                <h4 className="font-semibold mb-2">Français:</h4>
-                                                <p>
-                                                    Les documents susmentionnés devront être ensuite téléchargés sur la plate-forme{' '}
-                                                    <a href="https://www.express54.org" target="_blank" rel="noopener noreferrer" className="text-orange-600 underline">
-                                                        www.express54.org
-                                                    </a>
-                                                    . Après analyse des documents, les requérants seront contactés par email afin de faire parvenir leurs passeports. Pour plus d'informations, veuillez appeler le Service Consulaire au (646) 476-7614.
-                                                </p>
-                                            </div>
-                                        ) : (
-                                            <div>
-                                                <h4 className="font-semibold mb-2">English:</h4>
-                                                <p>
-                                                    The documents for the visa should be uploaded on the platform called:{' '}
-                                                    <a href="https://www.express54.org" target="_blank" rel="noopener noreferrer" className="text-orange-600 underline">
-                                                        www.express54.org
-                                                    </a>
-                                                    . Upon approval, applicants will be contacted by email in order to send their passports to the Embassy for the visa. For more information, please contact the Consular Service at (646) 476-7614.
-                                                </p>
-                                            </div>
-                                        )}
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        </motion.div>
+                        
 
                     </div>
                 </div>

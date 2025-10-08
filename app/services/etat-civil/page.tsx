@@ -38,12 +38,11 @@ const civilStateServices = {
             id: 'transcription-naissance',
             title: 'Transcription d\'Acte de Naissance',
             icon: Baby,
-            color: 'bg-blue-500',
+            color: 'bg-green-700',
             fee: '$20',
             formLink: '/assets/services-consulaires-forms/transcription-acte-de-naissance-form.pdf',
             documents: [
                 'Photocopie de la Carte Consulaire valide (obligatoire) pour les requérants résidents',
-                'Formulaire dûment renseigné et signé',
                 'Copie intégrale de l\'acte de naissance américain de l\'enfant',
                 'Copie de la traduction en français de l\'acte de naissance américain par un cabinet assermenté',
                 'Copie de la preuve de la nationalité ivoirienne de l\'un des deux parents (carte d\'identité nationale, certificat de nationalité)',
@@ -55,7 +54,7 @@ const civilStateServices = {
             id: 'copie-naissance',
             title: 'Copie d\'Acte de Naissance',
             icon: Copy,
-            color: 'bg-green-500',
+            color: 'bg-green-700',
             fee: '$20',
             documents: [
                 'Copie de la Carte Consulaire valide (obligatoire) pour les requérants résidents',
@@ -67,12 +66,11 @@ const civilStateServices = {
             id: 'transcription-mariage',
             title: 'Transcription d\'Acte de Mariage',
             icon: Heart,
-            color: 'bg-pink-500',
+            color: 'bg-green-700',
             fee: '$20',
             formLink: '/assets/services-consulaires-forms/transcription-acte-de-mariage-form.pdf',
             documents: [
                 'Copie de la Carte Consulaire valide (obligatoire) pour les requérants résidents',
-                'Formulaire dûment renseigné et signé',
                 'Copie de l\'extrait d\'acte de mariage américain',
                 'Copie de la traduction en français de l\'acte de mariage américain par un cabinet assermenté',
                 'Copie de la preuve de la nationalité ivoirienne de l\'un des deux époux (carte d\'identité nationale, certificat de nationalité)',
@@ -85,7 +83,7 @@ const civilStateServices = {
             id: 'copie-mariage',
             title: 'Copie d\'Acte de Mariage',
             icon: Copy,
-            color: 'bg-pink-300',
+            color: 'bg-green-700',
             fee: '$20',
             documents: [
                 'Copie de la Carte Consulaire valide (obligatoire) pour les requérants résidents',
@@ -97,11 +95,10 @@ const civilStateServices = {
             id: 'transcription-deces',
             title: 'Transcription d\'Acte de Décès',
             icon: FileX,
-            color: 'bg-gray-600',
+            color: 'bg-green-700',
             fee: '$20',
             formLink: '/assets/services-consulaires-forms/transcription-acte-de-deces.pdf',
             documents: [
-                'Formulaire dûment renseigné et signé',
                 'Original de l\'acte de décès américain',
                 'Traduction en français de l\'acte de décès américain par un cabinet assermenté',
                 'Copie de l\'extrait d\'acte de naissance du défunt ou de la défunte',
@@ -113,7 +110,7 @@ const civilStateServices = {
             id: 'copie-deces',
             title: 'Copie d\'Acte de Décès',
             icon: Copy,
-            color: 'bg-gray-400',
+            color: 'bg-green-700',
             fee: '$20',
             documents: [
                 'Copie d\'un extrait de l\'acte de décès délivré par le Consulat Général de Côte d\'Ivoire aux États-Unis',
@@ -126,12 +123,11 @@ const civilStateServices = {
             id: 'transcription-naissance',
             title: 'Birth Certificate Transcription',
             icon: Baby,
-            color: 'bg-blue-500',
+            color: 'bg-green-700',
             fee: '$20',
             formLink: '/assets/services-consulaires-forms/transcription-acte-de-naissance-form.pdf',
             documents: [
                 'Photocopy of valid Consular Card (mandatory) for resident applicants',
-                'Duly completed and signed form',
                 'Complete copy of the child\'s American birth certificate',
                 'Copy of French translation of the American birth certificate by a sworn firm',
                 'Copy of proof of Ivorian nationality of one of the two parents (national identity card, nationality certificate)',
@@ -143,7 +139,7 @@ const civilStateServices = {
             id: 'copie-naissance',
             title: 'Birth Certificate Copy',
             icon: Copy,
-            color: 'bg-green-500',
+            color: 'bg-green-700',
             fee: '$20',
             documents: [
                 'Copy of valid Consular Card (mandatory) for resident applicants',
@@ -155,12 +151,11 @@ const civilStateServices = {
             id: 'transcription-mariage',
             title: 'Marriage Certificate Transcription',
             icon: Heart,
-            color: 'bg-pink-500',
+            color: 'bg-green-700',
             fee: '$20',
             formLink: '/assets/services-consulaires-forms/transcription-acte-de-mariage-form.pdf',
             documents: [
                 'Copy of valid Consular Card (mandatory) for resident applicants',
-                'Duly completed and signed form',
                 'Copy of American marriage certificate extract',
                 'Copy of French translation of the American marriage certificate by a sworn firm',
                 'Copy of proof of Ivorian nationality of one of the two spouses (national identity card, nationality certificate)',
@@ -173,7 +168,7 @@ const civilStateServices = {
             id: 'copie-mariage',
             title: 'Marriage Certificate Copy',
             icon: Copy,
-            color: 'bg-pink-300',
+            color: 'bg-green-700',
             fee: '$20',
             documents: [
                 'Copy of valid Consular Card (mandatory) for resident applicants',
@@ -185,11 +180,10 @@ const civilStateServices = {
             id: 'transcription-deces',
             title: 'Death Certificate Transcription',
             icon: FileX,
-            color: 'bg-gray-600',
+            color: 'bg-green-700',
             fee: '$20',
             formLink: '/assets/services-consulaires-forms/transcription-acte-de-deces.pdf',
             documents: [
-                'Duly completed and signed form',
                 'Original American death certificate',
                 'French translation of the American death certificate by a sworn firm',
                 'Copy of birth certificate extract of the deceased',
@@ -201,7 +195,7 @@ const civilStateServices = {
             id: 'copie-deces',
             title: 'Death Certificate Copy',
             icon: Copy,
-            color: 'bg-gray-400',
+            color: 'bg-green-700',
             fee: '$20',
             documents: [
                 'Copy of death certificate extract issued by the Consulate General of Côte d\'Ivoire in the United States',
@@ -280,7 +274,7 @@ export default function EtatCivilPage() {
                             transition={{ duration: 0.8 }}
                             className="mb-8 text-center"
                         >
-                            <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-orange-500 shadow-lg">
+                            <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-green-700 shadow-lg">
                                 <FileText className="h-10 w-10 text-white" />
                             </div>
                             <h1 className="mb-4 text-3xl font-bold text-gray-900">
@@ -383,8 +377,8 @@ export default function EtatCivilPage() {
                                 className="mb-8"
                             >
                                 <Card className="overflow-hidden border-0 bg-gray-50 shadow-lg">
-                                    <CardHeader className="bg-gradient-to-r from-orange-500 to-green-500 text-white">
-                                        <CardTitle className="flex items-center gap-3">
+                                    <CardHeader className="bg-green-700 text-white p-6">
+                                        <CardTitle className="text-2xl font-bold flex items-center gap-3">
                                             <selectedService.icon className="h-6 w-6" />
                                             {selectedService.title}
                                             <Badge variant="secondary" className="bg-white text-gray-800">
@@ -405,7 +399,7 @@ export default function EtatCivilPage() {
                                                     transition={{ duration: 0.5, delay: index * 0.05 }}
                                                     className="flex items-start"
                                                 >
-                                                    <span className="mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white">
+                                                    <span className="mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-700 text-sm font-bold text-white">
                                                         {index + 1}
                                                     </span>
                                                     <span className="text-gray-700 pt-1">{doc}</span>
@@ -467,25 +461,29 @@ export default function EtatCivilPage() {
                         >
                             <Card className="overflow-hidden border-2 border-amber-200 bg-amber-50">
                                 <CardContent className="p-6">
-                                    <div className="flex items-start">
-                                        <Clock className="mr-3 mt-1 h-6 w-6 flex-shrink-0 text-amber-600" />
-                                        <div className="space-y-3">
+                                    <div className="space-y-3">
                                             <h3 className="text-lg font-bold text-gray-900">
                                                 {language === 'fr' ? 'Délais de traitement' : 'Processing Time'}
                                             </h3>
                                             <div className="text-gray-700 space-y-2">
                                                 <p>
                                                     {language === 'fr' 
-                                                        ? '• Le délai de traitement de la demande est de trois (03) jours ouvrables après réception du dossier.'
-                                                        : '• Processing time for the application is three (03) business days after receiving the file.'}
+                                                        ? <>• <span className="font-bold text-amber-700">7 jours</span> pour une demande normale et <span className="font-bold text-amber-700">24h</span> pour une demande urgente.</>
+                                                        : <>• <span className="font-bold text-amber-700">7 days</span> for a normal application and <span className="font-bold text-amber-700">24h</span> for an urgent application.</>
+                                                    }
+                                                </p>
+                                                <p>
+                                                    {language === 'fr' 
+                                                        ? <>• Durée de production : <span className="font-bold text-amber-700">30 à 45 jours</span> après transmission du dossier.</>
+                                                        : <>• Production time: <span className="font-bold text-amber-700">30 to 45 days</span> after transmission of the file.</>
+                                                    }
                                                 </p>
                                                 <p className="font-semibold text-amber-700">
                                                     {language === 'fr' 
-                                                        ? '• Tout dossier incomplet entraînera le non-traitement de la demande.'
-                                                        : '• Any incomplete file will result in non-processing of the application.'}
+                                                        ? '• Tout dossier incomplet entraînera un rejet de la demande.'
+                                                        : '• Any incomplete file will result in rejection of the application.'}
                                                 </p>
                                             </div>
-                                        </div>
                                     </div>
                                 </CardContent>
                             </Card>
@@ -530,13 +528,13 @@ export default function EtatCivilPage() {
                         >
                             <Card className="overflow-hidden border-2 border-orange-200 bg-orange-50">
                                 <CardContent className="p-6">
-                                    <h3 className="mb-4 text-lg font-bold text-gray-900">
+                                <h3 className="mb-4 text-lg font-bold text-gray-900">
                                         {language === 'fr' ? 'Plateforme digitale Express54' : 'Express54 Digital Platform'}
                                     </h3>
                                     <p className="mb-6 text-gray-700">
                                         {language === 'fr' 
-                                            ? 'Accédez à la plateforme Express54 pour vos démarches consulaires.'
-                                            : 'Access the Express54 platform for your consular procedures.'}
+                                            ? 'Effectuez votre demande de visa directement sur notre plateforme digitalisée pour un traitement plus rapide.'
+                                            : 'Submit your visa application directly on our digitalized platform for faster processing.'}
                                     </p>
                                     <div className="text-center">
                                         <Button 

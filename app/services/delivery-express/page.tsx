@@ -228,13 +228,13 @@ export default function DeliveryExpressPage() {
                         >
                             <Card className="overflow-hidden border-2 border-orange-200 bg-orange-50">
                                 <CardContent className="p-6">
-                                    <h3 className="mb-4 text-lg font-bold text-gray-900">
+                                <h3 className="mb-4 text-lg font-bold text-gray-900">
                                         {language === 'fr' ? 'Plateforme digitale Express54' : 'Express54 Digital Platform'}
                                     </h3>
                                     <p className="mb-6 text-gray-700">
                                         {language === 'fr' 
-                                            ? 'Accédez à la plateforme Express54 pour vos démarches consulaires.'
-                                            : 'Access the Express54 platform for your consular procedures.'}
+                                            ? 'Effectuez votre demande de visa directement sur notre plateforme digitalisée pour un traitement plus rapide.'
+                                            : 'Submit your visa application directly on our digitalized platform for faster processing.'}
                                     </p>
                                     <div className="text-center">
                                         <Button 

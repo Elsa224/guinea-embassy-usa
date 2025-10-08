@@ -127,7 +127,7 @@ export default function Home() {
                     </motion.div>
                 </div>
                 <div
-                    className="absolute inset-0 bottom-20 z-0"
+                    className="absolute inset-0 bottom-0 z-0"
                     aria-hidden="true"
                 >
                     <img

@@ -32,7 +32,6 @@ const importantInfo = {
     fr: [
         'Consultez la liste des pièces à fournir sur le site : https://newyork.diplomatie.gouv.ci/',
         'Faire des photocopies de tous les documents requis',
-        'Télécharger les formulaires à renseigner via le site web du Consulat Général, rubrique « Documents »',
         'La présence du requérant est absolument obligatoire pour l\'établissement ou le renouvellement du passeport biométrique ivoirien (prise de photo et empreintes digitales)',
         'La présence du requérant est absolument obligatoire pour l\'établissement du certificat de vie',
         'Jours d\'enrôlement pour le passeport : LUNDI, MERCREDI et JEUDI'
@@ -40,7 +39,6 @@ const importantInfo = {
     en: [
         'Consult the list of required documents on the website: https://newyork.diplomatie.gouv.ci/',
         'Make photocopies of all required documents',
-        'Download the forms to fill out via the Consulate General website, "Documents" section',
         'The applicant\'s presence is absolutely mandatory for the establishment or renewal of the Ivorian biometric passport (photo and fingerprint taking)',
         'The applicant\'s presence is absolutely mandatory for the establishment of the life certificate',
         'Passport enrollment days: MONDAY, WEDNESDAY and THURSDAY'
@@ -375,30 +373,30 @@ export default function DemarchesConsulairesPage() {
                             </Card>
                         </motion.div>
 
-                        {/* Website and Forms Section */}
-                        <motion.div
+                       {/* Express54 Platform Section */}
+                       <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.8 }}
+                            transition={{ duration: 0.6, delay: 0.9 }}
                             className="mt-8"
                         >
                             <Card className="overflow-hidden border-2 border-orange-200 bg-orange-50">
                                 <CardContent className="p-6">
-                                    <h3 className="mb-4 text-lg font-bold text-gray-900">
-                                        {language === 'fr' ? 'Site officiel et formulaires' : 'Official Website and Forms'}
+                                <h3 className="mb-4 text-lg font-bold text-gray-900">
+                                        {language === 'fr' ? 'Plateforme digitale Express54' : 'Express54 Digital Platform'}
                                     </h3>
                                     <p className="mb-6 text-gray-700">
                                         {language === 'fr' 
-                                            ? 'Consultez notre site officiel pour obtenir la liste complète des documents requis et télécharger les formulaires nécessaires.'
-                                            : 'Visit our official website to get the complete list of required documents and download necessary forms.'}
+                                            ? 'Effectuez votre demande de visa directement sur notre plateforme digitalisée pour un traitement plus rapide.'
+                                            : 'Submit your visa application directly on our digitalized platform for faster processing.'}
                                     </p>
                                     <div className="text-center">
                                         <Button 
-                                            onClick={() => window.open(formLink, '_blank')}
+                                            onClick={() => window.open('https://www.express54.org', '_blank')}
                                             className="rounded-xl bg-orange-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-orange-700 hover:shadow-xl hover:scale-105"
                                         >
                                             <ExternalLink className="mr-3 h-5 w-5" />
-                                            {language === 'fr' ? 'Site officiel' : 'Official Website'}
+                                            www.express54.org
                                         </Button>
                                     </div>
                                 </CardContent>
