@@ -127,11 +127,19 @@ export default function Home() {
                     </motion.div>
                 </div>
                 <div
-                    className="absolute inset-0 bottom-0 z-0"
+                    className="absolute inset-0 bottom-20 z-0"
                     aria-hidden="true"
                 >
                     <img
                         src="/assets/images-for-the-new-website/first-hero-background.png"
+                        alt=""
+                        className="mb-5 h-full w-full object-cover object-center"
+                        style={{ opacity: 1 }}
+                    />
+                </div>
+                <div className="absolute inset-0 top-45 z-0" aria-hidden="true">
+                    <img
+                        src="/assets/images-for-the-new-website/banderole-hero-background.png"
                         alt=""
                         className="mb-5 h-full w-full object-cover object-center"
                         style={{ opacity: 1 }}

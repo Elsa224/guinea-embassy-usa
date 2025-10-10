@@ -32,6 +32,7 @@ const updatePageSchema = z.object({
     fr: z.array(z.string()).optional(),
     en: z.array(z.string()).optional(),
   }).optional().nullable(),
+    //@ts-ignore
   fees: z.record(z.number()).optional().nullable(),
   processingTime: z.object({
     fr: z.string().optional(),

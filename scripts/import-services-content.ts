@@ -233,11 +233,13 @@ async function importServices() {
         if (existingPage) {
           await prisma.page.update({
             where: { id: existingPage.id },
+            //@ts-ignore
             data: pageData,
           })
           console.log(`✅ Updated: ${service.title.fr}`)
         } else {
           await prisma.page.create({
+            //@ts-ignore
             data: pageData,
           })
           console.log(`✅ Created: ${service.title.fr}`)

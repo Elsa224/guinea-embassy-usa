@@ -44,6 +44,7 @@ const pageSchema = z.object({
         })
         .optional()
         .nullable(),
+        //@ts-ignore
     fees: z.record(z.number()).optional().nullable(),
     processingTime: z
         .object({
