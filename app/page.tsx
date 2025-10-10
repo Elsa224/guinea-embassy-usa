@@ -137,7 +137,7 @@ export default function Home() {
                         style={{ opacity: 1 }}
                     />
                 </div>
-                <div className="absolute inset-0 top-45 z-0" aria-hidden="true">
+                <div className="absolute inset-0 top-55 z-0" aria-hidden="true">
                     <img
                         src="/assets/images-for-the-new-website/banderole-hero-background.png"
                         alt=""
