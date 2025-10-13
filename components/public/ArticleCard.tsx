@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Clock, User, Calendar, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 interface ArticleCardProps {
@@ -51,11 +51,12 @@ export function ArticleCard({
   className = ''
 }: ArticleCardProps) {
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('fr-FR', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
+    const date = new Date(dateString);
+    const months = [
+      'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
+      'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'
+    ];
+    return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
   };
 
   const getTypeLabel = (type: string) => {
@@ -69,99 +70,73 @@ export function ArticleCard({
     return labels[type] || type;
   };
 
-  const sizeClasses = {
-    small: 'p-4',
-    medium: 'p-6',
-    large: 'p-8'
+  const heightClasses = {
+    small: 'h-64',
+    medium: 'h-80',
+    large: 'h-96'
   };
 
   const titleSizes = {
     small: 'text-lg',
     medium: 'text-xl',
-    large: 'text-2xl'
+    large: 'text-2xl lg:text-3xl'
   };
 
   const featuredImage = media && media.length > 0 ? media[0] : null;
+  const defaultImage = '/assets/SITE_WEB_AMBASSADE_DE_CIV.jpg'; // fallback image
 
   return (
     <motion.article
-      whileHover={{ y: -4 }}
-      transition={{ duration: 0.2 }}
-      className={`
-        bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 
-        overflow-hidden border border-gray-100 group
-        ${featured ? 'ring-2 ring-ci-orange ring-opacity-50' : ''}
-        ${className}
-      `}
+      whileHover={{ y: -8, scale: 1.02 }}
+      transition={{ duration: 0.3 }}
+      className={`relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 ${heightClasses[size]} ${className}`}
     >
-      {/* Featured Image */}
-      {featuredImage && (
-        <div className="relative overflow-hidden">
-          <img
-            src={featuredImage.url}
-            alt={featuredImage.alt || title}
-            className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-          />
-          {featured && (
-            <div className="absolute top-3 left-3">
-              <span className="bg-ci-orange text-white px-2 py-1 rounded-full text-xs font-medium">
-                À la une
-              </span>
-            </div>
-          )}
-        </div>
-      )}
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <img
+          src={featuredImage?.url || defaultImage}
+          alt={featuredImage?.alt || title}
+          className="w-full h-full object-cover"
+        />
+      </div>
 
-      <div className={sizeClasses[size]}>
-        {/* Meta information */}
-        <div className="flex items-center gap-4 mb-3 text-sm text-gray-600">
-          <span 
-            className="px-2 py-1 rounded-full text-xs font-medium text-white"
-            style={{ backgroundColor: category.color }}
-          >
-            {category.name}
-          </span>
-          <span className="text-xs text-gray-500">
-            {getTypeLabel(type)}
-          </span>
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/90"></div>
+      
+      {/* Additional color overlay for branding */}
+      <div className="absolute inset-0 bg-gradient-to-br from-ci-orange/20 to-ci-green/20 opacity-50"></div>
+
+      {/* Content */}
+      <div className="absolute inset-0 p-6 flex flex-col justify-between">
+        {/* Top: Date */}
+        <div className="text-white/90 text-sm font-medium">
+          {formatDate(publishedAt)}
         </div>
 
-        {/* Title */}
-        <h3 className={`font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-ci-orange transition-colors ${titleSizes[size]}`}>
-          <Link href={`/actualites/${slug}`} className="hover:underline">
-            {title}
-          </Link>
-        </h3>
-
-        {/* Excerpt */}
-        {showExcerpt && excerpt && (
-          <p className="text-gray-600 mb-4 line-clamp-3 leading-relaxed">
-            {excerpt}
-          </p>
-        )}
-
-        {/* Footer */}
-        <div className="flex items-center justify-between text-sm text-gray-500 pt-4 border-t border-gray-100">
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-1">
-              <Calendar className="w-4 h-4" />
-              <span>{formatDate(publishedAt)}</span>
-            </div>
-            <div className="flex items-center gap-1">
-              <Clock className="w-4 h-4" />
-              <span>{readingTime} min</span>
-            </div>
-          </div>
+        {/* Bottom: Title and CTA */}
+        <div className="space-y-4">
+          <h3 className={`font-bold text-white leading-tight ${titleSizes[size]}`}>
+            {title.toUpperCase()}
+          </h3>
           
           <Link 
             href={`/actualites/${slug}`}
-            className="flex items-center gap-1 text-ci-orange hover:text-ci-orange-dark transition-colors font-medium"
+            className="inline-flex items-center gap-2 bg-ci-orange hover:bg-ci-orange-dark text-white px-6 py-3 rounded-full font-medium transition-all duration-300 transform hover:scale-105 shadow-lg"
           >
-            Voir Plus
-            <ArrowRight className="w-4 h-4" />
+            <span>Voir plus</span>
+            <ArrowRight className="w-5 h-5" />
           </Link>
         </div>
       </div>
+
+      {/* Featured Badge */}
+      {featured && (
+        <div className="absolute top-4 right-4">
+          <span className="bg-ci-orange text-white px-3 py-1 rounded-full text-xs font-medium shadow-lg">
+            À la une
+          </span>
+        </div>
+      )}
     </motion.article>
   );
 }

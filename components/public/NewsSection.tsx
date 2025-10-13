@@ -20,7 +20,7 @@ interface NewsSectionProps {
 export function NewsSection({
   title = "Actualités",
   subtitle = "Découvrez les dernières nouvelles du Consulat",
-  limit = 6,
+  limit = 4,
   showFeatured = true,
   showViewAll = true,
   className = ''
@@ -88,12 +88,12 @@ export function NewsSection({
         </div>
 
         {/* Articles Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {posts.map((post, index) => (
             <ArticleCard
               key={post.id}
               {...post}
-              size={index === 0 && post.featured ? 'large' : 'medium'}
+              size={'medium'}
             />
           ))}
         </div>
