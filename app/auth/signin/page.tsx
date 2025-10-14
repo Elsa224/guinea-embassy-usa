@@ -87,7 +87,7 @@ function SignInForm() {
       <div className="relative w-full max-w-md">
         <Card className="border-0 shadow-2xl bg-white/80 backdrop-blur-sm">
           <CardHeader className="text-center pb-8">
-            <div className="w-16 h-16 gradient-ci rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="w-16 h-16 bg-ci-orange rounded-full flex items-center justify-center mx-auto mb-4">
               <Shield className="w-8 h-8 text-white" />
             </div>
             <CardTitle className="text-2xl font-bold text-gray-900">
@@ -177,7 +177,7 @@ function SignInForm() {
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="w-full gradient-ci text-white hover:opacity-90 transition-opacity h-12 text-base font-medium"
+                className="w-full bg-ci-orange text-white hover:opacity-90 transition-opacity h-12 text-base font-medium"
               >
                 {isLoading ? (
                   <div className="flex items-center gap-2">

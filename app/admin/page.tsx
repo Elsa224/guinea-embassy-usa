@@ -84,7 +84,7 @@ function DashboardContent() {
       {/* Welcome Section */}
       <div className="bg-orange-50 rounded-xl p-6 border border-orange-100">
         <div className="flex items-center gap-4">
-          <div className="w-16 h-16 gradient-ci rounded-full flex items-center justify-center">
+          <div className="w-16 h-16 bg-ci-green rounded-full flex items-center justify-center">
             <BarChart3 className="w-8 h-8 text-white" />
           </div>
           <div>

@@ -13,7 +13,7 @@ export default function AdminNotFound() {
       <div className="flex items-center justify-center min-h-[60vh]">
         <Card className="w-full max-w-md border-0 shadow-lg">
           <CardHeader className="text-center pb-8">
-            <div className="w-20 h-20 gradient-ci rounded-full flex items-center justify-center mx-auto mb-6">
+            <div className="w-20 h-20 bg-ci-green rounded-full flex items-center justify-center mx-auto mb-6">
               <FileQuestion className="w-10 h-10 text-white" />
             </div>
             <CardTitle className="text-3xl font-bold text-gray-900">
@@ -36,7 +36,7 @@ export default function AdminNotFound() {
 
             <div className="grid grid-cols-1 gap-3">
               <Link href="/admin" className="block">
-                <Button className="w-full gradient-ci text-white hover:opacity-90 transition-opacity">
+                <Button className="w-full bg-ci-green text-white hover:opacity-90 transition-opacity">
                   <Home className="w-4 h-4 mr-2" />
                   Tableau de bord
                 </Button>

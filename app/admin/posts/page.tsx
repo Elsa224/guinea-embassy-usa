@@ -187,7 +187,7 @@ function PostsContent() {
     return (
       <div className="flex items-center justify-center py-12">
         <div className="flex flex-col items-center gap-4">
-          <div className="w-8 h-8 border-4 border-t-transparent border-ci-orange rounded-full animate-spin"></div>
+          <div className="w-8 h-8 animate-spin"></div>
           <p className="text-gray-600">Chargement des articles...</p>
         </div>
       </div>
@@ -205,7 +205,7 @@ function PostsContent() {
           </p>
         </div>
         <Link href="/admin/posts/new">
-          <Button className="gradient-ci text-white hover:opacity-90">
+          <Button className="bg-ci-green text-white hover:opacity-90">
             <Plus className="w-4 h-4 mr-2" />
             Nouvel article
           </Button>
@@ -277,7 +277,7 @@ function PostsContent() {
                 }
               </p>
               <Link href="/admin/posts/new">
-                <Button className="gradient-ci text-white">
+                <Button className="bg-ci-green text-white">
                   <Plus className="w-4 h-4 mr-2" />
                   Créer un article
                 </Button>
@@ -407,7 +407,7 @@ function PostsContent() {
                 onClick={() => fetchPosts(pageNum, searchTerm, statusFilter)}
                 className={`inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 ${
                   pageNum === pagination.page 
-                    ? "gradient-ci text-white" 
+                    ? "bg-ci-green text-white" 
                     : "border border-input bg-background hover:bg-accent hover:text-accent-foreground"
                 }`}
               >
