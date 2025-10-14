@@ -121,6 +121,7 @@ model Media {
   filename     String
   originalName String
   mimeType     String
+  type         MediaType @default(DOCUMENT)
   size         Int
   url          String
   thumbnailUrl String?
@@ -137,6 +138,7 @@ model Media {
   @@map("media")
   @@index([uploaderId])
   @@index([mimeType])
+  @@index([type])
 }
 
 model Page {
@@ -241,4 +243,10 @@ enum PostType {
   SERVICE
   ANNOUNCEMENT
   DOCUMENTATION
+}
+
+enum MediaType {
+  IMAGE
+  VIDEO
+  DOCUMENT
 }

@@ -35,7 +35,7 @@ import {
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { UploadDropzone } from "@/lib/uploadthing";
+import { MediaUploadTabs } from "@/components/admin/MediaUploadTabs";
 import { toast } from "react-hot-toast";
 import { formatBytes } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -107,29 +107,15 @@ function MediaLibraryContent() {
     fetchMedia();
   }, [fetchMedia]);
 
-  const handleUploadComplete = async (res: any) => {
+  const handleUploadComplete = async (files: any[]) => {
     try {
-      for (const file of res) {
-        await fetch("/api/admin/media", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            filename: file.name,
-            originalName: file.name,
-            url: file.url,
-            type: file.type.startsWith("image/") ? "IMAGE" : 
-                  file.type.startsWith("video/") ? "VIDEO" : "DOCUMENT",
-            size: file.size,
-            mimeType: file.type,
-          }),
-        });
-      }
-      toast.success("Upload complete!");
+      console.log("Upload completed:", files);
+      toast.success(`Successfully uploaded ${files.length} file(s)!`);
       setIsUploadOpen(false);
       fetchMedia();
     } catch (error) {
-      console.error("Error saving media:", error);
-      toast.error("Failed to save media");
+      console.error("Error after upload:", error);
+      toast.error("Failed to refresh media");
     }
   };
 
@@ -212,9 +198,8 @@ function MediaLibraryContent() {
                 Upload images, videos, or documents to your media library
               </DialogDescription>
             </DialogHeader>
-            <UploadDropzone
-              endpoint="imageUploader"
-              onClientUploadComplete={handleUploadComplete}
+            <MediaUploadTabs
+              onUploadComplete={handleUploadComplete}
               onUploadError={(error: Error) => {
                 toast.error(`Upload failed: ${error.message}`);
               }}
