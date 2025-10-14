@@ -3,6 +3,7 @@
 import { Layout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { ArticleCard } from "@/components/public/ArticleCard";
 import { motion } from "framer-motion";
 import { Calendar, User, Clock, ArrowRight, Share2, ChevronLeft, Loader2 } from "lucide-react";
 import { usePost } from "@/hooks/usePublicContent";
@@ -274,31 +275,22 @@ export default function PostDetailPage() {
                             </h2>
                             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
                                 {relatedPosts.map((relatedPost) => (
-                                    <Card key={relatedPost.id} className="group overflow-hidden transition-shadow duration-300 hover:shadow-xl">
-                                        <Link href={`/actualites/${relatedPost.slug}`}>
-                                            <CardContent className="p-0">
-                                                <div className="h-32 overflow-hidden">
-                                                    <img
-                                                        src={
-                                                            (relatedPost.media && relatedPost.media.length > 0) 
-                                                                ? relatedPost.media[0].url
-                                                                : "/assets/images-for-the-new-website/actualite-pic-1.jpeg"
-                                                        }
-                                                        alt={relatedPost.title}
-                                                        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
-                                                    />
-                                                </div>
-                                                <div className="p-4">
-                                                    <h3 className="mb-2 line-clamp-2 text-base font-semibold text-gray-900 group-hover:text-orange-600">
-                                                        {relatedPost.title}
-                                                    </h3>
-                                                    <p className="text-sm text-gray-600">
-                                                        {format(new Date(relatedPost.publishedAt), 'd MMM yyyy', { locale: fr })}
-                                                    </p>
-                                                </div>
-                                            </CardContent>
-                                        </Link>
-                                    </Card>
+                                    <ArticleCard
+                                        key={relatedPost.id}
+                                        id={relatedPost.id}
+                                        slug={relatedPost.slug}
+                                        title={relatedPost.title}
+                                        excerpt={relatedPost.excerpt}
+                                        type={relatedPost.type}
+                                        featured={relatedPost.featured}
+                                        publishedAt={relatedPost.publishedAt}
+                                        author={relatedPost.author}
+                                        category={relatedPost.category}
+                                        media={relatedPost.media}
+                                        readingTime={relatedPost.readingTime}
+                                        size="small"
+                                        showExcerpt={false}
+                                    />
                                 ))}
                             </div>
                         </motion.section>

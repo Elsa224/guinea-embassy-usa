@@ -2,12 +2,12 @@
 
 import React, { useState } from 'react';
 import { Layout } from '@/components/layout';
-import { ArticleList } from '@/components/public/ArticleList';
+import { ArticleCard } from '@/components/public/ArticleCard';
 import { usePosts, useCategories } from '@/hooks/usePublicContent';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Search, Filter, Calendar, Tag } from 'lucide-react';
+import { Search, Filter, Calendar, Tag, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { mockActualites } from '@/lib/mockData/actualites';
 
@@ -196,23 +196,90 @@ export default function ActualitesPage() {
         </section>
 
         {/* Articles Section */}
-        <section className="py-12">
+        <section className="py-12 bg-white">
           <div className="container mx-auto px-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <ArticleList
-                articles={(error || !data) ? mockActualites.posts : (data?.posts || [])}
-                pagination={(error || !data) ? mockActualites.pagination : data?.pagination}
-                loading={loading}
-                error={null} // Don't show error, use mockup data instead
-                onPageChange={handlePageChange}
-                showPagination={true}
-                gridCols={3}
-                className="min-h-[600px]"
-              />
+              {/* Articles Grid */}
+              <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                {((error || !data) ? mockActualites.posts : (data?.posts || [])).map((post) => (
+                  <ArticleCard
+                    key={post.id}
+                    {...post}
+                    size="medium"
+                  />
+                ))}
+              </div>
+
+              {/* Pagination */}
+              {((error || !data) ? mockActualites.pagination : data?.pagination) && ((error || !data) ? mockActualites.pagination.totalPages : data?.pagination?.totalPages) > 1 && (
+                <div className="mt-12 flex items-center justify-between">
+                  <div className="text-sm text-gray-600">
+                    Affichage de {((((error || !data) ? mockActualites.pagination : data?.pagination).currentPage - 1) * ((error || !data) ? mockActualites.pagination : data?.pagination).limit) + 1} à{' '}
+                    {Math.min(((error || !data) ? mockActualites.pagination : data?.pagination).currentPage * ((error || !data) ? mockActualites.pagination : data?.pagination).limit, ((error || !data) ? mockActualites.pagination : data?.pagination).totalCount)} sur{' '}
+                    {((error || !data) ? mockActualites.pagination : data?.pagination).totalCount} articles
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => handlePageChange(((error || !data) ? mockActualites.pagination : data?.pagination).currentPage - 1)}
+                      disabled={!((error || !data) ? mockActualites.pagination : data?.pagination).hasPrevPage}
+                      className="flex items-center gap-1"
+                    >
+                      <ChevronLeft className="w-4 h-4" />
+                      Précédent
+                    </Button>
+
+                    <div className="flex items-center gap-1">
+                      {Array.from({ length: Math.min(5, ((error || !data) ? mockActualites.pagination : data?.pagination).totalPages) }, (_, i) => {
+                        const pagination = (error || !data) ? mockActualites.pagination : data?.pagination;
+                        let pageNum;
+                        if (pagination.totalPages <= 5) {
+                          pageNum = i + 1;
+                        } else if (pagination.currentPage <= 3) {
+                          pageNum = i + 1;
+                        } else if (pagination.currentPage >= pagination.totalPages - 2) {
+                          pageNum = pagination.totalPages - 4 + i;
+                        } else {
+                          pageNum = pagination.currentPage - 2 + i;
+                        }
+
+                        return (
+                          <Button
+                            key={pageNum}
+                            variant={pagination.currentPage === pageNum ? "default" : "outline"}
+                            size="sm"
+                            onClick={() => handlePageChange(pageNum)}
+                            className={`w-8 h-8 p-0 ${
+                              pagination.currentPage === pageNum 
+                                ? 'bg-ci-orange hover:bg-ci-orange-dark text-white' 
+                                : ''
+                            }`}
+                          >
+                            {pageNum}
+                          </Button>
+                        );
+                      })}
+                    </div>
+
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => handlePageChange(((error || !data) ? mockActualites.pagination : data?.pagination).currentPage + 1)}
+                      disabled={!((error || !data) ? mockActualites.pagination : data?.pagination).hasNextPage}
+                      className="flex items-center gap-1"
+                    >
+                      Suivant
+                      <ChevronRight className="w-4 h-4" />
+                    </Button>
+                  </div>
+                </div>
+              )}
             </motion.div>
           </div>
         </section>
