@@ -2,20 +2,18 @@
 
 import { Layout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { ArticleCard } from "@/components/public/ArticleCard";
 import { motion } from "framer-motion";
-import { Calendar, User, Clock, ArrowRight, Share2, ChevronLeft, Loader2 } from "lucide-react";
+import { Calendar, User, Clock, Share2, ChevronLeft, Loader2, FileText, Download } from "lucide-react";
 import { usePost } from "@/hooks/usePublicContent";
 import Link from "next/link";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { mockActualites } from "@/lib/mockData/actualites";
 
 export default function PostDetailPage() {
     const params = useParams();
-    const router = useRouter();
     const slug = params.slug as string;
     
     const { data, loading, error } = usePost({ slug, lang: 'fr' });
@@ -57,7 +55,7 @@ export default function PostDetailPage() {
                     <div className="flex min-h-screen items-center justify-center">
                         <div className="text-center">
                             <h1 className="text-2xl font-bold text-gray-900 mb-4">Article non trouvé</h1>
-                            <p className="text-gray-600 mb-6">L'article demandé n'existe pas.</p>
+                            <p className="text-gray-600 mb-6">L&apos;article demandé n&apos;existe pas.</p>
                             <Button asChild>
                                 <Link href="/actualites">Retour aux actualités</Link>
                             </Button>
@@ -139,7 +137,7 @@ export default function PostDetailPage() {
                             </div>
                         </motion.header>
 
-                        {/* Featured Image */}
+                        {/* Featured Media - PDF or Image */}
                         {post.media && post.media.length > 0 && (
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.95 }}
@@ -147,26 +145,84 @@ export default function PostDetailPage() {
                                 transition={{ duration: 0.6, delay: 0.2 }}
                                 className="mb-8 overflow-hidden rounded-lg shadow-lg"
                             >
-                                <img
-                                    src={post.media[0].url}
-                                    alt={post.media[0].alt || post.title}
-                                    className="h-auto w-full object-cover"
-                                />
-                                {post.media[0].caption && (
-                                    <p className="bg-gray-50 px-4 py-2 text-sm text-gray-600">
-                                        {post.media[0].caption}
-                                    </p>
+                                {post.media.some(media => media.url.endsWith('.pdf')) ? (
+                                    /* PDF Article Section - No Cover */
+                                    (() => {
+                                        const pdfMedia = post.media.find(media => media.url.endsWith('.pdf'));
+                                        
+                                        return (
+                                            <div className="bg-white">
+                                                {/* PDF Header */}
+                                                <div className="bg-gradient-to-r from-orange-50 to-orange-50 border-b border-gray-200 p-4">
+                                                    <div className="flex items-center justify-between">
+                                                        <div className="flex items-center gap-3">
+                                                            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-red-100">
+                                                                <FileText className="h-6 w-6 text-red-600" />
+                                                            </div>
+                                                            <div>
+                                                                <h3 className="text-lg font-semibold text-gray-900">Document PDF</h3>
+                                                                <p className="text-sm text-gray-600">{pdfMedia?.caption}</p>
+                                                            </div>
+                                                        </div>
+                                                        <Button asChild variant="outline" className="gap-2">
+                                                            <a 
+                                                                href={pdfMedia?.url} 
+                                                                target="_blank" 
+                                                                rel="noopener noreferrer"
+                                                                download
+                                                            >
+                                                                <Download className="h-4 w-4" />
+                                                                Télécharger
+                                                            </a>
+                                                        </Button>
+                                                    </div>
+                                                </div>
+                                                
+                                                {/* Embedded PDF Viewer */}
+                                                <div className="relative">
+                                                    <iframe
+                                                        src={`${pdfMedia?.url}#toolbar=1&navpanes=1&scrollbar=1`}
+                                                        className="h-[800px] w-full border-0"
+                                                        title={pdfMedia?.alt || post.title}
+                                                        loading="lazy"
+                                                    />
+                                                    {/* Fallback message */}
+                                                    <div className="absolute inset-0 flex items-center justify-center bg-gray-50 opacity-0 hover:opacity-100 pointer-events-none transition-opacity">
+                                                        <div className="text-center">
+                                                            <FileText className="mx-auto h-12 w-12 text-gray-400 mb-2" />
+                                                            <p className="text-gray-600">Si le PDF ne s&apos;affiche pas, cliquez sur Télécharger</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        );
+                                    })()
+                                ) : (
+                                    /* Regular Image Display */
+                                    <>
+                                        <img
+                                            src={post.media[0].url}
+                                            alt={post.media[0].alt || post.title}
+                                            className="h-auto w-full object-cover"
+                                        />
+                                        {post.media[0].caption && (
+                                            <p className="bg-gray-50 px-4 py-2 text-sm text-gray-600">
+                                                {post.media[0].caption}
+                                            </p>
+                                        )}
+                                    </>
                                 )}
                             </motion.div>
                         )}
 
-                        {/* Content */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.3 }}
-                            className="prose prose-lg mx-auto mb-12"
-                        >
+                        {/* Content - Show only for non-PDF articles */}
+                        {!post.media?.some(media => media.url.endsWith('.pdf')) && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.6, delay: 0.3 }}
+                                className="prose prose-lg mx-auto mb-12"
+                            >
                             {/* Check if content is HTML or plain text */}
                             {post.content.includes('<') ? (
                                 <div 
@@ -214,10 +270,11 @@ export default function PostDetailPage() {
                                     })}
                                 </div>
                             )}
-                        </motion.div>
+                            </motion.div>
+                        )}
 
                         {/* Media Gallery */}
-                        {post.media && post.media.length > 1 && (
+                        {post.media && post.media.length > 1 && !post.media[0].id.includes('cover') && (
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
