@@ -326,7 +326,7 @@ export default function VisaPage() {
                             </motion.div>
                         )}
 
-                        {/* Modalités de retrait */}
+                        {/* Soumission des pièces sur express54 */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -336,7 +336,7 @@ export default function VisaPage() {
                             <Card className="overflow-hidden border-2 border-purple-200 bg-purple-50">
                                 <CardContent className="p-6">
                                     <h3 className="mb-4 text-lg font-bold text-gray-900">
-                                        {language === 'fr' ? 'Modalités de retrait' : 'Pickup Procedures'}
+                                        {language === 'fr' ? 'Soumission des pièces sur express54' : 'Document Submission on express54'}
                                     </h3>
                                     <div className="space-y-4 text-gray-700">
                                         {language === 'fr' ? (
@@ -365,6 +365,89 @@ export default function VisaPage() {
                             </Card>
                         </motion.div>
 
+                        {/* Modalités de retrait */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 1.6 }}
+                            className="mb-8"
+                        >
+                            <Card className="overflow-hidden border-2 border-blue-200 bg-blue-50">
+                                <CardContent className="p-6">
+                                    <h3 className="mb-4 text-lg font-bold text-gray-900">
+                                        {language === 'fr' ? 'Modalités de retrait' : 'Pickup Procedures'}
+                                    </h3>
+                                    <div className="space-y-4 text-gray-700">
+                                        {language === 'fr' ? (
+                                            <div>
+                                                <p className="mb-2">Pour l'obtention des documents, trois possibilités s'offrent à vous :</p>
+                                                <ol className="space-y-3">
+                                                    <li className="flex items-start">
+                                                        <span className="font-bold mr-2">1.</span>
+                                                        <div>
+                                                            <strong>En personne :</strong> Venez directement au Consulat Général pour le dépôt de dossier de demande de documents ou d'actes consulaires.
+                                                        </div>
+                                                    </li>
+                                                    <li className="flex items-start">
+                                                        <span className="font-bold mr-2">2.</span>
+                                                        <div>
+                                                            <strong>Par voie postale :</strong> Acheminer la demande à l'adresse suivante :
+                                                            <div className="mt-2 ml-4 p-3 bg-white rounded-lg border border-gray-200">
+                                                                <p className="font-semibold">Consulat Général de Côte d'Ivoire</p>
+                                                                <p>800 Second Avenue, Fifth Floor</p>
+                                                                <p>New York, NY 10017</p>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li className="flex items-start">
+                                                        <span className="font-bold mr-2">3.</span>
+                                                        <div>
+                                                            <strong>En ligne :</strong> Utiliser la plateforme digitale{' '}
+                                                            <a href="http://www.express54.org" target="_blank" rel="noopener noreferrer" className="text-orange-600 underline">
+                                                                Express54
+                                                            </a>
+                                                        </div>
+                                                    </li>
+                                                </ol>
+                                            </div>
+                                        ) : (
+                                            <div>
+                                                <p className="mb-2">To obtain documents, you have three options:</p>
+                                                <ol className="space-y-3">
+                                                    <li className="flex items-start">
+                                                        <span className="font-bold mr-2">1.</span>
+                                                        <div>
+                                                            <strong>In person:</strong> Come directly to the Consulate General to submit your document request.
+                                                        </div>
+                                                    </li>
+                                                    <li className="flex items-start">
+                                                        <span className="font-bold mr-2">2.</span>
+                                                        <div>
+                                                            <strong>By mail:</strong> Send your request to the following address:
+                                                            <div className="mt-2 ml-4 p-3 bg-white rounded-lg border border-gray-200">
+                                                                <p className="font-semibold">Consulate General of Côte d'Ivoire</p>
+                                                                <p>800 Second Avenue, Fifth Floor</p>
+                                                                <p>New York, NY 10017</p>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li className="flex items-start">
+                                                        <span className="font-bold mr-2">3.</span>
+                                                        <div>
+                                                            <strong>Online:</strong> Use the digital platform{' '}
+                                                            <a href="http://www.express54.org" target="_blank" rel="noopener noreferrer" className="text-orange-600 underline">
+                                                                Express54
+                                                            </a>
+                                                        </div>
+                                                    </li>
+                                                </ol>
+                                            </div>
+                                        )}
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </motion.div>
+
 
                         {/* Processing Information */}
                         <motion.div
@@ -382,14 +465,8 @@ export default function VisaPage() {
                                             <div className="text-gray-700 space-y-2">
                                                 <p>
                                                     {language === 'fr' 
-                                                        ? <>• <span className="font-bold text-amber-700">7 jours</span> pour une demande normale et <span className="font-bold text-amber-700">24h</span> pour une demande urgente.</>
-                                                        : <>• <span className="font-bold text-amber-700">7 days</span> for a normal application and <span className="font-bold text-amber-700">24h</span> for an urgent application.</>
-                                                    }
-                                                </p>
-                                                <p>
-                                                    {language === 'fr' 
-                                                        ? <>• Durée de production : <span className="font-bold text-amber-700">30 à 45 jours</span> après transmission du dossier.</>
-                                                        : <>• Production time: <span className="font-bold text-amber-700">30 to 45 days</span> after transmission </>
+                                                        ? <>• <span className="font-bold text-amber-700">3 jours</span></>
+                                                        : <>• <span className="font-bold text-amber-700">3 days</span></>
                                                     }
                                                 </p>
                                                 <p className="font-semibold text-amber-700">
@@ -458,6 +535,43 @@ export default function VisaPage() {
                                             <ExternalLink className="mr-3 h-5 w-5" />
                                             www.express54.org
                                         </Button>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </motion.div>
+
+                        {/* Form Download Section */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 1.0 }}
+                            className="mt-8"
+                        >
+                            <Card className="overflow-hidden border-2 border-gray-200 bg-gray-50">
+                                <CardContent className="p-6">
+                                    <h3 className="mb-4 text-lg font-bold text-gray-900">
+                                        {language === 'fr' ? 'Téléchargement du formulaire' : 'Form Download'}
+                                    </h3>
+                                    <p className="mb-6 text-gray-700">
+                                        {language === 'fr' 
+                                            ? 'Téléchargez et remplissez le formulaire de demande de visa.'
+                                            : 'Download and complete the visa application form.'}
+                                    </p>
+                                    <div className="text-center">
+                                        <Button 
+                                            disabled
+                                            className="rounded-xl bg-gray-400 px-8 py-4 text-lg font-semibold text-white shadow-lg cursor-not-allowed"
+                                        >
+                                            <FileText className="mr-3 h-5 w-5" />
+                                            {language === 'fr' 
+                                                ? 'Formulaire (lien à venir)'
+                                                : 'Form (link coming soon)'}
+                                        </Button>
+                                        <p className="text-sm text-gray-500 mt-2">
+                                            {language === 'fr' 
+                                                ? 'Lien fourni par le Ministère de l\'Intérieur'
+                                                : 'Link to be provided by the Ministry of Interior'}
+                                        </p>
                                     </div>
                                 </CardContent>
                             </Card>

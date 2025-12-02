@@ -468,14 +468,8 @@ export default function EtatCivilPage() {
                                             <div className="text-gray-700 space-y-2">
                                                 <p>
                                                     {language === 'fr' 
-                                                        ? <>• <span className="font-bold text-amber-700">7 jours</span> pour une demande normale et <span className="font-bold text-amber-700">24h</span> pour une demande urgente.</>
-                                                        : <>• <span className="font-bold text-amber-700">7 days</span> for a normal application and <span className="font-bold text-amber-700">24h</span> for an urgent application.</>
-                                                    }
-                                                </p>
-                                                <p>
-                                                    {language === 'fr' 
-                                                        ? <>• Durée de production : <span className="font-bold text-amber-700">30 à 45 jours</span> après transmission du dossier.</>
-                                                        : <>• Production time: <span className="font-bold text-amber-700">30 to 45 days</span> after transmission of the file.</>
+                                                        ? <>• <span className="font-bold text-amber-700">7 jours</span></>
+                                                        : <>• <span className="font-bold text-amber-700">7 days</span></>
                                                     }
                                                 </p>
                                                 <p className="font-semibold text-amber-700">
@@ -508,12 +502,49 @@ export default function EtatCivilPage() {
                                     </p>
                                     <div className="text-center">
                                         <Button
-                                            onClick={() => window.open(paymentLink, '_blank')}
+                                            onClick={() => window.open('https://www.ci-embassyepay.org/', '_blank')}
                                             className="rounded-xl bg-green-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-green-700 hover:shadow-xl hover:scale-105"
                                         >
                                             <ExternalLink className="mr-3 h-5 w-5" />
-                                            {language === 'fr' ? 'Payer les frais' : 'Pay Fees'}
+                                            {language === 'fr' ? 'Payer les frais (20 dollars)' : 'Pay Fees (20 dollars)'}
                                         </Button>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </motion.div>
+
+                        {/* Form Download Section */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 1.4 }}
+                            className="mt-8"
+                        >
+                            <Card className="overflow-hidden border-2 border-gray-200 bg-gray-50">
+                                <CardContent className="p-6">
+                                    <h3 className="mb-4 text-lg font-bold text-gray-900">
+                                        {language === 'fr' ? 'Téléchargement des formulaires' : 'Forms Download'}
+                                    </h3>
+                                    <p className="mb-6 text-gray-700">
+                                        {language === 'fr' 
+                                            ? 'Téléchargez et remplissez les formulaires de transcription appropriés.'
+                                            : 'Download and complete the appropriate transcription forms.'}
+                                    </p>
+                                    <div className="text-center">
+                                        <Button 
+                                            disabled
+                                            className="rounded-xl bg-gray-400 px-8 py-4 text-lg font-semibold text-white shadow-lg cursor-not-allowed"
+                                        >
+                                            <FileText className="mr-3 h-5 w-5" />
+                                            {language === 'fr' 
+                                                ? 'Formulaires (liens à venir)'
+                                                : 'Forms (links coming soon)'}
+                                        </Button>
+                                        <p className="text-sm text-gray-500 mt-2">
+                                            {language === 'fr' 
+                                                ? 'Liens à fournir'
+                                                : 'Links to be provided'}
+                                        </p>
                                     </div>
                                 </CardContent>
                             </Card>
@@ -523,7 +554,7 @@ export default function EtatCivilPage() {
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 1.4 }}
+                            transition={{ duration: 0.6, delay: 1.5 }}
                             className="mt-8"
                         >
                             <Card className="overflow-hidden border-2 border-orange-200 bg-orange-50">
@@ -533,8 +564,8 @@ export default function EtatCivilPage() {
                                     </h3>
                                     <p className="mb-6 text-gray-700">
                                         {language === 'fr' 
-                                            ? 'Effectuez votre demande de visa directement sur notre plateforme digitalisée pour un traitement plus rapide.'
-                                            : 'Submit your visa application directly on our digitalized platform for faster processing.'}
+                                            ? 'Effectuez votre demande de transcription directement sur notre plateforme digitalisée pour un traitement plus rapide.'
+                                            : 'Submit your transcription application directly on our digitalized platform for faster processing.'}
                                     </p>
                                     <div className="text-center">
                                         <Button 

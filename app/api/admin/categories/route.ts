@@ -1,169 +1,143 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/lib/auth'
 import { db } from '@/lib/db'
-import { createCategorySchema, paginationSchema } from '@/lib/validations'
-import { hasPermission } from '@/lib/permissions'
-import { withLogging, logDataChange } from '@/lib/middleware/logging'
-import { logger } from '@/lib/logger'
 
 function generateSlug(name: string): string {
   return name
     .toLowerCase()
-    .replace(/[àáäâ]/g, 'a')
-    .replace(/[èéëê]/g, 'e')
-    .replace(/[ìíïî]/g, 'i')
-    .replace(/[òóöô]/g, 'o')
-    .replace(/[ùúüû]/g, 'u')
-    .replace(/[ç]/g, 'c')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '') // Remove accents
     .replace(/[^a-z0-9\s-]/g, '')
     .replace(/\s+/g, '-')
     .replace(/-+/g, '-')
-    .trim()
+    .trim('-')
 }
 
-async function handleGET(request: NextRequest) {
-  const session = await auth()
-  if (!session?.user) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-  }
-
-  if (!hasPermission(session.user.role, 'manage_categories')) {
-    return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
-  }
-
-  const { searchParams } = new URL(request.url)
-  const includeEmpty = searchParams.get('includeEmpty') === 'true'
-  
+export async function GET(request: NextRequest) {
   try {
+    const session = await auth()
+    if (!session?.user) {
+      return NextResponse.json({ error: 'Non autorisé' }, { status: 401 })
+    }
+
+    const { searchParams } = new URL(request.url)
+    const page = parseInt(searchParams.get('page') || '1')
+    const limit = parseInt(searchParams.get('limit') || '20')
+    const search = searchParams.get('search')
+
+    const offset = (page - 1) * limit
+
+    // Build where clause
+    const where: any = {}
+    
+    if (search) {
+      where.slug = { contains: search, mode: 'insensitive' }
+    }
+
+    // Get total count
+    const totalCount = await db.category.count({ where })
+    const totalPages = Math.ceil(totalCount / limit)
+
     const categories = await db.category.findMany({
+      where,
       include: {
-        parent: {
-          select: {
-            id: true,
-            name: true,
-            slug: true,
-          },
-        },
-        children: {
-          select: {
-            id: true,
-            name: true,
-            slug: true,
-          },
-        },
+        parent: true,
+        children: true,
         _count: {
-          select: {
-            posts: true,
-          },
-        },
+          select: { posts: true }
+        }
       },
       orderBy: [
         { order: 'asc' },
-        { createdAt: 'asc' },
+        { createdAt: 'desc' }
       ],
+      skip: offset,
+      take: limit
     })
 
-    // Filter out empty categories if requested
-    const filteredCategories = includeEmpty 
-      ? categories 
-      : categories.filter(cat => cat._count.posts > 0 || cat.children.length > 0)
-
-    return NextResponse.json(filteredCategories)
+    return NextResponse.json({
+      categories,
+      totalCount,
+      totalPages,
+      currentPage: page
+    })
   } catch (error) {
-    await logger.logError('Failed to fetch categories', {
-      error: error instanceof Error ? error : new Error(String(error)),
-      userId: session.user.id,
-    })
+    console.error('Categories GET error:', error)
     return NextResponse.json(
-      { error: 'Failed to fetch categories' },
+      { error: 'Erreur lors de la récupération des catégories' },
       { status: 500 }
     )
   }
 }
 
-async function handlePOST(request: NextRequest) {
-  const session = await auth()
-  if (!session?.user) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-  }
-
-  if (!hasPermission(session.user.role, 'manage_categories')) {
-    return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
-  }
-
+export async function POST(request: NextRequest) {
   try {
-    const body = await request.json()
-    const validation = createCategorySchema.safeParse(body)
+    const session = await auth()
+    if (!session?.user) {
+      return NextResponse.json({ error: 'Non autorisé' }, { status: 401 })
+    }
 
-    if (!validation.success) {
+    const data = await request.json()
+    const { name, description, color, icon, parentId, order } = data
+
+    if (!name?.fr || !name?.en) {
       return NextResponse.json(
-        { error: 'Invalid data', issues: validation.error.issues },
+        { error: 'Le nom est requis en français et en anglais' },
         { status: 400 }
       )
     }
 
-    const data = validation.data
-    const slug = generateSlug(data.name.fr)
+    // Generate slug from French name
+    const slug = generateSlug(name.fr)
 
     // Check if slug already exists
-    const existingCategory = await db.category.findUnique({ where: { slug } })
+    const existingCategory = await db.category.findUnique({
+      where: { slug }
+    })
+
     if (existingCategory) {
       return NextResponse.json(
-        { error: 'A category with this name already exists' },
-        { status: 409 }
+        { error: 'Une catégorie avec ce nom existe déjà' },
+        { status: 400 }
       )
     }
 
     const category = await db.category.create({
       data: {
-        ...data,
+        name,
         slug,
+        description: description?.fr || description?.en ? description : undefined,
+        color: color || null,
+        icon: icon || null,
+        parentId: parentId || null,
+        order: order || 0
       },
       include: {
-        parent: {
-          select: {
-            id: true,
-            name: true,
-            slug: true,
-          },
-        },
-        children: {
-          select: {
-            id: true,
-            name: true,
-            slug: true,
-          },
-        },
+        parent: true,
+        children: true,
         _count: {
-          select: {
-            posts: true,
-          },
-        },
-      },
+          select: { posts: true }
+        }
+      }
     })
 
-    // Log the creation
-    await logDataChange(
-      'CATEGORY',
-      category.id,
-      'CREATE',
-      null,
-      category,
-      request
-    )
+    // Create audit log
+    await db.auditLog.create({
+      data: {
+        action: 'CREATE',
+        entity: 'Category',
+        entityId: category.id,
+        userId: session.user.id,
+        data: { name, slug, color, icon, parentId, order }
+      }
+    })
 
     return NextResponse.json(category, { status: 201 })
   } catch (error) {
-    await logger.logError('Failed to create category', {
-      error: error instanceof Error ? error : new Error(String(error)),
-      userId: session.user.id,
-    })
+    console.error('Categories POST error:', error)
     return NextResponse.json(
-      { error: 'Failed to create category' },
+      { error: 'Erreur lors de la création de la catégorie' },
       { status: 500 }
     )
   }
 }
-
-export const GET = withLogging(handleGET)
-export const POST = withLogging(handlePOST)

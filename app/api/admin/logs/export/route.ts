@@ -1,48 +1,100 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/lib/auth'
-import { hasPermission } from '@/lib/permissions'
-import { withLogging } from '@/lib/middleware/logging'
-import { exportLogsToCSV } from '@/lib/utils/log-utils'
-import { logger } from '@/lib/logger'
+import { db } from '@/lib/db'
 
-async function handleGET(request: NextRequest) {
-  const session = await auth()
-  if (!session?.user) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-  }
-
-  if (!hasPermission(session.user.role, 'view_analytics')) {
-    return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
-  }
-
-  const { searchParams } = new URL(request.url)
-  
-  const options = {
-    entity: searchParams.get('entity') || undefined,
-    action: searchParams.get('action') || undefined,
-    userId: session.user.id, // Add current user ID for audit purposes
-    startDate: searchParams.get('startDate') ? new Date(searchParams.get('startDate')!) : undefined,
-    endDate: searchParams.get('endDate') ? new Date(searchParams.get('endDate')!) : undefined,
-  }
-
+export async function GET(request: NextRequest) {
   try {
-    const csvContent = await exportLogsToCSV(options)
+    const session = await auth()
+    if (!session?.user) {
+      return NextResponse.json({ error: 'Non autorisé' }, { status: 401 })
+    }
+
+    const { searchParams } = new URL(request.url)
+    const action = searchParams.get('action')
+    const entity = searchParams.get('entity')
+    const userId = searchParams.get('userId')
+    const search = searchParams.get('search')
+
+    // Build where clause
+    const where: any = {}
     
-    const headers = new Headers()
-    headers.set('Content-Type', 'text/csv')
-    headers.set('Content-Disposition', `attachment; filename="audit-logs-${new Date().toISOString().split('T')[0]}.csv"`)
+    if (action) {
+      where.action = action
+    }
     
-    return new NextResponse(csvContent, { headers })
-  } catch (error) {
-    await logger.logError('Failed to export logs', {
-      error: error instanceof Error ? error : new Error(String(error)),
-      userId: session.user.id,
+    if (entity) {
+      where.entity = entity
+    }
+    
+    if (userId) {
+      where.userId = userId
+    }
+    
+    if (search) {
+      where.OR = [
+        { entity: { contains: search, mode: 'insensitive' } },
+        { action: { contains: search, mode: 'insensitive' } },
+        { entityId: { contains: search, mode: 'insensitive' } },
+        { user: { name: { contains: search, mode: 'insensitive' } } },
+        { user: { email: { contains: search, mode: 'insensitive' } } }
+      ]
+    }
+
+    // Get all logs (limited to 10000 for performance)
+    const logs = await db.auditLog.findMany({
+      where,
+      include: {
+        user: {
+          select: {
+            id: true,
+            name: true,
+            email: true
+          }
+        }
+      },
+      orderBy: { createdAt: 'desc' },
+      take: 10000
     })
+
+    // Create CSV content
+    const headers = [
+      'Date/Heure',
+      'Action',
+      'Entité',
+      'ID Entité',
+      'Utilisateur',
+      'Email Utilisateur',
+      'Adresse IP',
+      'Navigateur'
+    ]
+
+    const csvRows = [
+      headers.join(','),
+      ...logs.map(log => [
+        new Date(log.createdAt).toLocaleString('fr-FR'),
+        log.action,
+        log.entity,
+        log.entityId,
+        log.user?.name || '',
+        log.user?.email || '',
+        log.ipAddress || '',
+        log.userAgent ? `"${log.userAgent.replace(/"/g, '""')}"` : ''
+      ].join(','))
+    ]
+
+    const csvContent = csvRows.join('\n')
+
+    // Set headers for file download
+    const headers_response = new Headers()
+    headers_response.set('Content-Type', 'text/csv')
+    headers_response.set('Content-Disposition', `attachment; filename="activity-logs-${new Date().toISOString().split('T')[0]}.csv"`)
+
+    return new NextResponse(csvContent, { headers: headers_response })
+  } catch (error) {
+    console.error('Logs export error:', error)
     return NextResponse.json(
-      { error: 'Failed to export logs' },
+      { error: 'Erreur lors de l\'export des logs' },
       { status: 500 }
     )
   }
 }
-
-export const GET = withLogging(handleGET)

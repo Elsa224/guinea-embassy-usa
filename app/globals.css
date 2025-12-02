@@ -260,15 +260,15 @@ body {
 }
 
 /* Gradient backgrounds */
-.gradient-ci {
+/* .bg-ci-green {
     background: linear-gradient(
         135deg,
         var(--ci-orange) 0%,
         var(--ci-green) 100%
     );
-}
+} */
 
-.gradient-ci-soft {
+.bg-ci-green-soft {
     background: linear-gradient(135deg, #fff5f0 0%, #f0fff4 100%);
 }
 

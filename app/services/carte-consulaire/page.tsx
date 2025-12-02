@@ -269,7 +269,7 @@ export default function CarteConsulairePage() {
                             <Card className="overflow-hidden border-2 border-green-200 bg-green-50">
                                 <CardContent className="p-6">
                                     <h3 className="mb-4 text-lg font-bold text-gray-900">
-                                        {language === 'fr' ? 'Paiement des frais' : 'Fee Payment'}
+                                        {language === 'fr' ? 'Paiement des frais (20 dollars)' : 'Fee Payment (20 dollars)'}
                                     </h3>
                                     <p className="mb-6 text-gray-700">
                                         {language === 'fr' 
@@ -278,12 +278,49 @@ export default function CarteConsulairePage() {
                                     </p>
                                     <div className="text-center">
                                         <Button
-                                            onClick={() => window.open(paymentLink, '_blank')}
+                                            onClick={() => window.open('https://www.ci-embassyepay.org/', '_blank')}
                                             className="rounded-xl bg-green-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-green-700 hover:shadow-xl hover:scale-105"
                                         >
                                             <ExternalLink className="mr-3 h-5 w-5" />
-                                            {language === 'fr' ? 'Payer les frais' : 'Pay Fees'}
+                                            {language === 'fr' ? 'Payer les frais (20 dollars)' : 'Pay Fees (20 dollars)'}
                                         </Button>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </motion.div>
+
+                        {/* Form Download Section */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.9 }}
+                            className="mt-8"
+                        >
+                            <Card className="overflow-hidden border-2 border-gray-200 bg-gray-50">
+                                <CardContent className="p-6">
+                                    <h3 className="mb-4 text-lg font-bold text-gray-900">
+                                        {language === 'fr' ? 'Téléchargement du formulaire' : 'Form Download'}
+                                    </h3>
+                                    <p className="mb-6 text-gray-700">
+                                        {language === 'fr' 
+                                            ? 'Téléchargez et remplissez le formulaire de demande de carte consulaire.'
+                                            : 'Download and complete the consular card application form.'}
+                                    </p>
+                                    <div className="text-center">
+                                        <Button 
+                                            disabled
+                                            className="rounded-xl bg-gray-400 px-8 py-4 text-lg font-semibold text-white shadow-lg cursor-not-allowed"
+                                        >
+                                            <FileText className="mr-3 h-5 w-5" />
+                                            {language === 'fr' 
+                                                ? 'Formulaire (lien à venir)'
+                                                : 'Form (link coming soon)'}
+                                        </Button>
+                                        <p className="text-sm text-gray-500 mt-2">
+                                            {language === 'fr' 
+                                                ? 'Lien à fournir'
+                                                : 'Link to be provided'}
+                                        </p>
                                     </div>
                                 </CardContent>
                             </Card>
@@ -293,7 +330,7 @@ export default function CarteConsulairePage() {
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.9 }}
+                            transition={{ duration: 0.6, delay: 1.0 }}
                             className="mt-8"
                         >
                             <Card className="overflow-hidden border-2 border-orange-200 bg-orange-50">
@@ -303,8 +340,8 @@ export default function CarteConsulairePage() {
                                     </h3>
                                     <p className="mb-6 text-gray-700">
                                         {language === 'fr' 
-                                            ? 'Effectuez votre demande de visa directement sur notre plateforme digitalisée pour un traitement plus rapide.'
-                                            : 'Submit your visa application directly on our digitalized platform for faster processing.'}
+                                            ? 'Effectuez votre demande de carte consulaire directement sur notre plateforme digitalisée pour un traitement plus rapide.'
+                                            : 'Submit your consular card application directly on our digitalized platform for faster processing.'}
                                     </p>
                                     <div className="text-center">
                                         <Button 

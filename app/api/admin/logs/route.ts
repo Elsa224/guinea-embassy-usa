@@ -1,45 +1,85 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/lib/auth'
-import { hasPermission } from '@/lib/permissions'
-import { withLogging } from '@/lib/middleware/logging'
-import { getAuditLogs } from '@/lib/utils/log-utils'
-import { logger } from '@/lib/logger'
+import { db } from '@/lib/db'
 
-async function handleGET(request: NextRequest) {
-  const session = await auth()
-  if (!session?.user) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-  }
-
-  if (!hasPermission(session.user.role, 'view_analytics')) {
-    return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
-  }
-
-  const { searchParams } = new URL(request.url)
-  
-  const options = {
-    page: searchParams.get('page') ? parseInt(searchParams.get('page')!) : 1,
-    limit: searchParams.get('limit') ? parseInt(searchParams.get('limit')!) : 50,
-    entity: searchParams.get('entity') || undefined,
-    action: searchParams.get('action') || undefined,
-    userId: searchParams.get('userId') || undefined,
-    startDate: searchParams.get('startDate') ? new Date(searchParams.get('startDate')!) : undefined,
-    endDate: searchParams.get('endDate') ? new Date(searchParams.get('endDate')!) : undefined,
-  }
-
+export async function GET(request: NextRequest) {
   try {
-    const result = await getAuditLogs(options)
-    return NextResponse.json(result)
-  } catch (error) {
-    await logger.logError('Failed to fetch audit logs', {
-      error: error instanceof Error ? error : new Error(String(error)),
-      userId: session.user.id,
+    const session = await auth()
+    if (!session?.user) {
+      return NextResponse.json({ error: 'Non autorisé' }, { status: 401 })
+    }
+
+    const { searchParams } = new URL(request.url)
+    const page = parseInt(searchParams.get('page') || '1')
+    const limit = parseInt(searchParams.get('limit') || '20')
+    const action = searchParams.get('action')
+    const entity = searchParams.get('entity')
+    const userId = searchParams.get('userId')
+    const search = searchParams.get('search')
+
+    const offset = (page - 1) * limit
+
+    // Build where clause
+    const where: any = {}
+    
+    if (action) {
+      where.action = action
+    }
+    
+    if (entity) {
+      where.entity = entity
+    }
+    
+    if (userId) {
+      where.userId = userId
+    }
+    
+    if (search) {
+      where.OR = [
+        { entity: { contains: search, mode: 'insensitive' } },
+        { action: { contains: search, mode: 'insensitive' } },
+        { entityId: { contains: search, mode: 'insensitive' } },
+        { user: { name: { contains: search, mode: 'insensitive' } } },
+        { user: { email: { contains: search, mode: 'insensitive' } } }
+      ]
+    }
+
+    // Get total count
+    const totalCount = await db.auditLog.count({ where })
+    const totalPages = Math.ceil(totalCount / limit)
+
+    // Get logs
+    const logs = await db.auditLog.findMany({
+      where,
+      include: {
+        user: {
+          select: {
+            id: true,
+            name: true,
+            email: true
+          }
+        }
+      },
+      orderBy: { createdAt: 'desc' },
+      skip: offset,
+      take: limit
     })
+
+    return NextResponse.json({
+      logs,
+      pagination: {
+        page,
+        limit,
+        totalCount,
+        totalPages
+      },
+      totalPages // For backwards compatibility
+    })
+  } catch (error) {
+    console.error('Logs GET error:', error)
     return NextResponse.json(
-      { error: 'Failed to fetch audit logs' },
+      { error: 'Erreur lors de la récupération des logs' },
       { status: 500 }
     )
   }
 }
-
-export const GET = withLogging(handleGET)

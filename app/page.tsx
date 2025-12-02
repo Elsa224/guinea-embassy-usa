@@ -224,43 +224,35 @@ export default function Home() {
                                                 <div className="space-y-4 pl-8 text-sm leading-relaxed text-gray-700 sm:text-base lg:text-lg">
                                                     <p>
                                                         <span className="font-semibold text-gray-800">
-                                                            Chères et Chers
-                                                            Compatriotes,
-                                                        </span>{" "}
-                                                        un plan ambitieux de Son
-                                                        Excellence Monsieur
-                                                        Alassane Ouattara,
-                                                        Président de la
-                                                        République insuffle un
-                                                        nouveau dynamisme
-                                                        économique ivoirien,
-                                                        nous vivons un{" "}
-                                                        <span className="font-semibold text-orange-600">
-                                                            "Deuxième Miracle
-                                                            Ivoirien"
+                                                            Chers compatriotes, chères sœurs et chers frères,
                                                         </span>
-                                                        .
                                                     </p>
                                                     <p>
-                                                        C'est avec un immense
-                                                        plaisir que je m'adresse
-                                                        à vous, forts de la
-                                                        solidarité qui nous unit
-                                                        en tant que membres de
-                                                        la grande famille
-                                                        ivoirienne aux Etats
-                                                        Unis d'Amerique.
+                                                        Il me plaît de vous rappeler que dès son accession à la magistrature suprême de notre pays, <strong>S.E.M Alassane OUATTARA</strong> vous avait fait la promesse, lors d'une rencontre en septembre 2011, de l'ouverture d'un Consulat Général à New York, en réponse à l'une de vos doléances.
                                                     </p>
                                                     <p>
-                                                        Bienvenue au Consulat
-                                                        Général de la Côte
-                                                        d'Ivoire à New York,{" "}
-                                                        <br /> ce{" "}
-                                                        <span className="font-semibold text-green-600">
-                                                            havre de paix
-                                                        </span>{" "}
-                                                        qui caractérise notre
-                                                        culture et notre peuple.
+                                                        En juillet 2014, le fonctionnement du Consulat Général a été effectif avec l'installation de son premier Consul Général, M. Christophe Kouamé KOUAKOU.
+                                                    </p>
+                                                    <p>
+                                                        L'objectif de ce Consulat est de rapprocher l'administration des citoyens ivoiriens où qu'ils se trouvent, et de leur permettre de participer à la construction et au développement de la Côte d'Ivoire.
+                                                    </p>
+                                                    <p>
+                                                        Après la crise qu'a connue notre pays, la vision du Président reposait sur le triptyque : <strong>Paix, Réconciliation et Développement</strong>. Pour atteindre ces objectifs, il a besoin du concours et de la participation de toutes les filles et fils de la Côte d'Ivoire.
+                                                    </p>
+                                                    <p>
+                                                        Que vous soyez résidents dans les États américains suivants : <em>New York, New Jersey, Connecticut, Vermont, New Hampshire, Massachusetts, Rhode Island, Pennsylvanie, Maine, Michigan, Ohio, Indiana, Illinois, Minnesota, Wisconsin, Missouri, Géorgie, Caroline du Sud, Caroline du Nord et la Floride</em>, vous pouvez participer à l'œuvre de promotion et de développement de notre cher pays.
+                                                    </p>
+                                                    <p>
+                                                        Le Consulat Général de Côte d'Ivoire est présent pour faciliter l'établissement de vos actes administratifs, vous assister et vous conseiller à travers ses attributions consulaires.
+                                                    </p>
+                                                    <p>
+                                                        Être à vos côtés, vous servir est notre credo. Je rends hommage à mes prédécesseurs, notamment l'Ambassadeur Christophe Kouamé KOUAKOU (premier Consul Général à New York) et l'Ambassadeur Annick Josiane CAPET-BAKOU.
+                                                    </p>
+                                                    <p>
+                                                        Chers compatriotes, je vous exhorte à prendre votre part dans le développement de notre beau pays. Nous restons à votre disposition et ne ménagerons aucun effort pour vous apporter satisfaction.
+                                                    </p>
+                                                    <p>
+                                                        <em>Ensemble, nous rêvons le meilleur pour notre chère patrie ; Ensemble, nous y croyons ; Ensemble, nous y arriverons.</em>
                                                     </p>
                                                 </div>
                                             </blockquote>
@@ -277,11 +269,10 @@ export default function Home() {
                                             >
                                                 <div className="text-right">
                                                     <p className="mb-1 text-xl font-bold text-gray-900">
-                                                        S.E.M Inza CAMARA
+                                                        Inza CAMARA
                                                     </p>
                                                     <p className="mb-1 text-sm font-semibold text-orange-600">
-                                                        Consul Général de Côte
-                                                        d'Ivoire à New York
+                                                        Ambassadeur, Consul Général de Côte d'Ivoire à New York
                                                     </p>
                                                 </div>
                                             </motion.div>

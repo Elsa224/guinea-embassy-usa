@@ -31,7 +31,7 @@ export default function Unauthorized() {
 
             <div className="space-y-3">
               <Link href="/" className="block">
-                <Button className="w-full gradient-ci text-white hover:opacity-90 transition-opacity">
+                <Button className="w-full bg-ci-green text-white hover:opacity-90 transition-opacity">
                   <Home className="w-4 h-4 mr-2" />
                   Retour à l'accueil
                 </Button>

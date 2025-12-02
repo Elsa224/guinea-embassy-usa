@@ -33,23 +33,22 @@ const eligibilityConditions = {
     fr: [
         {
             id: "de-passage",
-            title: "De passage et dépourvus de titre de voyage",
-            description: "En cas de perte ou de vol de passeport",
+            title: "Ivoiriens de passage dépourvus de titre de voyage",
+            description: "Perte ou vol de passeport",
             icon: AlertTriangle,
             color: "bg-green-700",
         },
         {
             id: "situation-irreguliere",
-            title: "En situation irrégulière",
+            title: "Personnes en situation irrégulière",
             description: "Sur réquisition des autorités locales",
             icon: AlertCircle,
             color: "bg-green-700",
         },
         {
             id: "passeport-expire",
-            title: "Passeport expiré depuis six mois au plus",
-            description:
-                "Pour des raisons impérieuses et particulières (décès d'un ascendant ou descendant)",
+            title: "Détenteurs d'un passeport expiré depuis moins de 6 mois",
+            description: "Ayant un motif impérieux (ex : décès d'un ascendant ou d'un descendant)",
             icon: Plane,
             color: "bg-green-700",
         },
@@ -57,23 +56,22 @@ const eligibilityConditions = {
     en: [
         {
             id: "de-passage",
-            title: "In transit and without travel document",
-            description: "In case of loss or theft of passport",
+            title: "Ivorians in transit without travel document",
+            description: "Loss or theft of passport",
             icon: AlertTriangle,
             color: "bg-green-700",
         },
         {
             id: "situation-irreguliere",
-            title: "In irregular situation",
+            title: "Persons in irregular situation",
             description: "Upon requisition of local authorities",
             icon: AlertCircle,
             color: "bg-green-700",
         },
         {
             id: "passeport-expire",
-            title: "Passport expired for six months or less",
-            description:
-                "For compelling and particular reasons (death of an ascendant or descendant)",
+            title: "Holders of passport expired for less than 6 months",
+            description: "Having compelling reasons (e.g., death of an ascendant or descendant)",
             icon: Plane,
             color: "bg-green-700",
         },
@@ -82,20 +80,22 @@ const eligibilityConditions = {
 
 const requiredDocuments = {
     fr: [
-        "Déclaration ou certificat de perte ou de vol délivré par les autorités américaines (pour les Ivoiriens de passage)",
-        "Copie de tout document prouvant votre identité et votre nationalité (carte d'identité nationale, carte consulaire, acte de naissance)",
+        "Déclaration ou certificat de perte/vol délivré par les autorités américaines",
+        "Formulaire de demande de laissez-passer dûment renseigné et signé (lien du formulaire à venir)",
+        "Copie d'un document prouvant l'identité et la nationalité (CNI, carte consulaire, acte de naissance)",
         "Copie ou réservation de billet d'avion",
-        "Deux (02) photos d'identité récentes",
-        "Acte de décès du parent en ligne directe accompagné de l'acte de naissance du demandeur (en cas de décès)",
-        "Paiement des droits de chancellerie (80 dollars)",
+        "2 photos d'identité récentes",
+        "Acte de décès du parent en ligne directe + acte de naissance du demandeur (si applicable)",
+        "Paiement des droits de chancellerie (150 $) via : https://www.ci-embassyepay.org/",
     ],
     en: [
-        "Declaration or certificate of loss or theft issued by American authorities (for Ivorians in transit)",
-        "Copy of any document proving your identity and nationality (national identity card, consular card, birth certificate)",
+        "Declaration or certificate of loss/theft issued by American authorities",
+        "Safe-conduct application form duly completed and signed (form link coming soon)",
+        "Copy of document proving identity and nationality (NIC, consular card, birth certificate)",
         "Copy or reservation of airline ticket",
-        "Two (02) recent identity photos",
-        "Death certificate of direct line parent accompanied by applicant's birth certificate (in case of death)",
-        "Payment of chancellery fees (80 dollars)",
+        "2 recent identity photos",
+        "Death certificate of direct line parent + applicant's birth certificate (if applicable)",
+        "Payment of chancellery fees (150 $) via: https://www.ci-embassyepay.org/",
     ],
 };
 
@@ -308,7 +308,7 @@ export default function LaissezPasserPage() {
                                             variant="secondary"
                                             className="bg-white text-gray-800"
                                         >
-                                            $80
+                                            $150
                                         </Badge>
                                     </CardTitle>
                                 </CardHeader>
@@ -409,14 +409,20 @@ export default function LaissezPasserPage() {
                                             <div className="text-gray-700 space-y-2">
                                                 <p>
                                                     {language === 'fr' 
-                                                        ? <>• <span className="font-bold text-amber-700">7 jours</span> pour une demande normale et <span className="font-bold text-amber-700">24h</span> pour une demande urgente.</>
-                                                        : <>• <span className="font-bold text-amber-700">7 days</span> for a normal application and <span className="font-bold text-amber-700">24h</span> for an urgent application.</>
+                                                        ? <>• <span className="font-bold text-amber-700">3 jours</span> pour une demande normale</>
+                                                        : <>• <span className="font-bold text-amber-700">3 days</span> for a normal application</>
                                                     }
                                                 </p>
                                                 <p>
                                                     {language === 'fr' 
-                                                        ? <>• Durée de production : <span className="font-bold text-amber-700">30 à 45 jours</span> après transmission du dossier.</>
-                                                        : <>• Production time: <span className="font-bold text-amber-700">30 to 45 days</span> after transmission of the file.</>
+                                                        ? <>• <span className="font-bold text-amber-700">24 heures</span> pour une demande urgente</>
+                                                        : <>• <span className="font-bold text-amber-700">24 hours</span> for an urgent application</>
+                                                    }
+                                                </p>
+                                                <p>
+                                                    {language === 'fr' 
+                                                        ? <>• Durée de production : <span className="font-bold text-amber-700">30 à 45 jours</span> après transmission du dossier <strong>(Ne concerne que le passeport)</strong></>
+                                                        : <>• Production time: <span className="font-bold text-amber-700">30 to 45 days</span> after file transmission <strong>(Only concerns passport)</strong></>
                                                     }
                                                 </p>
                                                 <p className="font-semibold text-amber-700">
@@ -442,8 +448,8 @@ export default function LaissezPasserPage() {
                                 <CardContent className="p-6">
                                     <h3 className="mb-4 text-lg font-bold text-gray-900">
                                         {language === "fr"
-                                            ? "Paiement des droits de chancellerie ($80)"
-                                            : "Chancellery Fee Payment ($80)"}
+                                            ? "Paiement des droits de chancellerie (150 $)"
+                                            : "Chancellery Fee Payment (150 $)"}
                                     </h3>
                                     <p className="mb-6 text-gray-700">
                                         {language === "fr"
@@ -454,7 +460,7 @@ export default function LaissezPasserPage() {
                                         <Button
                                             onClick={() =>
                                                 window.open(
-                                                    paymentLink,
+                                                    'https://www.ci-embassyepay.org/',
                                                     "_blank"
                                                 )
                                             }
@@ -462,8 +468,8 @@ export default function LaissezPasserPage() {
                                         >
                                             <ExternalLink className="mr-3 h-5 w-5" />
                                             {language === "fr"
-                                                ? "Payer les frais ($80)"
-                                                : "Pay Fees ($80)"}
+                                                ? "Payer les frais (150 $)"
+                                                : "Pay Fees (150 $)"}
                                         </Button>
                                     </div>
                                 </CardContent>

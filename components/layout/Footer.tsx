@@ -88,8 +88,8 @@ export default function Footer() {
                                     📞 Téléphones
                                 </h4>
                                 <ul className="space-y-1 text-sm text-white/80">
-                                    <li>Principal: (646) 476-7614</li>
-                                    <li>Secondaire: (917) 392-2797</li>
+                                    <li>Principal: 646 476 76 14</li>
+                                    <li>Appel urgent: 917 392 2797</li>
                                 </ul>
                             </div>
                             <div>
@@ -99,12 +99,27 @@ export default function Footer() {
                                 <ul className="space-y-1 text-sm text-white/80">
                                     <li>
                                         <a
-                                            href="mailto:info.consulny@diplomatie.gouv.ci"
-                                            className="flex items-center gap-2 text-white/80 transition-colors hover:text-white"
+                                            href="https://cgci-newyork.com/"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-white/80 transition-colors hover:text-white"
                                         >
-                                            <span role="img" aria-label="Email">✉️</span>
-                                            info.consulny@diplomatie.gouv.ci
+                                            🌐 https://cgci-newyork.com/
                                         </a>
+                                    </li>
+                                    <li>
+                                        <strong>Passeport et documents civils :</strong>
+                                        <br />
+                                        <a href="mailto:ccinypass@gmail.com" className="text-white/80 hover:text-white">ccinypass@gmail.com</a>
+                                        <br />
+                                        Tel : 646 476 76 14 Ext. 3
+                                    </li>
+                                    <li>
+                                        <strong>Visa et autres documents :</strong>
+                                        <br />
+                                        <a href="mailto:consulatciservices@gmail.com" className="text-white/80 hover:text-white">consulatciservices@gmail.com</a>
+                                        <br />
+                                        Tel : 646 476 76 14 Ext. 2
                                     </li>
                                     <li>
                                 <a
@@ -134,9 +149,7 @@ export default function Footer() {
                                 <p className="text-white/80 text-sm">
                                     Du lundi au vendredi
                                     <br />
-                                    <span className="font-semibold">MATIN :</span> 9h30 - 13h00
-                                    <br />
-                                    <span className="font-semibold">APRÈS-MIDI :</span> 14h00 à 16h30
+                                    <span className="font-semibold">9h30 – 16h30</span>
                                 </p>
                             </div>
                             <div>

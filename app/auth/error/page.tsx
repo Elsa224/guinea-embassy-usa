@@ -62,7 +62,7 @@ function AuthErrorContent() {
 
             <div className="space-y-3">
               <Link href="/auth/signin" className="block">
-                <Button className="w-full gradient-ci text-white hover:opacity-90 transition-opacity">
+                <Button className="w-full bg-ci-green text-white hover:opacity-90 transition-opacity">
                   <RefreshCw className="w-4 h-4 mr-2" />
                   Réessayer la connexion
                 </Button>

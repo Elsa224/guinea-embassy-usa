@@ -400,14 +400,8 @@ export default function PasseportPage() {
                                             <div className="text-gray-700 space-y-2">
                                                 <p>
                                                     {language === 'fr' 
-                                                        ? <>• <span className="font-bold text-amber-700">7 jours</span> pour une demande normale et <span className="font-bold text-amber-700">24h</span> pour une demande urgente.</>
-                                                        : <>• <span className="font-bold text-amber-700">7 days</span> for a normal application and <span className="font-bold text-amber-700">24h</span> for an urgent application.</>
-                                                    }
-                                                </p>
-                                                <p>
-                                                    {language === 'fr' 
-                                                        ? <>• Durée de production : <span className="font-bold text-amber-700">30 à 45 jours</span> après transmission du dossier à la SNEDAI.</>
-                                                        : <>• Production time: <span className="font-bold text-amber-700">30 to 45 days</span> after transmission of the file to SNEDAI.</>
+                                                        ? <>• <span className="font-bold text-amber-700">30 à 45 jours</span></>
+                                                        : <>• <span className="font-bold text-amber-700">30 to 45 days</span></>
                                                     }
                                                 </p>
                                                 <p className="font-semibold text-amber-700">
@@ -436,16 +430,23 @@ export default function PasseportPage() {
                                         {language === 'fr' ? 'Retrait du Passeport' : 'Passport Pickup'}
                                     </h3>
                                     <div className="text-gray-700 mb-4">
-                                        <p className="font-semibold mb-2">
-                                            {language === 'fr' 
-                                                ? 'Tous les retraits se feront automatiquement à travers Express54.'
-                                                : 'All pickups will be done automatically through Express54.'}
-                                        </p>
-                                        <p className="font-semibold mb-2">
-                                            {language === 'fr' 
-                                                ? 'Tous les passeports seront livrés au requérant via la plateforme Express54.'
-                                                : 'All passports will be delivered to the applicant via the Express54 platform.'}
-                                        </p>
+                                        <div className="mb-4">
+                                            <p className="mb-2">Pour l'obtention des documents, trois possibilités s'offrent à vous :</p>
+                                            <ol className="space-y-3">
+                                                <li className="flex items-start">
+                                                    <span className="font-bold mr-2">1.</span>
+                                                    <div>
+                                                        <strong>En personne :</strong> Venez directement au Consulat Général pour le retrait de votre passeport.
+                                                    </div>
+                                                </li>
+                                                <li className="flex items-start">
+                                                    <span className="font-bold mr-2">2.</span>
+                                                    <div>
+                                                        <strong>Par voie postale :</strong> Votre passeport peut être expédié par courrier.
+                                                    </div>
+                                                </li>
+                                            </ol>
+                                        </div>
                                     </div>
                                 </CardContent>
                             </Card>
@@ -481,11 +482,48 @@ export default function PasseportPage() {
                             </Card>
                         </motion.div>
 
-                        {/* Express54 Platform Section */}
+                        {/* Form Download Section */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.9 }}
+                            className="mt-8"
+                        >
+                            <Card className="overflow-hidden border-2 border-gray-200 bg-gray-50">
+                                <CardContent className="p-6">
+                                    <h3 className="mb-4 text-lg font-bold text-gray-900">
+                                        {language === 'fr' ? 'Téléchargement du formulaire' : 'Form Download'}
+                                    </h3>
+                                    <p className="mb-6 text-gray-700">
+                                        {language === 'fr' 
+                                            ? 'Téléchargez et remplissez le formulaire de demande de passeport biométrique.'
+                                            : 'Download and complete the biometric passport application form.'}
+                                    </p>
+                                    <div className="text-center">
+                                        <Button 
+                                            disabled
+                                            className="rounded-xl bg-gray-400 px-8 py-4 text-lg font-semibold text-white shadow-lg cursor-not-allowed"
+                                        >
+                                            <FileText className="mr-3 h-5 w-5" />
+                                            {language === 'fr' 
+                                                ? 'Formulaire (lien à venir)'
+                                                : 'Form (link coming soon)'}
+                                        </Button>
+                                        <p className="text-sm text-gray-500 mt-2">
+                                            {language === 'fr' 
+                                                ? 'Lien fourni par le Ministère de l\'Intérieur'
+                                                : 'Link to be provided by the Ministry of Interior'}
+                                        </p>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </motion.div>
+
+                        {/* Express54 Platform Section */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 1.0 }}
                             className="mt-8"
                         >
                             <Card className="overflow-hidden border-2 border-orange-200 bg-orange-50">
@@ -495,8 +533,8 @@ export default function PasseportPage() {
                                     </h3>
                                     <p className="mb-6 text-gray-700">
                                         {language === 'fr' 
-                                            ? 'Effectuez votre demande de visa directement sur notre plateforme digitalisée pour un traitement plus rapide.'
-                                            : 'Submit your visa application directly on our digitalized platform for faster processing.'}
+                                            ? 'Effectuez votre demande de passeport directement sur notre plateforme digitalisée pour un traitement plus rapide.'
+                                            : 'Submit your passport application directly on our digitalized platform for faster processing.'}
                                     </p>
                                     <div className="text-center">
                                         <Button 
