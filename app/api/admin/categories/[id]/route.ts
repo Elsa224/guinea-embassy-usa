@@ -10,12 +10,12 @@ function generateSlug(name: string): string {
     .replace(/[^a-z0-9\s-]/g, '')
     .replace(/\s+/g, '-')
     .replace(/-+/g, '-')
-    .trim('-')
+    .trim()
 }
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await auth()
@@ -23,8 +23,10 @@ export async function GET(
       return NextResponse.json({ error: 'Non autorisé' }, { status: 401 })
     }
 
+    const { id } = await params
+
     const category = await db.category.findUnique({
-      where: { id: params.id },
+      where: { id },
       include: {
         parent: true,
         children: true,
@@ -50,7 +52,7 @@ export async function GET(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await auth()
@@ -58,6 +60,7 @@ export async function PUT(
       return NextResponse.json({ error: 'Non autorisé' }, { status: 401 })
     }
 
+    const { id } = await params
     const data = await request.json()
     const { name, description, color, icon, parentId, order } = data
 
@@ -70,7 +73,7 @@ export async function PUT(
 
     // Get existing category
     const existingCategory = await db.category.findUnique({
-      where: { id: params.id }
+      where: { id }
     })
 
     if (!existingCategory) {
@@ -84,7 +87,7 @@ export async function PUT(
     const slugConflict = await db.category.findUnique({
       where: { 
         slug,
-        NOT: { id: params.id }
+        NOT: { id }
       }
     })
 
@@ -96,7 +99,7 @@ export async function PUT(
     }
 
     // Check for circular parent relationship
-    if (parentId && parentId === params.id) {
+    if (parentId && parentId === id) {
       return NextResponse.json(
         { error: 'Une catégorie ne peut pas être son propre parent' },
         { status: 400 }
@@ -104,7 +107,7 @@ export async function PUT(
     }
 
     const category = await db.category.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         name,
         slug,
@@ -149,7 +152,7 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await auth()
@@ -157,9 +160,11 @@ export async function DELETE(
       return NextResponse.json({ error: 'Non autorisé' }, { status: 401 })
     }
 
+    const { id } = await params
+
     // Check if category exists
     const category = await db.category.findUnique({
-      where: { id: params.id },
+      where: { id },
       include: {
         _count: {
           select: { 
@@ -190,7 +195,7 @@ export async function DELETE(
     }
 
     await db.category.delete({
-      where: { id: params.id }
+      where: { id }
     })
 
     // Create audit log
@@ -198,7 +203,7 @@ export async function DELETE(
       data: {
         action: 'DELETE',
         entity: 'Category',
-        entityId: params.id,
+        entityId: id,
         userId: session.user.id,
         data: category
       }

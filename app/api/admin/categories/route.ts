@@ -10,7 +10,7 @@ function generateSlug(name: string): string {
     .replace(/[^a-z0-9\s-]/g, '')
     .replace(/\s+/g, '-')
     .replace(/-+/g, '-')
-    .trim('-')
+    .trim()
 }
 
 export async function GET(request: NextRequest) {

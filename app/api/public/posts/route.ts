@@ -10,6 +10,7 @@ export async function GET(request: NextRequest) {
     const category = searchParams.get('category')
     const featured = searchParams.get('featured')
     const lang = searchParams.get('lang') || 'fr'
+    const showAll = searchParams.get('showAll') === 'true'
     
     const skip = (page - 1) * limit
     
@@ -21,7 +22,7 @@ export async function GET(request: NextRequest) {
       }
     }
     
-    if (type) {
+    if (type && !showAll) {
       where.type = type
     }
     
@@ -71,10 +72,9 @@ export async function GET(request: NextRequest) {
             }
           }
         },
-        orderBy: [
-          { featured: 'desc' },
-          { publishedAt: 'desc' }
-        ],
+        orderBy: showAll 
+          ? [{ publishedAt: 'desc' }] 
+          : [{ featured: 'desc' }, { publishedAt: 'desc' }],
         skip,
         take: limit
       }),

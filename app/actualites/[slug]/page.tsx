@@ -274,7 +274,7 @@ export default function PostDetailPage() {
                         )}
 
                         {/* Media Gallery */}
-                        {post.media && post.media.length > 1 && !post.media[0].id.includes('cover') && (
+                        {post.media && post.media.length > 1 && (!post.media[0].caption.toLowerCase().includes('cover') && !post.media[0].caption.toLowerCase().includes('couverture') ) && (
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}

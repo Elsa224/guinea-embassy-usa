@@ -54,6 +54,7 @@ interface UsePostsOptions {
   category?: string
   featured?: boolean
   lang?: 'fr' | 'en'
+  showAll?: boolean
 }
 
 export function usePosts(options: UsePostsOptions = {}) {
@@ -71,10 +72,11 @@ export function usePosts(options: UsePostsOptions = {}) {
         
         if (options.page) params.append('page', options.page.toString())
         if (options.limit) params.append('limit', options.limit.toString())
-        if (options.type) params.append('type', options.type)
+        if (options.type && !options.showAll) params.append('type', options.type)
         if (options.category) params.append('category', options.category)
         if (options.featured) params.append('featured', 'true')
         if (options.lang) params.append('lang', options.lang)
+        if (options.showAll) params.append('showAll', 'true')
 
         const response = await fetch(`/api/public/posts?${params.toString()}`)
         
@@ -92,7 +94,7 @@ export function usePosts(options: UsePostsOptions = {}) {
     }
 
     fetchPosts()
-  }, [options.page, options.limit, options.type, options.category, options.featured, options.lang])
+  }, [options.page, options.limit, options.type, options.category, options.featured, options.lang, options.showAll])
 
   return { data, loading, error, refetch: () => setLoading(true) }
 }

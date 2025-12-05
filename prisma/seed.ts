@@ -50,12 +50,28 @@ async function main() {
       order: 3,
     },
     {
-      name: { fr: 'Annonces', en: 'Announcements' },
-      slug: 'annonces',
-      description: { fr: 'Annonces officielles', en: 'Official announcements' },
-      color: '#FF4444',
+      name: { fr: 'Annonces Officielles', en: 'Official Announcements' },
+      slug: 'annonces-officielles',
+      description: { fr: 'Annonces officielles du consulat', en: 'Official consulate announcements' },
+      color: '#ff7f00',
       icon: 'megaphone',
       order: 4,
+    },
+    {
+      name: { fr: 'Élections', en: 'Elections' },
+      slug: 'elections',
+      description: { fr: 'Informations électorales', en: 'Electoral information' },
+      color: '#ff7f00',
+      icon: 'vote',
+      order: 5,
+    },
+    {
+      name: { fr: 'Publications', en: 'Publications' },
+      slug: 'publications',
+      description: { fr: 'Publications officielles et documents', en: 'Official publications and documents' },
+      color: '#8b5cf6',
+      icon: 'book',
+      order: 6,
     },
   ]
 
@@ -77,6 +93,15 @@ async function main() {
     { name: 'Urgence', slug: 'urgence' },
     { name: 'Communauté', slug: 'communaute' },
     { name: 'Diplomatie', slug: 'diplomatie' },
+    { name: 'Express54', slug: 'express54' },
+    { name: 'Services Digitaux', slug: 'services-digitaux' },
+    { name: 'Cartes d\'Électeur', slug: 'cartes-electeur' },
+    { name: 'Élections', slug: 'elections' },
+    { name: 'CEI', slug: 'cei' },
+    { name: 'Bulletin', slug: 'bulletin' },
+    { name: 'Magazine', slug: 'magazine' },
+    { name: 'SPECI', slug: 'speci' },
+    { name: 'Publication Officielle', slug: 'publication-officielle' },
   ]
 
   for (const tag of tags) {
@@ -156,65 +181,264 @@ async function main() {
 
   console.log('✅ Default settings created')
 
-  // Create sample posts
-  const actualitesCategory = await prisma.category.findUnique({ where: { slug: 'actualites' } })
-  const servicesCategory = await prisma.category.findUnique({ where: { slug: 'services' } })
+  // Create actualites posts from mock data
+  const publicationsCategory = await prisma.category.findUnique({ where: { slug: 'publications' } })
+  const electionsCategory = await prisma.category.findUnique({ where: { slug: 'elections' } })
+  const annoncesCategory = await prisma.category.findUnique({ where: { slug: 'annonces-officielles' } })
 
-  if (actualitesCategory) {
-    const samplePosts = [
+  // Get tags
+  const bulletinTag = await prisma.tag.findUnique({ where: { slug: 'bulletin' } })
+  const magazineTag = await prisma.tag.findUnique({ where: { slug: 'magazine' } })
+  const speciTag = await prisma.tag.findUnique({ where: { slug: 'speci' } })
+  const publicationTag = await prisma.tag.findUnique({ where: { slug: 'publication-officielle' } })
+  const cartesElecteurTag = await prisma.tag.findUnique({ where: { slug: 'cartes-electeur' } })
+  const electionsTag = await prisma.tag.findUnique({ where: { slug: 'elections' } })
+  const ceiTag = await prisma.tag.findUnique({ where: { slug: 'cei' } })
+  const express54Tag = await prisma.tag.findUnique({ where: { slug: 'express54' } })
+  const servicesDigitauxTag = await prisma.tag.findUnique({ where: { slug: 'services-digitaux' } })
+
+  // Create media for the posts
+  const bulletinCoverMedia = await prisma.media.create({
+    data: {
+      filename: 'Bulletin-SPECI-cover.png',
+      originalName: 'Bulletin SPECI Cover',
+      url: '/assets/actualites/Bulletin-SPECI-cover.png',
+      type: 'IMAGE',
+      size: 2048000,
+      mimeType: 'image/png',
+      alt: 'Bulletin SPECI - Couverture du Magazine Consulaire',
+      caption: 'Couverture du Bulletin SPECI - Magazine du Consulat Général',
+      uploaderId: admin.id,
+    },
+  })
+
+  const bulletinPdfMedia = await prisma.media.create({
+    data: {
+      filename: 'Bulettin-SPECI.pdf',
+      originalName: 'Bulletin SPECI',
+      url: '/assets/actualites/Bulettin-SPECI.pdf',
+      type: 'DOCUMENT',
+      size: 5120000,
+      mimeType: 'application/pdf',
+      alt: 'Bulletin SPECI - Magazine Consulaire PDF',
+      caption: 'Bulletin SPECI - Magazine du Consulat Général',
+      uploaderId: admin.id,
+    },
+  })
+
+  const carteElecteurMedia = await prisma.media.create({
+    data: {
+      filename: 'retrait-carte-electeur.jpg',
+      originalName: 'Retrait Carte Electeur',
+      url: '/assets/actualites/retrait-carte-electeur.jpg',
+      type: 'IMAGE',
+      size: 1024000,
+      mimeType: 'image/jpeg',
+      alt: 'Distribution des Cartes d\'Électeur - Octobre 2025',
+      caption: 'Information officielle sur la distribution des cartes d\'électeur',
+      uploaderId: admin.id,
+    },
+  })
+
+  const noteInfoMedia = await prisma.media.create({
+    data: {
+      filename: 'note-d-information.jpeg',
+      originalName: 'Note d\'Information',
+      url: '/assets/actualites/note-d-information.jpeg',
+      type: 'IMAGE',
+      size: 1024000,
+      mimeType: 'image/jpeg',
+      alt: 'Note d\'Information - Plateforme Express54',
+      caption: 'Note d\'Information officielle du Consulat Général',
+      uploaderId: admin.id,
+    },
+  })
+
+  if (publicationsCategory && electionsCategory && annoncesCategory) {
+    const actualitesPosts = [
       {
         title: {
-          fr: 'Nouvelle procédure de demande de visa',
-          en: 'New visa application procedure',
+          fr: 'Bulletin SPECI - Magazine Consulaire',
+          en: 'Bulletin SPECI - Consular Magazine',
         },
-        slug: 'nouvelle-procedure-visa-2025',
+        slug: 'bulletin-speci-magazine',
         content: {
-          fr: '<p>À partir du 1er février 2025, une nouvelle procédure simplifiée sera mise en place pour les demandes de visa...</p>',
-          en: '<p>Starting February 1st, 2025, a new simplified procedure will be implemented for visa applications...</p>',
+          fr: `Découvrez le nouveau Bulletin SPECI, le magazine officiel du Consulat Général de Côte d'Ivoire à New York. Cette édition contient des informations importantes sur nos services, des actualités consulaires, et des nouvelles de la communauté ivoirienne aux États-Unis.
+
+<div style='background-color: #fff5e6; border-left: 4px solid #ff7f00; padding: 16px; margin: 16px 0;'>
+<h4 style='color: #ff7f00; margin: 0 0 8px 0; font-weight: bold;'>📖 Contenu du Magazine</h4>
+<ul style='margin: 8px 0; padding-left: 20px;'>
+<li>Services consulaires et nouveautés</li>
+<li>Actualités de la communauté ivoirienne</li>
+<li>Informations pratiques pour les ressortissants</li>
+<li>Événements et activités culturelles</li>
+</ul>
+</div>
+
+<div style='background-color: #f0f9f4; border-left: 4px solid #00aa4f; padding: 16px; margin: 16px 0;'>
+<h4 style='color: #00aa4f; margin: 0 0 8px 0; font-weight: bold;'>📥 Téléchargement</h4>
+<p style='margin: 0; font-weight: 600;'>Le magazine est disponible en format PDF pour consultation et téléchargement.</p>
+</div>
+
+<p style='text-align: center; margin-top: 20px;'>Consultez régulièrement notre site pour les nouvelles éditions du Bulletin SPECI.</p>`,
+          en: `Discover the new Bulletin SPECI, the official magazine of the Consulate General of Côte d'Ivoire in New York. This edition contains important information about our services, consular news, and news from the Ivorian community in the United States.`,
         },
         excerpt: {
-          fr: 'Découvrez la nouvelle procédure simplifiée pour les demandes de visa.',
-          en: 'Discover the new simplified procedure for visa applications.',
+          fr: 'Découvrez le nouveau Bulletin SPECI, le magazine officiel du Consulat Général de Côte d\'Ivoire à New York avec les dernières actualités consulaires.',
+          en: 'Discover the new Bulletin SPECI, the official magazine of the Consulate General of Côte d\'Ivoire in New York with the latest consular news.',
+        },
+        status: 'PUBLISHED' as const,
+        type: 'DOCUMENTATION' as const,
+        featured: false,
+        publishedAt: new Date('2025-12-02T19:45:00'),
+        authorId: admin.id,
+        categoryId: publicationsCategory.id,
+      },
+      {
+        title: {
+          fr: 'Distribution des Cartes d\'Électeur',
+          en: 'Distribution of Voter Cards',
+        },
+        slug: 'distribution-cartes-electeur-octobre-2025',
+        content: {
+          fr: `Distribution des cartes d'électeur pour les <strong style='color: #ff7f00;'>Ivoiriens et Ivoiriennes</strong> résidant aux États-Unis et inscrits sur la liste électorale.
+
+<div style='background-color: #fff5e6; border-left: 4px solid #ff7f00; padding: 16px; margin: 16px 0;'>
+<h4 style='color: #ff7f00; margin: 0 0 8px 0; font-weight: bold;'>📅 Dates et Horaires</h4>
+<p style='margin: 0; font-weight: 600;'>Les <span style='color: #00aa4f; font-weight: bold;'>11, 12, 13, 18, 19 et 20 octobre 2025</span></p>
+<p style='margin: 4px 0 0 0;'>de <strong style='color: #ff7f00;'>10H à 17H</strong></p>
+</div>
+
+<div style='background-color: #f0f9f4; border-left: 4px solid #00aa4f; padding: 16px; margin: 16px 0;'>
+<h4 style='color: #00aa4f; margin: 0 0 8px 0; font-weight: bold;'>📍 Lieu</h4>
+<p style='margin: 0; font-weight: 600;'>800 Second Avenue, 5 Floor</p>
+<p style='margin: 4px 0 0 0;'>New York, NY 10017</p>
+</div>
+
+<div style='background-color: #fef7f0; border-left: 4px solid #ff7f00; padding: 16px; margin: 16px 0;'>
+<h4 style='color: #ff7f00; margin: 0 0 8px 0; font-weight: bold;'>📞 Contact</h4>
+<p style='margin: 0; font-size: 18px; font-weight: bold; color: #00aa4f;'>+1 347 200 8654</p>
+</div>
+
+<div style='background-color: #dc2626; color: white; padding: 20px; margin: 20px 0; border-radius: 8px; text-align: center;'>
+<h4 style='color: white; margin: 0 0 8px 0; font-weight: bold; font-size: 16px;'>⚠️ IMPORTANT</h4>
+<p style='margin: 0; font-weight: bold; font-size: 14px;'>RETIRER VOTRE CARTE D'ÉLECTEUR</p>
+<p style='margin: 4px 0 0 0; font-size: 14px;'>ELLE CONTIENT VOS DONNÉES PERSONNELLES</p>
+</div>
+
+<p style='text-align: center; margin-top: 20px;'>Pour plus d'informations, visitez <a href='https://www.cei.ci' style='color: #00aa4f; font-weight: bold; text-decoration: underline;' target='_blank'>www.cei.ci</a></p>`,
+          en: 'Distribution of voter cards for Ivorians residing in the United States and registered on the electoral list.',
+        },
+        excerpt: {
+          fr: 'Distribution des cartes d\'électeur pour les Ivoiriens résidant aux États-Unis du 11 au 20 octobre 2025 au Consulat Général de New York.',
+          en: 'Distribution of voter cards for Ivorians residing in the United States from October 11-20, 2025 at the Consulate General in New York.',
+        },
+        status: 'PUBLISHED' as const,
+        type: 'EVENT' as const,
+        featured: true,
+        publishedAt: new Date('2025-10-14T11:22:00'),
+        authorId: admin.id,
+        categoryId: electionsCategory.id,
+      },
+      {
+        title: {
+          fr: 'Note d\'Information',
+          en: 'Information Notice',
+        },
+        slug: 'note-d-information-express54',
+        content: {
+          fr: `Il est porté à la connaissance de l'ensemble des usagers du Consulat Général de Côte d'Ivoire à New York, que la plateforme digitale de demande des actes consulaires EXPRESS54 est disponible et fonctionnel.
+
+À cet égard, le Consulat Général encourage les usagers résidents dans les États de : Connecticut ; Caroline du Nord ; Caroline du Sud ; Floride ; Géorgie ; Illinois ; Indiana ; Maine ; Massachusetts ; Michigan ; Minnesota ; Missouri ; New Hampshire ; New Jersey ; New York ; Ohio ; Pennsylvanie ; Rhodes Island ; Vermont ; Wisconsin, à soumettre leurs demandes via le lien suivant : https://www.express54.org, ou à télécharger l'application mobile sur App store en recherchant « Express54 ».
+
+Le Consulat Général reste joignable au (917) 392-2797, pour répondre à toutes vos préoccupations.`,
+          en: `It is brought to the attention of all users of the Consulate General of Côte d'Ivoire in New York, that the digital platform for requesting consular documents EXPRESS54 is available and functional.`,
+        },
+        excerpt: {
+          fr: 'Il est porté à la connaissance de l\'ensemble des usagers du Consulat Général de Côte d\'Ivoire à New York, que la plateforme digitale de demande des actes consulaires EXPRESS54 est disponible et fonctionnel.',
+          en: 'It is brought to the attention of all users of the Consulate General of Côte d\'Ivoire in New York, that the digital platform for requesting consular documents EXPRESS54 is available and functional.',
         },
         status: 'PUBLISHED' as const,
         type: 'NEWS' as const,
-        featured: true,
-        publishedAt: new Date('2025-01-15'),
-        authorId: admin.id,
-        categoryId: actualitesCategory.id,
-      },
-      {
-        title: {
-          fr: 'Horaires d\'ouverture modifiés',
-          en: 'Modified opening hours',
-        },
-        slug: 'horaires-ouverture-modifies',
-        content: {
-          fr: '<p>Nous vous informons que nos horaires d\'ouverture ont été modifiés temporairement...</p>',
-          en: '<p>We inform you that our opening hours have been temporarily modified...</p>',
-        },
-        excerpt: {
-          fr: 'Modification temporaire des horaires d\'ouverture du consulat.',
-          en: 'Temporary modification of consulate opening hours.',
-        },
-        status: 'PUBLISHED' as const,
-        type: 'ANNOUNCEMENT' as const,
         featured: false,
-        publishedAt: new Date('2025-01-12'),
+        publishedAt: new Date('2025-10-08T10:00:00'),
         authorId: admin.id,
-        categoryId: actualitesCategory.id,
+        categoryId: annoncesCategory.id,
       },
     ]
 
-    for (const post of samplePosts) {
-      await prisma.post.upsert({
+    // Create the posts and connect tags and media
+    const createdPosts = []
+    for (const [index, post] of actualitesPosts.entries()) {
+      const createdPost = await prisma.post.upsert({
         where: { slug: post.slug },
         update: {},
         create: post,
       })
+      createdPosts.push(createdPost)
     }
 
-    console.log('✅ Sample posts created')
+    // Connect tags to bulletin post
+    if (bulletinTag && magazineTag && speciTag && publicationTag) {
+      await prisma.post.update({
+        where: { slug: 'bulletin-speci-magazine' },
+        data: {
+          tags: {
+            connect: [
+              { id: bulletinTag.id },
+              { id: magazineTag.id },
+              { id: speciTag.id },
+              { id: publicationTag.id },
+            ],
+          },
+          media: {
+            connect: [
+              { id: bulletinCoverMedia.id },
+              { id: bulletinPdfMedia.id },
+            ],
+          },
+        },
+      })
+    }
+
+    // Connect tags to elections post
+    if (cartesElecteurTag && electionsTag && ceiTag) {
+      await prisma.post.update({
+        where: { slug: 'distribution-cartes-electeur-octobre-2025' },
+        data: {
+          tags: {
+            connect: [
+              { id: cartesElecteurTag.id },
+              { id: electionsTag.id },
+              { id: ceiTag.id },
+            ],
+          },
+          media: {
+            connect: [{ id: carteElecteurMedia.id }],
+          },
+        },
+      })
+    }
+
+    // Connect tags to express54 post
+    if (express54Tag && servicesDigitauxTag) {
+      await prisma.post.update({
+        where: { slug: 'note-d-information-express54' },
+        data: {
+          tags: {
+            connect: [
+              { id: express54Tag.id },
+              { id: servicesDigitauxTag.id },
+            ],
+          },
+          media: {
+            connect: [{ id: noteInfoMedia.id }],
+          },
+        },
+      })
+    }
+
+    console.log('✅ Actualites posts created with media and tags')
   }
 
   // Create sample pages
