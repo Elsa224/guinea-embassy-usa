@@ -1,0 +1,1352 @@
+{
+  "users": [
+    {
+      "id": "cmgez0ldp0001gqae2b32yhbv",
+      "email": "admin@consulat-ci.org",
+      "name": "Administrateur",
+      "role": "SUPER_ADMIN",
+      "passwordHash": "$2b$12$f67o3zDPpC2oPNt.m0wj7.tJiqb4rA2s2TLw/v/zXuJMi4OXQBC0u",
+      "isActive": true,
+      "lastLoginAt": "2025-12-05T11:18:33.032Z",
+      "createdAt": "2025-10-06T10:11:08.221Z",
+      "updatedAt": "2025-12-05T11:18:33.035Z"
+    }
+  ],
+  "categories": [
+    {
+      "id": "cmgez0le10002gqaenibl7wot",
+      "name": {
+        "en": "News",
+        "fr": "Actualités"
+      },
+      "slug": "actualites",
+      "description": {
+        "en": "Latest consulate news",
+        "fr": "Dernières nouvelles du consulat"
+      },
+      "color": "#FF7F00",
+      "icon": "newspaper",
+      "order": 1,
+      "parentId": null,
+      "createdAt": "2025-10-06T10:11:08.232Z",
+      "updatedAt": "2025-10-06T10:11:08.232Z"
+    },
+    {
+      "id": "cmgez0le70003gqaevpnsclr0",
+      "name": {
+        "en": "Services",
+        "fr": "Services"
+      },
+      "slug": "services",
+      "description": {
+        "en": "Available consular services",
+        "fr": "Services consulaires disponibles"
+      },
+      "color": "#00AA4F",
+      "icon": "briefcase",
+      "order": 2,
+      "parentId": null,
+      "createdAt": "2025-10-06T10:11:08.239Z",
+      "updatedAt": "2025-10-06T10:11:08.239Z"
+    },
+    {
+      "id": "cmgez0led0004gqaezc3eyu1e",
+      "name": {
+        "en": "Events",
+        "fr": "Événements"
+      },
+      "slug": "evenements",
+      "description": {
+        "en": "Events and ceremonies",
+        "fr": "Événements et cérémonies"
+      },
+      "color": "#003366",
+      "icon": "calendar",
+      "order": 3,
+      "parentId": null,
+      "createdAt": "2025-10-06T10:11:08.244Z",
+      "updatedAt": "2025-10-06T10:11:08.244Z"
+    },
+    {
+      "id": "cmgez0lei0005gqaepdn78str",
+      "name": {
+        "en": "Announcements",
+        "fr": "Annonces"
+      },
+      "slug": "annonces",
+      "description": {
+        "en": "Official announcements",
+        "fr": "Annonces officielles"
+      },
+      "color": "#FF4444",
+      "icon": "megaphone",
+      "order": 4,
+      "parentId": null,
+      "createdAt": "2025-10-06T10:11:08.250Z",
+      "updatedAt": "2025-10-06T10:11:08.250Z"
+    },
+    {
+      "id": "cmiss28y00004i8zbeuq2458j",
+      "name": {
+        "en": "Official Announcements",
+        "fr": "Annonces Officielles"
+      },
+      "slug": "annonces-officielles",
+      "description": {
+        "en": "Official consulate announcements",
+        "fr": "Annonces officielles du consulat"
+      },
+      "color": "#ff7f00",
+      "icon": "megaphone",
+      "order": 4,
+      "parentId": null,
+      "createdAt": "2025-12-05T11:24:39.239Z",
+      "updatedAt": "2025-12-05T11:24:39.239Z"
+    },
+    {
+      "id": "cmiss28y60005i8zbctpbi4lj",
+      "name": {
+        "en": "Elections",
+        "fr": "Élections"
+      },
+      "slug": "elections",
+      "description": {
+        "en": "Electoral information",
+        "fr": "Informations électorales"
+      },
+      "color": "#ff7f00",
+      "icon": "vote",
+      "order": 5,
+      "parentId": null,
+      "createdAt": "2025-12-05T11:24:39.245Z",
+      "updatedAt": "2025-12-05T11:24:39.245Z"
+    },
+    {
+      "id": "cmiss28yb0006i8zbfkgykxlr",
+      "name": {
+        "en": "Publications",
+        "fr": "Publications"
+      },
+      "slug": "publications",
+      "description": {
+        "en": "Official publications and documents",
+        "fr": "Publications officielles et documents"
+      },
+      "color": "#8b5cf6",
+      "icon": "book",
+      "order": 6,
+      "parentId": null,
+      "createdAt": "2025-12-05T11:24:39.250Z",
+      "updatedAt": "2025-12-05T11:24:39.250Z"
+    }
+  ],
+  "tags": [
+    {
+      "id": "cmgez0leo0006gqae4zubtn2e",
+      "name": "Important",
+      "slug": "important",
+      "createdAt": "2025-10-06T10:11:08.256Z"
+    },
+    {
+      "id": "cmgez0leu0007gqaez1j13x19",
+      "name": "Visa",
+      "slug": "visa",
+      "createdAt": "2025-10-06T10:11:08.261Z"
+    },
+    {
+      "id": "cmgez0lez0008gqaert2ygund",
+      "name": "Passeport",
+      "slug": "passeport",
+      "createdAt": "2025-10-06T10:11:08.267Z"
+    },
+    {
+      "id": "cmgez0lf40009gqaeq6y624ai",
+      "name": "Urgence",
+      "slug": "urgence",
+      "createdAt": "2025-10-06T10:11:08.272Z"
+    },
+    {
+      "id": "cmgez0lf9000agqaertjxemu0",
+      "name": "Communauté",
+      "slug": "communaute",
+      "createdAt": "2025-10-06T10:11:08.277Z"
+    },
+    {
+      "id": "cmgez0lfd000bgqaeuyrgkzac",
+      "name": "Diplomatie",
+      "slug": "diplomatie",
+      "createdAt": "2025-10-06T10:11:08.281Z"
+    },
+    {
+      "id": "cmiss28z6000di8zbadc2ilad",
+      "name": "Express54",
+      "slug": "express54",
+      "createdAt": "2025-12-05T11:24:39.282Z"
+    },
+    {
+      "id": "cmiss28zc000ei8zbnix9ihrm",
+      "name": "Services Digitaux",
+      "slug": "services-digitaux",
+      "createdAt": "2025-12-05T11:24:39.287Z"
+    },
+    {
+      "id": "cmiss28zh000fi8zbqa19cs9k",
+      "name": "Cartes d'Électeur",
+      "slug": "cartes-electeur",
+      "createdAt": "2025-12-05T11:24:39.293Z"
+    },
+    {
+      "id": "cmiss28zm000gi8zb2b4xaawy",
+      "name": "Élections",
+      "slug": "elections",
+      "createdAt": "2025-12-05T11:24:39.297Z"
+    },
+    {
+      "id": "cmiss28zq000hi8zb8vslahpy",
+      "name": "CEI",
+      "slug": "cei",
+      "createdAt": "2025-12-05T11:24:39.302Z"
+    },
+    {
+      "id": "cmiss28zv000ii8zb50mui41f",
+      "name": "Bulletin",
+      "slug": "bulletin",
+      "createdAt": "2025-12-05T11:24:39.307Z"
+    },
+    {
+      "id": "cmiss2901000ji8zbnl4jock4",
+      "name": "Magazine",
+      "slug": "magazine",
+      "createdAt": "2025-12-05T11:24:39.312Z"
+    },
+    {
+      "id": "cmiss2905000ki8zba7m4ltol",
+      "name": "SPECI",
+      "slug": "speci",
+      "createdAt": "2025-12-05T11:24:39.317Z"
+    },
+    {
+      "id": "cmiss290a000li8zbldn3255l",
+      "name": "Publication Officielle",
+      "slug": "publication-officielle",
+      "createdAt": "2025-12-05T11:24:39.322Z"
+    }
+  ],
+  "posts": [
+    {
+      "id": "cmiss29420015i8zbkq3lkjt5",
+      "title": {
+        "en": "Bulletin SPECI - Consular Magazine",
+        "fr": "Bulletin SPECI - Magazine Consulaire"
+      },
+      "slug": "bulletin-speci-magazine",
+      "content": {
+        "en": "Discover the new Bulletin SPECI, the official magazine of the Consulate General of Côte d'Ivoire in New York. This edition contains important information about our services, consular news, and news from the Ivorian community in the United States.",
+        "fr": "Découvrez le nouveau Bulletin SPECI, le magazine officiel du Consulat Général de Côte d'Ivoire à New York. Cette édition contient des informations importantes sur nos services, des actualités consulaires, et des nouvelles de la communauté ivoirienne aux États-Unis.\n\n<div style='background-color: #fff5e6; border-left: 4px solid #ff7f00; padding: 16px; margin: 16px 0;'>\n<h4 style='color: #ff7f00; margin: 0 0 8px 0; font-weight: bold;'>📖 Contenu du Magazine</h4>\n<ul style='margin: 8px 0; padding-left: 20px;'>\n<li>Services consulaires et nouveautés</li>\n<li>Actualités de la communauté ivoirienne</li>\n<li>Informations pratiques pour les ressortissants</li>\n<li>Événements et activités culturelles</li>\n</ul>\n</div>\n\n<div style='background-color: #f0f9f4; border-left: 4px solid #00aa4f; padding: 16px; margin: 16px 0;'>\n<h4 style='color: #00aa4f; margin: 0 0 8px 0; font-weight: bold;'>📥 Téléchargement</h4>\n<p style='margin: 0; font-weight: 600;'>Le magazine est disponible en format PDF pour consultation et téléchargement.</p>\n</div>\n\n<p style='text-align: center; margin-top: 20px;'>Consultez régulièrement notre site pour les nouvelles éditions du Bulletin SPECI.</p>"
+      },
+      "excerpt": {
+        "en": "Discover the new Bulletin SPECI, the official magazine of the Consulate General of Côte d'Ivoire in New York with the latest consular news.",
+        "fr": "Découvrez le nouveau Bulletin SPECI, le magazine officiel du Consulat Général de Côte d'Ivoire à New York avec les dernières actualités consulaires."
+      },
+      "featuredImage": null,
+      "status": "PUBLISHED",
+      "type": "DOCUMENTATION",
+      "featured": false,
+      "publishedAt": "2025-12-02T19:45:00.000Z",
+      "views": 0,
+      "authorId": "cmgez0ldp0001gqae2b32yhbv",
+      "categoryId": "cmiss28yb0006i8zbfkgykxlr",
+      "createdAt": "2025-12-05T11:24:39.456Z",
+      "updatedAt": "2025-12-05T11:24:39.456Z",
+      "tags": [
+        {
+          "id": "cmiss28zv000ii8zb50mui41f",
+          "name": "Bulletin",
+          "slug": "bulletin",
+          "createdAt": "2025-12-05T11:24:39.307Z"
+        },
+        {
+          "id": "cmiss2901000ji8zbnl4jock4",
+          "name": "Magazine",
+          "slug": "magazine",
+          "createdAt": "2025-12-05T11:24:39.312Z"
+        },
+        {
+          "id": "cmiss2905000ki8zba7m4ltol",
+          "name": "SPECI",
+          "slug": "speci",
+          "createdAt": "2025-12-05T11:24:39.317Z"
+        },
+        {
+          "id": "cmiss290a000li8zbldn3255l",
+          "name": "Publication Officielle",
+          "slug": "publication-officielle",
+          "createdAt": "2025-12-05T11:24:39.322Z"
+        }
+      ],
+      "media": [
+        {
+          "id": "cmiss293e000xi8zbyhhuihaz",
+          "filename": "Bulletin-SPECI-cover.png",
+          "originalName": "Bulletin SPECI Cover",
+          "mimeType": "image/png",
+          "type": "IMAGE",
+          "size": 2048000,
+          "url": "/assets/actualites/Bulletin-SPECI-cover.png",
+          "thumbnailUrl": null,
+          "alt": "Bulletin SPECI - Couverture du Magazine Consulaire",
+          "caption": "Couverture du Bulletin SPECI - Magazine du Consulat Général",
+          "dimensions": null,
+          "uploaderId": "cmgez0ldp0001gqae2b32yhbv",
+          "createdAt": "2025-12-05T11:24:39.434Z"
+        },
+        {
+          "id": "cmiss293o000zi8zbuwytnbjs",
+          "filename": "Bulettin-SPECI.pdf",
+          "originalName": "Bulletin SPECI",
+          "mimeType": "application/pdf",
+          "type": "DOCUMENT",
+          "size": 5120000,
+          "url": "/assets/actualites/Bulettin-SPECI.pdf",
+          "thumbnailUrl": null,
+          "alt": "Bulletin SPECI - Magazine Consulaire PDF",
+          "caption": "Bulletin SPECI - Magazine du Consulat Général",
+          "dimensions": null,
+          "uploaderId": "cmgez0ldp0001gqae2b32yhbv",
+          "createdAt": "2025-12-05T11:24:39.440Z"
+        }
+      ]
+    },
+    {
+      "id": "cmiss294g0017i8zbbrcitrax",
+      "title": {
+        "en": "Distribution of Voter Cards",
+        "fr": "Distribution des Cartes d'Électeur"
+      },
+      "slug": "distribution-cartes-electeur-octobre-2025",
+      "content": {
+        "en": "Distribution of voter cards for Ivorians residing in the United States and registered on the electoral list.",
+        "fr": "Distribution des cartes d'électeur pour les <strong style='color: #ff7f00;'>Ivoiriens et Ivoiriennes</strong> résidant aux États-Unis et inscrits sur la liste électorale.\n\n<div style='background-color: #fff5e6; border-left: 4px solid #ff7f00; padding: 16px; margin: 16px 0;'>\n<h4 style='color: #ff7f00; margin: 0 0 8px 0; font-weight: bold;'>📅 Dates et Horaires</h4>\n<p style='margin: 0; font-weight: 600;'>Les <span style='color: #00aa4f; font-weight: bold;'>11, 12, 13, 18, 19 et 20 octobre 2025</span></p>\n<p style='margin: 4px 0 0 0;'>de <strong style='color: #ff7f00;'>10H à 17H</strong></p>\n</div>\n\n<div style='background-color: #f0f9f4; border-left: 4px solid #00aa4f; padding: 16px; margin: 16px 0;'>\n<h4 style='color: #00aa4f; margin: 0 0 8px 0; font-weight: bold;'>📍 Lieu</h4>\n<p style='margin: 0; font-weight: 600;'>800 Second Avenue, 5 Floor</p>\n<p style='margin: 4px 0 0 0;'>New York, NY 10017</p>\n</div>\n\n<div style='background-color: #fef7f0; border-left: 4px solid #ff7f00; padding: 16px; margin: 16px 0;'>\n<h4 style='color: #ff7f00; margin: 0 0 8px 0; font-weight: bold;'>📞 Contact</h4>\n<p style='margin: 0; font-size: 18px; font-weight: bold; color: #00aa4f;'>+1 347 200 8654</p>\n</div>\n\n<div style='background-color: #dc2626; color: white; padding: 20px; margin: 20px 0; border-radius: 8px; text-align: center;'>\n<h4 style='color: white; margin: 0 0 8px 0; font-weight: bold; font-size: 16px;'>⚠️ IMPORTANT</h4>\n<p style='margin: 0; font-weight: bold; font-size: 14px;'>RETIRER VOTRE CARTE D'ÉLECTEUR</p>\n<p style='margin: 4px 0 0 0; font-size: 14px;'>ELLE CONTIENT VOS DONNÉES PERSONNELLES</p>\n</div>\n\n<p style='text-align: center; margin-top: 20px;'>Pour plus d'informations, visitez <a href='https://www.cei.ci' style='color: #00aa4f; font-weight: bold; text-decoration: underline;' target='_blank'>www.cei.ci</a></p>"
+      },
+      "excerpt": {
+        "en": "Distribution of voter cards for Ivorians residing in the United States from October 11-20, 2025 at the Consulate General in New York.",
+        "fr": "Distribution des cartes d'électeur pour les Ivoiriens résidant aux États-Unis du 11 au 20 octobre 2025 au Consulat Général de New York."
+      },
+      "featuredImage": null,
+      "status": "PUBLISHED",
+      "type": "EVENT",
+      "featured": true,
+      "publishedAt": "2025-10-14T11:22:00.000Z",
+      "views": 0,
+      "authorId": "cmgez0ldp0001gqae2b32yhbv",
+      "categoryId": "cmiss28y60005i8zbctpbi4lj",
+      "createdAt": "2025-12-05T11:24:39.469Z",
+      "updatedAt": "2025-12-05T11:24:39.469Z",
+      "tags": [
+        {
+          "id": "cmiss28zh000fi8zbqa19cs9k",
+          "name": "Cartes d'Électeur",
+          "slug": "cartes-electeur",
+          "createdAt": "2025-12-05T11:24:39.293Z"
+        },
+        {
+          "id": "cmiss28zm000gi8zb2b4xaawy",
+          "name": "Élections",
+          "slug": "elections",
+          "createdAt": "2025-12-05T11:24:39.297Z"
+        },
+        {
+          "id": "cmiss28zq000hi8zb8vslahpy",
+          "name": "CEI",
+          "slug": "cei",
+          "createdAt": "2025-12-05T11:24:39.302Z"
+        }
+      ],
+      "media": [
+        {
+          "id": "cmiss293r0011i8zbct8unl49",
+          "filename": "retrait-carte-electeur.jpg",
+          "originalName": "Retrait Carte Electeur",
+          "mimeType": "image/jpeg",
+          "type": "IMAGE",
+          "size": 1024000,
+          "url": "/assets/actualites/retrait-carte-electeur.jpg",
+          "thumbnailUrl": null,
+          "alt": "Distribution des Cartes d'Électeur - Octobre 2025",
+          "caption": "Information officielle sur la distribution des cartes d'électeur",
+          "dimensions": null,
+          "uploaderId": "cmgez0ldp0001gqae2b32yhbv",
+          "createdAt": "2025-12-05T11:24:39.447Z"
+        }
+      ]
+    },
+    {
+      "id": "cmiss294o0019i8zb3c5f5fur",
+      "title": {
+        "en": "Information Notice",
+        "fr": "Note d'Information"
+      },
+      "slug": "note-d-information-express54",
+      "content": {
+        "en": "It is brought to the attention of all users of the Consulate General of Côte d'Ivoire in New York, that the digital platform for requesting consular documents EXPRESS54 is available and functional.",
+        "fr": "Il est porté à la connaissance de l'ensemble des usagers du Consulat Général de Côte d'Ivoire à New York, que la plateforme digitale de demande des actes consulaires EXPRESS54 est disponible et fonctionnel.\n\nÀ cet égard, le Consulat Général encourage les usagers résidents dans les États de : Connecticut ; Caroline du Nord ; Caroline du Sud ; Floride ; Géorgie ; Illinois ; Indiana ; Maine ; Massachusetts ; Michigan ; Minnesota ; Missouri ; New Hampshire ; New Jersey ; New York ; Ohio ; Pennsylvanie ; Rhodes Island ; Vermont ; Wisconsin, à soumettre leurs demandes via le lien suivant : https://www.express54.org, ou à télécharger l'application mobile sur App store en recherchant « Express54 ».\n\nLe Consulat Général reste joignable au (917) 392-2797, pour répondre à toutes vos préoccupations."
+      },
+      "excerpt": {
+        "en": "It is brought to the attention of all users of the Consulate General of Côte d'Ivoire in New York, that the digital platform for requesting consular documents EXPRESS54 is available and functional.",
+        "fr": "Il est porté à la connaissance de l'ensemble des usagers du Consulat Général de Côte d'Ivoire à New York, que la plateforme digitale de demande des actes consulaires EXPRESS54 est disponible et fonctionnel."
+      },
+      "featuredImage": null,
+      "status": "PUBLISHED",
+      "type": "NEWS",
+      "featured": false,
+      "publishedAt": "2025-10-08T10:00:00.000Z",
+      "views": 0,
+      "authorId": "cmgez0ldp0001gqae2b32yhbv",
+      "categoryId": "cmiss28y00004i8zbeuq2458j",
+      "createdAt": "2025-12-05T11:24:39.479Z",
+      "updatedAt": "2025-12-05T11:24:39.479Z",
+      "tags": [
+        {
+          "id": "cmiss28z6000di8zbadc2ilad",
+          "name": "Express54",
+          "slug": "express54",
+          "createdAt": "2025-12-05T11:24:39.282Z"
+        },
+        {
+          "id": "cmiss28zc000ei8zbnix9ihrm",
+          "name": "Services Digitaux",
+          "slug": "services-digitaux",
+          "createdAt": "2025-12-05T11:24:39.287Z"
+        }
+      ],
+      "media": [
+        {
+          "id": "cmiss293v0013i8zbr1c4nczm",
+          "filename": "note-d-information.jpeg",
+          "originalName": "Note d'Information",
+          "mimeType": "image/jpeg",
+          "type": "IMAGE",
+          "size": 1024000,
+          "url": "/assets/actualites/note-d-information.jpeg",
+          "thumbnailUrl": null,
+          "alt": "Note d'Information - Plateforme Express54",
+          "caption": "Note d'Information officielle du Consulat Général",
+          "dimensions": null,
+          "uploaderId": "cmgez0ldp0001gqae2b32yhbv",
+          "createdAt": "2025-12-05T11:24:39.450Z"
+        }
+      ]
+    }
+  ],
+  "media": [
+    {
+      "id": "cmgqo187g0001gquxz1kd9pyi",
+      "filename": "3bfcaa9f-13ea-4f11-a74f-692b2874daff.jpeg",
+      "originalName": "pexels-bave-pictures-64453798-17300043 Medium.jpeg",
+      "mimeType": "image/jpeg",
+      "type": "IMAGE",
+      "size": 52550,
+      "url": "/uploads/3bfcaa9f-13ea-4f11-a74f-692b2874daff.jpeg",
+      "thumbnailUrl": null,
+      "alt": null,
+      "caption": null,
+      "dimensions": null,
+      "uploaderId": "cmgez0ldp0001gqae2b32yhbv",
+      "createdAt": "2025-10-14T14:36:56.138Z"
+    },
+    {
+      "id": "cmgqo1oy80005gquxsurm3juw",
+      "filename": "Computer troubleshooting-amico.png",
+      "originalName": "Computer troubleshooting-amico.png",
+      "mimeType": "image/png",
+      "type": "IMAGE",
+      "size": 418240,
+      "url": "https://utfs.io/f/syL8pNCTHcdR6OzKoV4yZ8KWReOquDU3NTHAiMJrFv0QaEsh",
+      "thumbnailUrl": null,
+      "alt": null,
+      "caption": null,
+      "dimensions": null,
+      "uploaderId": "cmgez0ldp0001gqae2b32yhbv",
+      "createdAt": "2025-10-14T14:37:17.839Z"
+    },
+    {
+      "id": "cmgqoetth0009gqux40gg33c1",
+      "filename": "9291033f-d82b-4742-b703-2f7fe6843817.jpg",
+      "originalName": "retrait-carte-electeur.jpg",
+      "mimeType": "image/jpeg",
+      "type": "IMAGE",
+      "size": 453946,
+      "url": "/uploads/9291033f-d82b-4742-b703-2f7fe6843817.jpg",
+      "thumbnailUrl": null,
+      "alt": null,
+      "caption": null,
+      "dimensions": null,
+      "uploaderId": "cmgez0ldp0001gqae2b32yhbv",
+      "createdAt": "2025-10-14T14:47:30.674Z"
+    },
+    {
+      "id": "cmgqoetub000dgqux2dfl11gl",
+      "filename": "4959d2af-f1c2-4908-991b-29787c6b1b47.jpeg",
+      "originalName": "note-d-information.jpeg",
+      "mimeType": "image/jpeg",
+      "type": "IMAGE",
+      "size": 101125,
+      "url": "/uploads/4959d2af-f1c2-4908-991b-29787c6b1b47.jpeg",
+      "thumbnailUrl": null,
+      "alt": null,
+      "caption": null,
+      "dimensions": null,
+      "uploaderId": "cmgez0ldp0001gqae2b32yhbv",
+      "createdAt": "2025-10-14T14:47:30.706Z"
+    },
+    {
+      "id": "cmiss293e000xi8zbyhhuihaz",
+      "filename": "Bulletin-SPECI-cover.png",
+      "originalName": "Bulletin SPECI Cover",
+      "mimeType": "image/png",
+      "type": "IMAGE",
+      "size": 2048000,
+      "url": "/assets/actualites/Bulletin-SPECI-cover.png",
+      "thumbnailUrl": null,
+      "alt": "Bulletin SPECI - Couverture du Magazine Consulaire",
+      "caption": "Couverture du Bulletin SPECI - Magazine du Consulat Général",
+      "dimensions": null,
+      "uploaderId": "cmgez0ldp0001gqae2b32yhbv",
+      "createdAt": "2025-12-05T11:24:39.434Z"
+    },
+    {
+      "id": "cmiss293o000zi8zbuwytnbjs",
+      "filename": "Bulettin-SPECI.pdf",
+      "originalName": "Bulletin SPECI",
+      "mimeType": "application/pdf",
+      "type": "DOCUMENT",
+      "size": 5120000,
+      "url": "/assets/actualites/Bulettin-SPECI.pdf",
+      "thumbnailUrl": null,
+      "alt": "Bulletin SPECI - Magazine Consulaire PDF",
+      "caption": "Bulletin SPECI - Magazine du Consulat Général",
+      "dimensions": null,
+      "uploaderId": "cmgez0ldp0001gqae2b32yhbv",
+      "createdAt": "2025-12-05T11:24:39.440Z"
+    },
+    {
+      "id": "cmiss293r0011i8zbct8unl49",
+      "filename": "retrait-carte-electeur.jpg",
+      "originalName": "Retrait Carte Electeur",
+      "mimeType": "image/jpeg",
+      "type": "IMAGE",
+      "size": 1024000,
+      "url": "/assets/actualites/retrait-carte-electeur.jpg",
+      "thumbnailUrl": null,
+      "alt": "Distribution des Cartes d'Électeur - Octobre 2025",
+      "caption": "Information officielle sur la distribution des cartes d'électeur",
+      "dimensions": null,
+      "uploaderId": "cmgez0ldp0001gqae2b32yhbv",
+      "createdAt": "2025-12-05T11:24:39.447Z"
+    },
+    {
+      "id": "cmiss293v0013i8zbr1c4nczm",
+      "filename": "note-d-information.jpeg",
+      "originalName": "Note d'Information",
+      "mimeType": "image/jpeg",
+      "type": "IMAGE",
+      "size": 1024000,
+      "url": "/assets/actualites/note-d-information.jpeg",
+      "thumbnailUrl": null,
+      "alt": "Note d'Information - Plateforme Express54",
+      "caption": "Note d'Information officielle du Consulat Général",
+      "dimensions": null,
+      "uploaderId": "cmgez0ldp0001gqae2b32yhbv",
+      "createdAt": "2025-12-05T11:24:39.450Z"
+    }
+  ],
+  "pages": [
+    {
+      "id": "cmgez0lh3000qgqaejahmtg44",
+      "title": {
+        "en": "About",
+        "fr": "À propos"
+      },
+      "slug": "a-propos",
+      "content": {
+        "en": "<p>The Consulate General of Côte d'Ivoire in New York...</p>",
+        "fr": "<p>Le Consulat Général de Côte d'Ivoire à New York...</p>"
+      },
+      "status": "PUBLISHED",
+      "template": "page",
+      "metaTitle": {
+        "en": "About the Consulate",
+        "fr": "À propos du Consulat"
+      },
+      "metaDescription": {
+        "en": "Discover the history and mission of the Consulate General of Côte d'Ivoire in New York.",
+        "fr": "Découvrez l'histoire et la mission du Consulat Général de Côte d'Ivoire à New York."
+      },
+      "order": 1,
+      "serviceType": null,
+      "requiredDocs": null,
+      "fees": null,
+      "processingTime": null,
+      "paymentLink": null,
+      "formLink": null,
+      "parentId": null,
+      "createdAt": "2025-10-06T10:11:08.343Z",
+      "updatedAt": "2025-10-06T10:11:08.343Z",
+      "publishedAt": "2025-10-06T10:11:08.341Z"
+    },
+    {
+      "id": "cmgez0lh8000rgqae8ygkb5b2",
+      "title": {
+        "en": "Legal notices",
+        "fr": "Mentions légales"
+      },
+      "slug": "mentions-legales",
+      "content": {
+        "en": "<p>Legal notices of the website...</p>",
+        "fr": "<p>Mentions légales du site web...</p>"
+      },
+      "status": "PUBLISHED",
+      "template": "legal",
+      "metaTitle": null,
+      "metaDescription": null,
+      "order": 2,
+      "serviceType": null,
+      "requiredDocs": null,
+      "fees": null,
+      "processingTime": null,
+      "paymentLink": null,
+      "formLink": null,
+      "parentId": null,
+      "createdAt": "2025-10-06T10:11:08.347Z",
+      "updatedAt": "2025-10-06T10:11:08.347Z",
+      "publishedAt": "2025-10-06T10:11:08.341Z"
+    },
+    {
+      "id": "cmgezacdv000sgqaebpw57agz",
+      "title": {
+        "en": "Civil Status",
+        "fr": "État Civil"
+      },
+      "slug": "services/etat-civil",
+      "content": {
+        "en": "Civil status services",
+        "fr": "Services d'état civil"
+      },
+      "status": "PUBLISHED",
+      "template": "default",
+      "metaTitle": null,
+      "metaDescription": null,
+      "order": 4,
+      "serviceType": null,
+      "requiredDocs": null,
+      "fees": null,
+      "processingTime": null,
+      "paymentLink": null,
+      "formLink": null,
+      "parentId": null,
+      "createdAt": "2025-10-06T10:18:43.121Z",
+      "updatedAt": "2025-10-06T10:18:43.121Z",
+      "publishedAt": "2025-10-06T10:18:43.118Z"
+    },
+    {
+      "id": "cmgezace3000tgqaemkjas209",
+      "title": {
+        "en": "Other Documents",
+        "fr": "Autres Documents"
+      },
+      "slug": "services/autres-documents",
+      "content": {
+        "en": "Other document services",
+        "fr": "Autres services documentaires"
+      },
+      "status": "PUBLISHED",
+      "template": "default",
+      "metaTitle": null,
+      "metaDescription": null,
+      "order": 5,
+      "serviceType": null,
+      "requiredDocs": null,
+      "fees": null,
+      "processingTime": null,
+      "paymentLink": null,
+      "formLink": null,
+      "parentId": null,
+      "createdAt": "2025-10-06T10:18:43.130Z",
+      "updatedAt": "2025-10-06T10:18:43.130Z",
+      "publishedAt": "2025-10-06T10:18:43.129Z"
+    },
+    {
+      "id": "cmgezacej000xgqaed189ffnf",
+      "title": {
+        "en": "Passport Services",
+        "fr": "Services de Passeport"
+      },
+      "slug": "services/passeport",
+      "content": {
+        "en": "English content to be added",
+        "fr": "\n# PASSEPORT\n\n---\n\n## 1ère Demande de Passeport Ordinaire Biométrique\n\n**Pièces à fournir :**\n\n- Copie de la Carte Consulaire valide (obligatoire) du demandeur\n- Formulaire de demande de passeport biométrique dûment renseigné et signé [lien du formulaire](https://www.monpasseport.ci)\n- Une (1) photo d’identité récente 4cm x 4cm (modèle Europe)\n- Copie de la Carte Nationale d’Identité valide  \n  **OU**, à défaut, fournir les trois (03) documents suivants :\n    - Original de l’extrait de naissance\n    - Original du certificat de nationalité\n    - Copie de la Carte Nationale d’Identité d’un parent\n- Reçu de paiement des frais (115 euros) via le lien : [www.monpasseport.ci](https://www.monpasseport.ci)\n\n---\n\n## 1ère Demande de Passeport Ordinaire Biométrique pour Mineurs\n\n**Pièces à fournir :**\n\n- Copie de la Carte Consulaire valide (obligatoire) du parent ou tuteur légal\n- Formulaire de demande de passeport biométrique dûment renseigné et signé [lien du formulaire](../services-consulaires-forms/autorisation-parentale-fom.pdf)  \n  _(Utilisation des initiales pour le nom de l’enfant mineur)_\n- Autorisation parentale légalisée auprès de l’Ambassade ou par l’autorité américaine compétente, ou le cas échéant, par les autorités ivoiriennes compétentes si les deux (02) parents résident en Côte d’Ivoire\n- Copie de l’extrait d’acte de naissance ivoirien de l’enfant\n- Une (1) photo d’identité récente dimensions 4cm x 4cm (modèle Europe)\n- Copie de la pièce d’identité du parent ou du tuteur légal qui accompagne le mineur (Carte Nationale d’Identité, Attestation Administrative d’Identité ou Passeport)\n- Reçu de paiement des frais (115 euros) via le lien : [www.monpasseport.ci](https://www.monpasseport.ci)\n\n---\n\n## Renouvellement de Passeport Biométrique\n\n**Pièces à fournir :**\n\n- Copie de la Carte Consulaire valide (obligatoire) du demandeur\n- Formulaire de demande de passeport biométrique dûment rempli et signé [lien du formulaire](https://www.monpasseport.ci)\n- Copie (sur présentation de l’original) du passeport biométrique expiré ou en voie d’expiration  \n  _(Six (6) mois au moins avant expiration)_\n- Une (1) photo d’identité récente dimensions 4cm x 4cm (modèle Europe)\n- Reçu de paiement des frais (115 euros) via le lien : [www.monpasseport.ci](https://www.monpasseport.ci)\n\n---\n\n## Informations Importantes\n\n- **Jours d’enrôlement pour le passeport :** LUNDI, MERCREDI et JEUDI\n- **Présence du requérant obligatoire** pour l’établissement ou le renouvellement du passeport biométrique ivoirien (prise de photo et empreintes digitales).\n\n> **IMPORTANT :**  \n> En cas de perte de l’ancien passeport biométrique, joindre un certificat de perte délivré par les autorités policières américaines (traduction en français dudit certificat de perte par un cabinet assermenté).\n\n---\n\n> **NB :**\n>\n> - Le délai de traitement de la demande est de trente à quarante-cinq (30 à 45) jours après transmission du dossier à la SNEDAI.\n> - Tout dossier incomplet entraînera le non-traitement de la demande.\n\n---\n\n## Retrait du Passeport\n\nLe retrait du passeport peut se faire :\n\n1. **Directement au Consulat Général**  \n   Du lundi au vendredi : de 14h00 à 16h00.\n\n2. **Par voie postale**  \n   En fournissant une enveloppe prépayée ou un bordereau d’envoi d’une compagnie (UPS, DHL…), portant l’adresse précise et exacte (en caractères d’imprimerie).  \n   Dans ce cas, le requérant devra obligatoirement fournir :  \n   - Une lettre de désengagement signée (« cliquez ici »)  \n   - Toute enveloppe doit porter un « tracking number »\n\n> **NB :** Le délai d’acheminement dépendra des délais de la poste.\n"
+      },
+      "status": "PUBLISHED",
+      "template": "service",
+      "metaTitle": null,
+      "metaDescription": null,
+      "order": 2,
+      "serviceType": "passeport",
+      "requiredDocs": null,
+      "fees": null,
+      "processingTime": null,
+      "paymentLink": "https://www.ci-embassyepay.org/",
+      "formLink": null,
+      "parentId": null,
+      "createdAt": "2025-10-06T10:18:43.147Z",
+      "updatedAt": "2025-10-06T10:18:57.415Z",
+      "publishedAt": "2025-10-06T10:18:57.413Z"
+    },
+    {
+      "id": "cmgezaceu000zgqae7e3htvkp",
+      "title": {
+        "en": "Consular Card",
+        "fr": "Carte Consulaire"
+      },
+      "slug": "services/carte-consulaire",
+      "content": {
+        "en": "English content to be added",
+        "fr": "# CARTE CONSULAIRE\n\n## Pièces à fournir\n\n- **Formulaire de demande de Carte d’Identité Consulaire** dûment renseigné et signé ([lien du formulaire])\n- **Justificatif de domicile** aux États-Unis d’Amérique (carte de résidence, carte d’étudiant, permis de conduire américain, facture ou tout document faisant foi)\n- **Deux (02) photos d’identité** 4cm x 4cm (modèle Europe)\n- **Copie d’un extrait d’acte de naissance** et d’un certificat de nationalité ou d’une pièce d’identité ivoirienne valide (Carte Nationale d’Identité, Passeport ou Attestation Administrative d’Identité valide)\n- **Copie de l’extrait d’acte de naissance** pour les enfants mineurs\n- **Reçu de paiement des frais** (20 dollars américains pour les adultes et 10 dollars pour les enfants et étudiants) via le lien : [https://www.ci-embassyepay.org/](https://www.ci-embassyepay.org/)\n\n---\n\n## Modalités de dépôt\n\n1. **Par voie postale** à l’adresse suivante :  \n   Consulat Général de Côte d’Ivoire  \n   800 Second Avenue, Fifth Floor  \n   New York, NY 10017\n\n2. **En personne** : se présenter directement au Consulat Général pour le dépôt du dossier de documents ou actes consulaires.\n\n---\n\n> **NB :**\n>\n> - Le délai de traitement de la demande est de trois (03) jours après réception du dossier.\n> - Tout dossier incomplet entraînera le non-traitement de la demande.\n"
+      },
+      "status": "PUBLISHED",
+      "template": "service",
+      "metaTitle": null,
+      "metaDescription": null,
+      "order": 3,
+      "serviceType": "carte-consulaire",
+      "requiredDocs": {
+        "en": [],
+        "fr": [
+          "**Formulaire de demande de Carte d’Identité Consulaire** dûment renseigné et signé ([lien du formulaire])",
+          "**Justificatif de domicile** aux États-Unis d’Amérique (carte de résidence, carte d’étudiant, permis de conduire américain, facture ou tout document faisant foi)",
+          "**Deux (02) photos d’identité** 4cm x 4cm (modèle Europe)",
+          "**Copie d’un extrait d’acte de naissance** et d’un certificat de nationalité ou d’une pièce d’identité ivoirienne valide (Carte Nationale d’Identité, Passeport ou Attestation Administrative d’Identité valide)",
+          "**Copie de l’extrait d’acte de naissance** pour les enfants mineurs",
+          "**Reçu de paiement des frais** (20 dollars américains pour les adultes et 10 dollars pour les enfants et étudiants) via le lien : [https://www.ci-embassyepay.org/](https://www.ci-embassyepay.org/)"
+        ]
+      },
+      "fees": null,
+      "processingTime": null,
+      "paymentLink": "https://www.ci-embassyepay.org/](https://www.ci-embassyepay.org/)",
+      "formLink": null,
+      "parentId": null,
+      "createdAt": "2025-10-06T10:18:43.157Z",
+      "updatedAt": "2025-10-06T10:18:57.425Z",
+      "publishedAt": "2025-10-06T10:18:57.423Z"
+    },
+    {
+      "id": "cmgezacfc0013gqaeido7umj4",
+      "title": {
+        "en": "Death Certificate Transcription",
+        "fr": "Transcription d'Acte de Décès"
+      },
+      "slug": "services/etat-civil/transcription-deces",
+      "content": {
+        "en": "English content to be added",
+        "fr": "# TRANSCRIPTION D’ACTE DE DÉCÈS\n\n## 1. Transcription d’Acte de Décès\n\n**Pièces à fournir :**\n\n- Formulaire dûment renseigné et signé [lien du formulaire](../services-consulaires-forms/transcription-acte-de-deces.pdf)\n- Original de l’acte de décès américain\n- Traduction en français de l’acte de décès américain par un cabinet assermenté\n- Copie de l’extrait d’acte de naissance du défunt ou de la défunte\n- Copie de la pièce d’identité du défunt ou de la défunte (Carte Nationale d’Identité, Passeport ou Attestation Administrative d’Identité)\n- Reçu de paiement des frais (20 dollars) via le lien : [https://www.ci-embassyepay.org/](https://www.ci-embassyepay.org/)\n\n---\n\n## 2. Autorisation de Transfert de Corps\n\n**Pièces à fournir :**\n\n- Autorisation de sortie du corps délivrée par les autorités américaines compétentes\n- Copie de la pièce d’identité du défunt ou de la défunte (Carte Nationale d’Identité, Passeport ou Attestation Administrative d’Identité)\n- Copie de l’acte de décès américain\n- Billet d’avion (plan de vol)\n- Reçu de paiement des frais (20 dollars) via le lien : [https://www.ci-embassyepay.org/](https://www.ci-embassyepay.org/)\n\n---\n\n## 3. Copie d’Extrait d’Acte de Décès\n\n**Pièces à fournir :**\n\n- Copie d’un extrait de l’acte de décès délivré par le Consulat Général de Côte d’Ivoire aux États-Unis\n- Reçu de paiement des frais (20 dollars) via le lien : [https://www.ci-embassyepay.org/](https://www.ci-embassyepay.org/)\n\n---\n\n## Modalités de dépôt\n\n1. **Par voie postale** à l’adresse suivante :  \n   Consulat Général de Côte d’Ivoire  \n   800 Second Avenue, Fifth Floor  \n   New York, NY 10017\n\n2. **En personne** : se présenter directement au Consulat Général pour le dépôt du dossier de documents ou actes consulaires.\n\n---\n\n> **NB :**\n>\n> - Le délai de traitement de la demande est de trois (03) jours après réception du dossier.\n> - Tout dossier incomplet entraînera le non-traitement de la demande.\n"
+      },
+      "status": "PUBLISHED",
+      "template": "service",
+      "metaTitle": null,
+      "metaDescription": null,
+      "order": 5,
+      "serviceType": "transcription",
+      "requiredDocs": null,
+      "fees": null,
+      "processingTime": null,
+      "paymentLink": "https://www.ci-embassyepay.org/](https://www.ci-embassyepay.org/)",
+      "formLink": null,
+      "parentId": "cmgezacdv000sgqaebpw57agz",
+      "createdAt": "2025-10-06T10:18:43.176Z",
+      "updatedAt": "2025-10-06T10:18:57.453Z",
+      "publishedAt": "2025-10-06T10:18:57.452Z"
+    },
+    {
+      "id": "cmgezacg40019gqaektvvvlp0",
+      "title": {
+        "en": "Document Certification",
+        "fr": "Certification d'Actes"
+      },
+      "slug": "services/autres-documents/certification",
+      "content": {
+        "en": "English content to be added",
+        "fr": "# CERTIFICATION D’ACTES ET DE DOCUMENTS\n\n## CERTIFICAT DE VIE\n\n**Pièces à fournir :**\n\n- Présentation de la Carte Consulaire valide (obligatoire) du demandeur\n- Copie du brevet d’inscription au registre des retraites ou décision de mise à la retraite\n- Copie d’une pièce d’identité ivoirienne valide du requérant (Carte Nationale d’Identité, Passeport, Attestation Administrative d’Identité)\n- Preuve de résidence actuelle aux États-Unis d’Amérique (factures ou tout document faisant foi)\n- Reçu de paiement des frais (20 dollars) via le lien : [https://www.ci-embassyepay.org/](https://www.ci-embassyepay.org/)\n\n---\n\n## CERTIFICAT DE VIE ET D’ENTRETIEN\n\n**Pièces à fournir :**\n\n- Présentation de la Carte Consulaire valide (obligatoire) du demandeur\n- Original de l’extrait d’acte de naissance de l’enfant à charge\n- Copie d’une pièce d’identité ivoirienne valide du parent ou du tuteur légal qui entretient l’enfant (Carte Nationale d’Identité, Passeport ou Attestation Administrative d’Identité)\n- Reçu de paiement des frais (20 dollars) via le lien : [https://www.ci-embassyepay.org/](https://www.ci-embassyepay.org/)\n\n---\n\n## CERTIFICAT DE RÉSIDENCE\n\n**Pièces à fournir :**\n\n- Présentation de la Carte Consulaire valide (obligatoire) du demandeur\n- Copie d’une pièce d’identité ivoirienne valide du requérant (Carte Nationale d’Identité, Passeport ou Attestation Administrative d’Identité)\n- Preuve de résidence actuelle aux États-Unis d’Amérique (factures ou tout document faisant foi)\n- Reçu de paiement des frais (20 dollars) via le lien : [https://www.ci-embassyepay.org/](https://www.ci-embassyepay.org/)\n\n---\n\n## CERTIFICAT DE NON-REMARIAGE\n\n**Pièces à fournir :**\n\n- Présentation de la Carte Consulaire valide (obligatoire) du demandeur\n- Copie de l’extrait d’acte de mariage\n- Copie de l’extrait d’acte de décès du conjoint\n- Copie de l’extrait d’acte de naissance du demandeur\n- Copie d’une pièce d’identité ivoirienne valide du requérant (Carte Nationale d’Identité, Passeport, Attestation Administrative d’Identité)\n- Preuve de résidence actuelle aux États-Unis d’Amérique (factures ou tout document faisant foi)\n- Reçu de paiement des frais (20 dollars) via le lien : [https://www.ci-embassyepay.org/](https://www.ci-embassyepay.org/)\n\n---\n\n## CERTIFICAT DE DÉMÉNAGEMENT\n\n_(Déménagement par voie maritime ou aérienne)_\n\n**Pièces à fournir :**\n\n- Présentation de la Carte Consulaire valide (obligatoire) du demandeur\n- Copie de la pièce d’identité ivoirienne valide (Carte Nationale d’Identité, Passeport ou Attestation Administrative d’Identité)\n- Document attestant la fin du séjour aux États-Unis :\n    - Lettre de fin de contrat de l’employeur pour les travailleurs du public ou du privé\n    - Copie du diplôme de fin d’études pour les étudiants\n- Liste des effets personnels ou de colisage\n- Preuve de résidence actuelle en Côte d’Ivoire (factures ou tout document faisant foi)\n- Connaissement et itinéraire\n- Reçu de paiement des frais (50 dollars pour les travailleurs ; 25 dollars pour les étudiants) via le lien : [https://www.ci-embassyepay.org/](https://www.ci-embassyepay.org/)\n\n> **NB : Les véhicules sont exclus**\n\n---\n\n## Modalités de dépôt\n\n1. **Par voie postale** à l’adresse suivante :  \n   Consulat Général de Côte d’Ivoire  \n   800 Second Avenue, Fifth Floor  \n   New York, NY 10017\n\n2. **En personne** : se présenter directement au Consulat Général pour le dépôt du dossier de documents ou actes consulaires.\n\n---\n\n> **NB :**\n>\n> - Le délai de traitement de la demande est de trois (03) jours après réception du dossier.\n> - Tout dossier incomplet entraînera le non-traitement de la demande.\n"
+      },
+      "status": "PUBLISHED",
+      "template": "service",
+      "metaTitle": null,
+      "metaDescription": null,
+      "order": 9,
+      "serviceType": "certification",
+      "requiredDocs": null,
+      "fees": null,
+      "processingTime": null,
+      "paymentLink": "https://www.ci-embassyepay.org/](https://www.ci-embassyepay.org/)",
+      "formLink": null,
+      "parentId": "cmgezace3000tgqaemkjas209",
+      "createdAt": "2025-10-06T10:18:43.204Z",
+      "updatedAt": "2025-10-06T10:18:57.502Z",
+      "publishedAt": "2025-10-06T10:18:57.500Z"
+    },
+    {
+      "id": "cmgezacec000vgqaesq5xduv1",
+      "title": {
+        "en": "Visa Services",
+        "fr": "Services de Visa"
+      },
+      "slug": "services/visa",
+      "content": {
+        "en": "<div class=\"space-y-8\">\n  <div class=\"text-center\">\n    <div class=\"mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-orange-500 shadow-lg\">\n      <svg class=\"h-10 w-10 text-white\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n        <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z\"></path>\n      </svg>\n    </div>\n    <h1 class=\"mb-4 text-4xl font-bold text-gray-900\">VISA Service</h1>\n    <p class=\"mx-auto max-w-2xl text-lg text-gray-600\">\n      Please prepare all the documents listed below to complete your visa application.\n    </p>\n  </div>\n\n  <div class=\"bg-gray-50 p-8 rounded-lg shadow-lg\">\n    <h2 class=\"text-2xl font-bold mb-6 text-gray-900\">Required Documents</h2>\n    <ol class=\"space-y-4\">\n      <li class=\"flex items-start\">\n        <span class=\"mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white\">1</span>\n        <span class=\"text-gray-700 pt-1\">The passport with a six-month validity or more</span>\n      </li>\n      <li class=\"flex items-start\">\n        <span class=\"mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white\">2</span>\n        <span class=\"text-gray-700 pt-1\">One picture I.D in color with white background</span>\n      </li>\n      <li class=\"flex items-start\">\n        <span class=\"mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white\">3</span>\n        <span class=\"text-gray-700 pt-1\">Legalized invitation letter or Hotel booking</span>\n      </li>\n      <li class=\"flex items-start\">\n        <span class=\"mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white\">4</span>\n        <span class=\"text-gray-700 pt-1\">Flight booking itinerary</span>\n      </li>\n      <li class=\"flex items-start\">\n        <span class=\"mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white\">5</span>\n        <span class=\"text-gray-700 pt-1\">Copy of the yellow fever vaccine</span>\n      </li>\n      <li class=\"flex items-start\">\n        <span class=\"mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white\">6</span>\n        <span class=\"text-gray-700 pt-1\">Copy of the Green Card for non US Citizens or valid visa (Visa B1 and B2 are not accepted)</span>\n      </li>\n      <li class=\"flex items-start\">\n        <span class=\"mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white\">7</span>\n        <span class=\"text-gray-700 pt-1\">For minor children : A notarized parental consent written by the parent not traveling</span>\n      </li>\n      <li class=\"flex items-start\">\n        <span class=\"mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white\">8</span>\n        <span class=\"text-gray-700 pt-1\">Person traveling with the child : Copy of passport and visa or Green Card</span>\n      </li>\n      <li class=\"flex items-start\">\n        <span class=\"mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white\">9</span>\n        <span class=\"text-gray-700 pt-1\">Copy of the visa payment receipt</span>\n      </li>\n    </ol>\n  </div>\n\n  <div class=\"border-2 border-red-200 bg-red-50 p-6 rounded-lg\">\n    <div class=\"flex items-start\">\n      <svg class=\"mr-3 mt-1 h-6 w-6 flex-shrink-0 text-red-600\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n        <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z\"></path>\n      </svg>\n      <div class=\"space-y-3\">\n        <h3 class=\"text-lg font-bold text-gray-900\">IMPORTANT</h3>\n        <div class=\"text-gray-700\">\n          <p class=\"mb-3\">\n            The documents for the visa should be uploaded on the platform called: express54.org\n            Upon approval, applicants will be contacted by email in order to send their passports to the Embassy for the visa.\n          </p>\n          <p>\n            For more information, please contact the Consular Service at \n            <a href=\"tel:+16464767614\" class=\"font-bold text-green-600 hover:underline\">(646) 476-7614</a>\n          </p>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"border-2 border-green-200 bg-green-50 p-6 rounded-lg\">\n    <h3 class=\"mb-4 text-lg font-bold text-gray-900\">Payment</h3>\n    <p class=\"mb-6 text-gray-700\">\n      Processing of your application will begin after receipt of payment and all required documents.\n    </p>\n    <div class=\"text-center\">\n      <a href=\"https://express54.org\" target=\"_blank\" class=\"inline-flex items-center rounded-xl bg-green-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-green-700 hover:shadow-xl hover:scale-105\">\n        <svg class=\"mr-3 h-5 w-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n          <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14\"></path>\n        </svg>\n        Proceed to payment\n      </a>\n    </div>\n  </div>\n\n  <div class=\"border-2 border-orange-200 bg-orange-50 p-6 rounded-lg\">\n    <h3 class=\"mb-4 text-lg font-bold text-gray-900\">Online procedures</h3>\n    <p class=\"mb-6 text-gray-700\">\n      Submit your visa application directly on our digitalized platform\n    </p>\n    <div class=\"text-center\">\n      <a href=\"https://www.express54.org\" target=\"_blank\" class=\"inline-flex items-center rounded-xl bg-orange-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-orange-700 hover:shadow-xl hover:scale-105\">\n        <svg class=\"mr-3 h-5 w-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n          <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14\"></path>\n        </svg>\n        www.express54.org\n      </a>\n    </div>\n  </div>\n</div>",
+        "fr": "<h1>Service VISA</h1><p>Veuillez préparer tous les documents listés ci-dessous pour compléter votre demande de visa.</p><h2>Documents requis</h2><ol><li><p>1 Le passeport d'une validité de six (06) mois ou plus</p></li><li><p>2 Une photo d'identité en couleur / fond blanc</p></li><li><p>3 La lettre d'invitation légalisée ou la confirmation de la réservation d'hôtel</p></li><li><p>4 L'itinéraire du voyage (billet aller-retour)</p></li><li><p>5 La copie du Carnet de vaccination contre la fièvre jaune</p></li><li><p>6 La copie de la Green Card pour autre nationalité ou visa (exceptés visa B1 et B2)</p></li><li><p>7 Pour l'enfant mineur : une autorisation parentale notariée pour le parent qui ne voyage pas</p></li><li><p>8 Pour les personnes qui voyagent avec l'enfant mineur : copies du passeport et du visa ou de la Green Card</p></li><li><p>9 La copie du reçu de paiement du visa</p></li><li><p>10 Testing update content</p></li></ol><h3>IMPORTANT</h3><p>Les documents susmentionnés devront être ensuite téléchargés sur la plate-forme express54.org. Après analyse des documents, les requérants seront contactés par email afin de faire parvenir leurs passeports.</p><p>Pour plus d'informations, veuillez appeler le Service Consulaire au <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"text-orange-600 underline hover:text-orange-700 font-bold text-green-600 hover:underline\" href=\"tel:+16464767614\">(646) 476-7614</a></p><h3>Paiement</h3><p>Le traitement de votre demande commencera après réception du paiement et de tous les documents requis.</p><p><a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"text-orange-600 underline hover:text-orange-700 inline-flex items-center rounded-xl bg-green-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-green-700 hover:shadow-xl hover:scale-105\" href=\"https://express54.org\"> Procéder au paiement</a></p><h3>Démarches en ligne</h3><p>Effectuez votre demande de visa directement sur notre plateforme digitalisée</p><p><a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"text-orange-600 underline hover:text-orange-700 inline-flex items-center rounded-xl bg-orange-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-orange-700 hover:shadow-xl hover:scale-105\" href=\"https://www.express54.org\"> www.express54.org</a></p>"
+      },
+      "status": "PUBLISHED",
+      "template": "service",
+      "metaTitle": null,
+      "metaDescription": null,
+      "order": 1,
+      "serviceType": "visa",
+      "requiredDocs": {
+        "en": [
+          "The passport with a six-month validity or more",
+          "One picture I.D in color with white background",
+          "Legalized invitation letter or Hotel booking",
+          "Flight booking itinerary",
+          "Copy of the yellow fever vaccine",
+          "Copy of the Green Card for non US Citizens or valid visa (Visa B1 and B2 are not accepted)",
+          "For minor children : A notarized parental consent written by the parent not traveling",
+          "Person traveling with the child : Copy of passport and visa or Green Card",
+          "Copy of the visa payment receipt"
+        ],
+        "fr": [
+          "Le passeport d'une validité de six (06) mois ou plus",
+          "Une photo d'identité en couleur / fond blanc",
+          "La lettre d'invitation légalisée ou la confirmation de la réservation d'hôtel",
+          "L'itinéraire du voyage (billet aller-retour)",
+          "La copie du Carnet de vaccination contre la fièvre jaune",
+          "La copie de la Green Card pour autre nationalité ou visa (exceptés visa B1 et B2)",
+          "Pour l'enfant mineur : une autorisation parentale notariée pour le parent qui ne voyage pas",
+          "Pour les personnes qui voyagent avec l'enfant mineur : copies du passeport et du visa ou de la Green Card",
+          "La copie du reçu de paiement du visa",
+          "Testing update content"
+        ]
+      },
+      "fees": null,
+      "processingTime": {
+        "en": "3-5 business days after receiving documents",
+        "fr": "3-5 jours ouvrables après réception des documents"
+      },
+      "paymentLink": "https://express54.org",
+      "formLink": "https://express54.org",
+      "parentId": null,
+      "createdAt": "2025-10-06T10:18:43.139Z",
+      "updatedAt": "2025-10-06T11:45:25.612Z",
+      "publishedAt": "2025-10-06T10:18:57.400Z"
+    },
+    {
+      "id": "cmgezacf30011gqaeu4hb2iju",
+      "title": {
+        "en": "Marriage Certificate Transcription",
+        "fr": "Transcription d'Acte de Mariage"
+      },
+      "slug": "services/etat-civil/transcription-mariage",
+      "content": {
+        "en": "English content to be added",
+        "fr": "# TRANSCRIPTION D’ACTE DE MARIAGE\n\n## 1. Transcription d’Acte de Mariage\n\n**Pièces à fournir :**\n\n- Copie de la Carte Consulaire valide (obligatoire) pour les requérants résidents\n- Formulaire dûment renseigné et signé [lien du formulaire](../services-consulaires-forms/transcription-acte-de-mariage-form.pdf)\n- Copie de l’extrait d’acte de mariage américain\n- Copie de la traduction en français de l’acte de mariage américain par un cabinet assermenté\n- Copie de la preuve de la nationalité ivoirienne de l’un des deux époux (carte d’identité nationale, certificat de nationalité)\n- Copie de l’extrait d’acte de naissance des deux (02) époux\n- Copie des pièces d’identité des deux époux (Carte Nationale d’Identité, Passeport ou Attestation Administrative d’Identité)\n- Reçu de paiement des frais (20 dollars) via le lien : [https://www.ci-embassyepay.org/](https://www.ci-embassyepay.org/)\n\n---\n\n## 2. Copie d’Acte de Mariage\n\n**Pièces à fournir :**\n\n- Copie de la Carte Consulaire valide (obligatoire) pour les requérants résidents\n- Copie d’un extrait de l’acte de mariage délivré par le Consulat Général à New York\n- Reçu de paiement des frais (20 dollars) via le lien : [https://www.ci-embassyepay.org/](https://www.ci-embassyepay.org/)\n\n---\n\n## Modalités de dépôt\n\n1. **Par voie postale** à l’adresse suivante :  \n   Consulat Général de Côte d’Ivoire  \n   800 Second Avenue, Fifth Floor  \n   New York, NY 10017\n\n2. **En personne** : se présenter directement au Consulat Général pour le dépôt du dossier de documents ou actes consulaires.\n\n---\n\n> **NB :**\n>\n> - Le délai de traitement de la demande est de trois (03) jours après réception du dossier.\n> - Tout dossier incomplet entraînera le non-traitement de la demande.\n"
+      },
+      "status": "PUBLISHED",
+      "template": "service",
+      "metaTitle": null,
+      "metaDescription": null,
+      "order": 4,
+      "serviceType": "transcription",
+      "requiredDocs": null,
+      "fees": null,
+      "processingTime": null,
+      "paymentLink": "https://www.ci-embassyepay.org/](https://www.ci-embassyepay.org/)",
+      "formLink": null,
+      "parentId": "cmgezacdv000sgqaebpw57agz",
+      "createdAt": "2025-10-06T10:18:43.166Z",
+      "updatedAt": "2025-10-06T10:18:57.441Z",
+      "publishedAt": "2025-10-06T10:18:57.439Z"
+    },
+    {
+      "id": "cmgezanga001dgqaensi9ixwr",
+      "title": {
+        "en": "Civil Status Transcription",
+        "fr": "Transcription et Copies d'Actes d'État Civil"
+      },
+      "slug": "services/etat-civil/transcription-actes",
+      "content": {
+        "en": "English content to be added",
+        "fr": "# TRANSCRIPTION ET COPIES DES ACTES D’ÉTAT CIVIL\n\n---\n\n## Transcription d’Acte de Naissance\n\n**Pièces à fournir :**\n\n- Photocopie de la Carte Consulaire valide (obligatoire) pour les requérants résidents\n- Formulaire dûment renseigné et signé [lien du formulaire](../services-consulaires-forms/transcription-acte-de-naissance-form.pdf)\n- Copie intégrale de l’acte de naissance américain de l’enfant\n- Copie de la traduction en français de l’acte de naissance américain par un cabinet assermenté\n- Copie de la preuve de la nationalité ivoirienne de l’un des deux parents (carte d’identité nationale, certificat de nationalité)\n- Copie des pièces d’identité des deux parents (Carte Nationale d’Identité, Passeport ou Attestation Administrative d’Identité)\n- Reçu de paiement des frais (20 dollars) via le lien : [https://www.ci-embassyepay.org/](https://www.ci-embassyepay.org/)\n\n---\n\n## Copie d’Acte de Naissance\n\n**Pièces à fournir :**\n\n- Copie de la Carte Consulaire valide (obligatoire) pour les requérants résidents\n- Copie d’un extrait d’acte de naissance délivré par le Consulat Général de Côte d’Ivoire à New York\n- Reçu de paiement des frais (20 dollars) via le lien : [https://www.ci-embassyepay.org/](https://www.ci-embassyepay.org/)\n\n---\n\n## Modalités de dépôt\n\n1. **Par voie postale** à l’adresse suivante :  \n   Consulat Général de Côte d’Ivoire  \n   800 Second Avenue, Fifth Floor  \n   New York, NY 10017\n\n2. **En personne** : se présenter directement au Consulat Général pour le dépôt du dossier de documents ou actes consulaires.\n\n---\n\n> **NB :**\n>\n> - Le délai de traitement de la demande est de trois (03) jours ouvrables après réception du dossier.\n> - Tout dossier incomplet entraînera le non-traitement de la demande.\n"
+      },
+      "status": "PUBLISHED",
+      "template": "service",
+      "metaTitle": null,
+      "metaDescription": null,
+      "order": 6,
+      "serviceType": "transcription",
+      "requiredDocs": null,
+      "fees": null,
+      "processingTime": null,
+      "paymentLink": "https://www.ci-embassyepay.org/](https://www.ci-embassyepay.org/)",
+      "formLink": null,
+      "parentId": "cmgezacdv000sgqaebpw57agz",
+      "createdAt": "2025-10-06T10:18:57.466Z",
+      "updatedAt": "2025-10-06T10:18:57.466Z",
+      "publishedAt": "2025-10-06T10:18:57.464Z"
+    },
+    {
+      "id": "cmgezacfl0015gqaexqzaoq10",
+      "title": {
+        "en": "Laissez-passer",
+        "fr": "Laissez-passer"
+      },
+      "slug": "services/autres-documents/laissez-passer",
+      "content": {
+        "en": "English content to be added",
+        "fr": "# LAISSEZ-PASSER\n\n> **IMPORTANT :**  \n> Le laissez-passer est un titre exceptionnel de voyage délivré par les autorités consulaires d’un poste diplomatique ou consulaire pour permettre aux Ivoiriens de regagner la Côte d’Ivoire.  \n> Ce document ne concerne que les Ivoiriens qui sont :\n>\n> - **De passage et dépourvus de titre de voyage** (en cas de perte ou de vol de passeport)\n> - **En situation irrégulière** et sur réquisition des autorités locales\n> - **Munis d’un passeport expiré depuis six mois au plus** et qui doivent rentrer en Côte d’Ivoire de toute urgence pour des raisons impérieuses et particulières (décès d’un ascendant [père ou mère] ou d’un descendant [enfant])\n\n---\n\n## Pièces à fournir\n\n- **Déclaration ou certificat de perte ou de vol** délivré par les autorités américaines (pour les Ivoiriens de passage)\n- **Formulaire de demande de laissez-passer** dûment renseigné et signé ([lien du formulaire])\n- **Copie de tout document prouvant votre identité et votre nationalité** (carte d’identité nationale, carte consulaire, acte de naissance)\n- **Copie ou réservation de billet d’avion**\n- **Deux (02) photos d’identité récentes**\n- **Acte de décès du parent en ligne directe** accompagné de l’acte de naissance du demandeur (en cas de décès)\n- **Paiement des droits de chancellerie** (80 dollars) via le lien : [https://www.ci-embassyepay.org/](https://www.ci-embassyepay.org/)\n\n---\n\n## Modalités de dépôt\n\n1. **Par voie postale** à l’adresse suivante :  \n   Consulat Général de Côte d’Ivoire  \n   800 Second Avenue, Fifth Floor  \n   New York, NY 10017\n\n2. **En personne** : se présenter directement au Consulat Général pour le dépôt du dossier de documents ou actes consulaires.\n\n---\n\n> **NB :**\n>\n> - Le délai de traitement de la demande est de trois (03) jours après réception du dossier.\n> - Tout dossier incomplet entraînera le non-traitement de la demande.\n"
+      },
+      "status": "PUBLISHED",
+      "template": "service",
+      "metaTitle": null,
+      "metaDescription": null,
+      "order": 7,
+      "serviceType": "autres-documents",
+      "requiredDocs": {
+        "en": [],
+        "fr": [
+          "**Déclaration ou certificat de perte ou de vol** délivré par les autorités américaines (pour les Ivoiriens de passage)",
+          "**Formulaire de demande de laissez-passer** dûment renseigné et signé ([lien du formulaire])",
+          "**Copie de tout document prouvant votre identité et votre nationalité** (carte d’identité nationale, carte consulaire, acte de naissance)",
+          "**Copie ou réservation de billet d’avion**",
+          "**Deux (02) photos d’identité récentes**",
+          "**Acte de décès du parent en ligne directe** accompagné de l’acte de naissance du demandeur (en cas de décès)",
+          "**Paiement des droits de chancellerie** (80 dollars) via le lien : [https://www.ci-embassyepay.org/](https://www.ci-embassyepay.org/)"
+        ]
+      },
+      "fees": null,
+      "processingTime": null,
+      "paymentLink": "https://www.ci-embassyepay.org/](https://www.ci-embassyepay.org/)",
+      "formLink": null,
+      "parentId": "cmgezace3000tgqaemkjas209",
+      "createdAt": "2025-10-06T10:18:43.185Z",
+      "updatedAt": "2025-10-06T10:18:57.478Z",
+      "publishedAt": "2025-10-06T10:18:57.476Z"
+    },
+    {
+      "id": "cmgezacfv0017gqaeorivk2v9",
+      "title": {
+        "en": "Document Legalization",
+        "fr": "Légalisation d'Actes"
+      },
+      "slug": "services/autres-documents/legalisation",
+      "content": {
+        "en": "English content to be added",
+        "fr": "# LÉGALISATIONS D’ACTES\n\n---\n\n## Légalisation de Procuration\n\n**Pièces à fournir :**\n\n- Copie de la Carte Consulaire valide (obligatoire) du demandeur\n- Procuration rédigée portant la signature du requérant\n- Copie de la pièce d’identité valide du mandant (Carte Nationale d’Identité, Passeport ou carte consulaire)\n- Copie de la pièce d’identité du mandataire (Carte Nationale d’Identité, Passeport ou Attestation Administrative d’Identité)\n- Reçu de paiement des frais de légalisation (20 dollars) via le lien : [https://www.ciembassyepay.org/](https://www.ciembassyepay.org/)\n\n---\n\n## Légalisation d’Autorisation Parentale\n\n**Pièces à fournir :**\n\n- Copie de la Carte Consulaire valide (obligatoire) du demandeur\n- Formulaire dûment renseigné et signé (lien du formulaire)\n- Copie de la pièce d’identité valide du requérant (Carte Nationale d’Identité, Passeport, Attestation Administrative d’Identité)\n- Reçu de paiement des frais de légalisation (20 dollars) via le lien : [https://www.ciembassyepay.org/](https://www.ciembassyepay.org/)\n\n---\n\n## Légalisation de Signature\n\n**Pièces à fournir :**\n\n- Copie de la Carte Consulaire valide (obligatoire) du demandeur\n- L’original du document à légaliser\n- Copie de la pièce d’identité valide du requérant (Carte Nationale d’Identité, Passeport, Attestation Administrative d’Identité)\n- Reçu de paiement des frais de légalisation (20 dollars) via le lien : [https://www.ciembassyepay.org/](https://www.ciembassyepay.org/)\n\n---\n\n## Légalisation de Diplôme\n\n**Pièces à fournir :**\n\n- Photocopie de la Carte Consulaire valide (obligatoire) du demandeur\n- Copie du diplôme légalisée au Ministère des Affaires Étrangères (Direction Générale des Affaires Juridiques, Consulaires et de l’État Civil)\n- Reçu de paiement des frais (20 dollars) via le lien : [https://www.ciembassyepay.org/](https://www.ciembassyepay.org/)\n\n---\n\n## Légalisation des Autres Documents Administratifs\n\n**Pièces à fournir :**\n\n- Copie de la Carte Consulaire valide (obligatoire) du demandeur\n- Document préalablement légalisé par les ministères techniques concernés :\n    1. **Ministère de l’Intérieur** (Direction Générale de l’Administration du Territoire) : pour documents comme extrait de naissance, certificat de célibat, acte de mariage, etc.\n    2. **Ministère de la Justice** (Direction des Affaires Civiles et Pénales) : pour actes comme casier judiciaire, certificat de nationalité, etc.\n    3. **Ministère des Affaires Étrangères** (Direction Générale des Affaires Juridiques, Consulaires et de l’État Civil)\n- Copie de la pièce d’identité ivoirienne valide (Carte Nationale d’Identité, Attestation Administrative d’Identité, Passeport)\n- Reçu de paiement des frais (20 dollars par page) via le lien : [https://www.ciembassyepay.org/](https://www.ciembassyepay.org/)\n\n---\n\n## Modalités de dépôt\n\n1. **Par voie postale** à l’adresse suivante :  \n   Consulat Général de Côte d’Ivoire  \n   800 Second Avenue, Fifth Floor  \n   New York, NY 10017\n\n2. **En personne** : se présenter directement au Consulat Général pour le dépôt du dossier de documents ou actes consulaires.\n\n---\n\n> **NB :**\n>\n> - Le délai de traitement de la demande est de trois (03) jours après réception du dossier.\n> - Tout dossier incomplet entraînera le non-traitement de la demande.\n"
+      },
+      "status": "PUBLISHED",
+      "template": "service",
+      "metaTitle": null,
+      "metaDescription": null,
+      "order": 8,
+      "serviceType": "legalisation",
+      "requiredDocs": null,
+      "fees": null,
+      "processingTime": null,
+      "paymentLink": "https://www.ciembassyepay.org/](https://www.ciembassyepay.org/)",
+      "formLink": null,
+      "parentId": "cmgezace3000tgqaemkjas209",
+      "createdAt": "2025-10-06T10:18:43.194Z",
+      "updatedAt": "2025-10-06T10:18:57.490Z",
+      "publishedAt": "2025-10-06T10:18:57.489Z"
+    },
+    {
+      "id": "cmgezacga001bgqaeb5q70j1y",
+      "title": {
+        "en": "Consular Services",
+        "fr": "Services Consulaires"
+      },
+      "slug": "services",
+      "content": {
+        "en": "English content to be added",
+        "fr": "# Démarches consulaires\n\n---\n\n## I. Informations utiles\n\n- Consultez la liste des pièces à fournir sur le site : [https://newyork.diplomatie.gouv.ci/](https://newyork.diplomatie.gouv.ci/)\n- Faire des **photocopies de tous les documents requis**\n- Télécharger les formulaires à renseigner via le site web du Consulat Général, rubrique « Documents »\n- **La présence du requérant est absolument obligatoire** pour :\n    - l’établissement ou le renouvellement du passeport biométrique ivoirien (prise de photo et empreintes digitales)\n    - l’établissement du certificat de vie\n- **Jours d’enrôlement pour le passeport** : **LUNDI, MERCREDI et JEUDI**\n\n> **N.B :** Tout dossier incomplet entraînera le non-traitement de la demande.\n\n---\n\n## II. Jours et horaires de service\n\n- **Du lundi au vendredi**\n    - **Matin :** 9h30 – 13h00\n    - **Après-midi :** 14h00 – 16h30\n\n- **Dépôt de dossier** (lundi au jeudi) :\n    - **Matin :** 9h30 – 13h00\n    - **Après-midi :** 14h00 – 16h00\n\n- **Retrait de dossier** : 72 heures (soit trois (03) jours) après le dépôt\n    - **Du lundi au vendredi :** 14h00 – 16h00\n\n> **NB :** Le Consulat Général est fermé les jours fériés en Côte d’Ivoire et aux États-Unis ([Consulter ici]).\n\n---\n\n## III. Comment obtenir ses documents ?\n\n1. **Par voie postale**  \n   Adresse :  \n   Consulat Général de Côte d’Ivoire  \n   800 Second Avenue, Fifth Floor  \n   New York, NY 10017\n\n2. **En personne**  \n   Se présenter directement au Consulat Général pour le dépôt du dossier de demande de documents ou d’actes consulaires.\n\n---\n\n## IV. Retrait des documents\n\n1. **Directement au Consulat Général**  \n   Du lundi au vendredi : 14h00 à 16h00\n\n2. **Par voie postale**  \n   Fournir une enveloppe prépayée ou un bordereau d’envoi d’une compagnie (UPS, DHL…), portant l’adresse précise et exacte (en caractères d’imprimerie).  \n   Dans ce cas, le requérant devra obligatoirement fournir :\n    - Une lettre de désengagement signée (« cliquez ici »)\n\n> **NB :**\n>\n> - Le délai d’acheminement dépendra des délais de la poste.\n> - Toute enveloppe doit porter un « tracking number ».\n"
+      },
+      "status": "PUBLISHED",
+      "template": "service",
+      "metaTitle": null,
+      "metaDescription": null,
+      "order": 0,
+      "serviceType": null,
+      "requiredDocs": null,
+      "fees": null,
+      "processingTime": null,
+      "paymentLink": "https://www.ci-embassyepay.org/",
+      "formLink": null,
+      "parentId": null,
+      "createdAt": "2025-10-06T10:18:43.210Z",
+      "updatedAt": "2025-10-06T10:18:57.510Z",
+      "publishedAt": "2025-10-06T10:18:57.508Z"
+    }
+  ],
+  "settings": [
+    {
+      "id": "cmgez0lfh000cgqae5mgk6ktn",
+      "key": "site_title",
+      "value": {
+        "en": "Consulate General of Côte d'Ivoire - New York",
+        "fr": "Consulat Général de Côte d'Ivoire - New York"
+      },
+      "type": "text"
+    },
+    {
+      "id": "cmgez0lfm000dgqaeiuqjvcbh",
+      "key": "site_description",
+      "value": {
+        "en": "Official website of the Consulate General of Côte d'Ivoire in New York",
+        "fr": "Site officiel du Consulat Général de Côte d'Ivoire à New York"
+      },
+      "type": "text"
+    },
+    {
+      "id": "cmgez0lfq000egqaee3weai1b",
+      "key": "contact_email",
+      "value": "consulat.newyork@diplomatie.gouv.ci",
+      "type": "email"
+    },
+    {
+      "id": "cmgez0lfu000fgqaekahxaw2l",
+      "key": "contact_phone",
+      "value": "+1 (212) 697-0900",
+      "type": "phone"
+    },
+    {
+      "id": "cmgez0lfy000ggqaext6q7rzk",
+      "key": "address",
+      "value": "801 Second Avenue, 5th Floor, New York, NY 10017",
+      "type": "text"
+    },
+    {
+      "id": "cmgez0lg3000hgqaei8ifj4n7",
+      "key": "opening_hours",
+      "value": {
+        "en": "Monday - Friday: 9:00 AM - 5:00 PM",
+        "fr": "Lundi - Vendredi: 9h00 - 17h00"
+      },
+      "type": "text"
+    },
+    {
+      "id": "cmgez0lg7000igqaei8dlof6q",
+      "key": "social_facebook",
+      "value": "https://facebook.com/consulat-ci-ny",
+      "type": "url"
+    },
+    {
+      "id": "cmgez0lgb000jgqaeaxoqfdcr",
+      "key": "social_twitter",
+      "value": "https://twitter.com/consulat_ci_ny",
+      "type": "url"
+    },
+    {
+      "id": "cmgez0lgf000kgqaedgwd6lkj",
+      "key": "posts_per_page",
+      "value": "10",
+      "type": "number"
+    },
+    {
+      "id": "cmgez0lgj000lgqaemxixg333",
+      "key": "site_language_default",
+      "value": "fr",
+      "type": "select"
+    }
+  ],
+  "auditLogs": [
+    {
+      "id": "cmgf2dunw001fgqae8180ff37",
+      "action": "UPDATE",
+      "entity": "Page",
+      "entityId": "cmgezacec000vgqaesq5xduv1",
+      "userId": "cmgez0ldp0001gqae2b32yhbv",
+      "data": {
+        "after": {
+          "id": "cmgezacec000vgqaesq5xduv1",
+          "fees": null,
+          "slug": "services/visa",
+          "order": 1,
+          "title": {
+            "en": "Visa Services",
+            "fr": "Services de Visa"
+          },
+          "parent": null,
+          "status": "PUBLISHED",
+          "content": {
+            "en": "<div class=\"space-y-8\">\n  <div class=\"text-center\">\n    <div class=\"mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-orange-500 shadow-lg\">\n      <svg class=\"h-10 w-10 text-white\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n        <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z\"></path>\n      </svg>\n    </div>\n    <h1 class=\"mb-4 text-4xl font-bold text-gray-900\">VISA Service</h1>\n    <p class=\"mx-auto max-w-2xl text-lg text-gray-600\">\n      Please prepare all the documents listed below to complete your visa application.\n    </p>\n  </div>\n\n  <div class=\"bg-gray-50 p-8 rounded-lg shadow-lg\">\n    <h2 class=\"text-2xl font-bold mb-6 text-gray-900\">Required Documents</h2>\n    <ol class=\"space-y-4\">\n      <li class=\"flex items-start\">\n        <span class=\"mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white\">1</span>\n        <span class=\"text-gray-700 pt-1\">The passport with a six-month validity or more</span>\n      </li>\n      <li class=\"flex items-start\">\n        <span class=\"mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white\">2</span>\n        <span class=\"text-gray-700 pt-1\">One picture I.D in color with white background</span>\n      </li>\n      <li class=\"flex items-start\">\n        <span class=\"mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white\">3</span>\n        <span class=\"text-gray-700 pt-1\">Legalized invitation letter or Hotel booking</span>\n      </li>\n      <li class=\"flex items-start\">\n        <span class=\"mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white\">4</span>\n        <span class=\"text-gray-700 pt-1\">Flight booking itinerary</span>\n      </li>\n      <li class=\"flex items-start\">\n        <span class=\"mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white\">5</span>\n        <span class=\"text-gray-700 pt-1\">Copy of the yellow fever vaccine</span>\n      </li>\n      <li class=\"flex items-start\">\n        <span class=\"mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white\">6</span>\n        <span class=\"text-gray-700 pt-1\">Copy of the Green Card for non US Citizens or valid visa (Visa B1 and B2 are not accepted)</span>\n      </li>\n      <li class=\"flex items-start\">\n        <span class=\"mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white\">7</span>\n        <span class=\"text-gray-700 pt-1\">For minor children : A notarized parental consent written by the parent not traveling</span>\n      </li>\n      <li class=\"flex items-start\">\n        <span class=\"mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white\">8</span>\n        <span class=\"text-gray-700 pt-1\">Person traveling with the child : Copy of passport and visa or Green Card</span>\n      </li>\n      <li class=\"flex items-start\">\n        <span class=\"mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white\">9</span>\n        <span class=\"text-gray-700 pt-1\">Copy of the visa payment receipt</span>\n      </li>\n    </ol>\n  </div>\n\n  <div class=\"border-2 border-red-200 bg-red-50 p-6 rounded-lg\">\n    <div class=\"flex items-start\">\n      <svg class=\"mr-3 mt-1 h-6 w-6 flex-shrink-0 text-red-600\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n        <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z\"></path>\n      </svg>\n      <div class=\"space-y-3\">\n        <h3 class=\"text-lg font-bold text-gray-900\">IMPORTANT</h3>\n        <div class=\"text-gray-700\">\n          <p class=\"mb-3\">\n            The documents for the visa should be uploaded on the platform called: express54.org\n            Upon approval, applicants will be contacted by email in order to send their passports to the Embassy for the visa.\n          </p>\n          <p>\n            For more information, please contact the Consular Service at \n            <a href=\"tel:+16464767614\" class=\"font-bold text-green-600 hover:underline\">(646) 476-7614</a>\n          </p>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"border-2 border-green-200 bg-green-50 p-6 rounded-lg\">\n    <h3 class=\"mb-4 text-lg font-bold text-gray-900\">Payment</h3>\n    <p class=\"mb-6 text-gray-700\">\n      Processing of your application will begin after receipt of payment and all required documents.\n    </p>\n    <div class=\"text-center\">\n      <a href=\"https://express54.org\" target=\"_blank\" class=\"inline-flex items-center rounded-xl bg-green-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-green-700 hover:shadow-xl hover:scale-105\">\n        <svg class=\"mr-3 h-5 w-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n          <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14\"></path>\n        </svg>\n        Proceed to payment\n      </a>\n    </div>\n  </div>\n\n  <div class=\"border-2 border-orange-200 bg-orange-50 p-6 rounded-lg\">\n    <h3 class=\"mb-4 text-lg font-bold text-gray-900\">Online procedures</h3>\n    <p class=\"mb-6 text-gray-700\">\n      Submit your visa application directly on our digitalized platform\n    </p>\n    <div class=\"text-center\">\n      <a href=\"https://www.express54.org\" target=\"_blank\" class=\"inline-flex items-center rounded-xl bg-orange-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-orange-700 hover:shadow-xl hover:scale-105\">\n        <svg class=\"mr-3 h-5 w-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n          <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14\"></path>\n        </svg>\n        www.express54.org\n      </a>\n    </div>\n  </div>\n</div>",
+            "fr": "<h1>Service VISA</h1><p>Veuillez préparer tous les documents listés ci-dessous pour compléter votre demande de visa.</p><h2>Documents requis</h2><ol><li><p>1 Le passeport d'une validité de six (06) mois ou plus</p></li><li><p>2 Une photo d'identité en couleur / fond blanc</p></li><li><p>3 La lettre d'invitation légalisée ou la confirmation de la réservation d'hôtel</p></li><li><p>4 L'itinéraire du voyage (billet aller-retour)</p></li><li><p>5 La copie du Carnet de vaccination contre la fièvre jaune</p></li><li><p>6 La copie de la Green Card pour autre nationalité ou visa (exceptés visa B1 et B2)</p></li><li><p>7 Pour l'enfant mineur : une autorisation parentale notariée pour le parent qui ne voyage pas</p></li><li><p>8 Pour les personnes qui voyagent avec l'enfant mineur : copies du passeport et du visa ou de la Green Card</p></li><li><p>9 La copie du reçu de paiement du visa</p></li><li><p>10 Testing update content</p></li></ol><h3>IMPORTANT</h3><p>Les documents susmentionnés devront être ensuite téléchargés sur la plate-forme express54.org. Après analyse des documents, les requérants seront contactés par email afin de faire parvenir leurs passeports.</p><p>Pour plus d'informations, veuillez appeler le Service Consulaire au <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"text-orange-600 underline hover:text-orange-700 font-bold text-green-600 hover:underline\" href=\"tel:+16464767614\">(646) 476-7614</a></p><h3>Paiement</h3><p>Le traitement de votre demande commencera après réception du paiement et de tous les documents requis.</p><p><a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"text-orange-600 underline hover:text-orange-700 inline-flex items-center rounded-xl bg-green-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-green-700 hover:shadow-xl hover:scale-105\" href=\"https://express54.org\"> Procéder au paiement</a></p><h3>Démarches en ligne</h3><p>Effectuez votre demande de visa directement sur notre plateforme digitalisée</p><p><a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"text-orange-600 underline hover:text-orange-700 inline-flex items-center rounded-xl bg-orange-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-orange-700 hover:shadow-xl hover:scale-105\" href=\"https://www.express54.org\"> www.express54.org</a></p>"
+          },
+          "children": [],
+          "formLink": "https://express54.org",
+          "parentId": null,
+          "template": "service",
+          "createdAt": "2025-10-06T10:18:43.139Z",
+          "metaTitle": null,
+          "updatedAt": "2025-10-06T11:45:25.612Z",
+          "paymentLink": "https://express54.org",
+          "publishedAt": "2025-10-06T10:18:57.400Z",
+          "serviceType": "visa",
+          "requiredDocs": {
+            "en": [
+              "The passport with a six-month validity or more",
+              "One picture I.D in color with white background",
+              "Legalized invitation letter or Hotel booking",
+              "Flight booking itinerary",
+              "Copy of the yellow fever vaccine",
+              "Copy of the Green Card for non US Citizens or valid visa (Visa B1 and B2 are not accepted)",
+              "For minor children : A notarized parental consent written by the parent not traveling",
+              "Person traveling with the child : Copy of passport and visa or Green Card",
+              "Copy of the visa payment receipt"
+            ],
+            "fr": [
+              "Le passeport d'une validité de six (06) mois ou plus",
+              "Une photo d'identité en couleur / fond blanc",
+              "La lettre d'invitation légalisée ou la confirmation de la réservation d'hôtel",
+              "L'itinéraire du voyage (billet aller-retour)",
+              "La copie du Carnet de vaccination contre la fièvre jaune",
+              "La copie de la Green Card pour autre nationalité ou visa (exceptés visa B1 et B2)",
+              "Pour l'enfant mineur : une autorisation parentale notariée pour le parent qui ne voyage pas",
+              "Pour les personnes qui voyagent avec l'enfant mineur : copies du passeport et du visa ou de la Green Card",
+              "La copie du reçu de paiement du visa",
+              "Testing update content"
+            ]
+          },
+          "processingTime": {
+            "en": "3-5 business days after receiving documents",
+            "fr": "3-5 jours ouvrables après réception des documents"
+          },
+          "metaDescription": null
+        },
+        "before": {
+          "id": "cmgezacec000vgqaesq5xduv1",
+          "fees": null,
+          "slug": "services/visa",
+          "order": 1,
+          "title": {
+            "en": "Visa Services",
+            "fr": "Services de Visa"
+          },
+          "status": "PUBLISHED",
+          "content": {
+            "en": "<div class=\"space-y-8\">\n  <div class=\"text-center\">\n    <div class=\"mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-orange-500 shadow-lg\">\n      <svg class=\"h-10 w-10 text-white\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n        <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z\"></path>\n      </svg>\n    </div>\n    <h1 class=\"mb-4 text-4xl font-bold text-gray-900\">VISA Service</h1>\n    <p class=\"mx-auto max-w-2xl text-lg text-gray-600\">\n      Please prepare all the documents listed below to complete your visa application.\n    </p>\n  </div>\n\n  <div class=\"bg-gray-50 p-8 rounded-lg shadow-lg\">\n    <h2 class=\"text-2xl font-bold mb-6 text-gray-900\">Required Documents</h2>\n    <ol class=\"space-y-4\">\n      <li class=\"flex items-start\">\n        <span class=\"mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white\">1</span>\n        <span class=\"text-gray-700 pt-1\">The passport with a six-month validity or more</span>\n      </li>\n      <li class=\"flex items-start\">\n        <span class=\"mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white\">2</span>\n        <span class=\"text-gray-700 pt-1\">One picture I.D in color with white background</span>\n      </li>\n      <li class=\"flex items-start\">\n        <span class=\"mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white\">3</span>\n        <span class=\"text-gray-700 pt-1\">Legalized invitation letter or Hotel booking</span>\n      </li>\n      <li class=\"flex items-start\">\n        <span class=\"mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white\">4</span>\n        <span class=\"text-gray-700 pt-1\">Flight booking itinerary</span>\n      </li>\n      <li class=\"flex items-start\">\n        <span class=\"mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white\">5</span>\n        <span class=\"text-gray-700 pt-1\">Copy of the yellow fever vaccine</span>\n      </li>\n      <li class=\"flex items-start\">\n        <span class=\"mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white\">6</span>\n        <span class=\"text-gray-700 pt-1\">Copy of the Green Card for non US Citizens or valid visa (Visa B1 and B2 are not accepted)</span>\n      </li>\n      <li class=\"flex items-start\">\n        <span class=\"mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white\">7</span>\n        <span class=\"text-gray-700 pt-1\">For minor children : A notarized parental consent written by the parent not traveling</span>\n      </li>\n      <li class=\"flex items-start\">\n        <span class=\"mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white\">8</span>\n        <span class=\"text-gray-700 pt-1\">Person traveling with the child : Copy of passport and visa or Green Card</span>\n      </li>\n      <li class=\"flex items-start\">\n        <span class=\"mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white\">9</span>\n        <span class=\"text-gray-700 pt-1\">Copy of the visa payment receipt</span>\n      </li>\n    </ol>\n  </div>\n\n  <div class=\"border-2 border-red-200 bg-red-50 p-6 rounded-lg\">\n    <div class=\"flex items-start\">\n      <svg class=\"mr-3 mt-1 h-6 w-6 flex-shrink-0 text-red-600\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n        <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z\"></path>\n      </svg>\n      <div class=\"space-y-3\">\n        <h3 class=\"text-lg font-bold text-gray-900\">IMPORTANT</h3>\n        <div class=\"text-gray-700\">\n          <p class=\"mb-3\">\n            The documents for the visa should be uploaded on the platform called: express54.org\n            Upon approval, applicants will be contacted by email in order to send their passports to the Embassy for the visa.\n          </p>\n          <p>\n            For more information, please contact the Consular Service at \n            <a href=\"tel:+16464767614\" class=\"font-bold text-green-600 hover:underline\">(646) 476-7614</a>\n          </p>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"border-2 border-green-200 bg-green-50 p-6 rounded-lg\">\n    <h3 class=\"mb-4 text-lg font-bold text-gray-900\">Payment</h3>\n    <p class=\"mb-6 text-gray-700\">\n      Processing of your application will begin after receipt of payment and all required documents.\n    </p>\n    <div class=\"text-center\">\n      <a href=\"https://express54.org\" target=\"_blank\" class=\"inline-flex items-center rounded-xl bg-green-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-green-700 hover:shadow-xl hover:scale-105\">\n        <svg class=\"mr-3 h-5 w-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n          <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14\"></path>\n        </svg>\n        Proceed to payment\n      </a>\n    </div>\n  </div>\n\n  <div class=\"border-2 border-orange-200 bg-orange-50 p-6 rounded-lg\">\n    <h3 class=\"mb-4 text-lg font-bold text-gray-900\">Online procedures</h3>\n    <p class=\"mb-6 text-gray-700\">\n      Submit your visa application directly on our digitalized platform\n    </p>\n    <div class=\"text-center\">\n      <a href=\"https://www.express54.org\" target=\"_blank\" class=\"inline-flex items-center rounded-xl bg-orange-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-orange-700 hover:shadow-xl hover:scale-105\">\n        <svg class=\"mr-3 h-5 w-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n          <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14\"></path>\n        </svg>\n        www.express54.org\n      </a>\n    </div>\n  </div>\n</div>",
+            "fr": "<div class=\"space-y-8\">\n  <div class=\"text-center\">\n    <div class=\"mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-orange-500 shadow-lg\">\n      <svg class=\"h-10 w-10 text-white\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n        <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z\"></path>\n      </svg>\n    </div>\n    <h1 class=\"mb-4 text-4xl font-bold text-gray-900\">Service VISA</h1>\n    <p class=\"mx-auto max-w-2xl text-lg text-gray-600\">\n      Veuillez préparer tous les documents listés ci-dessous pour compléter votre demande de visa.\n    </p>\n  </div>\n\n  <div class=\"bg-gray-50 p-8 rounded-lg shadow-lg\">\n    <h2 class=\"text-2xl font-bold mb-6 text-gray-900\">Documents requis</h2>\n    <ol class=\"space-y-4\">\n      <li class=\"flex items-start\">\n        <span class=\"mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white\">1</span>\n        <span class=\"text-gray-700 pt-1\">Le passeport d'une validité de six (06) mois ou plus</span>\n      </li>\n      <li class=\"flex items-start\">\n        <span class=\"mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white\">2</span>\n        <span class=\"text-gray-700 pt-1\">Une photo d'identité en couleur / fond blanc</span>\n      </li>\n      <li class=\"flex items-start\">\n        <span class=\"mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white\">3</span>\n        <span class=\"text-gray-700 pt-1\">La lettre d'invitation légalisée ou la confirmation de la réservation d'hôtel</span>\n      </li>\n      <li class=\"flex items-start\">\n        <span class=\"mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white\">4</span>\n        <span class=\"text-gray-700 pt-1\">L'itinéraire du voyage (billet aller-retour)</span>\n      </li>\n      <li class=\"flex items-start\">\n        <span class=\"mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white\">5</span>\n        <span class=\"text-gray-700 pt-1\">La copie du Carnet de vaccination contre la fièvre jaune</span>\n      </li>\n      <li class=\"flex items-start\">\n        <span class=\"mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white\">6</span>\n        <span class=\"text-gray-700 pt-1\">La copie de la Green Card pour autre nationalité ou visa (exceptés visa B1 et B2)</span>\n      </li>\n      <li class=\"flex items-start\">\n        <span class=\"mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white\">7</span>\n        <span class=\"text-gray-700 pt-1\">Pour l'enfant mineur : une autorisation parentale notariée pour le parent qui ne voyage pas</span>\n      </li>\n      <li class=\"flex items-start\">\n        <span class=\"mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white\">8</span>\n        <span class=\"text-gray-700 pt-1\">Pour les personnes qui voyagent avec l'enfant mineur : copies du passeport et du visa ou de la Green Card</span>\n      </li>\n      <li class=\"flex items-start\">\n        <span class=\"mr-4 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white\">9</span>\n        <span class=\"text-gray-700 pt-1\">La copie du reçu de paiement du visa</span>\n      </li>\n    </ol>\n  </div>\n\n  <div class=\"border-2 border-red-200 bg-red-50 p-6 rounded-lg\">\n    <div class=\"flex items-start\">\n      <svg class=\"mr-3 mt-1 h-6 w-6 flex-shrink-0 text-red-600\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n        <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z\"></path>\n      </svg>\n      <div class=\"space-y-3\">\n        <h3 class=\"text-lg font-bold text-gray-900\">IMPORTANT</h3>\n        <div class=\"text-gray-700\">\n          <p class=\"mb-3\">\n            Les documents susmentionnés devront être ensuite téléchargés sur la plate-forme express54.org.\n            Après analyse des documents, les requérants seront contactés par email afin de faire parvenir leurs passeports.\n          </p>\n          <p>\n            Pour plus d'informations, veuillez appeler le Service Consulaire au \n            <a href=\"tel:+16464767614\" class=\"font-bold text-green-600 hover:underline\">(646) 476-7614</a>\n          </p>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"border-2 border-green-200 bg-green-50 p-6 rounded-lg\">\n    <h3 class=\"mb-4 text-lg font-bold text-gray-900\">Paiement</h3>\n    <p class=\"mb-6 text-gray-700\">\n      Le traitement de votre demande commencera après réception du paiement et de tous les documents requis.\n    </p>\n    <div class=\"text-center\">\n      <a href=\"https://express54.org\" target=\"_blank\" class=\"inline-flex items-center rounded-xl bg-green-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-green-700 hover:shadow-xl hover:scale-105\">\n        <svg class=\"mr-3 h-5 w-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n          <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14\"></path>\n        </svg>\n        Procéder au paiement\n      </a>\n    </div>\n  </div>\n\n  <div class=\"border-2 border-orange-200 bg-orange-50 p-6 rounded-lg\">\n    <h3 class=\"mb-4 text-lg font-bold text-gray-900\">Démarches en ligne</h3>\n    <p class=\"mb-6 text-gray-700\">\n      Effectuez votre demande de visa directement sur notre plateforme digitalisée\n    </p>\n    <div class=\"text-center\">\n      <a href=\"https://www.express54.org\" target=\"_blank\" class=\"inline-flex items-center rounded-xl bg-orange-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-orange-700 hover:shadow-xl hover:scale-105\">\n        <svg class=\"mr-3 h-5 w-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\">\n          <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14\"></path>\n        </svg>\n        www.express54.org\n      </a>\n    </div>\n  </div>\n</div>"
+          },
+          "formLink": "https://express54.org",
+          "parentId": null,
+          "template": "service",
+          "createdAt": "2025-10-06T10:18:43.139Z",
+          "metaTitle": null,
+          "updatedAt": "2025-10-06T10:58:20.150Z",
+          "paymentLink": "https://express54.org",
+          "publishedAt": "2025-10-06T10:18:57.400Z",
+          "serviceType": "visa",
+          "requiredDocs": {
+            "en": [
+              "The passport with a six-month validity or more",
+              "One picture I.D in color with white background",
+              "Legalized invitation letter or Hotel booking",
+              "Flight booking itinerary",
+              "Copy of the yellow fever vaccine",
+              "Copy of the Green Card for non US Citizens or valid visa (Visa B1 and B2 are not accepted)",
+              "For minor children : A notarized parental consent written by the parent not traveling",
+              "Person traveling with the child : Copy of passport and visa or Green Card",
+              "Copy of the visa payment receipt"
+            ],
+            "fr": [
+              "Le passeport d'une validité de six (06) mois ou plus",
+              "Une photo d'identité en couleur / fond blanc",
+              "La lettre d'invitation légalisée ou la confirmation de la réservation d'hôtel",
+              "L'itinéraire du voyage (billet aller-retour)",
+              "La copie du Carnet de vaccination contre la fièvre jaune",
+              "La copie de la Green Card pour autre nationalité ou visa (exceptés visa B1 et B2)",
+              "Pour l'enfant mineur : une autorisation parentale notariée pour le parent qui ne voyage pas",
+              "Pour les personnes qui voyagent avec l'enfant mineur : copies du passeport et du visa ou de la Green Card",
+              "La copie du reçu de paiement du visa"
+            ]
+          },
+          "processingTime": {
+            "en": "3-5 business days after receiving documents",
+            "fr": "3-5 jours ouvrables après réception des documents"
+          },
+          "metaDescription": null
+        }
+      },
+      "ipAddress": null,
+      "userAgent": null,
+      "createdAt": "2025-10-06T11:45:25.626Z"
+    },
+    {
+      "id": "cmgqo187u0003gquxqjyujnz3",
+      "action": "CREATE",
+      "entity": "MEDIA",
+      "entityId": "cmgqo187g0001gquxz1kd9pyi",
+      "userId": "cmgez0ldp0001gqae2b32yhbv",
+      "data": null,
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "createdAt": "2025-10-14T14:36:56.154Z"
+    },
+    {
+      "id": "cmgqo1oyh0007gqux5l90zpsh",
+      "action": "CREATE",
+      "entity": "MEDIA",
+      "entityId": "cmgqo1oy80005gquxsurm3juw",
+      "userId": "cmgez0ldp0001gqae2b32yhbv",
+      "data": null,
+      "ipAddress": "uploadthing",
+      "userAgent": "uploadthing-upload",
+      "createdAt": "2025-10-14T14:37:17.848Z"
+    },
+    {
+      "id": "cmgqoettu000bgqux6eakicdg",
+      "action": "CREATE",
+      "entity": "MEDIA",
+      "entityId": "cmgqoetth0009gqux40gg33c1",
+      "userId": "cmgez0ldp0001gqae2b32yhbv",
+      "data": null,
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "createdAt": "2025-10-14T14:47:30.689Z"
+    },
+    {
+      "id": "cmgqoetuh000fgquxubvwb3p1",
+      "action": "CREATE",
+      "entity": "MEDIA",
+      "entityId": "cmgqoetub000dgqux2dfl11gl",
+      "userId": "cmgez0ldp0001gqae2b32yhbv",
+      "data": null,
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "createdAt": "2025-10-14T14:47:30.712Z"
+    },
+    {
+      "id": "cmgqog911000hgquxb2aa6gg0",
+      "action": "DELETE",
+      "entity": "POST",
+      "entityId": "cmgez0lgy000pgqaerujpfq1d",
+      "userId": "cmgez0ldp0001gqae2b32yhbv",
+      "data": {
+        "level": "audit",
+        "action": "DELETE",
+        "entity": "POST",
+        "userId": "cmgez0ldp0001gqae2b32yhbv",
+        "message": "Data change: POST DELETE | user:cmgez0ldp0001gqae2b32yhbv | POST:cmgez0lgy000pgqaerujpfq1d | action:DELETE",
+        "entityId": "cmgez0lgy000pgqaerujpfq1d",
+        "afterData": null,
+        "ipAddress": "::1",
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+        "beforeData": {
+          "id": "cmgez0lgy000pgqaerujpfq1d",
+          "slug": "horaires-ouverture-modifies",
+          "type": "ANNOUNCEMENT",
+          "title": {
+            "en": "Modified opening hours",
+            "fr": "Horaires d'ouverture modifiés"
+          },
+          "views": 0,
+          "author": {
+            "id": "cmgez0ldp0001gqae2b32yhbv",
+            "name": "Administrateur",
+            "role": "SUPER_ADMIN",
+            "email": "admin@consulat-ci.org",
+            "isActive": true,
+            "createdAt": "2025-10-06T10:11:08.221Z",
+            "updatedAt": "2025-10-14T14:36:15.666Z",
+            "lastLoginAt": "2025-10-14T14:36:15.663Z",
+            "passwordHash": "$2b$12$f67o3zDPpC2oPNt.m0wj7.tJiqb4rA2s2TLw/v/zXuJMi4OXQBC0u"
+          },
+          "status": "PUBLISHED",
+          "content": {
+            "en": "<p>We inform you that our opening hours have been temporarily modified...</p>",
+            "fr": "<p>Nous vous informons que nos horaires d'ouverture ont été modifiés temporairement...</p>"
+          },
+          "excerpt": {
+            "en": "Temporary modification of consulate opening hours.",
+            "fr": "Modification temporaire des horaires d'ouverture du consulat."
+          },
+          "authorId": "cmgez0ldp0001gqae2b32yhbv",
+          "featured": false,
+          "createdAt": "2025-10-06T10:11:08.338Z",
+          "updatedAt": "2025-10-06T10:11:08.338Z",
+          "categoryId": "cmgez0le10002gqaenibl7wot",
+          "publishedAt": "2025-01-12T00:00:00.000Z",
+          "featuredImage": null
+        }
+      },
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "createdAt": "2025-10-14T14:48:37.044Z"
+    },
+    {
+      "id": "cmgqogdeu000jgquxzz2grdwl",
+      "action": "DELETE",
+      "entity": "POST",
+      "entityId": "cmgez0lgt000ngqaeacj56xdr",
+      "userId": "cmgez0ldp0001gqae2b32yhbv",
+      "data": {
+        "level": "audit",
+        "action": "DELETE",
+        "entity": "POST",
+        "userId": "cmgez0ldp0001gqae2b32yhbv",
+        "message": "Data change: POST DELETE | user:cmgez0ldp0001gqae2b32yhbv | POST:cmgez0lgt000ngqaeacj56xdr | action:DELETE",
+        "entityId": "cmgez0lgt000ngqaeacj56xdr",
+        "afterData": null,
+        "ipAddress": "::1",
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+        "beforeData": {
+          "id": "cmgez0lgt000ngqaeacj56xdr",
+          "slug": "nouvelle-procedure-visa-2025",
+          "type": "NEWS",
+          "title": {
+            "en": "New visa application procedure",
+            "fr": "Nouvelle procédure de demande de visa"
+          },
+          "views": 0,
+          "author": {
+            "id": "cmgez0ldp0001gqae2b32yhbv",
+            "name": "Administrateur",
+            "role": "SUPER_ADMIN",
+            "email": "admin@consulat-ci.org",
+            "isActive": true,
+            "createdAt": "2025-10-06T10:11:08.221Z",
+            "updatedAt": "2025-10-14T14:36:15.666Z",
+            "lastLoginAt": "2025-10-14T14:36:15.663Z",
+            "passwordHash": "$2b$12$f67o3zDPpC2oPNt.m0wj7.tJiqb4rA2s2TLw/v/zXuJMi4OXQBC0u"
+          },
+          "status": "PUBLISHED",
+          "content": {
+            "en": "<p>Starting February 1st, 2025, a new simplified procedure will be implemented for visa applications...</p>",
+            "fr": "<p>À partir du 1er février 2025, une nouvelle procédure simplifiée sera mise en place pour les demandes de visa...</p>"
+          },
+          "excerpt": {
+            "en": "Discover the new simplified procedure for visa applications.",
+            "fr": "Découvrez la nouvelle procédure simplifiée pour les demandes de visa."
+          },
+          "authorId": "cmgez0ldp0001gqae2b32yhbv",
+          "featured": true,
+          "createdAt": "2025-10-06T10:11:08.333Z",
+          "updatedAt": "2025-10-06T10:11:08.333Z",
+          "categoryId": "cmgez0le10002gqaenibl7wot",
+          "publishedAt": "2025-01-15T00:00:00.000Z",
+          "featuredImage": null
+        }
+      },
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+      "createdAt": "2025-10-14T14:48:42.724Z"
+    }
+  ],
+  "exportedAt": "2025-12-05T15:55:35.138Z"
+}

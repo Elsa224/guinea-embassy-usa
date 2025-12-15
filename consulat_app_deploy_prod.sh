@@ -25,13 +25,14 @@ echo -e "${GREEN}Creating deployment package...${NC}"
 mkdir -p consulat_app_deploy
 cp -r ${LOCAL_BUILD_DIR} consulat_app_deploy/
 cp -r public consulat_app_deploy/
+cp -r prisma consulat_app_deploy/
 cp package.json pnpm-lock.yaml next.config.ts consulat_app_deploy/
 # cp -r messages consulat_app_deploy/
 # cp middleware.ts consulat_app_deploy/
 cp ecosystem.config.js consulat_app_deploy/
 
 # Create .env.production file for deployment
-cp .env consulat_app_deploy/ || echo "# Production Environment" > consulat_app_deploy/.env.production
+cp .env consulat_app_deploy/ || echo "# Production Environment" > consulat_app_deploy/.env
 
 # Create a deployment archive
 echo -e "${GREEN}Creating deployment archive...${NC}"
