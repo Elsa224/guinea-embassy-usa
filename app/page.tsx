@@ -122,7 +122,7 @@ export default function Home() {
                         <img
                             src="/assets/images-for-the-new-website/logo_updated.png"
                             alt="Logo Consulat"
-                            className="mx-auto h-32 pb-8 sm:h-40 sm:pb-12 md:h-48 md:pb-16 lg:h-114 lg:pb-35"
+                            className="mx-auto h-32 pb-8 sm:h-40 sm:pb-12 md:h-48 md:pb-16 lg:h-100 lg:pb-35"
                         />
                     </motion.div>
                 </div>
@@ -137,11 +137,11 @@ export default function Home() {
                         style={{ opacity: 1 }}
                     />
                 </div>
-                <div className="absolute inset-0 top-55 z-0" aria-hidden="true">
+                <div className="absolute inset-0 top-80 z-0" aria-hidden="true">
                     <img
                         src="/assets/images-for-the-new-website/banderole-hero-background.png"
                         alt=""
-                        className="mb-5 h-full w-full object-cover object-center"
+                        className="mb-5 h-full w-full object-cover"
                         style={{ opacity: 1 }}
                     />
                 </div>

@@ -132,15 +132,54 @@
     --radius-xl: calc(var(--radius) + 4px);
 }
 
+@font-face {
+    font-family: "Calisto MT";
+    src: url("./fonts/CalistoMT.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: "Calisto MT";
+    src: url("./fonts/CalisMTBol.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: "Futura Std";
+    src: url("./fonts/FuturaStd-Book.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+
+  
+.font-calisto {
+    font-family: "Calisto MT", serif;
+}
+
+.font-futura {
+    font-family: "Futura Std", sans-serif;
+}
+
 body {
     font-family:
-        "Montserrat",
-        "Open Sans",
+        "Futura Std",
+        "Calisto MT",
         system-ui,
         -apple-system,
         sans-serif;
     scroll-behavior: smooth;
 }
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Calisto MT", serif !important;
+}
+
 
 /* Côte d'Ivoire Colors */
 .ci-orange {

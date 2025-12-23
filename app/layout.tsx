@@ -1,51 +1,35 @@
 import ToastProvider from "@/components/ToastProvider";
 import { Providers } from "@/components/providers/Providers";
 import type { Metadata } from "next";
-import { Poppins, Inter, Roboto, Montserrat, Open_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const poppins = Poppins({
-    variable: "--font-poppins",
-    subsets: ["latin"],
-    weight: ["400", "500", "600", "700"],
-    display: "swap",
-});
+export const calisto = localFont({
+    src: "./fonts/CalistoMT.woff2",
+    variable: "--font-calisto",
+    weight: "400",
+  });
+  
+  export const calistoBold = localFont({
+    src: "./fonts/CalisMTBol.woff2",
+    variable: "--font-calisto-bold",
+    weight: "700",
+  });
+  
+  export const futura = localFont({
+    src: "./fonts/FuturaStd-Book.woff2",
+    variable: "--font-futura",
+    weight: "400",
+  });
 
-const inter = Inter({
-    variable: "--font-inter",
-    subsets: ["latin"],
-    weight: ["400", "500", "600", "700"],
-    display: "swap",
-});
-
-const roboto = Roboto({
-    variable: "--font-roboto",
-    subsets: ["latin"],
-    weight: ["400", "500", "700"],
-    display: "swap",
-});
-
-const montserrat = Montserrat({
-    variable: "--font-montserrat",
-    subsets: ["latin"],
-    weight: ["400", "500", "600", "700"],
-    display: "swap",
-});
-
-const openSans = Open_Sans({
-    variable: "--font-open-sans",
-    subsets: ["latin"],
-    weight: ["400", "500", "600", "700"],
-    display: "swap",
-});
 
 
 export const metadata: Metadata = {
-    title: "Consulat Général de Côte d'Ivoire - New York",
+    title: "Ambassade de la République de Guinée près les Etats-Unis d'Amérique - Washington DC",
     description:
-        "Site officiel du Consulat Général de Côte d'Ivoire à New York. Services consulaires, visa, passeport, et assistance à la diaspora ivoirienne.",
+        "Site officiel de l'Ambassade de la République de Guinée à Washington DC. Informations, services consulaires, démarches administratives, actualités et assistance à la diaspora guinéenne aux États-Unis.",
     keywords:
-        "consulat, côte d'ivoire, new york, visa, passeport, diaspora, services consulaires",
+        "ambassade, guinée, washington dc, États-Unis, services consulaires, démarches, diaspora, visa, passeport, actualités, contacts",
 };
 
 export default function RootLayout({
@@ -56,7 +40,11 @@ export default function RootLayout({
     return (
         <html lang="fr">
             <body
-                className={`${montserrat.variable} antialiased`}
+                 className={`
+                    ${calisto.variable}
+                    ${calistoBold.variable}
+                    ${futura.variable}
+                  `}
             >
                 <Providers>
                     {children}
